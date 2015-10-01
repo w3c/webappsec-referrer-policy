@@ -1,174 +1,1061 @@
-<!doctype html>
-<html lang="en">
+<!doctype html><html lang="en">
  <head>
-  
   <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-  
-  
   <title>Referrer Policy</title>
-  
-  
-  <link href="../default.css" rel="stylesheet" type="text/css">
-  
-  
-  <style>
-  body {
-    background: url("https://www.w3.org/StyleSheets/TR/logo-ED") top left no-repeat white;
-    background-attachment: fixed;
-    color: black;
-    font-family: sans-serif;
-    margin: 0 auto;
-    max-width: 50em;
-    padding: 2em 1em 2em 70px;
-  }
-  :link { color: #00C; background: transparent }
-  :visited { color: #609; background: transparent }
-  a[href]:active { color: #C00; background: transparent }
-  a[href]:hover { background: #ffa }
+<style data-fill-with="stylesheet">/* This section copied from the W3C's ED styles. */
 
-  a[href] img { border-style: none }
+	body {
+		color: black;
+		font-family: sans-serif;
+		margin: 0 auto;
+		max-width: 50em;
+		padding: 2em 1em 2em 70px;
+	}
+	:link { color: #00C; background: transparent }
+	:visited { color: #609; background: transparent }
+	a[href]:active { color: #C00; background: transparent }
+	a[href]:hover { background: #ffa }
 
-  h1, h2, h3, h4, h5, h6 { text-align: left }
-  h1, h2, h3 { color: #005A9C; }
-  h1 { font: 170% sans-serif }
-  h2 { font: 140% sans-serif }
-  h3 { font: 120% sans-serif }
-  h4 { font: bold 100% sans-serif }
-  h5 { font: italic 100% sans-serif }
-  h6 { font: small-caps 100% sans-serif }
+	a[href] img { border-style: none }
 
-  .hide { display: none }
+	h1, h2, h3, h4, h5, h6 { text-align: left }
+	h1, h2, h3 { color: #005A9C; }
+	h1 { font: 170% sans-serif }
+	h2 { font: 140% sans-serif }
+	h3 { font: 120% sans-serif }
+	h4 { font: bold 100% sans-serif }
+	h5 { font: italic 100% sans-serif }
+	h6 { font: small-caps 100% sans-serif }
 
-  div.head { margin-bottom: 1em }
-  div.head h1 { margin-top: 2em; clear: both }
-  div.head table { margin-left: 2em; margin-top: 2em }
+	.hide { display: none }
 
-  p.copyright { font-size: small }
-  p.copyright small { font-size: small }
+	div.head { margin-bottom: 1em }
+	div.head h1 { margin-top: 2em; clear: both }
+	div.head table { margin-left: 2em; margin-top: 2em }
 
-  pre { margin-left: 2em }
-  dt { font-weight: bold }
+	p.copyright { font-size: small }
+	p.copyright small { font-size: small }
 
-  ul.toc, ol.toc {
-    list-style: none;
-  }
-  </style>
-  
+	pre { margin-left: 2em }
+	dt { font-weight: bold }
 
+	ul.toc, ol.toc {
+		list-style: none;
+	}
+
+/* The rest copied from the CSSWG's default.css */
+
+	body {
+		counter-reset: exampleno figure issue;
+		max-width: 50em;
+		margin: 0 auto !important;
+		line-height: 1.5;
+	}
+
+/******************************************************************************/
+/*                                Sectioning                                  */
+/******************************************************************************/
+
+/** Headings ******************************************************************/
+
+	h1, h2, h3, h4, h5, h6, dt {
+		page-break-after: avoid;
+	}
+
+	h2, h3, h5, h6 {
+		margin-top: 3em;
+	}
+	h4 {
+		 margin-top: 4em;
+	}
+
+/** Subheadings ***************************************************************/
+
+	h1 + h2,
+	#subtitle + h2 {
+		/* #subtitle is a subtitle in an H2 under the H1 */
+		margin-top: 0;
+	}
+	h2 + h3,
+	h3 + h4,
+	h4 + h5,
+	h5 + h6 {
+		margin-top: 1.2em; /* = 1 x line-height */
+	}
+
+/** Section divider ***********************************************************/
+	/* <hr> used to separate TMI into the second half of a section              */
+	hr:not([title]) {
+		font-size: 1.5em;
+		text-align: center;
+		margin: 1em auto;
+		height: auto;
+		border: transparent solid 0;
+		background: transparent;
+	}
+	hr:not([title])::before {
+		content: "\1F411\2003\2003\1F411\2003\2003\1F411";
+	}
+	/* note: <hr> with title separates document header from contents */
+
+/******************************************************************************/
+/*                            Paragraphs and Lists                            */
+/******************************************************************************/
+
+	p {
+		margin: 1em 0;
+	}
+	dd     > p:first-child,
+	li     > p:first-child {
+		margin-top: 0;
+	}
+
+	ul, ol {
+		margin-left: 0;
+		padding-left: 2em;
+	}
+	li {
+		margin: 0.25em 2em 0.5em 0;
+		padding-left: 0;
+	}
+
+	dl dd {
+		margin: 0 0 1em 2em;
+	}
+	.head dd {
+		margin-bottom: 0;
+	}
+
+	/* Style for algorithms */
+	ol.algorithm ol {
+	 border-left: 1px solid #90b8de;
+	 margin-left: 1em;
+	}
+	ol.algorithm ol.algorithm {
+	 border-left: none;
+	 margin-left: 0;
+	}
+
+	/* Style for switch/case <dl>s */
+	dl.switch > dd > ol.only {
+	 margin-left: 0;
+	}
+	dl.switch > dd > ol.algorithm {
+	 margin-left: -2em;
+	}
+	dl.switch {
+	 padding-left: 2em;
+	}
+	dl.switch > dt {
+	 text-indent: -1.5em;
+	 margin-top: 1em;
+	}
+	dl.switch > dt + dt {
+	 margin-top: 0;
+	}
+	dl.switch > dt::before {
+	 content: '\21AA';
+	 padding: 0 0.5em 0 0;
+	 display: inline-block;
+	 width: 1em;
+	 text-align: right;
+	 line-height: 0.5em;
+	}
+
+	/* Style for paragraphs I know are in MD-genned lists */
+	[data-md] > :first-child {
+		margin-top: 0;
+	}
+	[data-md] > :last-child {
+		margin-bottom: 0;
+	}
+
+/** Inline Lists **************************************************************/
+	/* This is mostly to make the list inside the CR exit criteria more compact. */
+
+	ol.inline, ol.inline li {
+		display: inline;
+		padding: 0; margin: 0;
+	}
+	ol.inline {
+		counter-reset: list-item;
+	}
+	ol.inline li {
+		counter-increment: list-item;
+	}
+	ol.inline li::before {
+		content: "(" counter(list-item) ") ";
+		font-weight: bold;
+	}
+
+/** Terminology Markup ********************************************************/
+
+
+/******************************************************************************/
+/*                                 Inline Markup                              */
+/******************************************************************************/
+
+/** Terminology Markup ********************************************************/
+	dfn   { /* Defining instance */
+		font-weight: bolder;
+	}
+	a > i { /* Instance of term */
+		font-style: normal;
+	}
+	dt dfn code, code.idl {
+		font-size: inherit;
+	}
+	dfn var {
+		font-style: normal;
+	}
+
+/** Change Marking ************************************************************/
+
+	del { color: red;  text-decoration: line-through; }
+	ins { color: #080; text-decoration: underline;    }
+
+/** Miscellaneous improvements to inline formatting ***************************/
+
+	sup {
+		vertical-align: super;
+		font-size: 80%
+	}
+
+/******************************************************************************/
+/*                                    Code                                    */
+/******************************************************************************/
+
+/** General monospace/pre rules ***********************************************/
+
+	pre, code {
+		font-family: Menlo, Consolas, "DejaVu Sans Mono", monospace;
+		font-size: .9em;
+		page-break-inside: avoid;
+	}
+	pre {
+		margin-top: 1em;
+		margin-bottom: 1em;
+		overflow: auto;
+	}
+
+/** Syntax-Highlighted Code ***************************************************/
+
+	.example pre[class*="language-"],
+	.example [class*="language-"] pre,
+	.example pre[class*="lang-"],
+	.example [class*="lang-"] pre {
+		background: transparent; /* Prism applies a gray background that doesn't work well in the template. */
+	}
+
+/** Example Code **************************************************************/
+
+	div.html, div.xml,
+	pre.html, pre.xml {
+		padding: 0.5em;
+		margin: 1em 0;
+		position: relative;
+		clear: both;
+		color: #600;
+	}
+	pre.example,
+	pre.html,
+	pre.xml {
+		padding-top: 1.5em;
+	}
+
+	pre.illegal, .illegal pre
+	pre.deprecated, .deprecated pre {
+		color: red;
+	}
+
+/** IDL fragments *************************************************************/
+
+	pre.idl {
+		/* Match blue propdef boxes */
+		padding: .5em 1em;
+		background: #DEF;
+		margin: 1.2em 0;
+		border-left: 0.5em solid #8CCBF2;
+	}
+	pre.idl :link, pre.idl :visited {
+		color:inherit;
+		background:transparent;
+	}
+
+/** Inline CSS fragments ******************************************************/
+
+	.css.css, .property.property, .descriptor.descriptor {
+		color: #005a9c;
+		font-size: inherit;
+		font-family: inherit;
+	}
+	.css::before, .property::before, .descriptor::before {
+		content: "‘";
+	}
+	.css::after, .property::after, .descriptor::after {
+		content: "’";
+	}
+	.property, .descriptor {
+		/* Don't wrap property and descriptor names */
+		white-space: nowrap;
+	}
+	.type { /* CSS value <type> */
+	font-style: italic;
+	}
+	pre .property::before, pre .property::after {
+		content: "";
+	}
+
+/** Inline markup fragments ***************************************************/
+
+	code.html, code.xml {
+		color: #660000;
+	}
+
+/** Autolinks produced using Bikeshed *****************************************/
+
+	[data-link-type="property"]::before,
+	[data-link-type="propdesc"]::before,
+	[data-link-type="descriptor"]::before,
+	[data-link-type="value"]::before,
+	[data-link-type="function"]::before,
+	[data-link-type="at-rule"]::before,
+	[data-link-type="selector"]::before,
+	[data-link-type="maybe"]::before {
+		content: "‘";
+	}
+	[data-link-type="property"]::after,
+	[data-link-type="propdesc"]::after,
+	[data-link-type="descriptor"]::after,
+	[data-link-type="value"]::after,
+	[data-link-type="function"]::after,
+	[data-link-type="at-rule"]::after,
+	[data-link-type="selector"]::after,
+	[data-link-type="maybe"]::after {
+		content: "’";
+	}
+
+	[data-link-type].production::before,
+	[data-link-type].production::after,
+	.prod [data-link-type]::before,
+	.prod [data-link-type]::after {
+		content: "";
+	}
+
+	[data-link-type=element]         { font-family: monospace; }
+	[data-link-type=element]::before { content: "<" }
+	[data-link-type=element]::after  { content: ">" }
+
+	[data-link-type=biblio] {
+		white-space: pre;
+	}
+
+
+/******************************************************************************/
+/*                                    Links                                   */
+/******************************************************************************/
+
+/** General Hyperlinks ********************************************************/
+
+	/* We hyperlink a lot, so make it less intrusive */
+	a:link, a:visited {
+		color: inherit;
+		text-decoration: none;
+		border-bottom: 1px solid silver;
+	}
+	@supports (text-decoration-color: silver) {
+		a:link, a:visited {
+			border-bottom: none;
+			text-decoration: underline;
+			text-decoration-color: silver;
+		}
+		a:visited {
+			text-decoration-style: dotted;
+		}
+	}
+
+	a.logo:link, a.logo:visited { /* backout above styling for W3C logo */
+		padding: 0;
+		border: none;
+		text-decoration: none;
+	}
+
+/** Self-Links ****************************************************************/
+	/* Auto-generated links from an element to its own anchor, for usability */
+
+	.heading, .issue, .note, .example, li, dt {
+		position: relative;
+	}
+	a.self-link {
+		position: absolute;
+		top: 0;
+		left: -2.5em;
+		width: 2em;
+		height: 2em;
+		text-align: center;
+		border: none;
+		transition: opacity .2s;
+		opacity: .5;
+	}
+	a.self-link:hover {
+		opacity: 1;
+	}
+	.heading > a.self-link {
+		font-size: 83%;
+	}
+	li > a.self-link {
+		left: -3.5em;
+	}
+	dfn > a.self-link {
+		top: auto;
+		left: auto;
+		opacity: 0;
+		width: 1.5em;
+		height: 1.5em;
+		background: gray;
+		color: white;
+		font-style: normal;
+		transition: opacity .2s, background-color .2s, color .2s;
+	}
+	dfn:hover > a.self-link {
+		opacity: 1;
+	}
+	dfn > a.self-link:hover {
+		color: black;
+	}
+
+	a.self-link::before            { content: "¶"; }
+	.heading > a.self-link::before { content: "§"; }
+	dfn > a.self-link::before      { content: "#"; }
+
+/******************************************************************************/
+/*                                    Images                                  */
+/******************************************************************************/
+
+	img {
+		border-style: none;
+		color: white;
+	}
+
+	figure, div.figure, div.sidefigure {
+		page-break-inside: avoid;
+	}
+
+	div.figure, p.figure, div.sidefigure, figure {
+		text-align: center;
+		margin: 2.5em 0;
+	}
+	div.figure pre, div.sidefigure pre, figure pre {
+		text-align: left;
+		display: table;
+		margin: 1em auto;
+	}
+	.figure table, figure table {
+		margin: auto;
+	}
+	div.sidefigure, figure.sidefigure {
+		float: right;
+		width: 50%;
+		margin: 0 0 0.5em 0.5em
+	}
+	div.figure img, div.sidefigure img, figure img,
+	div.figure object, div.sidefigure object, figure object {
+		display: block;
+		margin: auto;
+		max-width: 100%
+	}
+	p.caption, figcaption, caption {
+		text-align: center;
+		font-style: italic;
+		font-size: 90%;
+	}
+	p.caption:not(.no-marker)::before, figcaption:not(.no-marker)::before {
+		content: "Figure " counter(figure) ". ";
+	}
+	p.caption::before, figcaption::before, figcaption > .marker {
+		font-weight: bold;
+	}
+	p.caption, figcaption {
+		counter-increment: figure;
+	}
+
+	/* DL list is indented 2em, but figure inside it is not */
+	dd > div.figure, dd > figure { margin-left: -2em }
+
+	pre.ascii-art {
+		display: table; /* shrinkwrap */
+		margin: 1em auto;
+	}
+
+	/* Displaying the output of text layout, particularly when
+		 line-breaking is being invoked, and thus having a
+		 visible width is good. */
+	pre.output {
+		margin: 1em;
+		border: solid thin silver;
+		padding: 0.25em;
+		display: table;
+	}
+
+/******************************************************************************/
+/*                             Colored Boxes                                  */
+/******************************************************************************/
+
+	.issue, .note, .example, .why, .advisement, blockquote {
+		padding: .5em;
+		border: .5em;
+		border-left-style: solid;
+		page-break-inside: avoid;
+	}
+	span.issue, span.note {
+		padding: .1em .5em .15em;
+		border-right-style: solid;
+	}
+
+	div.issue,
+	div.note,
+	div.example,
+	details.why,
+	blockquote {
+		margin: 1em auto;
+	}
+	.note  > p:first-child,
+	.issue > p:first-child,
+	blockquote > :first-child {
+		margin-top: 0;
+	}
+	blockquote > :last-child {
+		margin-bottom: 0;
+	}
+
+/** Blockquotes ***************************************************************/
+
+	blockquote {
+		border-color: silver;
+	}
+
+/** Open issue ****************************************************************/
+	/* not intended for CR+ publication */
+
+	.issue {
+		border-color: #E05252;
+		background: #FBE9E9;
+		counter-increment: issue;
+		overflow: auto;
+	}
+	.issue:not(.no-marker)::before {
+		content: "ISSUE " counter(issue);
+		padding-right: 1em;
+	}
+	.issue::before, .issue > .marker {
+		color: #AE1E1E;
+	}
+
+/** Example *******************************************************************/
+
+	.example {
+		border-color: #E0CB52;
+		background: #FCFAEE;
+		counter-increment: exampleno;
+		overflow: auto;
+		clear: both;
+	}
+	.example::before, .example > .marker {
+		color: #827017;
+		font-family: sans-serif;
+		min-width: 7.5em;
+		display: block;
+	}
+	.example:not(.no-marker)::before {
+		content: "EXAMPLE";
+		content: "EXAMPLE " counter(exampleno);
+	}
+	.invalid.example::before, .invalid.example > .marker,
+	.illegal.example::before, .illegal.example > .marker {
+		color: red;
+	}
+	.invalid.example:not(.no-marker)::before,
+	.illegal.example:not(.no-marker)::before {
+		content: "INVALID EXAMPLE";
+		content: "INVALID EXAMPLE" counter(exampleno);
+	}
+
+/** Non-normative Note ********************************************************/
+
+	.note, .why {
+		border-color: #52E052;
+		background: #E9FBE9;
+		overflow: auto;
+	}
+	.note::before, .note > .marker {
+		display: block;
+		color: hsl(120, 70%, 30%);
+	}
+
+/** Advisement Box ************************************************************/
+	/*  for attention-grabbing normative statements */
+
+	.advisement {
+		border-color: orange;
+		border-style: none solid;
+		background: #FFEECC;
+		text-align: center;
+	}
+	strong.advisement {
+		display: block;
+	}
+	/*.advisement::before { color: #FF8800; } */
+
+/** ??? ***********************************************************************/
+
+	details.why {
+		border-color: #52E052;
+		background: #E9FBE9;
+		display: block;
+	}
+
+	details.why > summary {
+		font-style: italic;
+		display: block;
+	}
+
+	details.why[open] > summary {
+		border-bottom: 1px silver solid;
+	}
+
+/** Spec Obsoletion Notice ****************************************************/
+	/* obnoxious obsoletion notice for older/abandoned specs. */
+
+	details.annoying-warning {
+		display: block;
+	}
+
+	details.annoying-warning[open] {
+		background: #fdd;
+		color: red;
+		font-weight: bold;
+		text-align: center;
+		padding: .5em;
+		border: thick solid red;
+		border-radius: 1em;
+	}
+@media not print {
+	details.annoying-warning[open] {
+		position: fixed;
+		left: 1em;
+		right: 1em;
+		bottom: 1em;
+		z-index: 1000;
+	}
+}
+
+	details.annoying-warning:not([open]) > summary {
+		background: #fdd;
+		color: red;
+		font-weight: bold;
+		text-align: center;
+		padding: .5em;
+	}
+
+/******************************************************************************/
+/*                                    Tables                                  */
+/******************************************************************************/
+
+/** Property/Descriptor Definition Tables *************************************/
+
+	table.propdef, table.propdef-extra,
+	table.descdef, table.definition-table {
+		page-break-inside: avoid;
+		width: 100%;
+		margin: 1.2em 0;
+		border-left: 0.5em solid #8CCBF2;
+		padding: 0.5em 1em;
+		background: #DEF;
+		border-spacing: 0;
+	}
+
+	table.propdef td, table.propdef-extra td,
+	table.descdef td, table.definition-table td,
+	table.propdef th, table.propdef-extra th,
+	table.descdef th, table.definition-table th {
+		padding: 0.5em;
+		vertical-align: baseline;
+		border-bottom: 1px solid #bbd7e9;
+	}
+	table.propdef > tbody > tr:last-child th,
+	table.propdef-extra > tbody > tr:last-child th,
+	table.descdef > tbody > tr:last-child th,
+	table.definition-table > tbody > tr:last-child th,
+	table.propdef > tbody > tr:last-child td,
+	table.propdef-extra > tbody > tr:last-child td,
+	table.descdef > tbody > tr:last-child td,
+	table.definition-table > tbody > tr:last-child td {
+		border-bottom: 0;
+	}
+
+	table.propdef th,
+	table.propdef-extra th,
+	table.descdef th,
+	table.definition-table th {
+		font-style: italic;
+		font-weight: normal;
+		width: 8.3em;
+		padding-left: 1em;
+	}
+
+	/* For when values are extra-complex and need formatting for readability */
+	table td.pre {
+		white-space: pre-wrap;
+	}
+
+	/* A footnote at the bottom of a propdef */
+	table.propdef td.footnote,
+	table.propdef-extra td.footnote,
+	table.descdef td.footnote,
+	table.definition-table td.footnote {
+		padding-top: 0.6em;
+	}
+	table.propdef td.footnote::before,
+	table.propdef-extra td.footnote::before,
+	table.descdef td.footnote::before,
+	table.definition-table td.footnote::before {
+		content: " ";
+		display: block;
+		height: 0.6em;
+		width: 4em;
+		border-top: thin solid;
+	}
+
+/** Profile Tables ************************************************************/
+	/* table of required features in a CSS profile */
+
+	table.features th {
+		background: #00589f;
+		color: #fff;
+		text-align: left;
+		padding: 0.2em 0.2em 0.2em 0.5em;
+	}
+	table.features td {
+		vertical-align: top;
+		border-bottom: 1px solid #ccc;
+		padding: 0.3em 0.3em 0.3em 0.7em;
+	}
+
+/** Data tables (and properly marked-up proptables) ***************************/
+	/*
+		 <table class="data"> highlights structural relationships in a table
+		 when correct markup is used (e.g. thead/tbody, th vs. td, scope attribute)
+
+		 Use class="complex data" for particularly complicated tables --
+		 (This will draw more lines: busier, but clearer.)
+
+		 Use class="long" on table cells with paragraph-like contents
+		 (This will adjust text alignment accordingly.)
+	*/
+
+	.data, .proptable {
+		margin: 1em auto;
+		border-collapse: collapse;
+		width: 100%;
+		border: hidden;
+	}
+	.data {
+		text-align: center;
+		width: auto;
+	}
+	.data caption {
+		width: 100%;
+	}
+
+	.data td, .data th,
+	.proptable td, .proptable th {
+		padding: 0.5em;
+		border-width: 1px;
+		border-color: silver;
+		border-top-style: solid;
+	}
+
+	.data thead td:empty {
+		padding: 0;
+		border: 0;
+	}
+
+	.data thead th[scope="row"],
+	.proptable thead th[scope="row"] {
+		text-align: right;
+		color: inherit;
+	}
+
+	.data thead,
+	.proptable thead,
+	.data tbody,
+	.proptable tbody {
+		color: inherit;
+		border-bottom: 2px solid;
+	}
+
+	.data colgroup {
+		border-left: 2px solid;
+	}
+
+	.data tbody th:first-child,
+	.proptable tbody th:first-child ,
+	.data tbody td[scope="row"]:first-child,
+	.proptable tbody td[scope="row"]:first-child {
+		text-align: right;
+		color: inherit;
+		border-right: 2px solid;
+		border-top: 1px solid silver;
+		padding-right: 1em;
+	}
+	.data.define td:last-child {
+		text-align: left;
+	}
+
+	.data tbody th[rowspan],
+	.proptable tbody th[rowspan],
+	.data tbody td[rowspan],
+	.proptable tbody td[rowspan]{
+		border-left:  1px solid silver;
+		border-right: 1px solid silver;
+	}
+
+	.complex.data th,
+	.complex.data td {
+		border: 1px solid silver;
+	}
+
+	.data td.long {
+	 vertical-align: baseline;
+	 text-align: left;
+	}
+
+	.data img {
+		vertical-align: middle;
+	}
+
+
+/******************************************************************************/
+/*                                  Indices                                   */
+/******************************************************************************/
+
+
+/** Table of Contents *********************************************************/
+
+	/* ToC not indented, but font style shows hierarchy */
+	ul.toc           { margin: 1em 0;     font-weight: bold; /*text-transform: uppercase;*/ }
+	ul.toc ul        { margin: 0;        font-weight: normal; text-transform: none; }
+	ul.toc ul ul     { margin: 0 0 0 2em; font-style: italic; }
+	ul.toc ul ul ul  { margin: 0; }
+	ul.toc > li      { margin: 1.5em 0; }
+	ul.toc ul.toc li { margin: 0.3em 0 0 0; }
+
+	ul.toc, ul.toc ul, ul.toc li { padding: 0; line-height: 1.3; }
+	ul.toc a { text-decoration: none; border-bottom-style: none; }
+	ul.toc a:hover, ul.toc a:focus  { border-bottom-style: solid; }
+	@supports (text-decoration-style: solid) {
+		ul.toc a:hover, ul.toc a:focus  {
+			border-bottom-style: none;
+			text-decoration-style: solid;
+		}
+	}
+	/*
+	ul.toc li li li, ul.toc li li li ul {margin-left: 0; display: inline}
+	ul.toc li li li ul, ul.toc li li li ul li {margin-left: 0; display: inline}
+	*/
+
+	/* Section numbers in a column of their own */
+	ul.toc {
+		margin-left: 5em
+	}
+	ul.toc span.secno {
+		float: left;
+		width: 4em;
+		margin-left: -5em;
+	}
+	ul.toc ul ul span.secno {
+		margin-left: -7em;
+	}
+	/*ul.toc span.secno {text-align: right}*/
+	ul.toc li {
+		clear: both;
+	}
+	/* If we had 'tab', floats would not be needed here:
+		 ul.toc span.secno {tab: 5em right; margin-right: 1em}
+		 ul.toc li {text-indent: 5em hanging}
+	 The second line in case items wrap
+	*/
+
+/** At-risk List **************************************************************/
+	/* Style for At Risk features (intended as editorial aid, not intended for publishing) */
+
+	.atrisk::before {
+	 float: right;
+	 margin-top: -0.25em;
+	 padding: 0.5em 1em 0.5em 0;
+	 text-indent: -0.9em;
+	 border: 1px solid;
+	 content: '\25C0    Not yet widely implemented';
+	 white-space: pre;
+	 font-size: small;
+	 background-color: white;
+	 color: gray;
+	 text-align: center;
+	}
+
+	.toc .atrisk::before { content:none }
+
+/** Index *********************************************************************/
+
+	/* Index Lists: Layout */
+	ul.indexlist       { margin-left: 0; columns: 15em; -webkit-columns: 15em; text-indent: 1em hanging; }
+	ul.indexlist li    { margin-left: 0; list-style: none; break-inside: avoid; word-break: break-word; }
+	ul.indexlist li li { margin-left: 1em }
+	ul.indexlist dl    { margin-top: 0; }
+	ul.indexlist dt    { margin: .2em 0 .2em 20px;}
+	ul.indexlist dd    { margin: .2em 0 .2em 40px;}
+	/* Index Lists: Typography */
+	ul.indexlist ul,
+	ul.indexlist dl { font-size: smaller; }
+	ul.indexlist li span {
+		white-space: nowrap;
+		position: absolute;
+		color: transparent; }
+	ul.indexlist li a:hover + span,
+	ul.indexlist li a:focus + span {
+		color: gray;
+	}
+	@media print {
+		ul.indexlist li span { color: gray; }
+	}
+
+/** Property Index Tables *****************************************************/
+	/* See also the data table styling section, which this effectively subclasses */
+
+	table.proptable {
+		font-size: small;
+		border-collapse: collapse;
+		border-spacing: 0;
+		text-align: left;
+		margin: 1em 0;
+	}
+
+	table.proptable td,
+	table.proptable th {
+		padding: 0.4em;
+		text-align: center;
+	}
+
+	table.proptable tr:hover td {
+		background: #DEF;
+	}
+	.propdef th {
+		font-style: italic;
+		font-weight: normal;
+		text-align: left;
+		width: 3em;
+	}
+	/* The link in the first column in the property table (formerly a TD) */
+	table.proptable td .property,
+	table.proptable th .property {
+		display: block;
+		text-align: left;
+		font-weight: bold;
+	}
+
+/******************************************************************************/
+/*                                    Print                                   */
+/******************************************************************************/
+
+	@media print {
+		html {
+			margin: 0 !important; }
+		body {
+			font-family: serif; }
+		th, td {
+			font-family: inherit; }
+		a {
+			color: inherit !important; }
+
+		a:link, a:visited {
+			text-decoration: none !important }
+		a:link::after, a:visited::after { /* create a cross-ref "see..." */ }
+		.example::before {
+			font-family: serif !important; }
+	}
+	@page {
+		margin: 1.5cm 1.1cm;
+	}
+
+</style>
   <meta content="Bikeshed 1.0.0" name="generator">
  </head>
- 
-
  <body class="h-entry">
-
   <div class="head">
-  
-   <p data-fill-with="logo"><a class="logo" href="http://www.w3.org/">
-    <img alt="W3C" height="48" src="https://www.w3.org/Icons/w3c_home" width="72">
-</a>
-</p>
-  
+   <p data-fill-with="logo"><a class="logo" href="http://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/Icons/w3c_home" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Referrer Policy</h1>
-  
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft
-    <time class="dt-updated" datetime="2015-05-11">11 May 2015</time></span></h2>
-  
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2015-10-01">1 October 2015</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
-     <dd><a class="u-url" href="https://w3c.github.io/webappsec/specs/referrer-policy/">https://w3c.github.io/webappsec/specs/referrer-policy/</a>
+     <dd><a class="u-url" href="https://w3c.github.io/webappsec-referrer-policy/">https://w3c.github.io/webappsec-referrer-policy/</a>
      <dt>Latest version:
      <dd><a href="http://www.w3.org/TR/referrer-policy/">http://www.w3.org/TR/referrer-policy/</a>
      <dt>Version History:
-     <dd><a href="https://github.com/w3c/webappsec/commits/master/specs/referrer-policy/index.src.html">https://github.com/w3c/webappsec/commits/master/specs/referrer-policy/index.src.html</a>
+     <dd><a href="https://github.com/w3c/webappsec-referrer-policy/commits/master/index.src.html">https://github.com/w3c/webappsec-referrer-policy/commits/master/index.src.html</a>
      <dt>Feedback:
-     <dd><span><a href="mailto:public-webappsec@w3.org?subject=%5BREFERRER%5D%20feedback">public-webappsec@w3.org</a> with subject line “<kbd>[REFERRER] <var>… message topic …</var></kbd>” (<a href="http://lists.w3.org/Archives/Public/public-webappsec/" rel="discussion">archives</a>)</span>
+     <dd><span><a href="mailto:public-webappsec@w3.org?subject=%5BREFERRER%5D%20YOUR%20TOPIC%20HERE">public-webappsec@w3.org</a> with subject line “<kbd>[REFERRER] <var>… message topic …</var></kbd>” (<a href="http://lists.w3.org/Archives/Public/public-webappsec/" rel="discussion">archives</a>)</span>
      <dt>Issue Tracking:
-     <dd><a href="#issues-index">Inline In Spec</a>
+     <dd><a href="https://github.com/w3c/webappsec-referrer-policy/issues/">GitHub</a>
      <dt class="editor">Editors:
      <dd class="editor p-author h-card vcard"><a class="p-name fn u-email email" href="mailto:eisinger@google.com">Jochen Eisinger</a> (<span class="p-org org">Google Inc.</span>)
      <dd class="editor p-author h-card vcard"><a class="p-name fn u-email email" href="mailto:mkwst@google.com">Mike West</a> (<span class="p-org org">Google Inc.</span>)
     </dl>
    </div>
-  
    <div data-fill-with="warning"></div>
-  
-   <p class="copyright" data-fill-with="copyright"><a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2015 <a href="http://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup> (<a href="http://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>, <a href="http://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="http://www.keio.ac.jp/">Keio</a>, <a href="http://ev.buaa.edu.cn/">Beihang</a>). W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a> rules apply.
-</p>
-  
+   <p class="copyright" data-fill-with="copyright"><a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2015 <a href="http://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup> (<a href="http://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>, <a href="http://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="http://www.keio.ac.jp/">Keio</a>, <a href="http://ev.buaa.edu.cn/">Beihang</a>). W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a> rules apply. </p>
    <hr title="Separator for header">
-</div>
-
-
+  </div>
   <h2 class="no-num no-toc no-ref heading settled" id="abstract"><span class="content">Abstract</span></h2>
-
   <div class="p-summary" data-fill-with="abstract">
    <p>This document describes how an author can set a referrer policy for documents they create, and the impact of such a policy on the <code>Referer</code> HTTP header for outgoing requests and navigations.</p>
-
-</div>
-
-
+  </div>
   <h2 class="no-num no-toc no-ref heading settled" id="status"><span class="content">Status of this document</span></h2>
-
   <div data-fill-with="status">
-   <p>
-	This is a public copy of the editors’ draft.
+   <p> This is a public copy of the editors’ draft.
 	It is provided for discussion only and may change at any moment.
 	Its publication here does not imply endorsement of its contents by W3C.
-	Don’t cite this document other than as work in progress.
-
-</p>
-   <p>
-  <strong>Changes to this document may be tracked at
-  <a href="https://github.com/w3c/webappsec">https://github.com/w3c/webappsec</a>.</strong>
-
-</p>
-   <p>
-	The (<a href="http://lists.w3.org/Archives/Public/public-webappsec/">archived</a>) public mailing list
-	<a href="mailto:public-webappsec@w3.org?Subject=%5BREFERRER%5D%20PUT%20SUBJECT%20HERE">public-webappsec@w3.org</a>
-	(see <a href="http://www.w3.org/Mail/Request">instructions</a>)
+	Don’t cite this document other than as work in progress. </p>
+   <p> <strong>Changes to this document may be tracked at <a href="https://github.com/w3c/webappsec">https://github.com/w3c/webappsec</a>.</strong> </p>
+   <p> The (<a href="http://lists.w3.org/Archives/Public/public-webappsec/">archived</a>) public mailing list <a href="mailto:public-webappsec@w3.org?Subject=%5BREFERRER%5D%20PUT%20SUBJECT%20HERE">public-webappsec@w3.org</a> (see <a href="http://www.w3.org/Mail/Request">instructions</a>)
 	is preferred for discussion of this specification.
 	When sending e-mail,
 	please put the text “REFERRER” in the subject,
 	preferably like this:
-	“[REFERRER] <em>…summary of comment…</em>”
-
-</p>
-   <p>
-	This document was produced by the
-  <a href="http://www.w3.org/2011/webappsec/">Web Application Security Working Group</a>.
-
-</p>
-   <p>
-	This document was produced by a group operating under
+	“[REFERRER] <em>…summary of comment…</em>” </p>
+   <p> This document was produced by the <a href="http://www.w3.org/2011/webappsec/">Web Application Security Working Group</a>. </p>
+   <p> This document was produced by a group operating under
 	the <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/">5 February 2004 W3C Patent Policy</a>.
-	W3C maintains a <a href="http://www.w3.org/2004/01/pp-impl/49309/status" rel="disclosure">public list of any patent disclosures</a>
-	made in connection with the deliverables of the group;
+	W3C maintains a <a href="http://www.w3.org/2004/01/pp-impl/49309/status" rel="disclosure">public list of any patent disclosures</a> made in connection with the deliverables of the group;
 	that page also includes instructions for disclosing a patent.
-	An individual who has actual knowledge of a patent which the individual believes contains <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#def-essential">Essential Claim(s)</a>
-	must disclose the information in accordance with <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#sec-Disclosure">section 6 of the W3C Patent Policy</a>.
-
-</p>
-   <p>
-  This document is governed by the <a href="http://www.w3.org/2014/Process-20140801/" id="w3c_process_revision">1 August 2014 W3C Process Document</a>.
-
-</p></div>
-
+	An individual who has actual knowledge of a patent which the individual believes contains <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#def-essential">Essential Claim(s)</a> must disclose the information in accordance with <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#sec-Disclosure">section 6 of the W3C Patent Policy</a>. </p>
+   <p> This document is governed by the <a href="http://www.w3.org/2015/Process-20150901/" id="w3c_process_revision">1 September 2015 W3C Process Document</a>. </p>
+   <p></p>
+  </div>
   <div data-fill-with="at-risk"></div>
-
-
   <h2 class="no-num no-toc no-ref heading settled" id="contents"><span class="content">Table of Contents</span></h2>
-
   <div data-fill-with="table-of-contents" role="navigation">
    <ul class="toc" role="directory">
-    <li><a href="#intro"><span class="secno">1</span> <span class="content">Introduction</span></a>
+    <li>
+     <a href="#intro"><span class="secno">1</span> <span class="content">Introduction</span></a>
      <ul class="toc">
       <li><a href="#intro-privacy"><span class="secno">1.1</span> <span class="content">Privacy</span></a>
       <li><a href="#intro-security"><span class="secno">1.2</span> <span class="content">Security</span></a>
       <li><a href="#intro-trackback"><span class="secno">1.3</span> <span class="content">Trackback</span></a>
      </ul>
     <li><a href="#terms"><span class="secno">2</span> <span class="content">Key Concepts and Terminology</span></a>
-    <li><a href="#referrer-policy-states"><span class="secno">3</span> <span class="content">Referrer Policy States</span></a>
+    <li>
+     <a href="#referrer-policy-states"><span class="secno">3</span> <span class="content">Referrer Policy States</span></a>
      <ul class="toc">
       <li><a href="#referrer-policy-state-no-referrer"><span class="secno">3.1</span> <span class="content">No Referrer</span></a>
       <li><a href="#referrer-policy-state-no-referrer-when-downgrade"><span class="secno">3.2</span> <span class="content">No Referrer When Downgrade</span></a>
@@ -176,1271 +1063,493 @@
       <li><a href="#referrer-policy-state-origin-when-cross-origin"><span class="secno">3.4</span> <span class="content">Origin When Cross-Origin</span></a>
       <li><a href="#referrer-policy-state-unsafe-url"><span class="secno">3.5</span> <span class="content">Unsafe URL</span></a>
      </ul>
-    <li><a href="#referrer-policy-delivery"><span class="secno">4</span> <span class="content">Referrer Policy Delivery</span></a>
+    <li>
+     <a href="#referrer-policy-delivery"><span class="secno">4</span> <span class="content">Referrer Policy Delivery</span></a>
      <ul class="toc">
-      <li><a href="#directive-referrer"><span class="secno">4.1</span> <span class="content">Delivery via CSP</span></a>
+      <li>
+       <a href="#directive-referrer"><span class="secno">4.1</span> <span class="content">Delivery via CSP</span></a>
        <ul class="toc">
         <li><a href="#referrer-usage"><span class="secno">4.1.1</span> <span class="content">Usage</span></a>
        </ul>
       <li><a href="#referrer-policy-delivery-meta"><span class="secno">4.2</span> <span class="content">Delivery via <code><span>meta</span></code></span></a>
       <li><a href="#referrer-policy-delivery-referrer-attribute"><span class="secno">4.3</span> <span class="content">Delivery
   via a <code>referrer</code> attribute</span></a>
-      <li><a href="#referrer-policy-delivery-implicit"><span class="secno">4.4</span> <span class="content">Implicit Delivery</span></a>
+      <li>
+       <a href="#referrer-policy-delivery-implicit"><span class="secno">4.4</span> <span class="content">Implicit Delivery</span></a>
        <ul class="toc">
-        <li><a href="#referrer-policy-delivery-implicit-nested"><span class="secno">4.4.1</span> <span class="content">
-     Nested Browsing Contexts
-  </span></a>
-        <li><a href="#referrer-policy-delivery-implicit-workers"><span class="secno">4.4.2</span> <span class="content">
-    Workers
-  </span></a>
+        <li><a href="#referrer-policy-delivery-implicit-nested"><span class="secno">4.4.1</span> <span class="content"> Nested Browsing Contexts </span></a>
+        <li><a href="#referrer-policy-delivery-implicit-workers"><span class="secno">4.4.2</span> <span class="content"> Workers </span></a>
        </ul>
      </ul>
     <li><a href="#integration-with-fetch"><span class="secno">5</span> <span class="content">Integration with Fetch</span></a>
-    <li><a href="#algorithms"><span class="secno">6</span> <span class="content">Algorithms</span></a>
+    <li>
+     <a href="#algorithms"><span class="secno">6</span> <span class="content">Algorithms</span></a>
      <ul class="toc">
-      <li><a href="#set-referrer-policy"><span class="secno">6.1</span> <span class="content">
-    Set <var>environment</var>’s referrer policy to <var>policy</var>
-  </span></a>
-      <li><a href="#determine-requests-referrer"><span class="secno">6.2</span> <span class="content">
-    Determine <var>request</var>’s Referrer
-  </span></a>
-      <li><a href="#strip-url"><span class="secno">6.3</span> <span class="content">
-    Strip <var>url</var> for use as a referrer
-  </span></a>
-      <li><a href="#determine-policy-for-token"><span class="secno">6.4</span> <span class="content">
-    Determine <var>token</var>’s Policy
-  </span></a>
+      <li><a href="#set-referrer-policy"><span class="secno">6.1</span> <span class="content"> Set <var>environment</var>’s referrer policy to <var>policy</var> </span></a>
+      <li><a href="#determine-requests-referrer"><span class="secno">6.2</span> <span class="content"> Determine <var>request</var>’s Referrer </span></a>
+      <li><a href="#strip-url"><span class="secno">6.3</span> <span class="content"> Strip <var>url</var> for use as a referrer </span></a>
+      <li><a href="#determine-policy-for-token"><span class="secno">6.4</span> <span class="content"> Determine <var>token</var>’s Policy </span></a>
      </ul>
-    <li><a href="#privacy"><span class="secno">7</span> <span class="content">Privacy Considerations</span></a>
+    <li>
+     <a href="#privacy"><span class="secno">7</span> <span class="content">Privacy Considerations</span></a>
      <ul class="toc">
       <li><a href="#user-controls"><span class="secno">7.1</span> <span class="content">User Controls</span></a>
      </ul>
     <li><a href="#acknowledgements"><span class="secno">8</span> <span class="content">Acknowledgements</span></a>
-    <li><a href="#conformance"><span class="secno"></span> <span class="content">Conformance</span></a>
+    <li>
+     <a href="#conformance"><span class="secno"></span> <span class="content">Conformance</span></a>
      <ul class="toc">
       <li><a href="#conventions"><span class="secno"></span> <span class="content">Document conventions</span></a>
       <li><a href="#conformant-algorithms"><span class="secno"></span> <span class="content">Conformant Algorithms</span></a>
-      <li><a href="#conformance-classes"><span class="secno"></span> <span class="content">Conformance Classes</span></a>
      </ul>
-    <li><a href="#index"><span class="secno"></span> <span class="content">Index</span></a>
+    <li>
+     <a href="#index"><span class="secno"></span> <span class="content">Index</span></a>
      <ul class="toc">
       <li><a href="#index-defined-here"><span class="secno"></span> <span class="content">Terms defined by this specification</span></a>
       <li><a href="#index-defined-elsewhere"><span class="secno"></span> <span class="content">Terms defined by reference</span></a>
      </ul>
-    <li><a href="#references"><span class="secno"></span> <span class="content">References</span></a>
+    <li>
+     <a href="#references"><span class="secno"></span> <span class="content">References</span></a>
      <ul class="toc">
       <li><a href="#normative"><span class="secno"></span> <span class="content">Normative References</span></a>
       <li><a href="#informative"><span class="secno"></span> <span class="content">Informative References</span></a>
      </ul>
     <li><a href="#issues-index"><span class="secno"></span> <span class="content">Issues Index</span></a>
-   </ul></div>
-
+   </ul>
+  </div>
   <main>
-
-
-
-
-
-
-
    <section>
-  
     <h2 class="heading settled" data-level="1" id="intro"><span class="secno">1. </span><span class="content">Introduction</span><a class="self-link" href="#intro"></a></h2>
-
-
     <p><em>This section is not normative.</em></p>
-
-
     <p>Requests made from a document, and for navigations away from that document
   are associated with a <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2"><code>Referer</code></a> header. While the header
   can be suppressed for links with the <a data-link-type="dfn" href="http://www.w3.org/TR/html5/links.html#link-type-noreferrer"><code>noreferrer</code></a> link
   type, authors might wish to control the <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2"><code>Referer</code></a> header
   more directly for a number of reasons:</p>
-
-  
     <h3 class="heading settled" data-level="1.1" id="intro-privacy"><span class="secno">1.1. </span><span class="content">Privacy</span><a class="self-link" href="#intro-privacy"></a></h3>
-
-
     <p>A social networking site has a profile page for each of its users, and users
   add hyperlinks from their profile page to their favorite bands. The social
   networking site might not wish to leak the user’s profile URL to the band web
   sites when other users follow those hyperlinks (because the profile URLs might
   reveal the identity of the owner of the profile).</p>
-
-
     <p>Some social networking sites, however, might wish to inform the band web sites
   that the links originated from the social networking site but not reveal which
   specific user’s profile contained the links.</p>
-
-  
     <h3 class="heading settled" data-level="1.2" id="intro-security"><span class="secno">1.2. </span><span class="content">Security</span><a class="self-link" href="#intro-security"></a></h3>
-
-
     <p>A web application uses HTTPS and a URL-based session identifier. The web
   application might wish to link to HTTPS resources on other web sites without
   leaking the user’s session identifier in the URL.</p>
-
-
     <p>Alternatively, a web application may use URLs which themselves grant some
   capability. Controlling the referrer can help prevent these capability URLs
   from leaking via referrer headers. <a data-link-type="biblio" href="#biblio-capability-urls">[CAPABILITY-URLS]</a></p>
-
-  
     <h3 class="heading settled" data-level="1.3" id="intro-trackback"><span class="secno">1.3. </span><span class="content">Trackback</span><a class="self-link" href="#intro-trackback"></a></h3>
-
-
     <p>A blog hosted over HTTPS might wish to link to a blog hosted over HTTP and
   receive trackback links.</p>
-
-</section>
-
-
-
+   </section>
    <section>
-  
     <h2 class="heading settled" data-level="2" id="terms"><span class="secno">2. </span><span class="content">Key Concepts and Terminology</span><a class="self-link" href="#terms"></a></h2>
-
-  
     <dl>
-    
-     <dt>
-      <dfn data-dfn-type="dfn" data-export="" data-local-lt="policy" id="referrer-policy">referrer policy<a class="self-link" href="#referrer-policy"></a></dfn>
-    
-     
-    
+     <dt> <dfn data-dfn-type="dfn" data-export="" data-local-lt="policy" id="referrer-policy">referrer policy<a class="self-link" href="#referrer-policy"></a></dfn> 
      <dd>
-      A <strong>referrer policy</strong> is a property of a <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#settings-object">settings
-      object</a> that defines the algorithm used to populate the
-      <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2"><code>Referer</code></a> header when <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#fetching">fetching</a> subresources,
-      prefetching, or performing navigations.
-
-
+       A <strong>referrer policy</strong> is a property of a <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#settings-object">settings
+      object</a> that defines the algorithm used to populate the <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2"><code>Referer</code></a> header when <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#fetching">fetching</a> subresources,
+      prefetching, or performing navigations. 
       <p>If no referrer policy is explicitly set for a <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#settings-object">settings object</a>,
       then the value of the property is <code>null</code>. Otherwise, the value
-      is whatever has been explicitly set, as explained in the
-      <a href="#set-referrer-policy">§6.1 
-    Set environment’s referrer policy to policy
-  </a> algorithm.</p>
-      
-    
-     
-
-    
-     <dt><dfn data-dfn-type="dfn" data-local-lt="same-origin" data-noexport="" id="same_origin-request">same-origin request<a class="self-link" href="#same_origin-request"></a></dfn>
-     
-    
-     <dd>
-      A <code class="idl"><a data-link-type="idl" href="https://fetch.spec.whatwg.org/#request">Request</a></code> <var>request</var> is a <strong>same-origin request</strong>
-      if <var>request</var>’s <code class="idl"><a data-link-type="idl" href="https://fetch.spec.whatwg.org/#concept-request-origin">origin</a></code> and the <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-3.2">origin</a> of
-      <var>request</var>’s <code class="idl"><a data-link-type="idl" href="https://fetch.spec.whatwg.org/#concept-request-url">url</a></code> are <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-5"><code>the same</code></a>.
-    
-     
-
-    
-     <dt><dfn data-dfn-type="dfn" data-local-lt="cross-origin" data-noexport="" id="cross_origin-request">cross-origin request<a class="self-link" href="#cross_origin-request"></a></dfn>
-     
-    
-     <dd>
-      A <code class="idl"><a data-link-type="idl" href="https://fetch.spec.whatwg.org/#request">Request</a></code> is a <strong>cross-origin request</strong> if it is
-      <em>not</em> <a data-link-type="dfn" href="#same_origin-request">same-origin</a>.
-    
-     
-  
+      is whatever has been explicitly set, as explained in the <a href="#set-referrer-policy">§6.1 Set environment’s referrer policy to policy</a> algorithm.</p>
+     <dt><dfn data-dfn-type="dfn" data-local-lt="same-origin" data-noexport="" id="same-origin-request">same-origin request<a class="self-link" href="#same-origin-request"></a></dfn>
+     <dd> A <code class="idl"><a data-link-type="idl" href="https://fetch.spec.whatwg.org/#request">Request</a></code> <var>request</var> is a <strong>same-origin request</strong> if <var>request</var>’s <code class="idl"><a data-link-type="idl" href="https://fetch.spec.whatwg.org/#concept-request-origin">origin</a></code> and the <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-3.2">origin</a> of <var>request</var>’s <code class="idl"><a data-link-type="idl" href="https://fetch.spec.whatwg.org/#concept-request-url">url</a></code> are <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-5"><code>the same</code></a>. 
+     <dt><dfn data-dfn-type="dfn" data-local-lt="cross-origin" data-noexport="" id="cross-origin-request">cross-origin request<a class="self-link" href="#cross-origin-request"></a></dfn>
+     <dd> A <code class="idl"><a data-link-type="idl" href="https://fetch.spec.whatwg.org/#request">Request</a></code> is a <strong>cross-origin request</strong> if it is <em>not</em> <a data-link-type="dfn" href="#same-origin-request">same-origin</a>. 
     </dl>
-</section>
-
-
+   </section>
    <section>
-  
     <h2 class="heading settled" data-level="3" id="referrer-policy-states"><span class="secno">3. </span><span class="content">Referrer Policy States</span><a class="self-link" href="#referrer-policy-states"></a></h2>
-
-
     <p>Every <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#settings-object">settings object</a> has a <a data-link-type="dfn" href="#referrer-policy">referrer policy</a> which governs
   the referrer information sent along with requests made for subresources, and
   for navigations. The <a data-link-type="dfn" href="#referrer-policy">policy</a> will be <code>null</code> if no policy has
-  been set, otherwise it will be one of the following five values:
-  <code><a data-link-type="dfn" href="#no-referrer">No Referrer</a></code>, <code><a data-link-type="dfn" href="#no-referrer-when-downgrade">No Referrer When
-  Downgrade</a></code>, <code><a data-link-type="dfn" href="#origin-only">Origin Only</a></code>, <code><a data-link-type="dfn" href="#origin-when-cross_origin">Origin When
+  been set, otherwise it will be one of the following five values: <code><a data-link-type="dfn" href="#no-referrer">No Referrer</a></code>, <code><a data-link-type="dfn" href="#no-referrer-when-downgrade">No Referrer When
+  Downgrade</a></code>, <code><a data-link-type="dfn" href="#origin-only">Origin Only</a></code>, <code><a data-link-type="dfn" href="#origin-when-cross-origin">Origin When
   Cross-origin</a></code>, and <code><a data-link-type="dfn" href="#unsafe-url">Unsafe URL</a></code>. Each is explained
-  below, and a detailed algorithm for evaluating their effect is given in the
-  <a href="#integration-with-fetch">§5 Integration with Fetch</a> and
-  <a href="#algorithms">§6 Algorithms</a> sections:</p>
-
-
+  below, and a detailed algorithm for evaluating their effect is given in the <a href="#integration-with-fetch">§5 Integration with Fetch</a> and <a href="#algorithms">§6 Algorithms</a> sections:</p>
     <p class="note" role="note">Note: The referrer policy for a <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#settings-object">settings object</a> provides a default
   baseline policy for requests. This policy may be tightened for specific
   requests via mechanisms like the <code><a data-link-type="dfn" href="http://www.w3.org/TR/html5/links.html#link-type-noreferrer">noreferrer</a></code> link type.</p>
-
-  
     <h3 class="heading settled" data-level="3.1" id="referrer-policy-state-no-referrer"><span class="secno">3.1. </span><span class="content">No Referrer</span><a class="self-link" href="#referrer-policy-state-no-referrer"></a></h3>
-
-
     <p>The simplest policy is <dfn data-dfn-type="dfn" data-noexport="" id="no-referrer">No Referrer<a class="self-link" href="#no-referrer"></a></dfn>, which specifies that no
-  referrer information is to be sent along with requests made from a particular
-  <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#settings-object">settings object</a> to any <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-3.2">origin</a>. The header will be omitted
+  referrer information is to be sent along with requests made from a particular <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#settings-object">settings object</a> to any <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-3.2">origin</a>. The header will be omitted
   entirely.</p>
-
-  
-    <div class="example" id="example-27d86a4b"><a class="self-link" href="#example-27d86a4b"></a>
-    If a document at <code>https://example.com/page.html</code> sets a policy of
-    <code>No Referrer</code>, then navigations to
-    <code>https://example.com/</code> (or any other URL) would send no
-    <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2"><code>Referer</code></a> header.
-  </div>
-
-  
+    <div class="example" id="example-27d86a4b"><a class="self-link" href="#example-27d86a4b"></a> If a document at <code>https://example.com/page.html</code> sets a policy of <code>No Referrer</code>, then navigations to <code>https://example.com/</code> (or any other URL) would send no <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2"><code>Referer</code></a> header. </div>
     <h3 class="heading settled" data-level="3.2" id="referrer-policy-state-no-referrer-when-downgrade"><span class="secno">3.2. </span><span class="content">No Referrer When Downgrade</span><a class="self-link" href="#referrer-policy-state-no-referrer-when-downgrade"></a></h3>
-
-
     <p>The <dfn data-dfn-type="dfn" data-noexport="" id="no-referrer-when-downgrade">No Referrer When Downgrade<a class="self-link" href="#no-referrer-when-downgrade"></a></dfn> policy sends a full URL along with
   requests from <a data-link-type="dfn" href="http://www.w3.org/TR/2010/REC-wsc-ui-20100812/#typesoftls">TLS-protected</a> <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#settings-object">settings object</a> to a
   non-<a data-link-type="dfn" href="https://w3c.github.io/webappsec/specs/mixedcontent/#a-priori-insecure-origin"><em>a priori</em> insecure origin</a>, and requests from <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#settings-object">settings
-  objects</a> which are <em>not</em> <a data-link-type="dfn" href="http://www.w3.org/TR/2010/REC-wsc-ui-20100812/#typesoftls">TLS-protected</a> to any
-  <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-3.2">origin</a>.</p>
-
-
+  objects</a> which are <em>not</em> <a data-link-type="dfn" href="http://www.w3.org/TR/2010/REC-wsc-ui-20100812/#typesoftls">TLS-protected</a> to any <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-3.2">origin</a>.</p>
     <p>Requests from <a data-link-type="dfn" href="http://www.w3.org/TR/2010/REC-wsc-ui-20100812/#typesoftls">TLS-protected</a> <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#settings-object">settings objects</a> to <a data-link-type="dfn" href="https://w3c.github.io/webappsec/specs/mixedcontent/#a-priori-insecure-origin"><em>a
   priori</em> insecure origins</a>, on the other hand, will contain no referrer
   information. A <code><a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2">Referer</a></code> HTTP header will not be sent.</p>
-
-  
-    <div class="example" id="example-09c2ea06"><a class="self-link" href="#example-09c2ea06"></a>
-    If a document at <code>https://example.com/page.html</code> sets a policy of
-    <code>No Referrer When Downgrade</code>, then navigations to
-    <code>https://not.example.com/</code> would send a
-    <code><a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2">Referer</a></code> HTTP header with a value of
-    <code>https://example.com/page.html</code>, as neither resource’s origin is an
-    <a data-link-type="dfn" href="https://w3c.github.io/webappsec/specs/mixedcontent/#a-priori-insecure-origin"><em>a priori</em> insecure origin</a>.
-
-
-     <p>Navigations from that same page to
-    <code><strong>http</strong>://not.example.com/</code> would send no
-    <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2"><code>Referer</code></a> header.</p>
-     
-  
+    <div class="example" id="example-09c2ea06">
+     <a class="self-link" href="#example-09c2ea06"></a> If a document at <code>https://example.com/page.html</code> sets a policy of <code>No Referrer When Downgrade</code>, then navigations to <code>https://not.example.com/</code> would send a <code><a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2">Referer</a></code> HTTP header with a value of <code>https://example.com/page.html</code>, as neither resource’s origin is an <a data-link-type="dfn" href="https://w3c.github.io/webappsec/specs/mixedcontent/#a-priori-insecure-origin"><em>a priori</em> insecure origin</a>. 
+     <p>Navigations from that same page to <code><strong>http</strong>://not.example.com/</code> would send no <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2"><code>Referer</code></a> header.</p>
     </div>
-
-
     <p>This is a user agent’s default behavior, if no policy is otherwise specified.</p>
-
-  
     <h3 class="heading settled" data-level="3.3" id="referrer-policy-state-origin"><span class="secno">3.3. </span><span class="content">Origin Only</span><a class="self-link" href="#referrer-policy-state-origin"></a></h3>
-
-
-    <p>The <dfn data-dfn-type="dfn" data-noexport="" id="origin-only">Origin Only<a class="self-link" href="#origin-only"></a></dfn> policy specifies that only the
-  <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-6.2">ASCII serialization</a> of the
-  <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-3.2">origin</a> of the <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#settings-object">settings object</a> from which a request is
-  made is sent as referrer information when making both <a data-link-type="dfn" href="#same_origin-request">same-origin
-  requests</a> and <a data-link-type="dfn" href="#cross_origin-request">cross-origin requests</a> from a particular
-  <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#settings-object">settings object</a>.</p>
-
-
-    <p class="note" role="note">Note: The serialization of an origin looks like
-  <code>https://example.com</code>. To ensure that a valid URL is sent in the
+    <p>The <dfn data-dfn-type="dfn" data-noexport="" id="origin-only">Origin Only<a class="self-link" href="#origin-only"></a></dfn> policy specifies that only the <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-6.2">ASCII serialization</a> of the <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-3.2">origin</a> of the <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#settings-object">settings object</a> from which a request is
+  made is sent as referrer information when making both <a data-link-type="dfn" href="#same-origin-request">same-origin
+  requests</a> and <a data-link-type="dfn" href="#cross-origin-request">cross-origin requests</a> from a particular <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#settings-object">settings object</a>.</p>
+    <p class="note" role="note">Note: The serialization of an origin looks like <code>https://example.com</code>. To ensure that a valid URL is sent in the
   `<code>Referer</code>` header, user agents will append a U+002F SOLIDUS
-  ("<code>/</code>") character to the origin (e.g.
-  <code>https://example.com/</code>).</p>
-
-
+  ("<code>/</code>") character to the origin (e.g. <code>https://example.com/</code>).</p>
     <p class="note" role="note">Note: The <code>Origin Only</code> policy causes the origin of HTTPS referrers
   to be sent over the network as part of unencrypted HTTP requests.</p>
-
-  
-    <div class="example" id="example-cecb98a9"><a class="self-link" href="#example-cecb98a9"></a>
-    If a document at <code>https://example.com/page.html</code> sets a policy of
-    <code>Origin Only</code>, then navigations to any <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-3.2">origin</a> would send a
-    <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2"><code>Referer</code></a> header with a value of
-    <code>https://example.com/</code>, even to <a data-link-type="dfn" href="https://w3c.github.io/webappsec/specs/mixedcontent/#a-priori-insecure-origin"><em>a priori</em> insecure
-    origins</a>.
-  </div>
-
-  
+    <div class="example" id="example-cecb98a9"><a class="self-link" href="#example-cecb98a9"></a> If a document at <code>https://example.com/page.html</code> sets a policy of <code>Origin Only</code>, then navigations to any <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-3.2">origin</a> would send a <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2"><code>Referer</code></a> header with a value of <code>https://example.com/</code>, even to <a data-link-type="dfn" href="https://w3c.github.io/webappsec/specs/mixedcontent/#a-priori-insecure-origin"><em>a priori</em> insecure
+    origins</a>. </div>
     <h3 class="heading settled" data-level="3.4" id="referrer-policy-state-origin-when-cross-origin"><span class="secno">3.4. </span><span class="content">Origin When Cross-Origin</span><a class="self-link" href="#referrer-policy-state-origin-when-cross-origin"></a></h3>
-
-
-    <p>The <dfn data-dfn-type="dfn" data-noexport="" id="origin-when-cross_origin">Origin When Cross-Origin<a class="self-link" href="#origin-when-cross_origin"></a></dfn> policy specifies that a full URL,
-  <a href="#strip-url">stripped for use as a referrer</a>, is sent as referrer
-  information when making <a data-link-type="dfn" href="#same_origin-request">same-origin requests</a> from a particular
-  <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#settings-object">settings object</a>, and only the
-  <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-6.2">ASCII serialization</a> of the
-  <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-3.2">origin</a> of the <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#settings-object">settings object</a> from which a request is
-  made is sent as referrer information when making <a data-link-type="dfn" href="#cross_origin-request">cross-origin requests</a>
-  from a particular <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#settings-object">settings object</a>.</p>
-
-
+    <p>The <dfn data-dfn-type="dfn" data-noexport="" id="origin-when-cross-origin">Origin When Cross-Origin<a class="self-link" href="#origin-when-cross-origin"></a></dfn> policy specifies that a full URL, <a href="#strip-url">stripped for use as a referrer</a>, is sent as referrer
+  information when making <a data-link-type="dfn" href="#same-origin-request">same-origin requests</a> from a particular <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#settings-object">settings object</a>, and only the <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-6.2">ASCII serialization</a> of the <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-3.2">origin</a> of the <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#settings-object">settings object</a> from which a request is
+  made is sent as referrer information when making <a data-link-type="dfn" href="#cross-origin-request">cross-origin requests</a> from a particular <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#settings-object">settings object</a>.</p>
     <p class="note" role="note">Note: For the <code>Origin When Cross-Origin</code> policy, we also consider
-  protocol upgrades, e.g. requests from <code>http://example.com/</code> to
-  <code>https://example.com/</code> to be <a data-link-type="dfn" href="#cross_origin-request">cross-origin requests</a>.</p>
-
-
+  protocol upgrades, e.g. requests from <code>http://example.com/</code> to <code>https://example.com/</code> to be <a data-link-type="dfn" href="#cross-origin-request">cross-origin requests</a>.</p>
     <p class="note" role="note">Note: The <code>Origin When Cross-Origin</code> policy causes the origin of
   HTTPS referrers to be sent over the network as part of unencrypted HTTP
   requests.</p>
-
-  
-    <div class="example" id="example-8c47077e"><a class="self-link" href="#example-8c47077e"></a>
-    If a document at <code>https://example.com/page.html</code> sets a policy of
-    <code>Origin When Cross-Origin</code>, then navigations to any
-    <code>https://example.com/not-page.html</code> would send a
-    <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2"><code>Referer</code></a> header with a value of
-    <code>https://example.com/page.html</code>.
-
-
-     <p>Navigations from that same page to <code>https://not.example.com/</code>
-    would send a <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2"><code>Referer</code></a> header with a value of
-    <code>https://example.com/</code>, even to <a data-link-type="dfn" href="https://w3c.github.io/webappsec/specs/mixedcontent/#a-priori-insecure-origin"><em>a priori</em> insecure
+    <div class="example" id="example-8c47077e">
+     <a class="self-link" href="#example-8c47077e"></a> If a document at <code>https://example.com/page.html</code> sets a policy of <code>Origin When Cross-Origin</code>, then navigations to any <code>https://example.com/not-page.html</code> would send a <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2"><code>Referer</code></a> header with a value of <code>https://example.com/page.html</code>. 
+     <p>Navigations from that same page to <code>https://not.example.com/</code> would send a <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2"><code>Referer</code></a> header with a value of <code>https://example.com/</code>, even to <a data-link-type="dfn" href="https://w3c.github.io/webappsec/specs/mixedcontent/#a-priori-insecure-origin"><em>a priori</em> insecure
     origins</a>.</p>
-     
-  
     </div>
-
-  
     <h3 class="heading settled" data-level="3.5" id="referrer-policy-state-unsafe-url"><span class="secno">3.5. </span><span class="content">Unsafe URL</span><a class="self-link" href="#referrer-policy-state-unsafe-url"></a></h3>
-
-
-    <p>The <dfn data-dfn-type="dfn" data-noexport="" id="unsafe-url">Unsafe URL<a class="self-link" href="#unsafe-url"></a></dfn> policy specifies that a full URL,
-  <a href="#strip-url">stripped for use as a referrer</a>, is sent along with
-  both <a data-link-type="dfn" href="#cross_origin-request">cross-origin requests</a> and <a data-link-type="dfn" href="#same_origin-request">same-origin requests</a> made from
+    <p>The <dfn data-dfn-type="dfn" data-noexport="" id="unsafe-url">Unsafe URL<a class="self-link" href="#unsafe-url"></a></dfn> policy specifies that a full URL, <a href="#strip-url">stripped for use as a referrer</a>, is sent along with
+  both <a data-link-type="dfn" href="#cross-origin-request">cross-origin requests</a> and <a data-link-type="dfn" href="#same-origin-request">same-origin requests</a> made from
   a particular <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#settings-object">settings object</a>.</p>
-
-  
-    <div class="example" id="example-ed289e46"><a class="self-link" href="#example-ed289e46"></a>
-    If a document at <code>https://example.com/sekrit.html</code> sets a policy
-    of <code>Unsafe URL</code>, then navigations to
-    <code>http://not.example.com/</code> (and every other origin) would send a
-    <code><a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2">Referer</a></code> HTTP header with a value of
-    <code>https://example.com/sekrit.html</code>.
-  </div>
-
-
+    <div class="example" id="example-ed289e46"><a class="self-link" href="#example-ed289e46"></a> If a document at <code>https://example.com/sekrit.html</code> sets a policy
+    of <code>Unsafe URL</code>, then navigations to <code>http://not.example.com/</code> (and every other origin) would send a <code><a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2">Referer</a></code> HTTP header with a value of <code>https://example.com/sekrit.html</code>. </div>
     <p class="note" role="note">Note: The policy’s name doesn’t lie; it is unsafe. This policy will leak
   origins and paths from <a data-link-type="dfn" href="http://www.w3.org/TR/2010/REC-wsc-ui-20100812/#typesoftls">TLS-protected</a> resources to insecure origins.
   Carefully consider the impact of setting such a policy for potentially
   sensitive documents.</p>
-</section>
-
-
+   </section>
    <section>
-  
     <h2 class="heading settled" data-level="4" id="referrer-policy-delivery"><span class="secno">4. </span><span class="content">Referrer Policy Delivery</span><a class="self-link" href="#referrer-policy-delivery"></a></h2>
-
-
     <p>A <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#settings-object">settings object</a>’s <a data-link-type="dfn" href="#referrer-policy">referrer policy</a> is delivered in one of four
   ways:</p>
-
-  
     <ul>
-    
-     <li>
-      Via the <code>referrer</code> Content Security Policy directive (defined
-      in <a href="#directive-referrer">§4.1 Delivery via CSP</a>), delivered via the
-      <a href="https://w3c.github.io/webappsec/specs/content-security-policy/#content-security-policy-header-field"><code>Content-Security-Policy</code></a>
-      HTTP header. <a data-link-type="biblio" href="#biblio-csp2">[CSP2]</a>
-    
-     
-    
-     <li>
-      Via the <code>referrer</code> Content Security Policy directive (defined
-      in <a href="#directive-referrer">§4.1 Delivery via CSP</a>), delivered via a
-      <a href="https://w3c.github.io/webappsec/specs/content-security-policy/#delivery-html-meta-element"><code>&lt;meta></code> element</a>
-      <a data-link-type="biblio" href="#biblio-csp2">[CSP2]</a>
-    
-     
-    
-     <li>
-      Via a <code><a data-link-type="element" href="http://www.w3.org/TR/html5/document-metadata.html#the-meta-element">meta</a></code> element with a <code><a data-link-type="element-attr" href="http://www.w3.org/TR/html5/document-metadata.html#attr-meta-name">name</a></code> of <code>referrer</code>.
-    
-     
-    
-     <li>
-      Via a <code>referrer</code> attribute on an <code><a data-link-type="element" href="http://www.w3.org/TR/html5/text-level-semantics.html#the-a-element">a</a></code>, <code><a data-link-type="element" href="https://html.spec.whatwg.org/#the-area-element">area</a></code>, <code><a data-link-type="element" href="https://html.spec.whatwg.org/#the-img-element">img</a></code>
-      or <code><a data-link-type="element" href="http://www.w3.org/TR/html5/embedded-content-0.html#the-iframe-element">iframe</a></code> element.
-    
-     
-    
-     <li>
-      Implicitly, via inheritance.
-    
-     
-  
+     <li> Via the <code>referrer</code> Content Security Policy directive (defined
+      in <a href="#directive-referrer">§4.1 Delivery via CSP</a>), delivered via the <a href="https://w3c.github.io/webappsec/specs/content-security-policy/#content-security-policy-header-field"><code>Content-Security-Policy</code></a> HTTP header. <a data-link-type="biblio" href="#biblio-csp2">[CSP2]</a> 
+     <li> Via the <code>referrer</code> Content Security Policy directive (defined
+      in <a href="#directive-referrer">§4.1 Delivery via CSP</a>), delivered via a <a href="https://w3c.github.io/webappsec/specs/content-security-policy/#delivery-html-meta-element"><code>&lt;meta></code> element</a> <a data-link-type="biblio" href="#biblio-csp2">[CSP2]</a> 
+     <li> Via a <code><a data-link-type="element" href="http://www.w3.org/TR/html5/document-metadata.html#the-meta-element">meta</a></code> element with a <code><a data-link-type="element-attr" href="http://www.w3.org/TR/html5/document-metadata.html#attr-meta-name">name</a></code> of <code>referrer</code>. 
+     <li> Via a <code>referrer</code> attribute on an <code><a data-link-type="element" href="http://www.w3.org/TR/html5/text-level-semantics.html#the-a-element">a</a></code>, <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/embedded-content.html#the-area-element">area</a></code>, <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/embedded-content.html#the-img-element">img</a></code> or <code><a data-link-type="element" href="http://www.w3.org/TR/html5/embedded-content-0.html#the-iframe-element">iframe</a></code> element. 
+     <li> Implicitly, via inheritance. 
     </ul>
-
-  
     <h3 class="heading settled" data-level="4.1" id="directive-referrer"><span class="secno">4.1. </span><span class="content">Delivery via CSP</span><a class="self-link" href="#directive-referrer"></a></h3>
-
-
     <p>The <code><dfn data-dfn-type="dfn" data-lt="referrer directive" data-noexport="" id="referrer-directive">referrer<a class="self-link" href="#referrer-directive"></a></dfn></code> directive
   specifies the referrer policy that the user agent applies when determining
-  what referrer information should be included with requests made, and with
-  <a data-link-type="dfn" href="http://www.w3.org/TR/html5/browsers.html#browsing-context">browsing contexts</a> created from the context of the protected resource.
+  what referrer information should be included with requests made, and with <a data-link-type="dfn" href="http://www.w3.org/TR/html5/browsers.html#browsing-context">browsing contexts</a> created from the context of the protected resource.
   The syntax for the name and value of the directive are described by the
   following ABNF grammar:</p>
-
-  
-    <pre>directive-name    = "referrer"
+<pre>directive-name    = "referrer"
 directive-value   = "no-referrer" / "no-referrer-when-downgrade" / "origin" / "origin-when-cross-origin" / "unsafe-url"
 </pre>
-
-
     <p class="note" role="note">Note: The directive name does not share the HTTP header’s misspelling.</p>
-
-
-    <p>When
-  <a href="https://w3c.github.io/webappsec/specs/content-security-policy/#enforce">enforcing</a>
-  the <code>referrer</code> directive, the user agent MUST execute
-  <a href="#set-referrer-policy">§6.1 
-    Set environment’s referrer policy to policy
-  </a> on the protected resource’s <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#incumbent-settings-object">incumbent settings
-  object</a>, using the result of executing <a href="#determine-policy-for-token">§6.4 
-    Determine token’s Policy
-  </a>
-  on the <code>referrer</code> directive’s value.</p>
-
-  
+    <p>When <a href="https://w3c.github.io/webappsec/specs/content-security-policy/#enforce">enforcing</a> the <code>referrer</code> directive, the user agent MUST execute <a href="#set-referrer-policy">§6.1 Set environment’s referrer policy to policy</a> on the protected resource’s <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#incumbent-settings-object">incumbent settings
+  object</a>, using the result of executing <a href="#determine-policy-for-token">§6.4 Determine token’s Policy</a> on the <code>referrer</code> directive’s value.</p>
     <section class="informative">
-    
      <h4 class="heading settled" data-level="4.1.1" id="referrer-usage"><span class="secno">4.1.1. </span><span class="content">Usage</span><a class="self-link" href="#referrer-usage"></a></h4>
-     
-
-
      <p><em>This section is not normative.</em></p>
-     
-
-
-     <p>A protected resource can prevent referrer leakage by specifying
-    <code>no-referrer</code> as the value of its policy’s
-    <code>referrer</code> directive:</p>
-     
-
-    
-     <pre>Content-Security-Policy: referrer no-referrer;
+     <p>A protected resource can prevent referrer leakage by specifying <code>no-referrer</code> as the value of its policy’s <code>referrer</code> directive:</p>
+<pre>Content-Security-Policy: referrer no-referrer;
 </pre>
-     
-
-
      <p>This will cause all requests made from the protected resource’s
     context to have an empty <code>Referer</code> [sic] header.</p>
-     
-  
     </section>
-
-  
     <h3 class="heading settled" data-level="4.2" id="referrer-policy-delivery-meta"><span class="secno">4.2. </span><span class="content">Delivery via <code><a data-link-type="element" href="http://www.w3.org/TR/html5/document-metadata.html#the-meta-element">meta</a></code></span><a class="self-link" href="#referrer-policy-delivery-meta"></a></h3>
-
-
-    <p>A referrer policy may be set when an HTML <code><a data-link-type="element" href="http://www.w3.org/TR/html5/document-metadata.html#the-meta-element">meta</a></code> element with a
-  <code><a data-link-type="element-attr" href="http://www.w3.org/TR/html5/document-metadata.html#attr-meta-name">name</a></code> attribute that is an <a data-link-type="dfn" href="http://www.w3.org/TR/html5/infrastructure.html#ascii-case-insensitive">ASCII case-insensitive match</a>
-  for the string "<code>Referrer</code>" is inserted into a document, for
+    <p>A referrer policy may be set when an HTML <code><a data-link-type="element" href="http://www.w3.org/TR/html5/document-metadata.html#the-meta-element">meta</a></code> element with a <code><a data-link-type="element-attr" href="http://www.w3.org/TR/html5/document-metadata.html#attr-meta-name">name</a></code> attribute that is an <a data-link-type="dfn" href="http://www.w3.org/TR/html5/infrastructure.html#ascii-case-insensitive">ASCII case-insensitive match</a> for the string "<code>Referrer</code>" is inserted into a document, for
   example:</p>
-
-  
-    <pre class="example" id="example-8adbf8f6"><a class="self-link" href="#example-8adbf8f6"></a>&lt;meta name="referrer" content="origin">
+<pre class="example" id="example-8adbf8f6"><a class="self-link" href="#example-8adbf8f6"></a>&lt;meta name="referrer" content="origin">
 </pre>
-
-
     <p>The following values for the <code>content</code> attribute are valid, and map
   to the listed <a data-link-type="dfn" href="#referrer-policy">referrer policy</a> values:</p>
-
-  
     <dl>
-    
      <dt>no-referrer
-     
-    
      <dd><a data-link-type="dfn" href="#no-referrer"><code>No Referrer</code></a>
-     
-    
      <dt>origin
-     
-    
      <dd><a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-3.2"><code>Origin</code></a>
-     
-    
      <dt>no-referrer-when-downgrade
-     
-    
      <dd><a data-link-type="dfn" href="#no-referrer-when-downgrade"><code>No Referrer When Downgrade</code></a>
-     
-    
      <dt>origin-when-cross-origin
-     
-    
-     <dd><a data-link-type="dfn" href="#origin-when-cross_origin"><code>Origin When Cross-Origin</code></a>
-     
-    
+     <dd><a data-link-type="dfn" href="#origin-when-cross-origin"><code>Origin When Cross-Origin</code></a>
      <dt>unsafe-url
-     
-    
      <dd><a data-link-type="dfn" href="#unsafe-url"><code>Unsafe URL</code></a>
-     
-  
     </dl>
-
-
-    <p>Add the following entry to the
-  <a href="http://www.w3.org/TR/html5/document-metadata.html#pragma-directives">pragma directives</a>
-  for the <code><a data-link-type="element" href="http://www.w3.org/TR/html5/document-metadata.html#the-meta-element">meta</a></code> element:</p>
-
-  
+    <p>Add the following entry to the <a href="http://www.w3.org/TR/html5/document-metadata.html#pragma-directives">pragma directives</a> for the <code><a data-link-type="element" href="http://www.w3.org/TR/html5/document-metadata.html#the-meta-element">meta</a></code> element:</p>
     <dl>
-    
-     <dt>
-      Referrer policy
-      (<code>name="Referrer"</code>)
-    
-     
-    
+     <dt> Referrer policy
+      (<code>name="Referrer"</code>) 
      <dd>
-      
       <ol>
-        
-       <li>
-          If the Document’s <code><a data-link-type="element" href="https://html.spec.whatwg.org/#the-head-element">head</a></code> element is not an ancestor of the <code><a data-link-type="element" href="http://www.w3.org/TR/html5/document-metadata.html#the-meta-element">meta</a></code>
-          element, abort these steps.
-        
-       
-
-        
-       <li>
-          If the <code><a data-link-type="element" href="http://www.w3.org/TR/html5/document-metadata.html#the-meta-element">meta</a></code> element lacks a <code><a data-link-type="element-attr" href="http://www.w3.org/TR/html5/document-metadata.html#attr-meta-content">content</a></code> attribute then abort
-          these steps.
-        
-       
-
-        
-       <li>
-          Let <var>environment</var> be the <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/dom/#interface-document">Document</a></code>'s <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#incumbent-settings-object">incumbent settings
-          object</a>.
-        
-       
-
-        
-       <li>
-          Let <var>meta-value</var> be the value of the element’s
-          <code><a data-link-type="element-attr" href="http://www.w3.org/TR/html5/document-metadata.html#attr-meta-content">content</a></code> attribute, after
-          <a data-link-type="dfn" href="http://www.w3.org/TR/html5/infrastructure.html#strip-leading-and-trailing-whitespace">stripping
-          leading and trailing whitespace</a>.
-        
-       
-
-        
-       <li>
-          If <var>meta-value</var> is the empty string, then abort these steps.
-        
-       
-
-        
-       <li>
-          Let <var>policy</var> be the result of executing the
-          <a href="#determine-policy-for-token">§6.4 
-    Determine token’s Policy
-  </a> algorithm on <var>meta-value</var>.
-        
-       
-
-        
-       <li>
-          Execute the <a href="#set-referrer-policy">§6.1 
-    Set environment’s referrer policy to policy
-  </a> algorithm on
-          <var>environment</var> using <var>policy</var>, if <var>policy</var>
-          is not <code>null</code>.
-        
-       
-      
+       <li> If the Document’s <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/semantics.html#the-head-element">head</a></code> element is not an ancestor of the <code><a data-link-type="element" href="http://www.w3.org/TR/html5/document-metadata.html#the-meta-element">meta</a></code> element, abort these steps. 
+       <li> If the <code><a data-link-type="element" href="http://www.w3.org/TR/html5/document-metadata.html#the-meta-element">meta</a></code> element lacks a <code><a data-link-type="element-attr" href="http://www.w3.org/TR/html5/document-metadata.html#attr-meta-content">content</a></code> attribute then abort
+          these steps. 
+       <li> Let <var>environment</var> be the <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/dom/#interface-document">Document</a></code>'s <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#incumbent-settings-object">incumbent settings
+          object</a>. 
+       <li> Let <var>meta-value</var> be the value of the element’s <code><a data-link-type="element-attr" href="http://www.w3.org/TR/html5/document-metadata.html#attr-meta-content">content</a></code> attribute, after <a data-link-type="dfn" href="http://www.w3.org/TR/html5/infrastructure.html#strip-leading-and-trailing-whitespace">stripping
+          leading and trailing whitespace</a>. 
+       <li> If <var>meta-value</var> is the empty string, then abort these steps. 
+       <li> Let <var>policy</var> be the result of executing the <a href="#determine-policy-for-token">§6.4 Determine token’s Policy</a> algorithm on <var>meta-value</var>. 
+       <li> Execute the <a href="#set-referrer-policy">§6.1 Set environment’s referrer policy to policy</a> algorithm on <var>environment</var> using <var>policy</var>, if <var>policy</var> is not <code>null</code>. 
       </ol>
-      
-
-
-      <p class="note" role="note">Note: Authors are encouraged to avoid the legacy keywords
-      <code>never</code>, <code>default</code>, and <code>always</code>. The
-      keywords <code>no-referrer</code>,
-      <code>no-referrer-when-downgrade</code>, and <code>unsafe-url</code>
-      respectively are preferred.</p>
-      
-
-
-      <p class="note" role="note">Note: Implementors are advised to also respect a <a data-link-type="dfn" href="#referrer-policy">referrer policy</a>
-      delivered via a <code><a data-link-type="element" href="http://www.w3.org/TR/html5/document-metadata.html#the-meta-element">meta</a></code> element during
+      <p class="note" role="note">Note: Authors are encouraged to avoid the legacy keywords <code>never</code>, <code>default</code>, and <code>always</code>. The
+      keywords <code>no-referrer</code>, <code>no-referrer-when-downgrade</code>, and <code>unsafe-url</code> respectively are preferred.</p>
+      <p class="note" role="note">Note: Implementors are advised to also respect a <a data-link-type="dfn" href="#referrer-policy">referrer policy</a> delivered via a <code><a data-link-type="element" href="http://www.w3.org/TR/html5/document-metadata.html#the-meta-element">meta</a></code> element during
       speculative resource loads.</p>
-      
-    
-     
-  
     </dl>
-
-  
     <h3 class="heading settled" data-level="4.3" id="referrer-policy-delivery-referrer-attribute"><span class="secno">4.3. </span><span class="content">Delivery
   via a <code>referrer</code> attribute</span><a class="self-link" href="#referrer-policy-delivery-referrer-attribute"></a></h3>
-
-
     <p>A referrer policy may be set when a <code>referrer</code> attribute is
-  added to an <code><a data-link-type="element" href="http://www.w3.org/TR/html5/text-level-semantics.html#the-a-element">a</a></code>, <code><a data-link-type="element" href="https://html.spec.whatwg.org/#the-area-element">area</a></code>,
-  <code><a data-link-type="element" href="https://html.spec.whatwg.org/#the-img-element">img</a></code> or <code><a data-link-type="element" href="http://www.w3.org/TR/html5/embedded-content-0.html#the-iframe-element">iframe</a></code>
-  element, for example:</p>
-
-  
-    <pre class="example" id="example-089cca85"><a class="self-link" href="#example-089cca85"></a>&lt;a href="http://example.com" referrer="origin">
+  added to an <code><a data-link-type="element" href="http://www.w3.org/TR/html5/text-level-semantics.html#the-a-element">a</a></code>, <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/embedded-content.html#the-area-element">area</a></code>, <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/embedded-content.html#the-img-element">img</a></code> or <code><a data-link-type="element" href="http://www.w3.org/TR/html5/embedded-content-0.html#the-iframe-element">iframe</a></code> element, for example:</p>
+<pre class="example" id="example-089cca85"><a class="self-link" href="#example-089cca85"></a>&lt;a href="http://example.com" referrer="origin">
 </pre>
-
-
     <p>The following values for the <code>referrer</code> attribute are valid,
   and map to the listed <a data-link-type="dfn" href="#referrer-policy">referrer policy</a> values:</p>
-
-  
     <dl>
-    
      <dt>no-referrer
-     
-    
      <dd><a data-link-type="dfn" href="#no-referrer"><code>No Referrer</code></a>
-     
-    
      <dt>origin
-     
-    
      <dd><a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-3.2"><code>Origin</code></a>
-     
-    
      <dt>unsafe-url
-     
-    
      <dd><a data-link-type="dfn" href="#unsafe-url"><code>Unsafe URL</code></a>
-     
-  
     </dl>
-
-
     <p>A policy delivered via a <code>referrer</code> attribute on an element
   takes precedence over the policy defined for the whole document via CSP or
   a <a data-link-type="element" href="http://www.w3.org/TR/html5/document-metadata.html#the-meta-element">meta</a> element.</p>
-
-
-    <p class="issue" id="issue-4ec1eba2"><a class="self-link" href="#issue-4ec1eba2"></a>If an <code><a data-link-type="element" href="http://www.w3.org/TR/html5/text-level-semantics.html#the-a-element">a</a></code>
-  or <code><a data-link-type="element" href="https://html.spec.whatwg.org/#the-area-element">area</a></code> element includes both
+    <p class="issue" id="issue-4ec1eba2"><a class="self-link" href="#issue-4ec1eba2"></a> If an <code><a data-link-type="element" href="http://www.w3.org/TR/html5/text-level-semantics.html#the-a-element">a</a></code> or <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/embedded-content.html#the-area-element">area</a></code> element includes both
   a <code>referrer</code> attribute as well as
-  a <a href="https://html.spec.whatwg.org/#link-type-noreferrer"><code>noreferrer</code>
-  link type</a>, should the policy of the <code>referrer</code> attribute
+  a <a href="https://html.spec.whatwg.org/#link-type-noreferrer"><code>noreferrer</code> link type</a>, should the policy of the <code>referrer</code> attribute
   take precedence over the link type, as suggested
   by <a href="https://lists.w3.org/Archives/Public/public-webappsec/2015Feb/0235.html">Martin
   Thomson</a>, or should we take the more conservative approach as suggested
   by <a href="https://lists.w3.org/Archives/Public/public-webappsec/2015Feb/0283.html">Brian
   Smith</a> and honor the <code>noreferrer</code> link type?</p>
-
-  
     <h3 class="heading settled" data-level="4.4" id="referrer-policy-delivery-implicit"><span class="secno">4.4. </span><span class="content">Implicit Delivery</span><a class="self-link" href="#referrer-policy-delivery-implicit"></a></h3>
-
-
     <p>A <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#settings-object">settings object</a> inherits the <a data-link-type="dfn" href="#referrer-policy">referrer policy</a> of another object
   in several circumstances:</p>
-
-  
-    <h4 class="heading settled" data-level="4.4.1" id="referrer-policy-delivery-implicit-nested"><span class="secno">4.4.1. </span><span class="content">
-     Nested Browsing Contexts
-  </span><a class="self-link" href="#referrer-policy-delivery-implicit-nested"></a></h4>
-
-
-    <p>Whenever a user agent creates a <a data-link-type="dfn" href="http://www.w3.org/TR/html5/browsers.html#nested-browsing-context">nested browsing context</a> containing
-  <a data-link-type="dfn" href="http://www.w3.org/TR/html5/embedded-content-0.html#an-iframe-srcdoc-document">an iframe srcdoc document</a> or a resource whose <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-3.2">origin</a>’s scheme
-  is a <a data-link-type="dfn" href="http://www.w3.org/TR/url/#local-scheme">local scheme</a> (for instance, a <code>blob</code> or
-  <code>data</code> resource):</p>
-
-  
+    <h4 class="heading settled" data-level="4.4.1" id="referrer-policy-delivery-implicit-nested"><span class="secno">4.4.1. </span><span class="content"> Nested Browsing Contexts </span><a class="self-link" href="#referrer-policy-delivery-implicit-nested"></a></h4>
+    <p>Whenever a user agent creates a <a data-link-type="dfn" href="http://www.w3.org/TR/html5/browsers.html#nested-browsing-context">nested browsing context</a> containing <a data-link-type="dfn" href="http://www.w3.org/TR/html5/embedded-content-0.html#an-iframe-srcdoc-document">an iframe srcdoc document</a> or a resource whose <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-3.2">origin</a>’s scheme
+  is a <a data-link-type="dfn" href="http://www.w3.org/TR/url/#local-scheme">local scheme</a> (for instance, a <code>blob</code> or <code>data</code> resource):</p>
     <ol>
-    
-     <li>
-      Let <var>environment</var> be the <a data-link-type="dfn" href="http://www.w3.org/TR/html5/browsers.html#nested-browsing-context">nested browsing context</a>’s
-      <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#incumbent-settings-object">incumbent settings object</a>.
-    
-     
-    
-     <li>
-      Let <var>policy</var> be the <a data-link-type="dfn" href="http://www.w3.org/TR/html5/browsers.html#parent-browsing-context">parent browsing context</a>’s
-      <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#incumbent-settings-object">incumbent settings object</a>’s <a data-link-type="dfn" href="#referrer-policy">referrer policy</a>.
-    
-     
-    
-     <li>
-      Execute the <a href="#set-referrer-policy">§6.1 
-    Set environment’s referrer policy to policy
-  </a> algorithm on
-      <var>environment</var> using <var>policy</var>, if <var>policy</var>
-      is not <code>null</code>.
-    
-     
-  
+     <li> Let <var>environment</var> be the <a data-link-type="dfn" href="http://www.w3.org/TR/html5/browsers.html#nested-browsing-context">nested browsing context</a>’s <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#incumbent-settings-object">incumbent settings object</a>. 
+     <li> Let <var>policy</var> be the <a data-link-type="dfn" href="http://www.w3.org/TR/html5/browsers.html#parent-browsing-context">parent browsing context</a>’s <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#incumbent-settings-object">incumbent settings object</a>’s <a data-link-type="dfn" href="#referrer-policy">referrer policy</a>. 
+     <li> Execute the <a href="#set-referrer-policy">§6.1 Set environment’s referrer policy to policy</a> algorithm on <var>environment</var> using <var>policy</var>, if <var>policy</var> is not <code>null</code>. 
     </ol>
-
-  
-    <h4 class="heading settled" data-level="4.4.2" id="referrer-policy-delivery-implicit-workers"><span class="secno">4.4.2. </span><span class="content">
-    Workers
-  </span><a class="self-link" href="#referrer-policy-delivery-implicit-workers"></a></h4>
-
-
-    <p>Whenever a user agent <a data-link-type="dfn" href="http://www.w3.org/TR/workers/#run-a-worker">runs a worker</a> for a script with <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/url/#url">URL</a></code>
-  <var>url</var> and <var>url</var>’s scheme is a <a data-link-type="dfn" href="http://www.w3.org/TR/url/#local-scheme">local scheme</a>:</p>
-
-  
+    <h4 class="heading settled" data-level="4.4.2" id="referrer-policy-delivery-implicit-workers"><span class="secno">4.4.2. </span><span class="content"> Workers </span><a class="self-link" href="#referrer-policy-delivery-implicit-workers"></a></h4>
+    <p>Whenever a user agent <a data-link-type="dfn" href="http://www.w3.org/TR/workers/#run-a-worker">runs a worker</a> for a script with <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/url/#url">URL</a></code> <var>url</var> and <var>url</var>’s scheme is a <a data-link-type="dfn" href="http://www.w3.org/TR/url/#local-scheme">local scheme</a>:</p>
     <ol>
-    
-     <li>
-      Let <var>environment</var> be the Worker’s <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#incumbent-settings-object">incumbent settings
-      object</a>.
-    
-     
-    
-     <li>
-      Let <var>policy</var> be <code>No Referrer When Downgrade</code>.
-    
-     
-    
-     <li>
-      Execute the <a href="#set-referrer-policy">§6.1 
-    Set environment’s referrer policy to policy
-  </a> algorithm on
-      <var>environment</var> using <var>policy</var>.
-    
-     
-  
+     <li> Let <var>environment</var> be the Worker’s <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#incumbent-settings-object">incumbent settings
+      object</a>. 
+     <li> Let <var>policy</var> be <code>No Referrer When Downgrade</code>. 
+     <li> Execute the <a href="#set-referrer-policy">§6.1 Set environment’s referrer policy to policy</a> algorithm on <var>environment</var> using <var>policy</var>. 
     </ol>
-</section>
-
-
+   </section>
    <section>
-  
     <h2 class="heading settled" data-level="5" id="integration-with-fetch"><span class="secno">5. </span><span class="content">Integration with Fetch</span><a class="self-link" href="#integration-with-fetch"></a></h2>
-
-
-    <p>The Fetch specification calls out to the
-  <a href="#determine-requests-referrer">Determine <var>request</var>’s
-  referrer</a> algorithm as
-  <a href="http://fetch.spec.whatwg.org/#concept-fetch">Step 2 of the
-  Fetching algorithm</a>, and uses the response to set the <var>request</var>’s
-  <code>referrer</code> property. Fetch is responsible for serializing the
-  URL provided, and setting the `<code>Referer</code>` header on
-  <var>request</var>.</p>
-</section>
-
-
+    <p>The Fetch specification calls out to the <a href="#determine-requests-referrer">Determine <var>request</var>’s
+  referrer</a> algorithm as <a href="http://fetch.spec.whatwg.org/#concept-fetch">Step 2 of the
+  Fetching algorithm</a>, and uses the response to set the <var>request</var>’s <code>referrer</code> property. Fetch is responsible for serializing the
+  URL provided, and setting the `<code>Referer</code>` header on <var>request</var>.</p>
+   </section>
    <section>
-  
     <h2 class="heading settled" data-level="6" id="algorithms"><span class="secno">6. </span><span class="content">Algorithms</span><a class="self-link" href="#algorithms"></a></h2>
-
-  
-    <h3 class="heading settled" data-level="6.1" id="set-referrer-policy"><span class="secno">6.1. </span><span class="content">
-    Set <var>environment</var>’s referrer policy to <var>policy</var>
-  </span><a class="self-link" href="#set-referrer-policy"></a></h3>
-
-
+    <h3 class="heading settled" data-level="6.1" id="set-referrer-policy"><span class="secno">6.1. </span><span class="content"> Set <var>environment</var>’s referrer policy to <var>policy</var> </span><a class="self-link" href="#set-referrer-policy"></a></h3>
     <p>If no referrer policy has been set for a <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#settings-object">settings object</a>, then
   setting its value is straightforward. If a policy has previously been set,
   then we overwrite it with the new value.</p>
-
-  
     <ol>
-    
-     <li>
-      If <var>policy</var> is not one of <code><a data-link-type="dfn" href="#no-referrer">No Referrer</a></code>,
-      <code><a data-link-type="dfn" href="#no-referrer-when-downgrade">No Referrer When Downgrade</a></code>, <code><a data-link-type="dfn" href="#origin-only">Origin
-      Only</a></code>, <code><a data-link-type="dfn" href="#origin-when-cross_origin">Origin when cross-origin</a></code>, or
-      <code><a data-link-type="dfn" href="#unsafe-url">Unsafe URL</a></code>, then return without setting
-      <var>environment</var>’s referrer policy.
-    
-     
-
-    
-     <li>
-      Set <var>environment</var>’s <a data-link-type="dfn" href="#referrer-policy">referrer policy</a> to
-      <var>policy</var>.
-    
-     
-  
+     <li> If <var>policy</var> is not one of <code><a data-link-type="dfn" href="#no-referrer">No Referrer</a></code>, <code><a data-link-type="dfn" href="#no-referrer-when-downgrade">No Referrer When Downgrade</a></code>, <code><a data-link-type="dfn" href="#origin-only">Origin
+      Only</a></code>, <code><a data-link-type="dfn" href="#origin-when-cross-origin">Origin when cross-origin</a></code>, or <code><a data-link-type="dfn" href="#unsafe-url">Unsafe URL</a></code>, then return without setting <var>environment</var>’s referrer policy. 
+     <li> Set <var>environment</var>’s <a data-link-type="dfn" href="#referrer-policy">referrer policy</a> to <var>policy</var>. 
     </ol>
-
-  
-    <h3 class="heading settled" data-level="6.2" id="determine-requests-referrer"><span class="secno">6.2. </span><span class="content">
-    Determine <var>request</var>’s Referrer
-  </span><a class="self-link" href="#determine-requests-referrer"></a></h3>
-
-
+    <h3 class="heading settled" data-level="6.2" id="determine-requests-referrer"><span class="secno">6.2. </span><span class="content"> Determine <var>request</var>’s Referrer </span><a class="self-link" href="#determine-requests-referrer"></a></h3>
     <p>Given a <code class="idl"><a data-link-type="idl" href="https://fetch.spec.whatwg.org/#request">Request</a></code> <var>request</var>, we can determine the correct
   referrer information to send by examining the <a data-link-type="dfn" href="#referrer-policy">policy</a> associated with
   its <code class="idl"><a data-link-type="idl" href="https://fetch.spec.whatwg.org/#concept-request-client">client</a></code>, as detailed in the following steps, which return
   either <code>no referrer</code> or a URL:</p>
-
-
-    <p class="note" role="note">Note: If Fetch is performing a navigation in response to a link of type
-  <code><a data-link-type="dfn" href="http://www.w3.org/TR/html5/links.html#link-type-noreferrer">noreferrer</a></code>, then <var>request</var>’s
-  <code>referrer</code> will be <code>no referrer</code>, and Fetch won’t call
+    <p class="note" role="note">Note: If Fetch is performing a navigation in response to a link of type <code><a data-link-type="dfn" href="http://www.w3.org/TR/html5/links.html#link-type-noreferrer">noreferrer</a></code>, then <var>request</var>’s <code>referrer</code> will be <code>no referrer</code>, and Fetch won’t call
   into this algorithm.</p>
-
-
-    <p class="issue" id="issue-2cf94c0c"><a class="self-link" href="#issue-2cf94c0c"></a>This algorithm needs to be modifed to take into account any local
+    <p class="issue" id="issue-2cf94c0c"><a class="self-link" href="#issue-2cf94c0c"></a> This algorithm needs to be modifed to take into account any local
   overrides via the referrer attribute on elements.</p>
-
-  
     <ol>
-    
+     <li> Let <var>environment</var> be <var>request</var>’s <code>client</code>. 
+     <li> Let <var>policy</var> be the value of <var>environment</var>’s <a data-link-type="dfn" href="#referrer-policy">referrer policy</a>. 
      <li>
-      Let <var>environment</var> be <var>request</var>’s <code>client</code>.
-    
-     
-    
-     <li>
-      Let <var>policy</var> be the value of <var>environment</var>’s
-      <a data-link-type="dfn" href="#referrer-policy">referrer policy</a>.
-    
-     
-    
-     <li>
-      If <var>request</var>’s <code>referrer</code> is a URL, then let
-      <var>referrerSource</var> be <var>request</var>’s
-      <code>referrer</code>. Otherwise:
-
-      
+       If <var>request</var>’s <code>referrer</code> is a URL, then let <var>referrerSource</var> be <var>request</var>’s <code>referrer</code>. Otherwise: 
       <ol>
-        
        <li>
-          If <var>environment</var> is a <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#document-environment">document environment</a>:
-
-          
+         If <var>environment</var> is a <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#document-environment">document environment</a>: 
         <ol>
-            
-         <li>
-              Let <var>document</var> be the <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/dom/#interface-document">Document</a></code> object of the
-              <a data-link-type="dfn" href="http://www.w3.org/TR/html5/browsers.html#active-document">active document</a> of the <a data-link-type="dfn" href="http://www.w3.org/TR/html5/browsers.html#browsing-context">browsing context</a> of
-              <var>environment</var>’s <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#responsible-browsing-context">responsible browsing context</a>.
-            
-         
-          
+         <li> Let <var>document</var> be the <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/dom/#interface-document">Document</a></code> object of the <a data-link-type="dfn" href="http://www.w3.org/TR/html5/browsers.html#active-document">active document</a> of the <a data-link-type="dfn" href="http://www.w3.org/TR/html5/browsers.html#browsing-context">browsing context</a> of <var>environment</var>’s <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#responsible-browsing-context">responsible browsing context</a>. 
         </ol>
-        
-        
-       
-        
        <li>
-          Otherwise, <var>environment</var> is a <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#worker-environment">worker environment</a>:
-
-          
+         Otherwise, <var>environment</var> is a <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#worker-environment">worker environment</a>: 
         <ol>
-            
-         <li>
-              Let <var>source</var> be the <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#api-referrer-source">API referrer source</a>
-              specified by the <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#incumbent-settings-object">incumbent settings object</a>.
-            
-         
-            
-         <li>
-              If <var>source</var> is a URL, let <var>referrerSource</var>
-              be <var>source</var>, otherwise let <var>document</var> be
-              <var>source</var>.
-            
-         
-          
+         <li> Let <var>source</var> be the <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#api-referrer-source">API referrer source</a> specified by the <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#incumbent-settings-object">incumbent settings object</a>. 
+         <li> If <var>source</var> is a URL, let <var>referrerSource</var> be <var>source</var>, otherwise let <var>document</var> be <var>source</var>. 
         </ol>
-        
-        
-       
-        
        <li>
-          If <var>document</var> is set, execute the following steps:
-
-          
+         If <var>document</var> is set, execute the following steps: 
         <ol>
-            
-         <li>
-              If <var>document</var>’s <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-3.2">origin</a> is not a scheme/host/port
+         <li> If <var>document</var>’s <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-3.2">origin</a> is not a scheme/host/port
               tuple (because, for example, it has been sandboxed into a unique
-              origin), return <code>no referrer</code> and abort these steps.
-            
-         
-            
-         <li>
-              While <var>document</var> corresponds to <a data-link-type="dfn" href="http://www.w3.org/TR/html5/embedded-content-0.html#an-iframe-srcdoc-document">an iframe srcdoc Document</a>,
-              let <var>document</var> be that Document’s <a data-link-type="dfn" href="http://www.w3.org/TR/html5/browsers.html#browsing-context">browsing context</a>’s
-              <a data-link-type="dfn" href="http://www.w3.org/TR/html5/browsers.html#browsing-context-container">browsing context container</a>’s <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/dom/#interface-document">Document</a></code>.
-            
-         
-            
-         <li>
-              Let <var>referrerSource</var> be <var>document</var>’s URL.
-            
-         
-          
+              origin), return <code>no referrer</code> and abort these steps. 
+         <li> While <var>document</var> corresponds to <a data-link-type="dfn" href="http://www.w3.org/TR/html5/embedded-content-0.html#an-iframe-srcdoc-document">an iframe srcdoc Document</a>,
+              let <var>document</var> be that Document’s <a data-link-type="dfn" href="http://www.w3.org/TR/html5/browsers.html#browsing-context">browsing context</a>’s <a data-link-type="dfn" href="http://www.w3.org/TR/html5/browsers.html#browsing-context-container">browsing context container</a>’s <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/dom/#interface-document">Document</a></code>. 
+         <li> Let <var>referrerSource</var> be <var>document</var>’s URL. 
         </ol>
-        
-        
-       
-      
       </ol>
-      
-    
-     
-    
+     <li> Let <var>referrerURL</var> be the result of <a href="#strip-url">stripping <var>referrerSource</var> for use as a referrer.</a> 
+     <li> Let <var>referrerOrigin</var> be the result of <a href="#strip-url">stripping <var>referrerSource</var> for use as a
+      referrer</a>, with the <code><a data-link-type="dfn" href="#origin-only-flag">origin-only flag</a></code> set to <code>true</code>. 
      <li>
-      Let <var>referrerURL</var> be the result of <a href="#strip-url">stripping
-      <var>referrerSource</var> for use as a referrer.</a>
-    
-     
-    
-     <li>
-      Let <var>referrerOrigin</var> be the result of
-      <a href="#strip-url">stripping <var>referrerSource</var> for use as a
-      referrer</a>, with the <code><a data-link-type="dfn" href="#origin_only-flag">origin-only flag</a></code> set to
-      <code>true</code>.
-    
-     
-
-    
-     <li>
-      Execute the statements corresponding to the value of <var>policy</var>:
-
-      
+       Execute the statements corresponding to the value of <var>policy</var>: 
       <dl>
-        
        <dt><var>policy</var> is <code><a data-link-type="dfn" href="#no-referrer">No Referrer</a></code>
-       
-        
        <dd>Return <code>no referrer</code>
-       
-
-        
        <dt><var>policy</var> is <code><a data-link-type="dfn" href="#origin-only">Origin Only</a></code>
-       
-        
        <dd>Return <var>referrerOrigin</var>
-       
-
-        
        <dt><var>policy</var> is <code><a data-link-type="dfn" href="#unsafe-url">Unsafe URL</a></code>
-       
-        
        <dd>Return <var>referrerURL</var>.
-       
-
-        
-       <dt>
-          <var>policy</var> is <code><a data-link-type="dfn" href="#origin-when-cross_origin">Origin When Cross-Origin</a></code>
-        
-       
-        
+       <dt> <var>policy</var> is <code><a data-link-type="dfn" href="#origin-when-cross-origin">Origin When Cross-Origin</a></code> 
        <dd>
-          
         <ol>
-            
-         <li>
-              If <var>request</var> is a <a data-link-type="dfn" href="#cross_origin-request">cross-origin request</a>, then
-              return <var>referrerOrigin</var>.
-            
-         
-            
-         <li>
-              Otherwise, return <var>referrerURL</var>.
-            
-         
-          
+         <li> If <var>request</var> is a <a data-link-type="dfn" href="#cross-origin-request">cross-origin request</a>, then
+              return <var>referrerOrigin</var>. 
+         <li> Otherwise, return <var>referrerURL</var>. 
         </ol>
-        
-        
-       
-
-        
-       <dt>
-          <var>policy</var> is <code><a data-link-type="dfn" href="#no-referrer-when-downgrade">No Referrer When Downgrade</a></code>
-        
-       
-        
-       <dt>
-          <var>policy</var> is <code>null</code>
-        
-       
-        
+       <dt> <var>policy</var> is <code><a data-link-type="dfn" href="#no-referrer-when-downgrade">No Referrer When Downgrade</a></code> 
+       <dt> <var>policy</var> is <code>null</code> 
        <dd>
-          
         <ol>
-            
-         <li>
-              If <var>environment</var> is <a data-link-type="dfn" href="http://www.w3.org/TR/2010/REC-wsc-ui-20100812/#typesoftls">TLS-protected</a> <em>and</em> the
-              <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-3.2">origin</a> of <var>request</var>’s <code>URL</code> is
-              an <a data-link-type="dfn" href="https://w3c.github.io/webappsec/specs/mixedcontent/#a-priori-insecure-origin"><em>a priori</em> insecure origin</a>, then return
-              <code>no referrer</code>.
-            
-         
-            
-         <li>
-              Otherwise, return <var>requestURL</var>.
-            
-         
-          
+         <li> If <var>environment</var> is <a data-link-type="dfn" href="http://www.w3.org/TR/2010/REC-wsc-ui-20100812/#typesoftls">TLS-protected</a> <em>and</em> the <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-3.2">origin</a> of <var>request</var>’s <code>URL</code> is
+              an <a data-link-type="dfn" href="https://w3c.github.io/webappsec/specs/mixedcontent/#a-priori-insecure-origin"><em>a priori</em> insecure origin</a>, then return <code>no referrer</code>. 
+         <li> Otherwise, return <var>requestURL</var>. 
         </ol>
-        
-        
-       
-      
       </dl>
-      
-    
-     
-  
     </ol>
-
-  
-    <h3 class="heading settled" data-level="6.3" id="strip-url"><span class="secno">6.3. </span><span class="content">
-    Strip <var>url</var> for use as a referrer
-  </span><a class="self-link" href="#strip-url"></a></h3>
-
-
+    <h3 class="heading settled" data-level="6.3" id="strip-url"><span class="secno">6.3. </span><span class="content"> Strip <var>url</var> for use as a referrer </span><a class="self-link" href="#strip-url"></a></h3>
     <p>Certain portions of URLs MUST not be included when sending a URL as the value
   of a `<code>Referer</code>` header: a URLs fragment, username, and password
   components should be stripped from the URL before it’s sent out. This
-  algorithm accepts a <code><dfn data-dfn-type="dfn" data-noexport="" id="origin_only-flag">origin-only flag<a class="self-link" href="#origin_only-flag"></a></dfn></code>, which defaults
+  algorithm accepts a <code><dfn data-dfn-type="dfn" data-noexport="" id="origin-only-flag">origin-only flag<a class="self-link" href="#origin-only-flag"></a></dfn></code>, which defaults
   to <code>false</code>. If set to <code>true</code>, the algorithm will
   additionally remove the URL’s path and query components, leaving only the
   scheme, host, and port.</p>
-
-  
     <ol>
-    
+     <li> If <var>url</var> is <code>null</code>, return <code>no referrer</code>. 
+     <li> If <var>url</var>’s <code>scheme</code> is a <a data-link-type="dfn" href="http://www.w3.org/TR/url/#local-scheme">local scheme</a>, then
+      return <code>no referrer</code>. 
+     <li> Set <var>url</var>’s <code>username</code> to the empty string. 
+     <li> Set <var>url</var>’s <code>password</code> to <code>null</code>. 
+     <li> Set <var>url</var>’s <code>fragment</code> to <code>null</code>. 
      <li>
-      If <var>url</var> is <code>null</code>, return <code>no referrer</code>.
-    
-     
-    
-     <li>
-      If <var>url</var>’s <code>scheme</code> is a <a data-link-type="dfn" href="http://www.w3.org/TR/url/#local-scheme">local scheme</a>, then
-      return <code>no referrer</code>.
-    
-     
-    
-     <li>
-      Set <var>url</var>’s <code>username</code> to the empty string.
-    
-     
-    
-     <li>
-      Set <var>url</var>’s <code>password</code> to <code>null</code>.
-    
-     
-    
-     <li>
-      Set <var>url</var>’s <code>fragment</code> to <code>null</code>.
-    
-     
-    
-     <li>
-      If the <code><a data-link-type="dfn" href="#origin_only-flag">origin-only flag</a></code> is <code>true</code>,
-      then:
-
-      
+       If the <code><a data-link-type="dfn" href="#origin-only-flag">origin-only flag</a></code> is <code>true</code>,
+      then: 
       <ol>
-        
-       <li>
-          Set <var>url</var>’s <code>path</code> to <code>null</code>.
-        
-       
-        
-       <li>
-          Set <var>url</var>’s <code>query</code> to <code>null</code>.
-        
-       
-      
+       <li> Set <var>url</var>’s <code>path</code> to <code>null</code>. 
+       <li> Set <var>url</var>’s <code>query</code> to <code>null</code>. 
       </ol>
-      
-    
-     
-    
-     <li>
-      Return <var>url</var>.
-    
-     
-  
+     <li> Return <var>url</var>. 
     </ol>
-
-  
-    <h3 class="heading settled" data-level="6.4" id="determine-policy-for-token"><span class="secno">6.4. </span><span class="content">
-    Determine <var>token</var>’s Policy
-  </span><a class="self-link" href="#determine-policy-for-token"></a></h3>
-
-
-    <p>Given a string <var>token</var> (for example, the value of a
-  <a data-link-type="dfn" href="#referrer-directive"><code>referrer</code> directive</a>), this algorithm will return the
-  <a data-link-type="dfn" href="#referrer-policy">referrer policy</a> it refers to:</p>
-
-  
+    <h3 class="heading settled" data-level="6.4" id="determine-policy-for-token"><span class="secno">6.4. </span><span class="content"> Determine <var>token</var>’s Policy </span><a class="self-link" href="#determine-policy-for-token"></a></h3>
+    <p>Given a string <var>token</var> (for example, the value of a <a data-link-type="dfn" href="#referrer-directive"><code>referrer</code> directive</a>), this algorithm will return the <a data-link-type="dfn" href="#referrer-policy">referrer policy</a> it refers to:</p>
     <ol>
-    
-     <li>
-      If <var>token</var> is an <a data-link-type="dfn" href="http://www.w3.org/TR/html5/infrastructure.html#ascii-case-insensitive">ASCII case-insensitive match</a> for the
-      strings "<code>never</code>" or "<code>no-referrer</code>", return
-      <a data-link-type="dfn" href="#no-referrer"><code>No Referrer</code></a>.
-    
-     
-    
-     <li>
-      If <var>token</var> is an <a data-link-type="dfn" href="http://www.w3.org/TR/html5/infrastructure.html#ascii-case-insensitive">ASCII case-insensitive match</a> for the
-      string "<code>origin</code>", return <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-3.2"><code>Origin</code></a>.
-    
-     
-    
-     <li>
-      If <var>token</var> is <a data-link-type="dfn" href="http://www.w3.org/TR/html5/infrastructure.html#ascii-case-insensitive">ASCII case-insensitive match</a> for the string
+     <li> If <var>token</var> is an <a data-link-type="dfn" href="http://www.w3.org/TR/html5/infrastructure.html#ascii-case-insensitive">ASCII case-insensitive match</a> for the
+      strings "<code>never</code>" or "<code>no-referrer</code>", return <a data-link-type="dfn" href="#no-referrer"><code>No Referrer</code></a>. 
+     <li> If <var>token</var> is an <a data-link-type="dfn" href="http://www.w3.org/TR/html5/infrastructure.html#ascii-case-insensitive">ASCII case-insensitive match</a> for the
+      string "<code>origin</code>", return <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-3.2"><code>Origin</code></a>. 
+     <li> If <var>token</var> is <a data-link-type="dfn" href="http://www.w3.org/TR/html5/infrastructure.html#ascii-case-insensitive">ASCII case-insensitive match</a> for the string
       "<code>default</code>" or "<code>no-referrer-when-downgrade</code>",
-      return <a data-link-type="dfn" href="#no-referrer-when-downgrade"><code>No Referrer When Downgrade</code></a>.
-    
-     
-    
-     <li>
-      If <var>token</var> is <a data-link-type="dfn" href="http://www.w3.org/TR/html5/infrastructure.html#ascii-case-insensitive">ASCII case-insensitive match</a> for the string
-      "<code>origin-when-cross-origin</code>", return
-      <a data-link-type="dfn" href="#origin-when-cross_origin"><code>Origin When Cross-Origin</code></a>.
-    
-     
-    
-     <li>
-      If <var>token</var> is <a data-link-type="dfn" href="http://www.w3.org/TR/html5/infrastructure.html#ascii-case-insensitive">ASCII case-insensitive match</a> for the strings
+      return <a data-link-type="dfn" href="#no-referrer-when-downgrade"><code>No Referrer When Downgrade</code></a>. 
+     <li> If <var>token</var> is <a data-link-type="dfn" href="http://www.w3.org/TR/html5/infrastructure.html#ascii-case-insensitive">ASCII case-insensitive match</a> for the string
+      "<code>origin-when-cross-origin</code>", return <a data-link-type="dfn" href="#origin-when-cross-origin"><code>Origin When Cross-Origin</code></a>. 
+     <li> If <var>token</var> is <a data-link-type="dfn" href="http://www.w3.org/TR/html5/infrastructure.html#ascii-case-insensitive">ASCII case-insensitive match</a> for the strings
       "<code>always</code>" or "<code>unsafe-url</code>",
-      return <a data-link-type="dfn" href="#unsafe-url"><code>Unsafe URL</code></a>.
-    
-     
-    
-     <li>
-      Return <a data-link-type="dfn" href="#no-referrer"><code>No Referrer</code></a>.
-    
-     
-  
+      return <a data-link-type="dfn" href="#unsafe-url"><code>Unsafe URL</code></a>. 
+     <li> Return <a data-link-type="dfn" href="#no-referrer"><code>No Referrer</code></a>. 
     </ol>
-
-
-    <p class="note" role="note">Note: Authors are encouraged to avoid the legacy keywords
-  <code>never</code>, <code>default</code>, and <code>always</code>. The
-  keywords <code>no-referrer</code>,
-  <code>no-referrer-when-downgrade</code>, and <code>unsafe-url</code>
-  respectively are preferred.</p>
-</section>
-
-
+    <p class="note" role="note">Note: Authors are encouraged to avoid the legacy keywords <code>never</code>, <code>default</code>, and <code>always</code>. The
+  keywords <code>no-referrer</code>, <code>no-referrer-when-downgrade</code>, and <code>unsafe-url</code> respectively are preferred.</p>
+   </section>
    <section>
-  
     <h2 class="heading settled" data-level="7" id="privacy"><span class="secno">7. </span><span class="content">Privacy Considerations</span><a class="self-link" href="#privacy"></a></h2>
-
-  
     <h3 class="heading settled" data-level="7.1" id="user-controls"><span class="secno">7.1. </span><span class="content">User Controls</span><a class="self-link" href="#user-controls"></a></h3>
-
-
     <p>Nothing in this specification should be interpreted as preventing user
   agents from offering options to users which would change the information
   sent out via a `<code>Referer</code>` header. For instance, user agents
   MAY allow users to suppress the referrer header entirely, regardless of the
   active <a data-link-type="dfn" href="#referrer-policy">referrer policy</a> on a page.</p>
-</section>
-
-
-
+   </section>
    <section>
-  
     <h2 class="heading settled" data-level="8" id="acknowledgements"><span class="secno">8. </span><span class="content">Acknowledgements</span><a class="self-link" href="#acknowledgements"></a></h2>
-
-
-    <p>This specification is based in large part on Adam Barth and Jochen Eisinger’s
-  <a href="http://wiki.whatwg.org/wiki/Meta_referrer">Meta referrer</a>
-  document.</p>
-</section>
-
-</main>
-
+    <p>This specification is based in large part on Adam Barth and Jochen Eisinger’s <a href="http://wiki.whatwg.org/wiki/Meta_referrer">Meta referrer</a> document.</p>
+   </section>
+  </main>
   <h2 class="no-ref no-num heading settled" id="conformance"><span class="content">Conformance</span><a class="self-link" href="#conformance"></a></h2>
-
-
   <h3 class="no-ref no-num heading settled" id="conventions"><span class="content">Document conventions</span><a class="self-link" href="#conventions"></a></h3>
-
-    
   <p>Conformance requirements are expressed with a combination of
     descriptive assertions and RFC 2119 terminology. The key words "MUST",
     "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT",
     "RECOMMENDED", "MAY", and "OPTIONAL" in the normative parts of this
     document are to be interpreted as described in RFC 2119.
     However, for readability, these words do not appear in all uppercase
-    letters in this specification.
-
-    </p>
+    letters in this specification. </p>
   <p>All of the text of this specification is normative except sections
     explicitly marked as non-normative, examples, and notes. <a data-link-type="biblio" href="#biblio-rfc2119">[RFC2119]</a></p>
-
-    
   <p>Examples in this specification are introduced with the words "for example"
     or are set apart from the normative text with <code>class="example"</code>,
-    like this:
-
-    </p>
-  <div class="example" id="example-f839f6c8"><a class="self-link" href="#example-f839f6c8"></a>
-        
+    like this: </p>
+  <div class="example" id="example-f839f6c8">
+   <a class="self-link" href="#example-f839f6c8"></a> 
    <p>This is an example of an informative example.</p>
-   
-    
   </div>
-
-    
   <p>Informative notes begin with the word "Note" and are set apart from the
-    normative text with <code>class="note"</code>, like this:
-
-    </p>
+    normative text with <code>class="note"</code>, like this: </p>
   <p class="note" role="note">Note, this is an informative note.</p>
-
-
   <h3 class="no-ref no-num heading settled" id="conformant-algorithms"><span class="content">Conformant Algorithms</span><a class="self-link" href="#conformant-algorithms"></a></h3>
-
-    
   <p>Requirements phrased in the imperative as part of algorithms (such as
     "strip any leading space characters" or "return false and abort these
     steps") are to be interpreted with the meaning of the key word ("must",
     "should", "may", etc) used in introducing the algorithm.</p>
-
-    
   <p>Conformance requirements phrased as algorithms or specific steps can be
     implemented in any manner, so long as the end result is equivalent. In
     particular, the algorithms defined in this specification are intended to
     be easy to understand and are not intended to be performant. Implementers
     are encouraged to optimize.</p>
-
-
-  <h3 class="no-ref no-num heading settled" id="conformance-classes"><span class="content">Conformance Classes</span><a class="self-link" href="#conformance-classes"></a></h3>
-
-    
-  <p>A <dfn data-dfn-type="dfn" data-noexport="" id="conformant-user-agent">conformant user agent<a class="self-link" href="#conformant-user-agent"></a></dfn> must implement all the requirements
-    listed in this specification that are applicable to user agents.</p>
-
-    
-  <p>A <dfn data-dfn-type="dfn" data-noexport="" id="conformant-server">conformant server<a class="self-link" href="#conformant-server"></a></dfn> must implement all the requirements listed
-    in this specification that are applicable to servers.</p>
-
-
-
-
   <h2 class="no-num heading settled" id="index"><span class="content">Index</span><a class="self-link" href="#index"></a></h2>
   <h3 class="no-num heading settled" id="index-defined-here"><span class="content">Terms defined by this specification</span><a class="self-link" href="#index-defined-here"></a></h3>
   <ul class="indexlist">
-   <li>conformant server, <a href="#conformant-server">Unnumbered section</a>
-   <li>conformant user agent, <a href="#conformant-user-agent">Unnumbered section</a>
-   <li>cross-origin, <a href="#cross_origin-request">2</a>
-   <li>cross-origin request, <a href="#cross_origin-request">2</a>
-   <li>No Referrer, <a href="#no-referrer">3.1</a>
-   <li>No Referrer When Downgrade, <a href="#no-referrer-when-downgrade">3.2</a>
-   <li>Origin Only, <a href="#origin-only">3.3</a>
-   <li>origin-only flag, <a href="#origin_only-flag">6.3</a>
-   <li>Origin When Cross-Origin, <a href="#origin-when-cross_origin">3.4</a>
-   <li>policy, <a href="#referrer-policy">2</a>
-   <li>referrer directive, <a href="#referrer-directive">4.1</a>
-   <li>referrer policy, <a href="#referrer-policy">2</a>
-   <li>same-origin, <a href="#same_origin-request">2</a>
-   <li>same-origin request, <a href="#same_origin-request">2</a>
-   <li>Unsafe URL, <a href="#unsafe-url">3.5</a></ul>
+   <li><a href="#cross-origin-request">cross-origin</a><span>, in §2</span>
+   <li><a href="#cross-origin-request">cross-origin request</a><span>, in §2</span>
+   <li><a href="#no-referrer">No Referrer</a><span>, in §3.1</span>
+   <li><a href="#no-referrer-when-downgrade">No Referrer When Downgrade</a><span>, in §3.2</span>
+   <li><a href="#origin-only">Origin Only</a><span>, in §3.3</span>
+   <li><a href="#origin-only-flag">origin-only flag</a><span>, in §6.3</span>
+   <li><a href="#origin-when-cross-origin">Origin When Cross-Origin</a><span>, in §3.4</span>
+   <li><a href="#referrer-policy">policy</a><span>, in §2</span>
+   <li><a href="#referrer-directive">referrer directive</a><span>, in §4.1</span>
+   <li><a href="#referrer-policy">referrer policy</a><span>, in §2</span>
+   <li><a href="#same-origin-request">same-origin</a><span>, in §2</span>
+   <li><a href="#same-origin-request">same-origin request</a><span>, in §2</span>
+   <li><a href="#unsafe-url">Unsafe URL</a><span>, in §3.5</span>
+  </ul>
   <h3 class="no-num heading settled" id="index-defined-elsewhere"><span class="content">Terms defined by reference</span><a class="self-link" href="#index-defined-elsewhere"></a></h3>
   <ul class="indexlist">
-   <li><a data-link-type="biblio" href="#biblio-dom">[dom]</a> defines the following terms:
+   <li>
+    <a data-link-type="biblio" href="#biblio-dom">[dom]</a> defines the following terms:
     <ul>
      <li><a href="http://www.w3.org/TR/dom/#interface-document">Document</a>
     </ul>
-   <li><a data-link-type="biblio" href="#biblio-fetch">[FETCH]</a> defines the following terms:
+   <li>
+    <a data-link-type="biblio" href="#biblio-fetch">[FETCH]</a> defines the following terms:
     <ul>
      <li><a href="https://fetch.spec.whatwg.org/#request">Request</a>
      <li><a href="https://fetch.spec.whatwg.org/#concept-request-client">client</a>
@@ -1448,7 +1557,8 @@ directive-value   = "no-referrer" / "no-referrer-when-downgrade" / "origin" / "o
      <li><a href="https://fetch.spec.whatwg.org/#concept-request-origin">origin</a>
      <li><a href="https://fetch.spec.whatwg.org/#concept-request-url">url</a>
     </ul>
-   <li><a data-link-type="biblio" href="#biblio-html5">[html5]</a> defines the following terms:
+   <li>
+    <a data-link-type="biblio" href="#biblio-html5">[html5]</a> defines the following terms:
     <ul>
      <li><a href="http://www.w3.org/TR/html5/text-level-semantics.html#the-a-element">a</a>
      <li><a href="http://www.w3.org/TR/html5/browsers.html#active-document">active document</a>
@@ -1471,80 +1581,92 @@ directive-value   = "no-referrer" / "no-referrer-when-downgrade" / "origin" / "o
      <li><a href="http://www.w3.org/TR/html5/infrastructure.html#strip-leading-and-trailing-whitespace">strip leading and trailing whitespace</a>
      <li><a href="http://www.w3.org/TR/html5/webappapis.html#worker-environment">worker environment</a>
     </ul>
-   <li><a data-link-type="biblio" href="#biblio-mix">[MIX]</a> defines the following terms:
+   <li>
+    <a data-link-type="biblio" href="#biblio-mix">[MIX]</a> defines the following terms:
     <ul>
      <li><a href="https://w3c.github.io/webappsec/specs/mixedcontent/#a-priori-insecure-origin">a priori insecure origin</a>
     </ul>
-   <li><a data-link-type="biblio" href="#biblio-rfc6454">[RFC6454]</a> defines the following terms:
+   <li>
+    <a data-link-type="biblio" href="#biblio-rfc6454">[RFC6454]</a> defines the following terms:
     <ul>
      <li><a href="https://tools.ietf.org/html/rfc6454#section-6.2">ascii serialization of an origin</a>
      <li><a href="https://tools.ietf.org/html/rfc6454#section-3.2">origin</a>
      <li><a href="https://tools.ietf.org/html/rfc6454#section-5">the same</a>
     </ul>
-   <li><a data-link-type="biblio" href="#biblio-rfc7231">[RFC7231]</a> defines the following terms:
+   <li>
+    <a data-link-type="biblio" href="#biblio-rfc7231">[RFC7231]</a> defines the following terms:
     <ul>
      <li><a href="https://tools.ietf.org/html/rfc7231#section-5.5.2">referer</a>
     </ul>
-   <li><a data-link-type="biblio" href="#biblio-url">[URL]</a> defines the following terms:
+   <li>
+    <a data-link-type="biblio" href="#biblio-url">[url]</a> defines the following terms:
     <ul>
      <li><a href="http://www.w3.org/TR/url/#url">URL</a>
      <li><a href="http://www.w3.org/TR/url/#local-scheme">local scheme</a>
     </ul>
-   <li><a data-link-type="biblio" href="#biblio-workers">[workers]</a> defines the following terms:
+   <li>
+    <a data-link-type="biblio" href="#biblio-workers">[workers]</a> defines the following terms:
     <ul>
      <li><a href="http://www.w3.org/TR/workers/#run-a-worker">runs a worker</a>
     </ul>
-   <li><a data-link-type="biblio" href="#biblio-wsc-ui">[wsc-ui]</a> defines the following terms:
+   <li>
+    <a data-link-type="biblio" href="#biblio-wsc-ui">[wsc-ui]</a> defines the following terms:
     <ul>
      <li><a href="http://www.w3.org/TR/2010/REC-wsc-ui-20100812/#typesoftls">tls-protected</a>
     </ul>
-   <li><a data-link-type="biblio" href="#biblio-html5">[html5]</a> defines the following terms:
+   <li>
+    <a data-link-type="biblio" href="#biblio-html">[HTML]</a> defines the following terms:
     <ul>
-     <li><a href="https://html.spec.whatwg.org/#the-area-element">area</a>
-     <li><a href="https://html.spec.whatwg.org/#the-head-element">head</a>
-     <li><a href="https://html.spec.whatwg.org/#the-img-element">img</a>
-    </ul></ul>
+     <li><a href="https://html.spec.whatwg.org/multipage/embedded-content.html#the-area-element">area</a>
+     <li><a href="https://html.spec.whatwg.org/multipage/semantics.html#the-head-element">head</a>
+     <li><a href="https://html.spec.whatwg.org/multipage/embedded-content.html#the-img-element">img</a>
+    </ul>
+  </ul>
   <h2 class="no-num heading settled" id="references"><span class="content">References</span><a class="self-link" href="#references"></a></h2>
   <h3 class="no-num heading settled" id="normative"><span class="content">Normative References</span><a class="self-link" href="#normative"></a></h3>
   <dl>
    <dt id="biblio-csp2"><a class="self-link" href="#biblio-csp2"></a>[CSP2]
-   <dd>Mike West; Adam Barth; Dan Veditz. <a href="https://w3c.github.io/webappsec/specs/content-security-policy/">Content Security Policy Level 2</a>. CR. URL: <a href="https://w3c.github.io/webappsec/specs/content-security-policy/">https://w3c.github.io/webappsec/specs/content-security-policy/</a>
+   <dd>Mike West; Adam Barth; Daniel Veditz. <a href="http://www.w3.org/TR/CSP2/">Content Security Policy Level 2</a>. 21 July 2015. CR. URL: <a href="http://www.w3.org/TR/CSP2/">http://www.w3.org/TR/CSP2/</a>
    <dt id="biblio-fetch"><a class="self-link" href="#biblio-fetch"></a>[FETCH]
-   <dd>Anne van Kesteren. <a href="https://fetch.spec.whatwg.org/">Fetch</a>. Living Standard. URL: <a href="https://fetch.spec.whatwg.org/">https://fetch.spec.whatwg.org/</a>
+   <dd>Anne van Kesteren. <a href="http://fetch.spec.whatwg.org/">Fetch</a>. Living Standard. URL: <a href="http://fetch.spec.whatwg.org/">http://fetch.spec.whatwg.org/</a>
+   <dt id="biblio-html"><a class="self-link" href="#biblio-html"></a>[HTML]
+   <dd>Ian Hickson. <a href="https://html.spec.whatwg.org/multipage/">HTML Standard</a>. Living Standard. URL: <a href="https://html.spec.whatwg.org/multipage/">https://html.spec.whatwg.org/multipage/</a>
    <dt id="biblio-mix"><a class="self-link" href="#biblio-mix"></a>[MIX]
-   <dd>Mike West. <a href="https://w3c.github.io/webappsec/specs/mixedcontent/">Mixed Content</a>. LCWD. URL: <a href="https://w3c.github.io/webappsec/specs/mixedcontent/">https://w3c.github.io/webappsec/specs/mixedcontent/</a>
+   <dd>Mike West. <a href="https://w3c.github.io/webappsec/specs/mixedcontent/">Mixed Content</a>. ED. URL: <a href="https://w3c.github.io/webappsec/specs/mixedcontent/">https://w3c.github.io/webappsec/specs/mixedcontent/</a>
    <dt id="biblio-rfc6454"><a class="self-link" href="#biblio-rfc6454"></a>[RFC6454]
    <dd>Adam Barth. <a href="http://www.ietf.org/rfc/rfc6454.txt">The Web Origin Concept</a>. RFC. URL: <a href="http://www.ietf.org/rfc/rfc6454.txt">http://www.ietf.org/rfc/rfc6454.txt</a>
    <dt id="biblio-rfc7231"><a class="self-link" href="#biblio-rfc7231"></a>[RFC7231]
    <dd>Roy T. Fielding; Julian F. Reschke. <a href="http://www.ietf.org/rfc/rfc7231.txt">HTTP/1.1 Semantics and Content</a>. RFC. URL: <a href="http://www.ietf.org/rfc/rfc7231.txt">http://www.ietf.org/rfc/rfc7231.txt</a>
-   <dt id="biblio-url"><a class="self-link" href="#biblio-url"></a>[URL]
-   <dd>Anne van Kesteren. <a href="https://url.spec.whatwg.org/">URL</a>. Living Standard. URL: <a href="https://url.spec.whatwg.org/">https://url.spec.whatwg.org/</a>
    <dt id="biblio-dom"><a class="self-link" href="#biblio-dom"></a>[DOM]
-   <dd>Anne van Kesteren; et al. <a href="http://www.w3.org/TR/dom/">W3C DOM4</a>. 10 July 2014. LCWD. URL: <a href="http://www.w3.org/TR/dom/">http://www.w3.org/TR/dom/</a>
+   <dd>Anne van Kesteren; et al. <a href="http://www.w3.org/TR/dom/">W3C DOM4</a>. 18 June 2015. LCWD. URL: <a href="http://www.w3.org/TR/dom/">http://www.w3.org/TR/dom/</a>
    <dt id="biblio-html5"><a class="self-link" href="#biblio-html5"></a>[HTML5]
-   <dd>Robin Berjon; et al. <a href="http://www.w3.org/TR/html5/">HTML5</a>. 28 October 2014. REC. URL: <a href="http://www.w3.org/TR/html5/">http://www.w3.org/TR/html5/</a>
+   <dd>Ian Hickson; et al. <a href="http://www.w3.org/TR/html5/">HTML5</a>. 28 October 2014. REC. URL: <a href="http://www.w3.org/TR/html5/">http://www.w3.org/TR/html5/</a>
    <dt id="biblio-rfc2119"><a class="self-link" href="#biblio-rfc2119"></a>[RFC2119]
-   <dd>S. Bradner. <a href="http://www.ietf.org/rfc/rfc2119.txt">Key words for use in RFCs to Indicate Requirement Levels</a>. March 1997. Best Current Practice. URL: <a href="http://www.ietf.org/rfc/rfc2119.txt">http://www.ietf.org/rfc/rfc2119.txt</a>
+   <dd>S. Bradner. <a href="https://tools.ietf.org/html/rfc2119">Key words for use in RFCs to Indicate Requirement Levels</a>. March 1997. Best Current Practice. URL: <a href="https://tools.ietf.org/html/rfc2119">https://tools.ietf.org/html/rfc2119</a>
+   <dt id="biblio-url"><a class="self-link" href="#biblio-url"></a>[URL]
+   <dd>Anne van Kesteren; Sam Ruby. <a href="http://www.w3.org/TR/url-1/">URL</a>. 9 December 2014. WD. URL: <a href="http://www.w3.org/TR/url-1/">http://www.w3.org/TR/url-1/</a>
    <dt id="biblio-workers"><a class="self-link" href="#biblio-workers"></a>[WORKERS]
    <dd>Ian Hickson. <a href="http://www.w3.org/TR/workers/">Web Workers</a>. 1 May 2012. CR. URL: <a href="http://www.w3.org/TR/workers/">http://www.w3.org/TR/workers/</a>
    <dt id="biblio-wsc-ui"><a class="self-link" href="#biblio-wsc-ui"></a>[WSC-UI]
-   <dd>Thomas Roessler; Anil Saldhana. <a href="http://www.w3.org/TR/wsc-ui/">Web Security Context: User Interface Guidelines</a>. 12 August 2010. REC. URL: <a href="http://www.w3.org/TR/wsc-ui/">http://www.w3.org/TR/wsc-ui/</a></dl>
+   <dd>Thomas Roessler; Anil Saldhana. <a href="http://www.w3.org/TR/wsc-ui/">Web Security Context: User Interface Guidelines</a>. 12 August 2010. REC. URL: <a href="http://www.w3.org/TR/wsc-ui/">http://www.w3.org/TR/wsc-ui/</a>
+  </dl>
   <h3 class="no-num heading settled" id="informative"><span class="content">Informative References</span><a class="self-link" href="#informative"></a></h3>
   <dl>
    <dt id="biblio-capability-urls"><a class="self-link" href="#biblio-capability-urls"></a>[CAPABILITY-URLS]
-   <dd>Jenni Tennison. <a href="http://www.w3.org/TR/capability-urls/">Capability URLs</a>. WD. URL: <a href="http://www.w3.org/TR/capability-urls/">http://www.w3.org/TR/capability-urls/</a></dl>
+   <dd>Jenni Tennison. <a href="http://www.w3.org/TR/capability-urls/">Capability URLs</a>. WD. URL: <a href="http://www.w3.org/TR/capability-urls/">http://www.w3.org/TR/capability-urls/</a>
+  </dl>
   <h2 class="no-num heading settled" id="issues-index"><span class="content">Issues Index</span><a class="self-link" href="#issues-index"></a></h2>
   <div style="counter-reset:issue">
-   <div class="issue">If an <code><a data-link-type="element" href="http://www.w3.org/TR/html5/text-level-semantics.html#the-a-element">a</a></code>
-  or <code><a data-link-type="element" href="https://html.spec.whatwg.org/#the-area-element">area</a></code> element includes both
+   <div class="issue"> If an <code><a data-link-type="element" href="http://www.w3.org/TR/html5/text-level-semantics.html#the-a-element">a</a></code> or <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/embedded-content.html#the-area-element">area</a></code> element includes both
   a <code>referrer</code> attribute as well as
-  a <a href="https://html.spec.whatwg.org/#link-type-noreferrer"><code>noreferrer</code>
-  link type</a>, should the policy of the <code>referrer</code> attribute
+  a <a href="https://html.spec.whatwg.org/#link-type-noreferrer"><code>noreferrer</code> link type</a>, should the policy of the <code>referrer</code> attribute
   take precedence over the link type, as suggested
   by <a href="https://lists.w3.org/Archives/Public/public-webappsec/2015Feb/0235.html">Martin
   Thomson</a>, or should we take the more conservative approach as suggested
   by <a href="https://lists.w3.org/Archives/Public/public-webappsec/2015Feb/0283.html">Brian
   Smith</a> and honor the <code>noreferrer</code> link type?<a href="#issue-4ec1eba2"> ↵ </a></div>
-   <div class="issue">This algorithm needs to be modifed to take into account any local
-  overrides via the referrer attribute on elements.<a href="#issue-2cf94c0c"> ↵ </a></div></div></body>
+   <div class="issue"> This algorithm needs to be modifed to take into account any local
+  overrides via the referrer attribute on elements.<a href="#issue-2cf94c0c"> ↵ </a></div>
+  </div>
+ </body>
 </html>
