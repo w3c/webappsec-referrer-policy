@@ -434,7 +434,6 @@
 
 	img {
 		border-style: none;
-		color: white;
 	}
 
 	figure, div.figure, div.sidefigure {
@@ -994,7 +993,7 @@
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="http://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/Icons/w3c_home" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Referrer Policy</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2015-10-01">1 October 2015</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2015-10-26">26 October 2015</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1004,9 +1003,9 @@
      <dt>Version History:
      <dd><a href="https://github.com/w3c/webappsec-referrer-policy/commits/master/index.src.html">https://github.com/w3c/webappsec-referrer-policy/commits/master/index.src.html</a>
      <dt>Feedback:
-     <dd><span><a href="mailto:public-webappsec@w3.org?subject=%5BREFERRER%5D%20YOUR%20TOPIC%20HERE">public-webappsec@w3.org</a> with subject line “<kbd>[REFERRER] <var>… message topic …</var></kbd>” (<a href="http://lists.w3.org/Archives/Public/public-webappsec/" rel="discussion">archives</a>)</span>
+     <dd><span><a href="mailto:public-webappsec@w3.org?subject=%5BREFERRER%5D%20YOUR%20TOPIC%20HERE">public-webappsec@w3.org</a> with subject line “<kbd>[REFERRER] <i>… message topic …</i></kbd>” (<a href="http://lists.w3.org/Archives/Public/public-webappsec/" rel="discussion">archives</a>)</span>
      <dt>Issue Tracking:
-     <dd><a href="https://github.com/w3c/webappsec-referrer-policy/issues/">GitHub</a>
+     <dd><a href="https://github.com/sc0ttbeardsley/webappsec-referrer-policy/issues/">GitHub</a>
      <dt class="editor">Editors:
      <dd class="editor p-author h-card vcard"><a class="p-name fn u-email email" href="mailto:eisinger@google.com">Jochen Eisinger</a> (<span class="p-org org">Google Inc.</span>)
      <dd class="editor p-author h-card vcard"><a class="p-name fn u-email email" href="mailto:mkwst@google.com">Mike West</a> (<span class="p-org org">Google Inc.</span>)
@@ -1073,7 +1072,7 @@
        </ul>
       <li><a href="#referrer-policy-delivery-meta"><span class="secno">4.2</span> <span class="content">Delivery via <code><span>meta</span></code></span></a>
       <li><a href="#referrer-policy-delivery-referrer-attribute"><span class="secno">4.3</span> <span class="content">Delivery
-  via a <code>referrer</code> attribute</span></a>
+  via a <code>referrerpolicy</code> attribute</span></a>
       <li>
        <a href="#referrer-policy-delivery-implicit"><span class="secno">4.4</span> <span class="content">Implicit Delivery</span></a>
        <ul class="toc">
@@ -1239,7 +1238,7 @@
      <li> Via the <code>referrer</code> Content Security Policy directive (defined
       in <a href="#directive-referrer">§4.1 Delivery via CSP</a>), delivered via a <a href="https://w3c.github.io/webappsec/specs/content-security-policy/#delivery-html-meta-element"><code>&lt;meta></code> element</a> <a data-link-type="biblio" href="#biblio-csp2">[CSP2]</a> 
      <li> Via a <code><a data-link-type="element" href="http://www.w3.org/TR/html5/document-metadata.html#the-meta-element">meta</a></code> element with a <code><a data-link-type="element-attr" href="http://www.w3.org/TR/html5/document-metadata.html#attr-meta-name">name</a></code> of <code>referrer</code>. 
-     <li> Via a <code>referrer</code> attribute on an <code><a data-link-type="element" href="http://www.w3.org/TR/html5/text-level-semantics.html#the-a-element">a</a></code>, <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/embedded-content.html#the-area-element">area</a></code>, <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/embedded-content.html#the-img-element">img</a></code> or <code><a data-link-type="element" href="http://www.w3.org/TR/html5/embedded-content-0.html#the-iframe-element">iframe</a></code> element. 
+     <li> Via a <code>referrerpolicy</code> attribute on an <code><a data-link-type="element" href="http://www.w3.org/TR/html5/text-level-semantics.html#the-a-element">a</a></code>, <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/embedded-content.html#the-area-element">area</a></code>, <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/embedded-content.html#the-img-element">img</a></code> or <code><a data-link-type="element" href="http://www.w3.org/TR/html5/embedded-content-0.html#the-iframe-element">iframe</a></code> element. 
      <li> Implicitly, via inheritance. 
     </ul>
     <h3 class="heading settled" data-level="4.1" id="directive-referrer"><span class="secno">4.1. </span><span class="content">Delivery via CSP</span><a class="self-link" href="#directive-referrer"></a></h3>
@@ -1305,12 +1304,12 @@ directive-value   = "no-referrer" / "no-referrer-when-downgrade" / "origin" / "o
       speculative resource loads.</p>
     </dl>
     <h3 class="heading settled" data-level="4.3" id="referrer-policy-delivery-referrer-attribute"><span class="secno">4.3. </span><span class="content">Delivery
-  via a <code>referrer</code> attribute</span><a class="self-link" href="#referrer-policy-delivery-referrer-attribute"></a></h3>
-    <p>A referrer policy may be set when a <code>referrer</code> attribute is
+  via a <code>referrerpolicy</code> attribute</span><a class="self-link" href="#referrer-policy-delivery-referrer-attribute"></a></h3>
+    <p>A referrer policy may be set when a <code>referrerpolicy</code> attribute is
   added to an <code><a data-link-type="element" href="http://www.w3.org/TR/html5/text-level-semantics.html#the-a-element">a</a></code>, <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/embedded-content.html#the-area-element">area</a></code>, <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/embedded-content.html#the-img-element">img</a></code> or <code><a data-link-type="element" href="http://www.w3.org/TR/html5/embedded-content-0.html#the-iframe-element">iframe</a></code> element, for example:</p>
-<pre class="example" id="example-089cca85"><a class="self-link" href="#example-089cca85"></a>&lt;a href="http://example.com" referrer="origin">
+<pre class="example" id="example-d7516db8"><a class="self-link" href="#example-d7516db8"></a>&lt;a href="http://example.com" referrerpolicy="origin">
 </pre>
-    <p>The following values for the <code>referrer</code> attribute are valid,
+    <p>The following values for the <code>referrerpolicy</code> attribute are valid,
   and map to the listed <a data-link-type="dfn" href="#referrer-policy">referrer policy</a> values:</p>
     <dl>
      <dt>no-referrer
@@ -1320,12 +1319,12 @@ directive-value   = "no-referrer" / "no-referrer-when-downgrade" / "origin" / "o
      <dt>unsafe-url
      <dd><a data-link-type="dfn" href="#unsafe-url"><code>Unsafe URL</code></a>
     </dl>
-    <p>A policy delivered via a <code>referrer</code> attribute on an element
+    <p>A policy delivered via a <code>referrerpolicy</code> attribute on an element
   takes precedence over the policy defined for the whole document via CSP or
   a <a data-link-type="element" href="http://www.w3.org/TR/html5/document-metadata.html#the-meta-element">meta</a> element.</p>
-    <p class="issue" id="issue-4ec1eba2"><a class="self-link" href="#issue-4ec1eba2"></a> If an <code><a data-link-type="element" href="http://www.w3.org/TR/html5/text-level-semantics.html#the-a-element">a</a></code> or <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/embedded-content.html#the-area-element">area</a></code> element includes both
-  a <code>referrer</code> attribute as well as
-  a <a href="https://html.spec.whatwg.org/#link-type-noreferrer"><code>noreferrer</code> link type</a>, should the policy of the <code>referrer</code> attribute
+    <p class="issue" id="issue-a2e997ff"><a class="self-link" href="#issue-a2e997ff"></a> If an <code><a data-link-type="element" href="http://www.w3.org/TR/html5/text-level-semantics.html#the-a-element">a</a></code> or <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/embedded-content.html#the-area-element">area</a></code> element includes both
+  a <code>referrerpolicy</code> attribute as well as
+  a <a href="https://html.spec.whatwg.org/#link-type-noreferrer"><code>noreferrer</code> link type</a>, should the policy of the <code>referrerpolicy</code> attribute
   take precedence over the link type, as suggested
   by <a href="https://lists.w3.org/Archives/Public/public-webappsec/2015Feb/0235.html">Martin
   Thomson</a>, or should we take the more conservative approach as suggested
@@ -1638,7 +1637,7 @@ directive-value   = "no-referrer" / "no-referrer-when-downgrade" / "origin" / "o
    <dt id="biblio-rfc7231"><a class="self-link" href="#biblio-rfc7231"></a>[RFC7231]
    <dd>Roy T. Fielding; Julian F. Reschke. <a href="http://www.ietf.org/rfc/rfc7231.txt">HTTP/1.1 Semantics and Content</a>. RFC. URL: <a href="http://www.ietf.org/rfc/rfc7231.txt">http://www.ietf.org/rfc/rfc7231.txt</a>
    <dt id="biblio-dom"><a class="self-link" href="#biblio-dom"></a>[DOM]
-   <dd>Anne van Kesteren; et al. <a href="http://www.w3.org/TR/dom/">W3C DOM4</a>. 18 June 2015. LCWD. URL: <a href="http://www.w3.org/TR/dom/">http://www.w3.org/TR/dom/</a>
+   <dd>Anne van Kesteren; et al. <a href="http://www.w3.org/TR/dom/">W3C DOM4</a>. 6 October 2015. PR. URL: <a href="http://www.w3.org/TR/dom/">http://www.w3.org/TR/dom/</a>
    <dt id="biblio-html5"><a class="self-link" href="#biblio-html5"></a>[HTML5]
    <dd>Ian Hickson; et al. <a href="http://www.w3.org/TR/html5/">HTML5</a>. 28 October 2014. REC. URL: <a href="http://www.w3.org/TR/html5/">http://www.w3.org/TR/html5/</a>
    <dt id="biblio-rfc2119"><a class="self-link" href="#biblio-rfc2119"></a>[RFC2119]
@@ -1646,7 +1645,7 @@ directive-value   = "no-referrer" / "no-referrer-when-downgrade" / "origin" / "o
    <dt id="biblio-url"><a class="self-link" href="#biblio-url"></a>[URL]
    <dd>Anne van Kesteren; Sam Ruby. <a href="http://www.w3.org/TR/url-1/">URL</a>. 9 December 2014. WD. URL: <a href="http://www.w3.org/TR/url-1/">http://www.w3.org/TR/url-1/</a>
    <dt id="biblio-workers"><a class="self-link" href="#biblio-workers"></a>[WORKERS]
-   <dd>Ian Hickson. <a href="http://www.w3.org/TR/workers/">Web Workers</a>. 1 May 2012. CR. URL: <a href="http://www.w3.org/TR/workers/">http://www.w3.org/TR/workers/</a>
+   <dd>Ian Hickson. <a href="http://www.w3.org/TR/workers/">Web Workers</a>. 24 September 2015. WD. URL: <a href="http://www.w3.org/TR/workers/">http://www.w3.org/TR/workers/</a>
    <dt id="biblio-wsc-ui"><a class="self-link" href="#biblio-wsc-ui"></a>[WSC-UI]
    <dd>Thomas Roessler; Anil Saldhana. <a href="http://www.w3.org/TR/wsc-ui/">Web Security Context: User Interface Guidelines</a>. 12 August 2010. REC. URL: <a href="http://www.w3.org/TR/wsc-ui/">http://www.w3.org/TR/wsc-ui/</a>
   </dl>
@@ -1658,13 +1657,13 @@ directive-value   = "no-referrer" / "no-referrer-when-downgrade" / "origin" / "o
   <h2 class="no-num heading settled" id="issues-index"><span class="content">Issues Index</span><a class="self-link" href="#issues-index"></a></h2>
   <div style="counter-reset:issue">
    <div class="issue"> If an <code><a data-link-type="element" href="http://www.w3.org/TR/html5/text-level-semantics.html#the-a-element">a</a></code> or <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/embedded-content.html#the-area-element">area</a></code> element includes both
-  a <code>referrer</code> attribute as well as
-  a <a href="https://html.spec.whatwg.org/#link-type-noreferrer"><code>noreferrer</code> link type</a>, should the policy of the <code>referrer</code> attribute
+  a <code>referrerpolicy</code> attribute as well as
+  a <a href="https://html.spec.whatwg.org/#link-type-noreferrer"><code>noreferrer</code> link type</a>, should the policy of the <code>referrerpolicy</code> attribute
   take precedence over the link type, as suggested
   by <a href="https://lists.w3.org/Archives/Public/public-webappsec/2015Feb/0235.html">Martin
   Thomson</a>, or should we take the more conservative approach as suggested
   by <a href="https://lists.w3.org/Archives/Public/public-webappsec/2015Feb/0283.html">Brian
-  Smith</a> and honor the <code>noreferrer</code> link type?<a href="#issue-4ec1eba2"> ↵ </a></div>
+  Smith</a> and honor the <code>noreferrer</code> link type?<a href="#issue-a2e997ff"> ↵ </a></div>
    <div class="issue"> This algorithm needs to be modifed to take into account any local
   overrides via the referrer attribute on elements.<a href="#issue-2cf94c0c"> ↵ </a></div>
   </div>
