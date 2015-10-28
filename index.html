@@ -993,7 +993,7 @@
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="http://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/Icons/w3c_home" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Referrer Policy</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2015-10-26">26 October 2015</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2015-10-27">27 October 2015</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1316,20 +1316,20 @@ directive-value   = "no-referrer" / "no-referrer-when-downgrade" / "origin" / "o
      <dd><a data-link-type="dfn" href="#no-referrer"><code>No Referrer</code></a>
      <dt>origin
      <dd><a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-3.2"><code>Origin</code></a>
+     <dt>no-referrer-when-downgrade
+     <dd><a data-link-type="dfn" href="#no-referrer-when-downgrade"><code>No Referrer When Downgrade</code></a>
+     <dt>origin-when-cross-origin
+     <dd><a data-link-type="dfn" href="#origin-when-cross-origin"><code>Origin When Cross-Origin</code></a>
      <dt>unsafe-url
      <dd><a data-link-type="dfn" href="#unsafe-url"><code>Unsafe URL</code></a>
     </dl>
     <p>A policy delivered via a <code>referrerpolicy</code> attribute on an element
   takes precedence over the policy defined for the whole document via CSP or
-  a <a data-link-type="element" href="http://www.w3.org/TR/html5/document-metadata.html#the-meta-element">meta</a> element.</p>
-    <p class="issue" id="issue-a2e997ff"><a class="self-link" href="#issue-a2e997ff"></a> If an <code><a data-link-type="element" href="http://www.w3.org/TR/html5/text-level-semantics.html#the-a-element">a</a></code> or <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/embedded-content.html#the-area-element">area</a></code> element includes both
+  a <a data-link-type="element" href="http://www.w3.org/TR/html5/document-metadata.html#the-meta-element">meta</a> element unless the attribute value is invalid.</p>
+    <p class="note" role="note">NOTE: If an <code><a data-link-type="element" href="http://www.w3.org/TR/html5/text-level-semantics.html#the-a-element">a</a></code> or <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/embedded-content.html#the-area-element">area</a></code> element includes both
   a <code>referrerpolicy</code> attribute as well as
-  a <a href="https://html.spec.whatwg.org/#link-type-noreferrer"><code>noreferrer</code> link type</a>, should the policy of the <code>referrerpolicy</code> attribute
-  take precedence over the link type, as suggested
-  by <a href="https://lists.w3.org/Archives/Public/public-webappsec/2015Feb/0235.html">Martin
-  Thomson</a>, or should we take the more conservative approach as suggested
-  by <a href="https://lists.w3.org/Archives/Public/public-webappsec/2015Feb/0283.html">Brian
-  Smith</a> and honor the <code>noreferrer</code> link type?</p>
+  a <a data-link-type="dfn" href="http://www.w3.org/TR/html5/links.html#link-type-noreferrer"><code>noreferrer</code></a> link type then the <a data-link-type="dfn" href="http://www.w3.org/TR/html5/links.html#link-type-noreferrer"><code>noreferrer</code></a> link type will take precedence and the <a data-link-type="dfn" href="#no-referrer"><code>No Referrer</code></a> policy
+  takes effect.</p>
     <h3 class="heading settled" data-level="4.4" id="referrer-policy-delivery-implicit"><span class="secno">4.4. </span><span class="content">Implicit Delivery</span><a class="self-link" href="#referrer-policy-delivery-implicit"></a></h3>
     <p>A <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#settings-object">settings object</a> inherits the <a data-link-type="dfn" href="#referrer-policy">referrer policy</a> of another object
   in several circumstances:</p>
@@ -1656,14 +1656,6 @@ directive-value   = "no-referrer" / "no-referrer-when-downgrade" / "origin" / "o
   </dl>
   <h2 class="no-num heading settled" id="issues-index"><span class="content">Issues Index</span><a class="self-link" href="#issues-index"></a></h2>
   <div style="counter-reset:issue">
-   <div class="issue"> If an <code><a data-link-type="element" href="http://www.w3.org/TR/html5/text-level-semantics.html#the-a-element">a</a></code> or <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/embedded-content.html#the-area-element">area</a></code> element includes both
-  a <code>referrerpolicy</code> attribute as well as
-  a <a href="https://html.spec.whatwg.org/#link-type-noreferrer"><code>noreferrer</code> link type</a>, should the policy of the <code>referrerpolicy</code> attribute
-  take precedence over the link type, as suggested
-  by <a href="https://lists.w3.org/Archives/Public/public-webappsec/2015Feb/0235.html">Martin
-  Thomson</a>, or should we take the more conservative approach as suggested
-  by <a href="https://lists.w3.org/Archives/Public/public-webappsec/2015Feb/0283.html">Brian
-  Smith</a> and honor the <code>noreferrer</code> link type?<a href="#issue-a2e997ff"> ↵ </a></div>
    <div class="issue"> This algorithm needs to be modifed to take into account any local
   overrides via the referrer attribute on elements.<a href="#issue-2cf94c0c"> ↵ </a></div>
   </div>
