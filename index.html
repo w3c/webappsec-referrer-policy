@@ -1000,7 +1000,7 @@
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="http://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/Icons/w3c_home" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Referrer Policy</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2015-11-11">11 November 2015</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2015-11-13">13 November 2015</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1101,7 +1101,12 @@
      <ul class="toc">
       <li><a href="#user-controls"><span class="secno">7.1</span> <span class="content">User Controls</span></a>
      </ul>
-    <li><a href="#acknowledgements"><span class="secno">8</span> <span class="content">Acknowledgements</span></a>
+    <li>
+     <a href="#authoring"><span class="secno">8</span> <span class="content">Authoring Considerations</span></a>
+     <ul class="toc">
+      <li><a href="#unknown-policy-values"><span class="secno">8.1</span> <span class="content">Unknown Policy Values</span></a>
+     </ul>
+    <li><a href="#acknowledgements"><span class="secno">9</span> <span class="content">Acknowledgements</span></a>
     <li>
      <a href="#conformance"><span class="secno"></span> <span class="content">Conformance</span></a>
      <ul class="toc">
@@ -1303,7 +1308,7 @@ directive-value   = "no-referrer" / "no-referrer-when-downgrade" / "origin" / "o
           leading and trailing whitespace</a>. 
        <li> If <var>meta-value</var> is the empty string, then abort these steps. 
        <li> Let <var>policy</var> be the result of executing the <a href="#determine-policy-for-token">§6.4 Determine token’s Policy</a> algorithm on <var>meta-value</var>. 
-       <li> Execute the <a href="#set-referrer-policy">§6.1 Set environment’s referrer policy to policy</a> algorithm on <var>environment</var> using <var>policy</var>, if <var>policy</var> is not <code>null</code>. 
+       <li> Execute the <a href="#set-referrer-policy">§6.1 Set environment’s referrer policy to policy</a> algorithm on <var>environment</var> using <var>policy</var>. 
       </ol>
       <p class="note" role="note">Note: Authors are encouraged to avoid the legacy keywords <code>never</code>, <code>default</code>, and <code>always</code>. The
       keywords <code>no-referrer</code>, <code>no-referrer-when-downgrade</code>, and <code>unsafe-url</code> respectively are preferred.</p>
@@ -1346,7 +1351,7 @@ directive-value   = "no-referrer" / "no-referrer-when-downgrade" / "origin" / "o
     <ol>
      <li> Let <var>environment</var> be the <a data-link-type="dfn" href="http://www.w3.org/TR/html5/browsers.html#nested-browsing-context">nested browsing context</a>’s <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#incumbent-settings-object">incumbent settings object</a>. 
      <li> Let <var>policy</var> be the <a data-link-type="dfn" href="http://www.w3.org/TR/html5/browsers.html#parent-browsing-context">parent browsing context</a>’s <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#incumbent-settings-object">incumbent settings object</a>’s <a data-link-type="dfn" href="#referrer-policy">referrer policy</a>. 
-     <li> Execute the <a href="#set-referrer-policy">§6.1 Set environment’s referrer policy to policy</a> algorithm on <var>environment</var> using <var>policy</var>, if <var>policy</var> is not <code>null</code>. 
+     <li> Execute the <a href="#set-referrer-policy">§6.1 Set environment’s referrer policy to policy</a> algorithm on <var>environment</var> using <var>policy</var>. 
     </ol>
     <h4 class="heading settled" data-level="4.4.2" id="referrer-policy-delivery-implicit-workers"><span class="secno">4.4.2. </span><span class="content"> Workers </span><a class="self-link" href="#referrer-policy-delivery-implicit-workers"></a></h4>
     <p>Whenever a user agent <a data-link-type="dfn" href="http://www.w3.org/TR/workers/#run-a-worker">runs a worker</a> for a script with <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/url/#url">URL</a></code> <var>url</var> and <var>url</var>’s scheme is a <a data-link-type="dfn" href="http://www.w3.org/TR/url/#local-scheme">local scheme</a>:</p>
@@ -1368,9 +1373,11 @@ directive-value   = "no-referrer" / "no-referrer-when-downgrade" / "origin" / "o
     <h2 class="heading settled" data-level="6" id="algorithms"><span class="secno">6. </span><span class="content">Algorithms</span><a class="self-link" href="#algorithms"></a></h2>
     <h3 class="heading settled" data-level="6.1" id="set-referrer-policy"><span class="secno">6.1. </span><span class="content"> Set <var>environment</var>’s referrer policy to <var>policy</var> </span><a class="self-link" href="#set-referrer-policy"></a></h3>
     <p>If no referrer policy has been set for a <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#settings-object">settings object</a>, then
-  setting its value is straightforward. If a policy has previously been set,
-  then we overwrite it with the new value.</p>
+  setting its value is straightforward. If a policy has previously been
+  set, then we overwrite it with the new value if the new value is
+  not <code>null</code>.</p>
     <ol>
+     <li> If <var>policy</var> is <code>null</code>, abort these steps. 
      <li> If <var>policy</var> is not one of <code><a data-link-type="dfn" href="#no-referrer">No Referrer</a></code>, <code><a data-link-type="dfn" href="#no-referrer-when-downgrade">No Referrer When Downgrade</a></code>, <code><a data-link-type="dfn" href="#origin-only">Origin
       Only</a></code>, <code><a data-link-type="dfn" href="#origin-when-cross-origin">Origin when cross-origin</a></code>, or <code><a data-link-type="dfn" href="#unsafe-url">Unsafe URL</a></code>, then return without setting <var>environment</var>’s referrer policy. 
      <li> Set <var>environment</var>’s <a data-link-type="dfn" href="#referrer-policy">referrer policy</a> to <var>policy</var>. 
@@ -1480,7 +1487,7 @@ directive-value   = "no-referrer" / "no-referrer-when-downgrade" / "origin" / "o
      <li> If <var>token</var> is <a data-link-type="dfn" href="http://www.w3.org/TR/html5/infrastructure.html#ascii-case-insensitive">ASCII case-insensitive match</a> for the strings
       "<code>always</code>" or "<code>unsafe-url</code>",
       return <a data-link-type="dfn" href="#unsafe-url"><code>Unsafe URL</code></a>. 
-     <li> Return <a data-link-type="dfn" href="#no-referrer"><code>No Referrer</code></a>. 
+     <li> Return <code>null</code>. 
     </ol>
     <p class="note" role="note">Note: Authors are encouraged to avoid the legacy keywords <code>never</code>, <code>default</code>, and <code>always</code>. The
   keywords <code>no-referrer</code>, <code>no-referrer-when-downgrade</code>, and <code>unsafe-url</code> respectively are preferred.</p>
@@ -1495,7 +1502,21 @@ directive-value   = "no-referrer" / "no-referrer-when-downgrade" / "origin" / "o
   active <a data-link-type="dfn" href="#referrer-policy">referrer policy</a> on a page.</p>
    </section>
    <section>
-    <h2 class="heading settled" data-level="8" id="acknowledgements"><span class="secno">8. </span><span class="content">Acknowledgements</span><a class="self-link" href="#acknowledgements"></a></h2>
+    <h2 class="heading settled" data-level="8" id="authoring"><span class="secno">8. </span><span class="content">Authoring Considerations</span><a class="self-link" href="#authoring"></a></h2>
+    <h3 class="heading settled" data-level="8.1" id="unknown-policy-values"><span class="secno">8.1. </span><span class="content">Unknown Policy Values</span><a class="self-link" href="#unknown-policy-values"></a></h3>
+    <p>As described in <a href="#determine-policy-for-token">§6.4 Determine token’s Policy</a> and <a href="#set-referrer-policy">§6.1 Set environment’s referrer policy to policy</a>, unknown policy values will be ignored, and
+  when multiple sources specify a referrer policy, the value of the
+  latest one will be used. This makes it possible to deploy new policy
+  values.</p>
+    <div class="example" id="example-36ca9d24"><a class="self-link" href="#example-36ca9d24"></a> Suppose older user agents don’t understand
+    the <code>unsafe-url</code> policy. A site can specify
+    an <code>unsafe-url</code> policy followed by an <code>origin</code> policy: older user agents will ignore the
+    unknown <code>unsafe-url</code> value and use <code>origin</code>,
+    while newer user agents will use <code>origin</code> because it is
+    the last to be processed. </div>
+   </section>
+   <section>
+    <h2 class="heading settled" data-level="9" id="acknowledgements"><span class="secno">9. </span><span class="content">Acknowledgements</span><a class="self-link" href="#acknowledgements"></a></h2>
     <p>This specification is based in large part on Adam Barth and Jochen Eisinger’s <a href="http://wiki.whatwg.org/wiki/Meta_referrer">Meta referrer</a> document.</p>
    </section>
   </main>
