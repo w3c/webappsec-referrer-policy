@@ -1000,7 +1000,7 @@
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="http://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/Icons/w3c_home" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Referrer Policy</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2015-11-13">13 November 2015</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2015-11-19">19 November 2015</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1012,7 +1012,7 @@
      <dt>Feedback:
      <dd><span><a href="mailto:public-webappsec@w3.org?subject=%5BREFERRER%5D%20YOUR%20TOPIC%20HERE">public-webappsec@w3.org</a> with subject line “<kbd>[REFERRER] <i data-lt="">… message topic …</i></kbd>” (<a href="http://lists.w3.org/Archives/Public/public-webappsec/" rel="discussion">archives</a>)</span>
      <dt>Issue Tracking:
-     <dd><a href="https://github.com/w3c/webappsec-referrer-policy/issues/">GitHub</a>
+     <dd><a href="https://github.com/jeisinger/webappsec-referrer-policy/issues/">GitHub</a>
      <dt class="editor">Editors:
      <dd class="editor p-author h-card vcard"><a class="p-name fn u-email email" href="mailto:eisinger@google.com">Jochen Eisinger</a> (<span class="p-org org">Google Inc.</span>)
      <dd class="editor p-author h-card vcard"><a class="p-name fn u-email email" href="mailto:estark@google.com">Emily Stark</a> (<span class="p-org org">Google Inc.</span>)
@@ -1508,11 +1508,11 @@ directive-value   = "no-referrer" / "no-referrer-when-downgrade" / "origin" / "o
   when multiple sources specify a referrer policy, the value of the
   latest one will be used. This makes it possible to deploy new policy
   values.</p>
-    <div class="example" id="example-36ca9d24"><a class="self-link" href="#example-36ca9d24"></a> Suppose older user agents don’t understand
+    <div class="example" id="example-f2dce9f1"><a class="self-link" href="#example-f2dce9f1"></a> Suppose older user agents don’t understand
     the <code>unsafe-url</code> policy. A site can specify
-    an <code>unsafe-url</code> policy followed by an <code>origin</code> policy: older user agents will ignore the
+    an <code>origin</code> policy followed by an <code>unsafe-url</code> policy: older user agents will ignore the
     unknown <code>unsafe-url</code> value and use <code>origin</code>,
-    while newer user agents will use <code>origin</code> because it is
+    while newer user agents will use <code>unsafe-url</code> because it is
     the last to be processed. </div>
    </section>
    <section>
