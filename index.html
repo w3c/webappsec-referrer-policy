@@ -1012,7 +1012,7 @@
      <dt>Feedback:
      <dd><span><a href="mailto:public-webappsec@w3.org?subject=%5BREFERRER%5D%20YOUR%20TOPIC%20HERE">public-webappsec@w3.org</a> with subject line “<kbd>[REFERRER] <i data-lt="">… message topic …</i></kbd>” (<a href="http://lists.w3.org/Archives/Public/public-webappsec/" rel="discussion">archives</a>)</span>
      <dt>Issue Tracking:
-     <dd><a href="https://github.com/jeisinger/webappsec-referrer-policy/issues/">GitHub</a>
+     <dd><a href="https://github.com/estark37/webappsec-referrer-policy/issues/">GitHub</a>
      <dt class="editor">Editors:
      <dd class="editor p-author h-card vcard"><a class="p-name fn u-email email" href="mailto:eisinger@google.com">Jochen Eisinger</a> (<span class="p-org org">Google Inc.</span>)
      <dd class="editor p-author h-card vcard"><a class="p-name fn u-email email" href="mailto:estark@google.com">Emily Stark</a> (<span class="p-org org">Google Inc.</span>)
@@ -1547,6 +1547,7 @@ directive-value   = "no-referrer" / "no-referrer-when-downgrade" / "origin" / "o
      <li> If <var>token</var> is <a data-link-type="dfn" href="http://www.w3.org/TR/html5/infrastructure.html#ascii-case-insensitive">ASCII case-insensitive match</a> for the strings
       "<code>always</code>" or "<code>unsafe-url</code>",
       return <a data-link-type="dfn" href="#unsafe-url"><code>Unsafe URL</code></a>. 
+     <li> If <var>token</var> is empty, return <a data-link-type="dfn" href="#no-referrer"><code>No Referrer</code></a>. 
      <li> Return <code>null</code>. 
     </ol>
     <p class="note" role="note">Note: Authors are encouraged to avoid the legacy keywords <code>never</code>, <code>default</code>, and <code>always</code>. The
