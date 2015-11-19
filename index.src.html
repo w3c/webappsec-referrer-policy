@@ -85,6 +85,8 @@ spec: HTML5; urlPrefix: http://www.w3.org/TR/html5/
       text: split a string on spaces
       text: strip leading and trailing whitespace
       text: firing; url: concept-event-fire
+      text: reflect
+      text: limited to only known values
     urlPrefix: links.html
       text: icon; url: rel-icon
       text: link type stylesheet
@@ -380,8 +382,8 @@ spec: RFC7231; urlPrefix: https://tools.ietf.org/html/rfc7231
       Via a <{meta}> element with a <{meta/name}> of <code>referrer</code>.
     </li>
     <li>
-      Via a <code>referrerpolicy</code> attribute on an <{a}>, <{area}>, <{img}>
-      or <{iframe}> element.
+      Via a <code>referrerpolicy</code> content attribute on an <{a}>,
+      <{area}>, <{img}> or <{iframe}> element.
     </li>
     <li>
       Implicitly, via inheritance.
@@ -516,19 +518,19 @@ spec: RFC7231; urlPrefix: https://tools.ietf.org/html/rfc7231
   </dl>
 
   <h3 id="referrer-policy-delivery-referrer-attribute">Delivery
-  via a <code>referrerpolicy</code> attribute</h3>
+  via a <code>referrerpolicy</code> content attribute</h3>
 
-  A referrer policy may be set when a <code>referrerpolicy</code> attribute is
-  added to an <code><a element>a</a></code>, <code><a element>area</a></code>,
-  <code><a element>img</a></code> or <code><a element>iframe</a></code>
-  element, for example:
+  A referrer policy may be set when a <code>referrerpolicy</code> content
+  attribute is added to an <code><a element>a</a></code>, <code>
+  <a element>area</a></code>, <code><a element>img</a></code> or <code>
+  <a element>iframe</a></code> element, for example:
 
   <pre class="example">
-    &lt;a href="http://example.com" referrerpolicy="origin"&gt;
+    &lt;a href="http://example.com" referrerPolicy="origin"&gt;
   </pre>
 
-  The following values for the <code>referrerpolicy</code> attribute are valid,
-  and map to the listed <a>referrer policy</a> values:
+  The following values for the <code>referrerpolicy</code> content attribute
+  are valid, and map to the listed <a>referrer policy</a> values:
 
   <dl>
     <dt>no-referrer</dt>
@@ -543,9 +545,9 @@ spec: RFC7231; urlPrefix: https://tools.ietf.org/html/rfc7231
     <dd><a><code>Unsafe URL</code></a></dd>
   </dl>
 
-  A policy delivered via a <code>referrerpolicy</code> attribute on an element
-  takes precedence over the policy defined for the whole document via CSP or
-  a <a element>meta</a> element unless the attribute value is invalid.
+  A policy delivered via a <code>referrerpolicy</code> content attribute on an
+  element takes precedence over the policy defined for the whole document via
+  CSP or a <a element>meta</a> element unless the attribute value is invalid.
 
   NOTE: If an <code><a element>a</a></code>
   or <code><a element>area</a></code> element includes both
@@ -603,6 +605,54 @@ spec: RFC7231; urlPrefix: https://tools.ietf.org/html/rfc7231
       <var>environment</var> using <var>policy</var>.
     </li>
   </ol>
+</section>
+
+<section>
+  <h2 id="element-interface-extensions">Element interface extensions</h2>
+
+  <h3 id="html-anchor-element">HTMLAnchorElement</h3>
+  <pre class="idl">
+    partial interface HTMLAnchorElement {
+      attribute DOMString referrerPolicy;
+    };
+  </pre>
+  <h4 id="html-anchor-element-attributes">Attributes</h4>
+  The <code>referrerPolicy</code> IDL attribute must <a>reflect</a> the
+  <code>referrerpolicy</code> content attribute, <a>limited to only known
+  values</a>.
+
+  <h3 id="html-area-element">HTMLAreaElement</h3>
+  <pre class="idl">
+    partial interface HTMLAreaElement {
+      attribute DOMString referrerPolicy;
+    };
+  </pre>
+  <h4 id="html-area-element-attributes">Attributes</h4>
+  The <code>referrerPolicy</code> IDL attribute must <a>reflect</a> the
+  <code>referrerpolicy</code> content attribute, <a>limited to only known
+  values</a>.
+
+  <h3 id="html-image-element">HTMLImageElement</h3>
+  <pre class="idl">
+    partial interface HTMLImageElement {
+      attribute DOMString referrerPolicy;
+    };
+  </pre>
+  <h4 id="html-image-element-attributes">Attributes</h4>
+  The <code>referrerPolicy</code> IDL attribute must <a>reflect</a> the
+  <code>referrerpolicy</code> content attribute, <a>limited to only known
+  values</a>.
+
+  <h3 id="html-iframe-element">HTMLIFrameElement</h3>
+  <pre class="idl">
+    partial interface HTMLIFrameElement {
+      attribute DOMString referrerPolicy;
+    };
+  </pre>
+  <h4 id="html-iframe-element-attributes">Attributes</h4>
+  The <code>referrerPolicy</code> IDL attribute must <a>reflect</a> the
+  <code>referrerpolicy</code> content attribute, <a>limited to only known
+  values</a>.
 </section>
 
 <section>
