@@ -713,16 +713,16 @@ spec: RFC7231; urlPrefix: https://tools.ietf.org/html/rfc7231
   <code>referrer</code> will be <code>no referrer</code>, and Fetch won't call
   into this algorithm.
 
-  ISSUE: This algorithm needs to be modifed to take into account any local
-  overrides via the referrer attribute on elements.
-
   <ol>
     <li>
       Let <var>environment</var> be <var>request</var>'s <code>client</code>.
     </li>
     <li>
-      Let <var>policy</var> be the value of <var>environment</var>'s
-      <a>referrer policy</a>.
+      If <var>request</var> was initiated by an element with
+      a <code>referrerpolicy</code> content attribute,
+      let <var>policy</var> be the attribute's value. Otherwise,
+      let <var>policy</var> be the value
+      of <var>environment</var>'s <a>referrer policy</a>.
     </li>
     <li>
       If <var>request</var>'s <code>referrer</code> is a URL, then let
