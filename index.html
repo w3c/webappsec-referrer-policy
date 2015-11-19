@@ -1000,7 +1000,7 @@
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="http://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/Icons/w3c_home" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Referrer Policy</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2015-11-18">18 November 2015</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2015-11-19">19 November 2015</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1079,7 +1079,7 @@
        </ul>
       <li><a href="#referrer-policy-delivery-meta"><span class="secno">4.2</span> <span class="content">Delivery via <code><span>meta</span></code></span></a>
       <li><a href="#referrer-policy-delivery-referrer-attribute"><span class="secno">4.3</span> <span class="content">Delivery
-  via a <code>referrerPolicy</code> attribute</span></a>
+  via a <code>referrerpolicy</code> content attribute</span></a>
       <li>
        <a href="#referrer-policy-delivery-implicit"><span class="secno">4.4</span> <span class="content">Implicit Delivery</span></a>
        <ul class="toc">
@@ -1275,7 +1275,7 @@
      <li> Via the <code>referrer</code> Content Security Policy directive (defined
       in <a href="#directive-referrer">§4.1 Delivery via CSP</a>), delivered via a <a href="https://w3c.github.io/webappsec/specs/content-security-policy/#delivery-html-meta-element"><code>&lt;meta></code> element</a> <a data-link-type="biblio" href="#biblio-csp2">[CSP2]</a> 
      <li> Via a <code><a data-link-type="element" href="http://www.w3.org/TR/html5/document-metadata.html#the-meta-element">meta</a></code> element with a <code><a data-link-type="element-attr" href="http://www.w3.org/TR/html5/document-metadata.html#attr-meta-name">name</a></code> of <code>referrer</code>. 
-     <li> Via a <code>referrerPolicy</code> attribute on an <code><a data-link-type="element" href="http://www.w3.org/TR/html5/text-level-semantics.html#the-a-element">a</a></code>, <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/embedded-content.html#the-area-element">area</a></code>, <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/embedded-content.html#the-img-element">img</a></code> or <code><a data-link-type="element" href="http://www.w3.org/TR/html5/embedded-content-0.html#the-iframe-element">iframe</a></code> element. 
+     <li> Via a <code>referrerpolicy</code> content attribute on an <code><a data-link-type="element" href="http://www.w3.org/TR/html5/text-level-semantics.html#the-a-element">a</a></code>, <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/embedded-content.html#the-area-element">area</a></code>, <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/embedded-content.html#the-img-element">img</a></code> or <code><a data-link-type="element" href="http://www.w3.org/TR/html5/embedded-content-0.html#the-iframe-element">iframe</a></code> element. 
      <li> Implicitly, via inheritance. 
     </ul>
     <h3 class="heading settled" data-level="4.1" id="directive-referrer"><span class="secno">4.1. </span><span class="content">Delivery via CSP</span><a class="self-link" href="#directive-referrer"></a></h3>
@@ -1341,13 +1341,13 @@ directive-value   = "no-referrer" / "no-referrer-when-downgrade" / "origin" / "o
       speculative resource loads.</p>
     </dl>
     <h3 class="heading settled" data-level="4.3" id="referrer-policy-delivery-referrer-attribute"><span class="secno">4.3. </span><span class="content">Delivery
-  via a <code>referrerPolicy</code> attribute</span><a class="self-link" href="#referrer-policy-delivery-referrer-attribute"></a></h3>
-    <p>A referrer policy may be set when a <code>referrerPolicy</code> attribute is
-  added to an <code><a data-link-type="element" href="http://www.w3.org/TR/html5/text-level-semantics.html#the-a-element">a</a></code>, <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/embedded-content.html#the-area-element">area</a></code>, <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/embedded-content.html#the-img-element">img</a></code> or <code><a data-link-type="element" href="http://www.w3.org/TR/html5/embedded-content-0.html#the-iframe-element">iframe</a></code> element, for example:</p>
+  via a <code>referrerpolicy</code> content attribute</span><a class="self-link" href="#referrer-policy-delivery-referrer-attribute"></a></h3>
+    <p>A referrer policy may be set when a <code>referrerpolicy</code> content
+  attribute is added to an <code><a data-link-type="element" href="http://www.w3.org/TR/html5/text-level-semantics.html#the-a-element">a</a></code>, <code> <a data-link-type="element" href="https://html.spec.whatwg.org/multipage/embedded-content.html#the-area-element">area</a></code>, <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/embedded-content.html#the-img-element">img</a></code> or <code> <a data-link-type="element" href="http://www.w3.org/TR/html5/embedded-content-0.html#the-iframe-element">iframe</a></code> element, for example:</p>
 <pre class="example" id="example-73ba3b1e"><a class="self-link" href="#example-73ba3b1e"></a>&lt;a href="http://example.com" referrerPolicy="origin">
 </pre>
-    <p>The following values for the <code>referrerPolicy</code> attribute are valid,
-  and map to the listed <a data-link-type="dfn" href="#referrer-policy">referrer policy</a> values:</p>
+    <p>The following values for the <code>referrerpolicy</code> content attribute
+  are valid, and map to the listed <a data-link-type="dfn" href="#referrer-policy">referrer policy</a> values:</p>
     <dl>
      <dt>no-referrer
      <dd><a data-link-type="dfn" href="#no-referrer"><code>No Referrer</code></a>
@@ -1360,11 +1360,11 @@ directive-value   = "no-referrer" / "no-referrer-when-downgrade" / "origin" / "o
      <dt>unsafe-url
      <dd><a data-link-type="dfn" href="#unsafe-url"><code>Unsafe URL</code></a>
     </dl>
-    <p>A policy delivered via a <code>referrerPolicy</code> attribute on an element
-  takes precedence over the policy defined for the whole document via CSP or
-  a <a data-link-type="element" href="http://www.w3.org/TR/html5/document-metadata.html#the-meta-element">meta</a> element unless the attribute value is invalid.</p>
+    <p>A policy delivered via a <code>referrerpolicy</code> content attribute on an
+  element takes precedence over the policy defined for the whole document via
+  CSP or a <a data-link-type="element" href="http://www.w3.org/TR/html5/document-metadata.html#the-meta-element">meta</a> element unless the attribute value is invalid.</p>
     <p class="note" role="note">NOTE: If an <code><a data-link-type="element" href="http://www.w3.org/TR/html5/text-level-semantics.html#the-a-element">a</a></code> or <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/embedded-content.html#the-area-element">area</a></code> element includes both
-  a <code>referrerPolicy</code> attribute as well as
+  a <code>referrerpolicy</code> attribute as well as
   a <a data-link-type="dfn" href="http://www.w3.org/TR/html5/links.html#link-type-noreferrer"><code>noreferrer</code></a> link type then the <a data-link-type="dfn" href="http://www.w3.org/TR/html5/links.html#link-type-noreferrer"><code>noreferrer</code></a> link type will take precedence and the <a data-link-type="dfn" href="#no-referrer"><code>No Referrer</code></a> policy
   takes effect.</p>
     <h3 class="heading settled" data-level="4.4" id="referrer-policy-delivery-implicit"><span class="secno">4.4. </span><span class="content">Implicit Delivery</span><a class="self-link" href="#referrer-policy-delivery-implicit"></a></h3>
@@ -1395,28 +1395,32 @@ directive-value   = "no-referrer" / "no-referrer-when-downgrade" / "origin" / "o
 };
 </pre>
     <h4 class="heading settled" data-level="5.1.1" id="html-anchor-element-attributes"><span class="secno">5.1.1. </span><span class="content">Attributes</span><a class="self-link" href="#html-anchor-element-attributes"></a></h4>
-     The <code>referrerPolicy</code> IDL attribute must <a data-link-type="dfn" href="http://www.w3.org/TR/html5/infrastructure.html#reflect">reflect</a> the <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#settings-object">settings object</a>’s referrer policy, <a data-link-type="dfn" href="http://www.w3.org/TR/html5/infrastructure.html#limited-to-only-known-values">limited to only known values</a>. 
+     The <code>referrerPolicy</code> IDL attribute must <a data-link-type="dfn" href="http://www.w3.org/TR/html5/infrastructure.html#reflect">reflect</a> the <code>referrerpolicy</code> content attribute, <a data-link-type="dfn" href="http://www.w3.org/TR/html5/infrastructure.html#limited-to-only-known-values">limited to only known
+  values</a>. 
     <h3 class="heading settled" data-level="5.2" id="html-area-element"><span class="secno">5.2. </span><span class="content">HTMLAreaElement</span><a class="self-link" href="#html-area-element"></a></h3>
 <pre class="idl">partial interface <a class="idl-code" data-link-type="interface" href="https://html.spec.whatwg.org/multipage/embedded-content.html#htmlareaelement">HTMLAreaElement</a> {
   attribute DOMString <dfn class="idl-code" data-dfn-for="HTMLAreaElement" data-dfn-type="attribute" data-export="" data-type="DOMString " id="dom-htmlareaelement-referrerpolicy">referrerPolicy<a class="self-link" href="#dom-htmlareaelement-referrerpolicy"></a></dfn>;
 };
 </pre>
     <h4 class="heading settled" data-level="5.2.1" id="html-area-element-attributes"><span class="secno">5.2.1. </span><span class="content">Attributes</span><a class="self-link" href="#html-area-element-attributes"></a></h4>
-     The <code>referrerPolicy</code> IDL attribute must <a data-link-type="dfn" href="http://www.w3.org/TR/html5/infrastructure.html#reflect">reflect</a> the <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#settings-object">settings object</a>’s referrer policy, <a data-link-type="dfn" href="http://www.w3.org/TR/html5/infrastructure.html#limited-to-only-known-values">limited to only known values</a>. 
+     The <code>referrerPolicy</code> IDL attribute must <a data-link-type="dfn" href="http://www.w3.org/TR/html5/infrastructure.html#reflect">reflect</a> the <code>referrerpolicy</code> content attribute, <a data-link-type="dfn" href="http://www.w3.org/TR/html5/infrastructure.html#limited-to-only-known-values">limited to only known
+  values</a>. 
     <h3 class="heading settled" data-level="5.3" id="html-image-element"><span class="secno">5.3. </span><span class="content">HTMLImageElement</span><a class="self-link" href="#html-image-element"></a></h3>
 <pre class="idl">partial interface <a class="idl-code" data-link-type="interface" href="https://html.spec.whatwg.org/multipage/embedded-content.html#htmlimageelement">HTMLImageElement</a> {
   attribute DOMString <dfn class="idl-code" data-dfn-for="HTMLImageElement" data-dfn-type="attribute" data-export="" data-type="DOMString " id="dom-htmlimageelement-referrerpolicy">referrerPolicy<a class="self-link" href="#dom-htmlimageelement-referrerpolicy"></a></dfn>;
 };
 </pre>
     <h4 class="heading settled" data-level="5.3.1" id="html-image-element-attributes"><span class="secno">5.3.1. </span><span class="content">Attributes</span><a class="self-link" href="#html-image-element-attributes"></a></h4>
-     The <code>referrerPolicy</code> IDL attribute must <a data-link-type="dfn" href="http://www.w3.org/TR/html5/infrastructure.html#reflect">reflect</a> the <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#settings-object">settings object</a>’s referrer policy, <a data-link-type="dfn" href="http://www.w3.org/TR/html5/infrastructure.html#limited-to-only-known-values">limited to only known values</a>. 
+     The <code>referrerPolicy</code> IDL attribute must <a data-link-type="dfn" href="http://www.w3.org/TR/html5/infrastructure.html#reflect">reflect</a> the <code>referrerpolicy</code> content attribute, <a data-link-type="dfn" href="http://www.w3.org/TR/html5/infrastructure.html#limited-to-only-known-values">limited to only known
+  values</a>. 
     <h3 class="heading settled" data-level="5.4" id="html-iframe-element"><span class="secno">5.4. </span><span class="content">HTMLIFrameElement</span><a class="self-link" href="#html-iframe-element"></a></h3>
 <pre class="idl">partial interface <a class="idl-code" data-link-type="interface" href="https://html.spec.whatwg.org/multipage/embedded-content.html#htmliframeelement">HTMLIFrameElement</a> {
   attribute DOMString <dfn class="idl-code" data-dfn-for="HTMLIFrameElement" data-dfn-type="attribute" data-export="" data-type="DOMString " id="dom-htmliframeelement-referrerpolicy">referrerPolicy<a class="self-link" href="#dom-htmliframeelement-referrerpolicy"></a></dfn>;
 };
 </pre>
     <h4 class="heading settled" data-level="5.4.1" id="html-iframe-element-attributes"><span class="secno">5.4.1. </span><span class="content">Attributes</span><a class="self-link" href="#html-iframe-element-attributes"></a></h4>
-     The <code>referrerPolicy</code> IDL attribute must <a data-link-type="dfn" href="http://www.w3.org/TR/html5/infrastructure.html#reflect">reflect</a> the <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#settings-object">settings object</a>’s referrer policy, <a data-link-type="dfn" href="http://www.w3.org/TR/html5/infrastructure.html#limited-to-only-known-values">limited to only known values</a>. 
+     The <code>referrerPolicy</code> IDL attribute must <a data-link-type="dfn" href="http://www.w3.org/TR/html5/infrastructure.html#reflect">reflect</a> the <code>referrerpolicy</code> content attribute, <a data-link-type="dfn" href="http://www.w3.org/TR/html5/infrastructure.html#limited-to-only-known-values">limited to only known
+  values</a>. 
    </section>
    <section>
     <h2 class="heading settled" data-level="6" id="integration-with-fetch"><span class="secno">6. </span><span class="content">Integration with Fetch</span><a class="self-link" href="#integration-with-fetch"></a></h2>
