@@ -1012,7 +1012,7 @@
      <dt>Feedback:
      <dd><span><a href="mailto:public-webappsec@w3.org?subject=%5BREFERRER%5D%20YOUR%20TOPIC%20HERE">public-webappsec@w3.org</a> with subject line “<kbd>[REFERRER] <i data-lt="">… message topic …</i></kbd>” (<a href="http://lists.w3.org/Archives/Public/public-webappsec/" rel="discussion">archives</a>)</span>
      <dt>Issue Tracking:
-     <dd><a href="https://github.com/jeisinger/webappsec-referrer-policy/issues/">GitHub</a>
+     <dd><a href="https://github.com/estark37/webappsec-referrer-policy/issues/">GitHub</a>
      <dt class="editor">Editors:
      <dd class="editor p-author h-card vcard"><a class="p-name fn u-email email" href="mailto:eisinger@google.com">Jochen Eisinger</a> (<span class="p-org org">Google Inc.</span>)
      <dd class="editor p-author h-card vcard"><a class="p-name fn u-email email" href="mailto:estark@google.com">Emily Stark</a> (<span class="p-org org">Google Inc.</span>)
@@ -1150,7 +1150,6 @@
       <li><a href="#informative"><span class="secno"></span> <span class="content">Informative References</span></a>
      </ul>
     <li><a href="#idl-index"><span class="secno"></span> <span class="content">IDL Index</span></a>
-    <li><a href="#issues-index"><span class="secno"></span> <span class="content">Issues Index</span></a>
    </ul>
   </div>
   <main>
@@ -1449,11 +1448,13 @@ directive-value   = "no-referrer" / "no-referrer-when-downgrade" / "origin" / "o
   either <code>no referrer</code> or a URL:</p>
     <p class="note" role="note">Note: If Fetch is performing a navigation in response to a link of type <code><a data-link-type="dfn" href="http://www.w3.org/TR/html5/links.html#link-type-noreferrer">noreferrer</a></code>, then <var>request</var>’s <code>referrer</code> will be <code>no referrer</code>, and Fetch won’t call
   into this algorithm.</p>
-    <p class="issue" id="issue-2cf94c0c"><a class="self-link" href="#issue-2cf94c0c"></a> This algorithm needs to be modifed to take into account any local
-  overrides via the referrer attribute on elements.</p>
     <ol>
      <li> Let <var>environment</var> be <var>request</var>’s <code>client</code>. 
-     <li> Let <var>policy</var> be the value of <var>environment</var>’s <a data-link-type="dfn" href="#referrer-policy">referrer policy</a>. 
+     <li> If <var>request</var> was initiated by an element with
+      a <code>referrerpolicy</code> attribute, let <var>policy</var> be
+      the result of executing <a href="#determine-policy-for-token">§7.4 Determine token’s Policy</a> on the
+      value of the element’s <code>referrerpolicy</code> attribute. Otherwise, let <var>policy</var> be the value
+      of <var>environment</var>’s <a data-link-type="dfn" href="#referrer-policy">referrer policy</a>. 
      <li>
        If <var>request</var>’s <code>referrer</code> is a URL, then let <var>referrerSource</var> be <var>request</var>’s <code>referrer</code>. Otherwise: 
       <ol>
@@ -1774,10 +1775,5 @@ partial interface <a class="idl-code" data-link-type="interface" href="https://h
 };
 
 </pre>
-  <h2 class="no-num heading settled" id="issues-index"><span class="content">Issues Index</span><a class="self-link" href="#issues-index"></a></h2>
-  <div style="counter-reset:issue">
-   <div class="issue"> This algorithm needs to be modifed to take into account any local
-  overrides via the referrer attribute on elements.<a href="#issue-2cf94c0c"> ↵ </a></div>
-  </div>
  </body>
 </html>
