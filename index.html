@@ -1548,6 +1548,7 @@ directive-value   = "no-referrer" / "no-referrer-when-downgrade" / "origin" / "o
      <li> If <var>token</var> is <a data-link-type="dfn" href="http://www.w3.org/TR/html5/infrastructure.html#ascii-case-insensitive">ASCII case-insensitive match</a> for the strings
       "<code>always</code>" or "<code>unsafe-url</code>",
       return <a data-link-type="dfn" href="#unsafe-url"><code>Unsafe URL</code></a>. 
+     <li> If <var>token</var> is empty, return <a data-link-type="dfn" href="#no-referrer"><code>No Referrer</code></a>. 
      <li> Return <code>null</code>. 
     </ol>
     <p class="note" role="note">Note: Authors are encouraged to avoid the legacy keywords <code>never</code>, <code>default</code>, and <code>always</code>. The
