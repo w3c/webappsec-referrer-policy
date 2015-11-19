@@ -907,10 +907,10 @@ spec: RFC7231; urlPrefix: https://tools.ietf.org/html/rfc7231
   <div class="example">
 	Suppose older user agents don't understand
     the <code>unsafe-url</code> policy. A site can specify
-    an <code>unsafe-url</code> policy followed by an <code>origin</code>
+    an <code>origin</code> policy followed by an <code>unsafe-url</code>
     policy: older user agents will ignore the
     unknown <code>unsafe-url</code> value and use <code>origin</code>,
-    while newer user agents will use <code>origin</code> because it is
+    while newer user agents will use <code>unsafe-url</code> because it is
     the last to be processed.
   </div>
 </section>
