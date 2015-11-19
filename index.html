@@ -1451,9 +1451,9 @@ directive-value   = "no-referrer" / "no-referrer-when-downgrade" / "origin" / "o
     <ol>
      <li> Let <var>environment</var> be <var>request</var>’s <code>client</code>. 
      <li> If <var>request</var> was initiated by an element with
-      a <code>referrerpolicy</code> attribute, let <var>policy</var> be
-      the result of executing <a href="#determine-policy-for-token">§7.4 Determine token’s Policy</a> on the
-      value of the element’s <code>referrerpolicy</code> attribute. Otherwise, let <var>policy</var> be the value
+      a <code>referrerpolicy</code> content attribute,
+      let <var>policy</var> be the attribute’s value. Otherwise,
+      let <var>policy</var> be the value
       of <var>environment</var>’s <a data-link-type="dfn" href="#referrer-policy">referrer policy</a>. 
      <li>
        If <var>request</var>’s <code>referrer</code> is a URL, then let <var>referrerSource</var> be <var>request</var>’s <code>referrer</code>. Otherwise: 

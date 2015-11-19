@@ -719,10 +719,9 @@ spec: RFC7231; urlPrefix: https://tools.ietf.org/html/rfc7231
     </li>
     <li>
       If <var>request</var> was initiated by an element with
-      a <code>referrerpolicy</code> attribute, let <var>policy</var> be
-      the result of executing [[#determine-policy-for-token]] on the
-      value of the element's <code>referrerpolicy</code>
-      attribute. Otherwise, let <var>policy</var> be the value
+      a <code>referrerpolicy</code> content attribute,
+      let <var>policy</var> be the attribute's value. Otherwise,
+      let <var>policy</var> be the value
       of <var>environment</var>'s <a>referrer policy</a>.
     </li>
     <li>
