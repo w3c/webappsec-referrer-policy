@@ -948,6 +948,32 @@ spec: RFC7231; urlPrefix: https://tools.ietf.org/html/rfc7231
 </section>
 
 <section>
+  <h2 id="security">Security Considerations</h2>
+
+  <h3 id="information-leakage">Information Leakage</h3>
+
+  The referrer policies <code>origin</code> and <code>unsafe-url</code> might
+  leak the origin and the URL of a secure site respectively via insecure
+  transport.
+
+  Those two policies are include in the spec nevertheless to lower the friction
+  of sites adopting secure transport.
+  
+  <h3 id="downgrade">Downgrade to less strict policies</h3>
+
+  The spec does not forbid downgrading to less strict policies, e.g., from
+  <code>never</code> to <code>unsafe-url</code>.
+
+  On the one hand, it is not clear which policy is more strict for all possible
+  pairs of policies: While <code>no-referrer-when-downgrade</code> will not
+  leak any information over insecure transport, and <code>origin</code> will,
+  the latter reveals less information across cross-origin navigations.
+
+  On the other hand, allowing for setting less strict policies enables authors
+  to define safe fallbacks as descrined in [[#unknown-policy-values]].
+</section>
+
+<section>
   <h2 id="authoring">Authoring Considerations</h2>
 
   <h3 id="unknown-policy-values">Unknown Policy Values</h3>
