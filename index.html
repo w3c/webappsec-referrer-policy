@@ -1126,11 +1126,17 @@
       <li><a href="#user-controls"><span class="secno">8.1</span> <span class="content">User Controls</span></a>
      </ul>
     <li>
-     <a href="#authoring"><span class="secno">9</span> <span class="content">Authoring Considerations</span></a>
+     <a href="#security"><span class="secno">9</span> <span class="content">Security Considerations</span></a>
      <ul class="toc">
-      <li><a href="#unknown-policy-values"><span class="secno">9.1</span> <span class="content">Unknown Policy Values</span></a>
+      <li><a href="#information-leakage"><span class="secno">9.1</span> <span class="content">Information Leakage</span></a>
+      <li><a href="#downgrade"><span class="secno">9.2</span> <span class="content">Downgrade to less strict policies</span></a>
      </ul>
-    <li><a href="#acknowledgements"><span class="secno">10</span> <span class="content">Acknowledgements</span></a>
+    <li>
+     <a href="#authoring"><span class="secno">10</span> <span class="content">Authoring Considerations</span></a>
+     <ul class="toc">
+      <li><a href="#unknown-policy-values"><span class="secno">10.1</span> <span class="content">Unknown Policy Values</span></a>
+     </ul>
+    <li><a href="#acknowledgements"><span class="secno">11</span> <span class="content">Acknowledgements</span></a>
     <li>
      <a href="#conformance"><span class="secno"></span> <span class="content">Conformance</span></a>
      <ul class="toc">
@@ -1564,8 +1570,25 @@ directive-value   = "no-referrer" / "no-referrer-when-downgrade" / "origin" / "o
   active <a data-link-type="dfn" href="#referrer-policy">referrer policy</a> on a page.</p>
    </section>
    <section>
-    <h2 class="heading settled" data-level="9" id="authoring"><span class="secno">9. </span><span class="content">Authoring Considerations</span><a class="self-link" href="#authoring"></a></h2>
-    <h3 class="heading settled" data-level="9.1" id="unknown-policy-values"><span class="secno">9.1. </span><span class="content">Unknown Policy Values</span><a class="self-link" href="#unknown-policy-values"></a></h3>
+    <h2 class="heading settled" data-level="9" id="security"><span class="secno">9. </span><span class="content">Security Considerations</span><a class="self-link" href="#security"></a></h2>
+    <h3 class="heading settled" data-level="9.1" id="information-leakage"><span class="secno">9.1. </span><span class="content">Information Leakage</span><a class="self-link" href="#information-leakage"></a></h3>
+    <p>The referrer policies <code>origin</code> and <code>unsafe-url</code> might
+  leak  the origin and the URL of a secure site respectively via insecure
+  transport.</p>
+    <p>Those two policies are include in the spec nevertheless to lower the friction
+  of sites adopting secure transport.</p>
+    <h3 class="heading settled" data-level="9.2" id="downgrade"><span class="secno">9.2. </span><span class="content">Downgrade to less strict policies</span><a class="self-link" href="#downgrade"></a></h3>
+    <p>The spec does not forbid downgrading to less strict policies, e.g., from <code>never</code> to <code>unsafe-url</code>.</p>
+    <p>On the one hand, it is not clear which policy is more strict for all possible
+  pairs of policies: While <code>no-referrer-when-downgrade</code> will not
+  leak any information over insecure transport, and <code>origin</code> will,
+  the latter reveals less information across cross-origin navigations.</p>
+    <p>On the other hand, allowing for setting less strict policies enables authors
+  to define safe fallbacks as descrined in <a href="#unknown-policy-values">§10.1 Unknown Policy Values</a>.</p>
+   </section>
+   <section>
+    <h2 class="heading settled" data-level="10" id="authoring"><span class="secno">10. </span><span class="content">Authoring Considerations</span><a class="self-link" href="#authoring"></a></h2>
+    <h3 class="heading settled" data-level="10.1" id="unknown-policy-values"><span class="secno">10.1. </span><span class="content">Unknown Policy Values</span><a class="self-link" href="#unknown-policy-values"></a></h3>
     <p>As described in <a href="#determine-policy-for-token">§7.4 Determine token’s Policy</a> and <a href="#set-referrer-policy">§7.1 Set environment’s referrer policy to policy</a>, unknown policy values will be ignored, and
   when multiple sources specify a referrer policy, the value of the
   latest one will be used. This makes it possible to deploy new policy
@@ -1578,7 +1601,7 @@ directive-value   = "no-referrer" / "no-referrer-when-downgrade" / "origin" / "o
     the last to be processed. </div>
    </section>
    <section>
-    <h2 class="heading settled" data-level="10" id="acknowledgements"><span class="secno">10. </span><span class="content">Acknowledgements</span><a class="self-link" href="#acknowledgements"></a></h2>
+    <h2 class="heading settled" data-level="11" id="acknowledgements"><span class="secno">11. </span><span class="content">Acknowledgements</span><a class="self-link" href="#acknowledgements"></a></h2>
     <p>This specification is based in large part on Adam Barth and Jochen Eisinger’s <a href="http://wiki.whatwg.org/wiki/Meta_referrer">Meta referrer</a> document.</p>
    </section>
   </main>
