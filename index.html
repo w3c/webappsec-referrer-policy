@@ -1295,6 +1295,10 @@
     <p class="note" role="note">Note: The header name does not share the HTTP Referer header’s misspelling.</p>
     <p>When <a href="https://w3c.github.io/webappsec/specs/content-security-policy/#enforce">enforcing</a> the <code>Referrer-Policy</code> header, the user agent MUST execute <a href="#set-referrer-policy">§7.1 Set environment’s referrer policy to policy</a> on the protected resource’s <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#incumbent-settings-object">incumbent settings
   object</a>, using the result of executing <a href="#determine-policy-for-token">§7.4 Determine token’s Policy</a> on the <code>Referrer-Policy</code> header’s value.</p>
+    <p>If the <code>Referrer-Policy</code> header is received on an HTTP
+  response with a <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-6.4">Redirection 3xx</a> status code, the user agent
+  MUST execute <a href="#determine-policy-for-token">§7.4 Determine token’s Policy</a> on
+  the <code>Referrer-Policy</code> header’s value and then apply <a href="#determine-requests-referrer">§7.2 Determine request’s Referrer</a> to set the <code>Referer</code> header when following the redirect.</p>
     <section class="informative">
      <h4 class="heading settled" data-level="4.1.1" id="referrer-usage"><span class="secno">4.1.1. </span><span class="content">Usage</span><a class="self-link" href="#referrer-usage"></a></h4>
      <p><em>This section is not normative.</em></p>
@@ -1454,35 +1458,45 @@
     <p class="note" role="note">Note: If Fetch is performing a navigation in response to a link of type <code><a data-link-type="dfn" href="http://www.w3.org/TR/html5/links.html#link-type-noreferrer">noreferrer</a></code>, then <var>request</var>’s <code>referrer</code> will be <code>no referrer</code>, and Fetch won’t call
   into this algorithm.</p>
     <ol>
-     <li> Let <var>environment</var> be <var>request</var>’s <code>client</code>. 
-     <li> If <var>request</var> was initiated by an element with
-      a <code>referrerpolicy</code> content attribute,
-      let <var>policy</var> be the attribute’s value. Otherwise,
-      let <var>policy</var> be the value
-      of <var>environment</var>’s <a data-link-type="dfn" href="#referrer-policy">referrer policy</a>. 
+     <li>If <var>request</var> is the result of following a redirect from
+    an HTTP <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-6.4">Redirection 3xx</a> response, then
+    let <var>referrerSource</var> be the value of the original
+    request’s <code>Referer</code> header, and let <var>policy</var> be
+    the value of the response’s <code>Referrer-Policy</code> header. If <var>referrerSource</var> is null, then abort these
+    steps. 
      <li>
-       If <var>request</var>’s <code>referrer</code> is a URL, then let <var>referrerSource</var> be <var>request</var>’s <code>referrer</code>. Otherwise: 
+       Otherwise: 
       <ol>
+       <li> Let <var>environment</var> be <var>request</var>’s <code>client</code>. 
+       <li> If <var>request</var> was initiated by an element with
+          a <code>referrerpolicy</code> content attribute,
+          let <var>policy</var> be the attribute’s value. Otherwise,
+          let <var>policy</var> be the value
+          of <var>environment</var>’s <a data-link-type="dfn" href="#referrer-policy">referrer policy</a>. 
        <li>
-         If <var>environment</var> is a <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#document-environment">document environment</a>: 
+         If <var>request</var>’s <code>referrer</code> is a URL, then let <var>referrerSource</var> be <var>request</var>’s <code>referrer</code>. Otherwise: 
         <ol>
-         <li> Let <var>document</var> be the <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/dom/#interface-document">Document</a></code> object of the <a data-link-type="dfn" href="http://www.w3.org/TR/html5/browsers.html#active-document">active document</a> of the <a data-link-type="dfn" href="http://www.w3.org/TR/html5/browsers.html#browsing-context">browsing context</a> of <var>environment</var>’s <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#responsible-browsing-context">responsible browsing context</a>. 
-        </ol>
-       <li>
-         Otherwise, <var>environment</var> is a <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#worker-environment">worker environment</a>: 
-        <ol>
-         <li> Let <var>source</var> be the <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#api-referrer-source">API referrer source</a> specified by the <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#incumbent-settings-object">incumbent settings object</a>. 
-         <li> If <var>source</var> is a URL, let <var>referrerSource</var> be <var>source</var>, otherwise let <var>document</var> be <var>source</var>. 
-        </ol>
-       <li>
-         If <var>document</var> is set, execute the following steps: 
-        <ol>
-         <li> If <var>document</var>’s <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-3.2">origin</a> is not a scheme/host/port
-              tuple (because, for example, it has been sandboxed into a unique
-              origin), return <code>no referrer</code> and abort these steps. 
-         <li> While <var>document</var> corresponds to <a data-link-type="dfn" href="http://www.w3.org/TR/html5/embedded-content-0.html#an-iframe-srcdoc-document">an iframe srcdoc Document</a>,
-              let <var>document</var> be that Document’s <a data-link-type="dfn" href="http://www.w3.org/TR/html5/browsers.html#browsing-context">browsing context</a>’s <a data-link-type="dfn" href="http://www.w3.org/TR/html5/browsers.html#browsing-context-container">browsing context container</a>’s <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/dom/#interface-document">Document</a></code>. 
-         <li> Let <var>referrerSource</var> be <var>document</var>’s URL. 
+         <li>
+           If <var>environment</var> is a <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#document-environment">document environment</a>: 
+          <ol>
+           <li> Let <var>document</var> be the <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/dom/#interface-document">Document</a></code> object of the <a data-link-type="dfn" href="http://www.w3.org/TR/html5/browsers.html#active-document">active document</a> of the <a data-link-type="dfn" href="http://www.w3.org/TR/html5/browsers.html#browsing-context">browsing context</a> of <var>environment</var>’s <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#responsible-browsing-context">responsible browsing context</a>. 
+          </ol>
+         <li>
+           Otherwise, <var>environment</var> is a <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#worker-environment">worker environment</a>: 
+          <ol>
+           <li> Let <var>source</var> be the <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#api-referrer-source">API referrer source</a> specified by the <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#incumbent-settings-object">incumbent settings object</a>. 
+           <li> If <var>source</var> is a URL, let <var>referrerSource</var> be <var>source</var>, otherwise let <var>document</var> be <var>source</var>. 
+          </ol>
+         <li>
+           If <var>document</var> is set, execute the following steps: 
+          <ol>
+           <li> If <var>document</var>’s <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-3.2">origin</a> is not a scheme/host/port
+                  tuple (because, for example, it has been sandboxed into a unique
+                  origin), return <code>no referrer</code> and abort these steps. 
+           <li> While <var>document</var> corresponds to <a data-link-type="dfn" href="http://www.w3.org/TR/html5/embedded-content-0.html#an-iframe-srcdoc-document">an iframe srcdoc Document</a>,
+                  let <var>document</var> be that Document’s <a data-link-type="dfn" href="http://www.w3.org/TR/html5/browsers.html#browsing-context">browsing context</a>’s <a data-link-type="dfn" href="http://www.w3.org/TR/html5/browsers.html#browsing-context-container">browsing context container</a>’s <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/dom/#interface-document">Document</a></code>. 
+           <li> Let <var>referrerSource</var> be <var>document</var>’s URL. 
+          </ol>
         </ol>
       </ol>
      <li> Let <var>referrerURL</var> be the result of <a href="#strip-url">stripping <var>referrerSource</var> for use as a referrer.</a> 
@@ -1508,9 +1522,23 @@
        <dt> <var>policy</var> is <code>null</code> 
        <dd>
         <ol>
-         <li> If <var>environment</var> is <a data-link-type="dfn" href="http://www.w3.org/TR/2010/REC-wsc-ui-20100812/#typesoftls">TLS-protected</a> <em>and</em> the <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-3.2">origin</a> of <var>request</var>’s <code>URL</code> is
-              an <a data-link-type="dfn" href="https://w3c.github.io/webappsec/specs/mixedcontent/#a-priori-insecure-origin"><em>a priori</em> insecure origin</a>, then return <code>no referrer</code>. 
-         <li> Otherwise, return <var>requestURL</var>. 
+         <li>
+           If <var>request</var> is the result of following an
+              HTTP <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-6.4">Redirection 3xx</a> response: 
+          <ol>
+           <li> If the request that returned the <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-6.4">Redirection
+                  3xx</a> response was <a data-link-type="dfn" href="http://www.w3.org/TR/2010/REC-wsc-ui-20100812/#typesoftls">TLS-protected</a> <em>and</em> the <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-3.2">origin</a> of <var>request</var>’s <code>URL</code> is
+                  an <a data-link-type="dfn" href="https://w3c.github.io/webappsec/specs/mixedcontent/#a-priori-insecure-origin"><em>a priori</em> insecure origin</a>, then
+                  return <code>no referrer</code>. 
+           <li> Otherwise, return <var>referrerURL</var>. 
+          </ol>
+         <li>
+           Otherwise: 
+          <ol>
+           <li> If <var>environment</var> is <a data-link-type="dfn" href="http://www.w3.org/TR/2010/REC-wsc-ui-20100812/#typesoftls">TLS-protected</a> <em>and</em> the <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-3.2">origin</a> of <var>request</var>’s <code>URL</code> is
+                  an <a data-link-type="dfn" href="https://w3c.github.io/webappsec/specs/mixedcontent/#a-priori-insecure-origin"><em>a priori</em> insecure origin</a>, then return <code>no referrer</code>. 
+           <li> Otherwise, return <var>referrerURL</var>. 
+          </ol>
         </ol>
       </dl>
     </ol>
@@ -1710,6 +1738,11 @@
      <li><a href="https://w3c.github.io/webappsec/specs/mixedcontent/#a-priori-insecure-origin">a priori insecure origin</a>
     </ul>
    <li>
+    <a data-link-type="biblio" href="#biblio-rfc2616">[rfc2616]</a> defines the following terms:
+    <ul>
+     <li><a href="https://tools.ietf.org/html/rfc7231#section-6.4">redirection 3xx</a>
+    </ul>
+   <li>
     <a data-link-type="biblio" href="#biblio-rfc6454">[RFC6454]</a> defines the following terms:
     <ul>
      <li><a href="https://tools.ietf.org/html/rfc6454#section-6.2">ascii serialization of an origin</a>
@@ -1768,6 +1801,8 @@
    <dd>Ian Hickson; et al. <a href="http://www.w3.org/TR/html5/">HTML5</a>. 28 October 2014. REC. URL: <a href="http://www.w3.org/TR/html5/">http://www.w3.org/TR/html5/</a>
    <dt id="biblio-rfc2119"><a class="self-link" href="#biblio-rfc2119"></a>[RFC2119]
    <dd>S. Bradner. <a href="https://tools.ietf.org/html/rfc2119">Key words for use in RFCs to Indicate Requirement Levels</a>. March 1997. Best Current Practice. URL: <a href="https://tools.ietf.org/html/rfc2119">https://tools.ietf.org/html/rfc2119</a>
+   <dt id="biblio-rfc2616"><a class="self-link" href="#biblio-rfc2616"></a>[RFC2616]
+   <dd>R. Fielding; et al. <a href="https://tools.ietf.org/html/rfc2616">Hypertext Transfer Protocol -- HTTP/1.1</a>. June 1999. Draft Standard. URL: <a href="https://tools.ietf.org/html/rfc2616">https://tools.ietf.org/html/rfc2616</a>
    <dt id="biblio-url"><a class="self-link" href="#biblio-url"></a>[URL]
    <dd>Anne van Kesteren; Sam Ruby. <a href="http://www.w3.org/TR/url-1/">URL</a>. 9 December 2014. WD. URL: <a href="http://www.w3.org/TR/url-1/">http://www.w3.org/TR/url-1/</a>
    <dt id="biblio-workers"><a class="self-link" href="#biblio-workers"></a>[WORKERS]

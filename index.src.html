@@ -128,6 +128,9 @@ spec: RFC6454; urlPrefix: https://tools.ietf.org/html/rfc6454
 spec: RFC7231; urlPrefix: https://tools.ietf.org/html/rfc7231
   type: dfn
     text: referer; url: section-5.5.2
+spec: RFC2616; urlPrefix: https://tools.ietf.org/html/rfc7231
+  type: dfn
+    text: redirection 3xx; url: section-6.4
 </pre>
 
 <!--
@@ -409,6 +412,13 @@ spec: RFC7231; urlPrefix: https://tools.ietf.org/html/rfc7231
   [[#set-referrer-policy]] on the protected resource's <a>incumbent settings
   object</a>, using the result of executing [[#determine-policy-for-token]]
   on the <code>Referrer-Policy</code> header's value.
+
+  If the <code>Referrer-Policy</code> header is received on an HTTP
+  response with a <a>Redirection 3xx</a> status code, the user agent
+  MUST execute [[#determine-policy-for-token]] on
+  the <code>Referrer-Policy</code> header's value and then apply
+  [[#determine-requests-referrer]] to set the <code>Referer</code>
+  header when following the redirect.
 
   <section class="informative">
     <h4 id="referrer-usage">Usage</h4>
@@ -711,64 +721,78 @@ spec: RFC7231; urlPrefix: https://tools.ietf.org/html/rfc7231
   into this algorithm.
 
   <ol>
+    <li>If <var>request</var> is the result of following a redirect from
+    an HTTP <a>Redirection 3xx</a> response, then
+    let <var>referrerSource</var>
+    be <var>request</var>'s <code>referrer</code>, and
+    let <var>policy</var> be the value of the
+    response's <code>Referrer-Policy</code>
+    header. If <var>referrerSource</var> is null, then return <code>no
+    referrer</code> and abort these steps.
     <li>
-      Let <var>environment</var> be <var>request</var>'s <code>client</code>.
-    </li>
-    <li>
-      If <var>request</var> was initiated by an element with
-      a <code>referrerpolicy</code> content attribute,
-      let <var>policy</var> be the attribute's value. Otherwise,
-      let <var>policy</var> be the value
-      of <var>environment</var>'s <a>referrer policy</a>.
-    </li>
-    <li>
-      If <var>request</var>'s <code>referrer</code> is a URL, then let
-      <var>referrerSource</var> be <var>request</var>'s
-      <code>referrer</code>. Otherwise:
+      Otherwise:
 
       <ol>
         <li>
-          If <var>environment</var> is a <a>document environment</a>:
-
-          <ol>
-            <li>
-              Let <var>document</var> be the {{Document}} object of the
-              <a>active document</a> of the <a>browsing context</a> of
-              <var>environment</var>'s <a>responsible browsing context</a>.
-            </li>
-          </ol>
+          Let <var>environment</var> be <var>request</var>'s <code>client</code>.
         </li>
         <li>
-          Otherwise, <var>environment</var> is a <a>worker environment</a>:
-
-          <ol>
-            <li>
-              Let <var>source</var> be the <a>API referrer source</a>
-              specified by the <a>incumbent settings object</a>.
-            </li>
-            <li>
-              If <var>source</var> is a URL, let <var>referrerSource</var>
-              be <var>source</var>, otherwise let <var>document</var> be
-              <var>source</var>.
-            </li>
-          </ol>
+          If <var>request</var> was initiated by an element with
+          a <code>referrerpolicy</code> content attribute,
+          let <var>policy</var> be the attribute's value. Otherwise,
+          let <var>policy</var> be the value
+          of <var>environment</var>'s <a>referrer policy</a>.
         </li>
         <li>
-          If <var>document</var> is set, execute the following steps:
+          If <var>request</var>'s <code>referrer</code> is a URL, then let
+          <var>referrerSource</var> be <var>request</var>'s
+          <code>referrer</code>. Otherwise:
 
           <ol>
             <li>
-              If <var>document</var>'s <a>origin</a> is not a scheme/host/port
-              tuple (because, for example, it has been sandboxed into a unique
-              origin), return <code>no referrer</code> and abort these steps.
+              If <var>environment</var> is a <a>document environment</a>:
+
+              <ol>
+                <li>
+                  Let <var>document</var> be the {{Document}} object of the
+                  <a>active document</a> of the <a>browsing context</a> of
+                  <var>environment</var>'s <a>responsible browsing context</a>.
+                </li>
+              </ol>
             </li>
             <li>
-              While <var>document</var> corresponds to <a>an iframe srcdoc Document</a>,
-              let <var>document</var> be that Document's <a>browsing context</a>'s
-              <a>browsing context container</a>'s {{Document}}.
+              Otherwise, <var>environment</var> is a <a>worker environment</a>:
+
+              <ol>
+                <li>
+                  Let <var>source</var> be the <a>API referrer source</a>
+                  specified by the <a>incumbent settings object</a>.
+                </li>
+                <li>
+                  If <var>source</var> is a URL, let <var>referrerSource</var>
+                  be <var>source</var>, otherwise let <var>document</var> be
+                  <var>source</var>.
+                </li>
+              </ol>
             </li>
             <li>
-              Let <var>referrerSource</var> be <var>document</var>'s URL.
+              If <var>document</var> is set, execute the following steps:
+
+              <ol>
+                <li>
+                  If <var>document</var>'s <a>origin</a> is not a scheme/host/port
+                  tuple (because, for example, it has been sandboxed into a unique
+                  origin), return <code>no referrer</code> and abort these steps.
+                </li>
+                <li>
+                  While <var>document</var> corresponds to <a>an iframe srcdoc Document</a>,
+                  let <var>document</var> be that Document's <a>browsing context</a>'s
+                  <a>browsing context container</a>'s {{Document}}.
+                </li>
+                <li>
+                  Let <var>referrerSource</var> be <var>document</var>'s URL.
+                </li>
+              </ol>
             </li>
           </ol>
         </li>
@@ -822,13 +846,35 @@ spec: RFC7231; urlPrefix: https://tools.ietf.org/html/rfc7231
         <dd>
           <ol>
             <li>
-              If <var>environment</var> is <a>TLS-protected</a> <em>and</em> the
-              <a>origin</a> of <var>request</var>'s <code>URL</code> is
-              an <a><em>a priori</em> insecure origin</a>, then return
-              <code>no referrer</code>.
+              If <var>request</var> is the result of following an
+              HTTP <a>Redirection 3xx</a> response:
+              <ol>
+                <li>
+                  If the request that returned the <a>Redirection
+                  3xx</a> response was <a>TLS-protected</a> <em>and</em>
+                  the <a>origin</a>
+                  of <var>request</var>'s <code>URL</code> is
+                  an <a><em>a priori</em> insecure origin</a>, then
+                  return <code>no referrer</code>.
+                </li>
+                <li>
+                  Otherwise, return <var>referrerURL</var>.
+                </li>
+              </ol>
             </li>
             <li>
-              Otherwise, return <var>requestURL</var>.
+              Otherwise:
+              <ol>
+                <li>
+                  If <var>environment</var> is <a>TLS-protected</a> <em>and</em> the
+                  <a>origin</a> of <var>request</var>'s <code>URL</code> is
+                  an <a><em>a priori</em> insecure origin</a>, then return
+                  <code>no referrer</code>.
+                </li>
+                <li>
+                  Otherwise, return <var>referrerURL</var>.
+                </li>
+              </ol>
             </li>
           </ol>
         </dd>
