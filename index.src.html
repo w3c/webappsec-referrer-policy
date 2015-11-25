@@ -398,7 +398,7 @@ spec: RFC2616; urlPrefix: https://tools.ietf.org/html/rfc7231
   following ABNF grammar:
 
   <pre>
-    "Referrer-Policy:" 1#<a>policy-token</a>
+    "Referrer-Policy:" [ <a>policy-token</a> *( ";" [ <a>policy-token</a> ] ) ]
   </pre>
   <pre>
     <dfn>policy-token</dfn>   = "no-referrer" / "no-referrer-when-downgrade" / "origin" / "origin-when-cross-origin" / "unsafe-url"
@@ -409,13 +409,14 @@ spec: RFC2616; urlPrefix: https://tools.ietf.org/html/rfc7231
   When
   <a href="https://w3c.github.io/webappsec/specs/content-security-policy/#enforce">enforcing</a>
   the <code>Referrer-Policy</code> header, the user agent MUST execute
-  [[#set-referrer-policy]] on the protected resource's <a>incumbent settings
-  object</a>, using the result of executing [[#determine-policy-for-token]]
-  on the <code>Referrer-Policy</code> header's value.
+  [[#set-referrer-policy]] on the protected resource's <a>incumbent
+  settings object</a>, using the result of executing
+  [[#determine-referrer-policy-from-header]] on the <code>Referrer-Policy</code>
+  header's value.
 
   If the <code>Referrer-Policy</code> header is received on an HTTP
   response with a <a>Redirection 3xx</a> status code, the user agent
-  MUST execute [[#determine-policy-for-token]] on
+  MUST execute [[#determine-referrer-policy-from-header]] on
   the <code>Referrer-Policy</code> header's value and then apply
   [[#determine-requests-referrer]] to set the <code>Referer</code>
   header when following the redirect.
@@ -975,6 +976,68 @@ spec: RFC2616; urlPrefix: https://tools.ietf.org/html/rfc7231
   keywords <code>no-referrer</code>,
   <code>no-referrer-when-downgrade</code>, and <code>unsafe-url</code>
   respectively are preferred.
+
+  <h3 id="determine-referrer-policy-from-header">
+    Determine policy from Referrer-Policy header
+  </h3>
+
+  Given a <a><code>Referrer-Policy</code> header</a>
+  value <var>value</var>, this algorithm will return the <a>referrer
+  policy</a> that should be enforced:
+
+  <ol>
+    <li>
+      Parse <var>value</var> according to
+      [[#parsing-referrer-policy-header]], and let <var>tokens</var> be
+      the returned list of tokens.
+    </li>
+    <li>
+      Let <var>policy-result</var> be null.
+    </li>
+    <li>
+      For each <var>token</var> in <var>tokens</var>, execute
+      [[#determine-policy-for-token]] on <var>token</var> and let the
+      result be <var>policy</var>. Set <var>policy-result</var>
+      to <var>policy</var> if <var>policy</var> is
+      not <code>null</code>.
+    </li>
+    <li>
+      Return <var>policy-result</var>.
+    </li>
+  </ol>
+
+  <h4 id="parsing-referrer-policy-header">
+    Parsing the <a><code>Referrer-Policy</code> header</a>
+  </h4>
+
+  To parse a <a><code>Referrer-Policy</code> header</a>
+  value <var>value</var>, the user agent MUST use an algorithm
+  equivalent to the following:
+
+  <ol>
+    <li>Let the <var>list of tokens</var> be the empty list.</li>
+
+    <li>
+      For each non-empty token <var>token</var> returned
+      by <a lt="strictly split a string" spec="HTML5">strictly
+      splitting</a> the string <var>value</var> on the character U+003B
+      SEMICOLON (<code>;</code>):
+
+      <ol>
+        <li>
+          <a spec="HTML5">Strip leading and trailing whitespace</a>
+          from <var>token</var>.
+        </li>
+        <li>
+          If <var>token</var> is not an empty string,
+          append <var>token</var> to the <var>list of tokens</var>.
+        </li>
+      </ol>
+    </li>
+
+    <li>Return the <var>list of tokens</var>.</li>
+  </ol>
+
 </section>
 
 <section>

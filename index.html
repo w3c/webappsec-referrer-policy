@@ -1000,7 +1000,7 @@
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="http://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/Icons/w3c_home" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Referrer Policy</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2015-11-24">24 November 2015</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2015-11-25">25 November 2015</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1119,6 +1119,11 @@
       <li><a href="#determine-requests-referrer"><span class="secno">7.2</span> <span class="content"> Determine <var>request</var>’s Referrer </span></a>
       <li><a href="#strip-url"><span class="secno">7.3</span> <span class="content"> Strip <var>url</var> for use as a referrer </span></a>
       <li><a href="#determine-policy-for-token"><span class="secno">7.4</span> <span class="content"> Determine <var>token</var>’s Policy </span></a>
+      <li>
+       <a href="#determine-referrer-policy-from-header"><span class="secno">7.5</span> <span class="content"> Determine policy from Referrer-Policy header </span></a>
+       <ul class="toc">
+        <li><a href="#parsing-referrer-policy-header"><span class="secno">7.5.1</span> <span class="content"> Parsing the <span><code>Referrer-Policy</code> header</span> </span></a>
+       </ul>
      </ul>
     <li>
      <a href="#privacy"><span class="secno">8</span> <span class="content">Privacy Considerations</span></a>
@@ -1288,16 +1293,16 @@
   made, and with <a data-link-type="dfn" href="http://www.w3.org/TR/html5/browsers.html#browsing-context">browsing contexts</a> created from the context of the protected resource.
   The syntax for the name and value of the header are described by the
   following ABNF grammar:</p>
-<pre>"Referrer-Policy:" 1#<a data-link-type="dfn" href="#policy-token">policy-token</a>
+<pre>"Referrer-Policy:" [ <a data-link-type="dfn" href="#policy-token">policy-token</a> *( ";" [ <a data-link-type="dfn" href="#policy-token">policy-token</a> ] ) ]
 </pre>
 <pre><dfn data-dfn-type="dfn" data-noexport="" id="policy-token">policy-token<a class="self-link" href="#policy-token"></a></dfn>   = "no-referrer" / "no-referrer-when-downgrade" / "origin" / "origin-when-cross-origin" / "unsafe-url"
 </pre>
     <p class="note" role="note">Note: The header name does not share the HTTP Referer header’s misspelling.</p>
-    <p>When <a href="https://w3c.github.io/webappsec/specs/content-security-policy/#enforce">enforcing</a> the <code>Referrer-Policy</code> header, the user agent MUST execute <a href="#set-referrer-policy">§7.1 Set environment’s referrer policy to policy</a> on the protected resource’s <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#incumbent-settings-object">incumbent settings
-  object</a>, using the result of executing <a href="#determine-policy-for-token">§7.4 Determine token’s Policy</a> on the <code>Referrer-Policy</code> header’s value.</p>
+    <p>When <a href="https://w3c.github.io/webappsec/specs/content-security-policy/#enforce">enforcing</a> the <code>Referrer-Policy</code> header, the user agent MUST execute <a href="#set-referrer-policy">§7.1 Set environment’s referrer policy to policy</a> on the protected resource’s <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#incumbent-settings-object">incumbent
+  settings object</a>, using the result of executing <a href="#determine-referrer-policy-from-header">§7.5 Determine policy from Referrer-Policy header</a> on the <code>Referrer-Policy</code> header’s value.</p>
     <p>If the <code>Referrer-Policy</code> header is received on an HTTP
   response with a <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-6.4">Redirection 3xx</a> status code, the user agent
-  MUST execute <a href="#determine-policy-for-token">§7.4 Determine token’s Policy</a> on
+  MUST execute <a href="#determine-referrer-policy-from-header">§7.5 Determine policy from Referrer-Policy header</a> on
   the <code>Referrer-Policy</code> header’s value and then apply <a href="#determine-requests-referrer">§7.2 Determine request’s Referrer</a> to set the <code>Referer</code> header when following the redirect.</p>
     <section class="informative">
      <h4 class="heading settled" data-level="4.1.1" id="referrer-usage"><span class="secno">4.1.1. </span><span class="content">Usage</span><a class="self-link" href="#referrer-usage"></a></h4>
@@ -1460,10 +1465,10 @@
     <ol>
      <li>If <var>request</var> is the result of following a redirect from
     an HTTP <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-6.4">Redirection 3xx</a> response, then
-    let <var>referrerSource</var> be the value of the original
-    request’s <code>Referer</code> header, and let <var>policy</var> be
-    the value of the response’s <code>Referrer-Policy</code> header. If <var>referrerSource</var> is null, then abort these
-    steps. 
+    let <var>referrerSource</var> be <var>request</var>’s <code>referrer</code>, and
+    let <var>policy</var> be the value of the
+    response’s <code>Referrer-Policy</code> header. If <var>referrerSource</var> is null, then return <code>no
+    referrer</code> and abort these steps. 
      <li>
        Otherwise: 
       <ol>
@@ -1586,6 +1591,35 @@
     </ol>
     <p class="note" role="note">Note: Authors are encouraged to avoid the legacy keywords <code>never</code>, <code>default</code>, and <code>always</code>. The
   keywords <code>no-referrer</code>, <code>no-referrer-when-downgrade</code>, and <code>unsafe-url</code> respectively are preferred.</p>
+    <h3 class="heading settled" data-level="7.5" id="determine-referrer-policy-from-header"><span class="secno">7.5. </span><span class="content"> Determine policy from Referrer-Policy header </span><a class="self-link" href="#determine-referrer-policy-from-header"></a></h3>
+    <p>Given a <a data-link-type="dfn" href="#referrer-policy-header-dfn"><code>Referrer-Policy</code> header</a> value <var>value</var>, this algorithm will return the <a data-link-type="dfn" href="#referrer-policy">referrer
+  policy</a> that should be enforced:</p>
+    <ol>
+     <li> Parse <var>value</var> according to <a href="#parsing-referrer-policy-header">§7.5.1 Parsing the Referrer-Policy header</a>, and let <var>tokens</var> be
+      the returned list of tokens. 
+     <li> Let <var>policy-result</var> be null. 
+     <li> For each <var>token</var> in <var>tokens</var>, execute <a href="#determine-policy-for-token">§7.4 Determine token’s Policy</a> on <var>token</var> and let the
+      result be <var>policy</var>. Set <var>policy-result</var> to <var>policy</var> if <var>policy</var> is
+      not <code>null</code>. 
+     <li> Return <var>policy-result</var>. 
+    </ol>
+    <h4 class="heading settled" data-level="7.5.1" id="parsing-referrer-policy-header"><span class="secno">7.5.1. </span><span class="content"> Parsing the <a data-link-type="dfn" href="#referrer-policy-header-dfn"><code>Referrer-Policy</code> header</a> </span><a class="self-link" href="#parsing-referrer-policy-header"></a></h4>
+    <p>To parse a <a data-link-type="dfn" href="#referrer-policy-header-dfn"><code>Referrer-Policy</code> header</a> value <var>value</var>, the user agent MUST use an algorithm
+  equivalent to the following:</p>
+    <ol>
+     <li>Let the <var>list of tokens</var> be the empty list.
+     <li>
+       For each non-empty token <var>token</var> returned
+      by <a data-link-type="dfn" href="http://www.w3.org/TR/html5/infrastructure.html#strictly-split-a-string">strictly
+      splitting</a> the string <var>value</var> on the character U+003B
+      SEMICOLON (<code>;</code>): 
+      <ol>
+       <li> <a data-link-type="dfn" href="http://www.w3.org/TR/html5/infrastructure.html#strip-leading-and-trailing-whitespace">Strip leading and trailing whitespace</a> from <var>token</var>. 
+       <li> If <var>token</var> is not an empty string,
+          append <var>token</var> to the <var>list of tokens</var>. 
+      </ol>
+     <li>Return the <var>list of tokens</var>.
+    </ol>
    </section>
    <section>
     <h2 class="heading settled" data-level="8" id="privacy"><span class="secno">8. </span><span class="content">Privacy Considerations</span><a class="self-link" href="#privacy"></a></h2>
@@ -1729,6 +1763,7 @@
      <li><a href="http://www.w3.org/TR/html5/infrastructure.html#reflect">reflect</a>
      <li><a href="http://www.w3.org/TR/html5/webappapis.html#responsible-browsing-context">responsible browsing context</a>
      <li><a href="http://www.w3.org/TR/html5/webappapis.html#settings-object">settings object</a>
+     <li><a href="http://www.w3.org/TR/html5/infrastructure.html#strictly-split-a-string">strictly split a string</a>
      <li><a href="http://www.w3.org/TR/html5/infrastructure.html#strip-leading-and-trailing-whitespace">strip leading and trailing whitespace</a>
      <li><a href="http://www.w3.org/TR/html5/webappapis.html#worker-environment">worker environment</a>
     </ul>
