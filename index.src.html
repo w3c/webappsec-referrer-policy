@@ -24,6 +24,7 @@ spec: DOM; urlPrefix: http://www.w3.org/TR/dom/
 spec: FETCH; urlPrefix: https://fetch.spec.whatwg.org/
   type: dfn
     text: fetching
+    text: response; url: concept-response
   type: interface
     text: Request
   type: attribute
@@ -128,6 +129,9 @@ spec: RFC6454; urlPrefix: https://tools.ietf.org/html/rfc6454
 spec: RFC7231; urlPrefix: https://tools.ietf.org/html/rfc7231
   type: dfn
     text: referer; url: section-5.5.2
+spec: RFC2616; urlPrefix: https://tools.ietf.org/html/rfc7231
+  type: dfn
+    text: redirection 3xx; url: section-6.4
 </pre>
 
 <!--
@@ -368,16 +372,8 @@ spec: RFC7231; urlPrefix: https://tools.ietf.org/html/rfc7231
 
   <ul>
     <li>
-      Via the <code>referrer</code> Content Security Policy directive (defined
-      in [[#directive-referrer]]), delivered via the
-      <a href="https://w3c.github.io/webappsec/specs/content-security-policy/#content-security-policy-header-field"><code>Content-Security-Policy</code></a>
-      HTTP header. [[!CSP2]]
-    </li>
-    <li>
-      Via the <code>referrer</code> Content Security Policy directive (defined
-      in [[#directive-referrer]]), delivered via a
-      <a href="https://w3c.github.io/webappsec/specs/content-security-policy/#delivery-html-meta-element"><code>&lt;meta&gt;</code> element</a>
-      [[!CSP2]]
+      Via the <code>Referrer-Policy</code> HTTP header (defined
+      in [[#referrer-policy-header]]).
     </li>
     <li>
       Via a <{meta}> element with a <{meta/name}> of <code>referrer</code>.
@@ -391,28 +387,28 @@ spec: RFC7231; urlPrefix: https://tools.ietf.org/html/rfc7231
     </li>
   </ul>
 
-  <h3 id="directive-referrer">Delivery via CSP</h3>
+  <h3 id="referrer-policy-header">Delivery via Referrer-Policy header</h3>
 
-  The <code><dfn lt="referrer directive">referrer</dfn></code> directive
-  specifies the referrer policy that the user agent applies when determining
-  what referrer information should be included with requests made, and with
+  The <code><dfn local-lt="referrer-policy header"
+  id="referrer-policy-header-dfn">Referrer-Policy</dfn></code> HTTP
+  header specifies the referrer policy that the user agent applies when
+  determining what referrer information should be included with requests
+  made, and with
   <a>browsing contexts</a> created from the context of the protected resource.
-  The syntax for the name and value of the directive are described by the
+  The syntax for the name and value of the header are described by the
   following ABNF grammar:
 
   <pre>
-    directive-name    = "referrer"
-    directive-value   = "no-referrer" / "no-referrer-when-downgrade" / "origin" / "origin-when-cross-origin" / "unsafe-url"
+    "Referrer-Policy:" 1#<a>policy-token</a>
+  </pre>
+  <pre>
+    <dfn>policy-token</dfn>   = "no-referrer" / "no-referrer-when-downgrade" / "origin" / "origin-when-cross-origin" / "unsafe-url"
   </pre>
 
-  Note: The directive name does not share the HTTP header's misspelling.
+  Note: The header name does not share the HTTP Referer header's misspelling.
 
-  When
-  <a href="https://w3c.github.io/webappsec/specs/content-security-policy/#enforce">enforcing</a>
-  the <code>referrer</code> directive, the user agent MUST execute
-  [[#set-referrer-policy]] on the protected resource's <a>incumbent settings
-  object</a>, using the result of executing [[#determine-policy-for-token]]
-  on the <code>referrer</code> directive's value.
+  [[#integration-with-fetch]] and [[#integration-with-html]] describe
+  how the <code>Referrer-Policy</code> header is processed.
 
   <section class="informative">
     <h4 id="referrer-usage">Usage</h4>
@@ -420,11 +416,11 @@ spec: RFC7231; urlPrefix: https://tools.ietf.org/html/rfc7231
     <em>This section is not normative.</em>
 
     A protected resource can prevent referrer leakage by specifying
-    <code>no-referrer</code> as the value of its policy's
-    <code>referrer</code> directive:
+    <code>no-referrer</code> as the value of its
+    <code>Referrer-Policy</code> header:
 
     <pre>
-      Content-Security-Policy: referrer no-referrer;
+      Referrer-Policy: no-referrer
     </pre>
 
     This will cause all requests made from the protected resource's
@@ -548,7 +544,7 @@ spec: RFC7231; urlPrefix: https://tools.ietf.org/html/rfc7231
 
   A policy delivered via a <code>referrerpolicy</code> content attribute on an
   element takes precedence over the policy defined for the whole document via
-  CSP or a <a element>meta</a> element unless the attribute value is invalid.
+  <a>Referrer-Policy header</a> or a <a element>meta</a> element unless the attribute value is invalid.
 
   NOTE: If an <code><a element>a</a></code>
   or <code><a element>area</a></code> element includes both
@@ -659,18 +655,58 @@ spec: RFC7231; urlPrefix: https://tools.ietf.org/html/rfc7231
 <section>
   <h2 id="integration-with-fetch">Integration with Fetch</h2>
 
+  The Fetch specification should have a |referrer policy|
+  associated
+  with <a href="https://fetch.spec.whatwg.org/#concept-response">responses</a>.
+
+  The Fetch specification should call out to the
+  [[#set-responses-referrer-policy]] algorithm immediately
+  after <a href="https://fetch.spec.whatwg.org/#http-network-fetch">Step
+  7 of the HTTP-network fetch algorithm</a>. This algorithm sets the
+  associated |referrer policy| on a response.
+
   The Fetch specification calls out to the
   <a href="#determine-requests-referrer">Determine <var>request</var>'s
   referrer</a> algorithm as
   <a href="http://fetch.spec.whatwg.org/#concept-fetch">Step 2 of the
-  Fetching algorithm</a>, and uses the response to set the <var>request</var>'s
+  Fetching algorithm</a>, and uses the result to set the <var>request</var>'s
   <code>referrer</code> property. Fetch is responsible for serializing the
   URL provided, and setting the `<code>Referer</code>` header on
   <var>request</var>.
+
+  <h2 id="integration-with-html">Integration with HTML</h2>
+
+  When a {{Document}} or {{WorkerGlobalScope}} is created with
+  a <a>response</a> (|response|) that has a
+  non-null |referrer policy|, then execute
+  [[#set-referrer-policy]] on |response|'s |environment|.
+
 </section>
 
 <section>
   <h2 id="algorithms">Algorithms</h2>
+
+  <h3 id="set-responses-referrer-policy">
+    Set <var>response</var>'s referrer policy from a <a><code>Referrer-Policy</code></a> header
+  </h3>
+
+  Let <var>policy-tokens</var> be the list of tokens in
+  the <a><code>Referrer-Policy</code></a> header value.
+
+  <ol>
+    <li>
+      Let <var>policy</var> be null.
+    </li>
+    <li>
+      For each <var>token</var> in <var>policy-tokens</var>, execute
+      [[#determine-policy-for-token]] on <var>token</var> and
+      set <var>policy</var> to the result if it is not null.
+    </li>
+    <li>
+      Set <var>response</var>'s associated referrer policy
+      to <var>policy</var>.
+    </li>
+  </ol>
 
   <h3 id="set-referrer-policy">
     Set <var>environment</var>'s referrer policy to <var>policy</var>
@@ -716,63 +752,82 @@ spec: RFC7231; urlPrefix: https://tools.ietf.org/html/rfc7231
 
   <ol>
     <li>
-      Let <var>environment</var> be <var>request</var>'s <code>client</code>.
+      Let <var>policy</var> be null.
     </li>
     <li>
-      If <var>request</var> was initiated by an element with
-      a <code>referrerpolicy</code> content attribute,
-      let <var>policy</var> be the attribute's value. Otherwise,
-      let <var>policy</var> be the value
-      of <var>environment</var>'s <a>referrer policy</a>.
+      If <var>request</var> is the result of following a redirect from
+      an HTTP <a>Redirection 3xx</a> <var>response</var>, then
+      let <var>referrerSource</var>
+      be <var>request</var>'s <code>referrer</code>, and
+      let <var>policy</var> be <var>response</var>'s associated referrer
+      policy. If <var>referrerSource</var> is null, then return <code>no
+      referrer</code> and abort these steps.
     </li>
     <li>
-      If <var>request</var>'s <code>referrer</code> is a URL, then let
-      <var>referrerSource</var> be <var>request</var>'s
-      <code>referrer</code>. Otherwise:
+      Otherwise, if <var>request</var> is not the result of following a
+      redirect:
 
       <ol>
         <li>
-          If <var>environment</var> is a <a>document environment</a>:
-
-          <ol>
-            <li>
-              Let <var>document</var> be the {{Document}} object of the
-              <a>active document</a> of the <a>browsing context</a> of
-              <var>environment</var>'s <a>responsible browsing context</a>.
-            </li>
-          </ol>
+          Let <var>environment</var> be <var>request</var>'s <code>client</code>.
         </li>
         <li>
-          Otherwise, <var>environment</var> is a <a>worker environment</a>:
-
-          <ol>
-            <li>
-              Let <var>source</var> be the <a>API referrer source</a>
-              specified by the <a>incumbent settings object</a>.
-            </li>
-            <li>
-              If <var>source</var> is a URL, let <var>referrerSource</var>
-              be <var>source</var>, otherwise let <var>document</var> be
-              <var>source</var>.
-            </li>
-          </ol>
+          If <var>request</var> was initiated by an element with
+          a <code>referrerpolicy</code> content attribute,
+          let <var>policy</var> be the attribute's value. Otherwise,
+          let <var>policy</var> be the value
+          of <var>environment</var>'s <a>referrer policy</a>.
         </li>
         <li>
-          If <var>document</var> is set, execute the following steps:
+          If <var>request</var>'s <code>referrer</code> is a URL, then let
+          <var>referrerSource</var> be <var>request</var>'s
+          <code>referrer</code>. Otherwise:
 
           <ol>
             <li>
-              If <var>document</var>'s <a>origin</a> is not a scheme/host/port
-              tuple (because, for example, it has been sandboxed into a unique
-              origin), return <code>no referrer</code> and abort these steps.
+              If <var>environment</var> is a <a>document environment</a>:
+
+              <ol>
+                <li>
+                  Let <var>document</var> be the {{Document}} object of the
+                  <a>active document</a> of the <a>browsing context</a> of
+                  <var>environment</var>'s <a>responsible browsing context</a>.
+                </li>
+              </ol>
             </li>
             <li>
-              While <var>document</var> corresponds to <a>an iframe srcdoc Document</a>,
-              let <var>document</var> be that Document's <a>browsing context</a>'s
-              <a>browsing context container</a>'s {{Document}}.
+              Otherwise, <var>environment</var> is a <a>worker environment</a>:
+
+              <ol>
+                <li>
+                  Let <var>source</var> be the <a>API referrer source</a>
+                  specified by the <a>incumbent settings object</a>.
+                </li>
+                <li>
+                  If <var>source</var> is a URL, let <var>referrerSource</var>
+                  be <var>source</var>, otherwise let <var>document</var> be
+                  <var>source</var>.
+                </li>
+              </ol>
             </li>
             <li>
-              Let <var>referrerSource</var> be <var>document</var>'s URL.
+              If <var>document</var> is set, execute the following steps:
+
+              <ol>
+                <li>
+                  If <var>document</var>'s <a>origin</a> is not a scheme/host/port
+                  tuple (because, for example, it has been sandboxed into a unique
+                  origin), return <code>no referrer</code> and abort these steps.
+                </li>
+                <li>
+                  While <var>document</var> corresponds to <a>an iframe srcdoc Document</a>,
+                  let <var>document</var> be that Document's <a>browsing context</a>'s
+                  <a>browsing context container</a>'s {{Document}}.
+                </li>
+                <li>
+                  Let <var>referrerSource</var> be <var>document</var>'s URL.
+                </li>
+              </ol>
             </li>
           </ol>
         </li>
@@ -826,13 +881,35 @@ spec: RFC7231; urlPrefix: https://tools.ietf.org/html/rfc7231
         <dd>
           <ol>
             <li>
-              If <var>environment</var> is <a>TLS-protected</a> <em>and</em> the
-              <a>origin</a> of <var>request</var>'s <code>URL</code> is
-              an <a><em>a priori</em> insecure origin</a>, then return
-              <code>no referrer</code>.
+              If <var>request</var> is the result of following an
+              HTTP <a>Redirection 3xx</a> response:
+              <ol>
+                <li>
+                  If the request that returned the <a>Redirection
+                  3xx</a> response was <a>TLS-protected</a> <em>and</em>
+                  the <a>origin</a>
+                  of <var>request</var>'s <code>URL</code> is
+                  an <a><em>a priori</em> insecure origin</a>, then
+                  return <code>no referrer</code>.
+                </li>
+                <li>
+                  Otherwise, return <var>referrerURL</var>.
+                </li>
+              </ol>
             </li>
             <li>
-              Otherwise, return <var>requestURL</var>.
+              Otherwise:
+              <ol>
+                <li>
+                  If <var>environment</var> is <a>TLS-protected</a> <em>and</em> the
+                  <a>origin</a> of <var>request</var>'s <code>URL</code> is
+                  an <a><em>a priori</em> insecure origin</a>, then return
+                  <code>no referrer</code>.
+                </li>
+                <li>
+                  Otherwise, return <var>referrerURL</var>.
+                </li>
+              </ol>
             </li>
           </ol>
         </dd>
@@ -892,7 +969,7 @@ spec: RFC7231; urlPrefix: https://tools.ietf.org/html/rfc7231
   </h3>
 
   Given a string <var>token</var> (for example, the value of a
-  <a><code>referrer</code> directive</a>), this algorithm will return the
+  <a><code>Referrer-Policy</code></a> header), this algorithm will return the
   <a>referrer policy</a> it refers to:
 
   <ol>
@@ -933,6 +1010,7 @@ spec: RFC7231; urlPrefix: https://tools.ietf.org/html/rfc7231
   keywords <code>no-referrer</code>,
   <code>no-referrer-when-downgrade</code>, and <code>unsafe-url</code>
   respectively are preferred.
+
 </section>
 
 <section>
@@ -958,7 +1036,7 @@ spec: RFC7231; urlPrefix: https://tools.ietf.org/html/rfc7231
 
   Those two policies are include in the spec nevertheless to lower the friction
   of sites adopting secure transport.
-  
+
   <h3 id="downgrade">Downgrade to less strict policies</h3>
 
   The spec does not forbid downgrading to less strict policies, e.g., from
