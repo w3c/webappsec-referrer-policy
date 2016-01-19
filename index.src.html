@@ -448,10 +448,10 @@ spec:html; type:element; text:link
   <dl>
     <dt>no-referrer</dt>
     <dd><a><code>No Referrer</code></a></dd>
-    <dt>origin</dt>
-    <dd><a><code>Origin</code></a></dd>
     <dt>no-referrer-when-downgrade</dt>
     <dd><a><code>No Referrer When Downgrade</code></a></dd>
+    <dt>origin</dt>
+    <dd><a><code>Origin Only</code></a></dd>
     <dt>origin-when-cross-origin</dt>
     <dd><a><code>Origin When Cross-Origin</code></a></dd>
     <dt>unsafe-url</dt>
@@ -537,10 +537,10 @@ spec:html; type:element; text:link
   <dl>
     <dt>no-referrer</dt>
     <dd><a><code>No Referrer</code></a></dd>
-    <dt>origin</dt>
-    <dd><a><code>Origin</code></a></dd>
     <dt>no-referrer-when-downgrade</dt>
     <dd><a><code>No Referrer When Downgrade</code></a></dd>
+    <dt>origin</dt>
+    <dd><a><code>Origin Only</code></a></dd>
     <dt>origin-when-cross-origin</dt>
     <dd><a><code>Origin When Cross-Origin</code></a></dd>
     <dt>unsafe-url</dt>
@@ -995,13 +995,13 @@ spec:html; type:element; text:link
       <a><code>No Referrer</code></a>.
     </li>
     <li>
-      If <var>token</var> is an <a>ASCII case-insensitive match</a> for the
-      string "<code>origin</code>", return <a><code>Origin</code></a>.
-    </li>
-    <li>
       If <var>token</var> is <a>ASCII case-insensitive match</a> for the string
       "<code>default</code>" or "<code>no-referrer-when-downgrade</code>",
       return <a><code>No Referrer When Downgrade</code></a>.
+    </li>
+    <li>
+      If <var>token</var> is an <a>ASCII case-insensitive match</a> for the
+      string "<code>origin</code>", return <a><code>Origin Only</code></a>.
     </li>
     <li>
       If <var>token</var> is <a>ASCII case-insensitive match</a> for the string
