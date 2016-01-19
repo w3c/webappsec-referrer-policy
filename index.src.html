@@ -284,6 +284,29 @@ spec:html; type:element; text:link
 
   This is a user agent's default behavior, if no policy is otherwise specified.
 
+  <h3 dfn export id="referrer-policy-same-origin">"<code>same-origin</code>"</h3>
+
+  The <a>"<code>same-origin</code>"</a> policy specifies that a
+  full URL, <a href="#strip-url">stripped for use as a referrer</a>, is sent as
+  referrer information when making <a>same-origin requests</a> from a particular
+  <a>request client</a>.
+
+  <a>Cross-origin requests</a>, on the other hand, will contain no
+  referrer information. A <code><a>Referer</a></code> HTTP header will not be
+  sent.
+
+  <div class="example">
+    If a document at <code>https://example.com/page.html</code> sets a policy of
+    <a>"<code>same-origin</code>"</a>, then navigations to
+    <code>https://example.com/not-page.html</code> would send a
+    <a><code>Referer</code></a> header with a value of
+    <code>https://example.com/page.html</code>.
+
+    Navigations from that same page to
+    <code>https://<strong>not</strong>.example.com/</code> would send no
+    <a><code>Referer</code></a> header.
+  </div>
+
   <h3 dfn export id="referrer-policy-origin" oldids="referrer-policy-state-origin">"<code>origin</code>"</h3>
 
   The <a>"<code>origin</code>"</a> policy specifies that only the
@@ -405,7 +428,7 @@ spec:html; type:element; text:link
     "Referrer-Policy:" 1#<a>policy-token</a>
   </pre>
   <pre>
-    <dfn export>policy-token</dfn>   = "no-referrer" / "no-referrer-when-downgrade" / "origin" / "origin-when-cross-origin" / "unsafe-url"
+    <dfn export>policy-token</dfn>   = "no-referrer" / "no-referrer-when-downgrade" / "same-origin" / "origin" / "origin-when-cross-origin" / "unsafe-url"
   </pre>
 
   Note: The header name does not share the HTTP Referer header's misspelling.
@@ -579,6 +602,7 @@ spec:html; type:element; text:link
       If <var>policy</var> is not one of
       <a>"<code>no-referrer</code>"</a>,
       <a>"<code>no-referrer-when-downgrade</code>"</a>,
+      <a>"<code>same-origin</code>"</a>,
       <a>"<code>origin</code>"</a>,
       <a>"<code>origin-when-cross-origin</code>"</a>, or
       <a>"<code>unsafe-url</code>"</a>,
@@ -711,6 +735,19 @@ spec:html; type:element; text:link
         <dt><a>"<code>unsafe-url</code>"</a></dt>
         <dd>Return <var>referrerURL</var>.</dd>
 
+        <dt><a>"<code>same-origin</code>"</a></dt>
+        <dd>
+          <ol>
+            <li>
+              If <var>request</var> is a <a>same-origin request</a>, then
+              return <var>referrerURL</var>.
+            </li>
+            <li>
+              Otherwise, return <code>no referrer</code>.
+            </li>
+          </ol>
+        </dd>
+
         <dt><a>"<code>origin-when-cross-origin</code>"</a></dt>
         <dd>
           <ol>
@@ -816,6 +853,10 @@ spec:html; type:element; text:link
     <li>
       If <var>token</var> is an <a>ASCII case-insensitive match</a> for the
       string "<code>origin</code>", return <a>"<code>origin</code>"</a>.
+    </li>
+    <li>
+      If <var>token</var> is an <a>ASCII case-insensitive match</a> for the
+      string "<code>same-origin</code>", return <a>"<code>same-origin</code>"</a>.
     </li>
     <li>
       If <var>token</var> is <a>ASCII case-insensitive match</a> for the string
