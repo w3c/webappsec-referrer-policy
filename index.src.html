@@ -674,6 +674,14 @@ spec: RFC2616; urlPrefix: https://tools.ietf.org/html/rfc7231
   URL provided, and setting the `<code>Referer</code>` header on
   <var>request</var>.
 
+  The Fetch specification should append
+  `<code>Origin</code>`/`<code>null</code>` instead of the serialization of the
+  <code>httpRequest</code>'s origin to the <code>httpRequest</code>'s header
+  list, if the <code>httpRequest</code>'s <code>referrerPolicy</code> is
+  <code>"no-referrer"</code> in <a
+  href="https://fetch.spec.whatwg.org/#http-network-or-cache-fetch">Step 7 of
+  the HTTP-network-or-cache fetch algorithm</a>.
+
   <h2 id="integration-with-html">Integration with HTML</h2>
 
   When a {{Document}} or {{WorkerGlobalScope}} is created with
