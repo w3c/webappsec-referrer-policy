@@ -1000,7 +1000,7 @@
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="http://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/Icons/w3c_home" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Referrer Policy</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2015-12-07">7 December 2015</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2016-03-07">7 March 2016</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1019,7 +1019,7 @@
     </dl>
    </div>
    <div data-fill-with="warning"></div>
-   <p class="copyright" data-fill-with="copyright"><a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2015 <a href="http://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup> (<a href="http://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>, <a href="http://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="http://www.keio.ac.jp/">Keio</a>, <a href="http://ev.buaa.edu.cn/">Beihang</a>). W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a> rules apply. </p>
+   <p class="copyright" data-fill-with="copyright"><a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2016 <a href="http://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup> (<a href="http://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>, <a href="http://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="http://www.keio.ac.jp/">Keio</a>, <a href="http://ev.buaa.edu.cn/">Beihang</a>). W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a> rules apply. </p>
    <hr title="Separator for header">
   </div>
   <h2 class="no-num no-toc no-ref heading settled" id="abstract"><span class="content">Abstract</span></h2>
@@ -1109,6 +1109,11 @@
        <a href="#html-iframe-element"><span class="secno">5.4</span> <span class="content">HTMLIFrameElement</span></a>
        <ul class="toc">
         <li><a href="#html-iframe-element-attributes"><span class="secno">5.4.1</span> <span class="content">Attributes</span></a>
+       </ul>
+      <li>
+       <a href="#html-link-element"><span class="secno">5.5</span> <span class="content">HTMLLinkElement</span></a>
+       <ul class="toc">
+        <li><a href="#html-link-element-attributes"><span class="secno">5.5.1</span> <span class="content">Attributes</span></a>
        </ul>
      </ul>
     <li><a href="#integration-with-fetch"><span class="secno">6</span> <span class="content">Integration with Fetch</span></a>
@@ -1280,7 +1285,7 @@
      <li> Via the <code>Referrer-Policy</code> HTTP header (defined
       in <a href="#referrer-policy-header">§4.1 Delivery via Referrer-Policy header</a>). 
      <li> Via a <code><a data-link-type="element" href="http://www.w3.org/TR/html5/document-metadata.html#the-meta-element">meta</a></code> element with a <code><a data-link-type="element-attr" href="http://www.w3.org/TR/html5/document-metadata.html#attr-meta-name">name</a></code> of <code>referrer</code>. 
-     <li> Via a <code>referrerpolicy</code> content attribute on an <code><a data-link-type="element" href="http://www.w3.org/TR/html5/text-level-semantics.html#the-a-element">a</a></code>, <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/embedded-content.html#the-area-element">area</a></code>, <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/embedded-content.html#the-img-element">img</a></code> or <code><a data-link-type="element" href="http://www.w3.org/TR/html5/embedded-content-0.html#the-iframe-element">iframe</a></code> element. 
+     <li> Via a <code>referrerpolicy</code> content attribute on an <code><a data-link-type="element" href="http://www.w3.org/TR/html5/text-level-semantics.html#the-a-element">a</a></code>, <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/embedded-content.html#the-area-element">area</a></code>, <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/embedded-content.html#the-img-element">img</a></code>, <code><a data-link-type="element" href="http://www.w3.org/TR/html5/embedded-content-0.html#the-iframe-element">iframe</a></code>, or <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/semantics.html#the-link-element">link</a></code> element. 
      <li> Implicitly, via inheritance. 
     </ul>
     <h3 class="heading settled" data-level="4.1" id="referrer-policy-header"><span class="secno">4.1. </span><span class="content">Delivery via Referrer-Policy header</span><a class="self-link" href="#referrer-policy-header"></a></h3>
@@ -1350,7 +1355,8 @@
     <h3 class="heading settled" data-level="4.3" id="referrer-policy-delivery-referrer-attribute"><span class="secno">4.3. </span><span class="content">Delivery
   via a <code>referrerpolicy</code> content attribute</span><a class="self-link" href="#referrer-policy-delivery-referrer-attribute"></a></h3>
     <p>A referrer policy may be set when a <code>referrerpolicy</code> content
-  attribute is added to an <code><a data-link-type="element" href="http://www.w3.org/TR/html5/text-level-semantics.html#the-a-element">a</a></code>, <code> <a data-link-type="element" href="https://html.spec.whatwg.org/multipage/embedded-content.html#the-area-element">area</a></code>, <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/embedded-content.html#the-img-element">img</a></code> or <code> <a data-link-type="element" href="http://www.w3.org/TR/html5/embedded-content-0.html#the-iframe-element">iframe</a></code> element, for example:</p>
+  attribute is added to an <code><a data-link-type="element" href="http://www.w3.org/TR/html5/text-level-semantics.html#the-a-element">a</a></code>, <code> <a data-link-type="element" href="https://html.spec.whatwg.org/multipage/embedded-content.html#the-area-element">area</a></code>, <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/embedded-content.html#the-img-element">img</a></code>, <code> <a data-link-type="element" href="http://www.w3.org/TR/html5/embedded-content-0.html#the-iframe-element">iframe</a></code>, or <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/semantics.html#the-link-element">link</a></code> element,
+  for example:</p>
 <pre class="example" id="example-73ba3b1e"><a class="self-link" href="#example-73ba3b1e"></a>&lt;a href="http://example.com" referrerPolicy="origin">
 </pre>
     <p>The following values for the <code>referrerpolicy</code> content attribute
@@ -1425,6 +1431,14 @@
 };
 </pre>
     <h4 class="heading settled" data-level="5.4.1" id="html-iframe-element-attributes"><span class="secno">5.4.1. </span><span class="content">Attributes</span><a class="self-link" href="#html-iframe-element-attributes"></a></h4>
+     The <code>referrerPolicy</code> IDL attribute must <a data-link-type="dfn" href="http://www.w3.org/TR/html5/infrastructure.html#reflect">reflect</a> the <code>referrerpolicy</code> content attribute, <a data-link-type="dfn" href="http://www.w3.org/TR/html5/infrastructure.html#limited-to-only-known-values">limited to only known
+  values</a>. 
+    <h3 class="heading settled" data-level="5.5" id="html-link-element"><span class="secno">5.5. </span><span class="content">HTMLLinkElement</span><a class="self-link" href="#html-link-element"></a></h3>
+<pre class="idl">partial interface <a class="idl-code" data-link-type="interface" href="https://html.spec.whatwg.org/multipage/semantics.html#htmllinkelement">HTMLLinkElement</a> {
+  attribute DOMString <dfn class="idl-code" data-dfn-for="HTMLLinkElement" data-dfn-type="attribute" data-export="" data-type="DOMString " id="dom-htmllinkelement-referrerpolicy">referrerPolicy<a class="self-link" href="#dom-htmllinkelement-referrerpolicy"></a></dfn>;
+};
+</pre>
+    <h4 class="heading settled" data-level="5.5.1" id="html-link-element-attributes"><span class="secno">5.5.1. </span><span class="content">Attributes</span><a class="self-link" href="#html-link-element-attributes"></a></h4>
      The <code>referrerPolicy</code> IDL attribute must <a data-link-type="dfn" href="http://www.w3.org/TR/html5/infrastructure.html#reflect">reflect</a> the <code>referrerpolicy</code> content attribute, <a data-link-type="dfn" href="http://www.w3.org/TR/html5/infrastructure.html#limited-to-only-known-values">limited to only known
   values</a>. 
    </section>
@@ -1702,6 +1716,7 @@
      <li><a href="#dom-htmlareaelement-referrerpolicy">attribute for HTMLAreaElement</a><span>, in §5.2</span>
      <li><a href="#dom-htmlimageelement-referrerpolicy">attribute for HTMLImageElement</a><span>, in §5.3</span>
      <li><a href="#dom-htmliframeelement-referrerpolicy">attribute for HTMLIFrameElement</a><span>, in §5.4</span>
+     <li><a href="#dom-htmllinkelement-referrerpolicy">attribute for HTMLLinkElement</a><span>, in §5.5</span>
     </ul>
    <li><a href="#referrer-policy-header-dfn">Referrer-Policy</a><span>, in §4.1</span>
    <li><a href="#referrer-policy">referrer policy</a><span>, in §2</span>
@@ -1798,10 +1813,12 @@
      <li><a href="https://html.spec.whatwg.org/multipage/embedded-content.html#htmlareaelement">HTMLAreaElement</a>
      <li><a href="https://html.spec.whatwg.org/multipage/embedded-content.html#htmliframeelement">HTMLIFrameElement</a>
      <li><a href="https://html.spec.whatwg.org/multipage/embedded-content.html#htmlimageelement">HTMLImageElement</a>
+     <li><a href="https://html.spec.whatwg.org/multipage/semantics.html#htmllinkelement">HTMLLinkElement</a>
      <li><a href="https://html.spec.whatwg.org/multipage/workers.html#workerglobalscope">WorkerGlobalScope</a>
      <li><a href="https://html.spec.whatwg.org/multipage/embedded-content.html#the-area-element">area</a>
      <li><a href="https://html.spec.whatwg.org/multipage/semantics.html#the-head-element">head</a>
      <li><a href="https://html.spec.whatwg.org/multipage/embedded-content.html#the-img-element">img</a>
+     <li><a href="https://html.spec.whatwg.org/multipage/semantics.html#the-link-element">link</a>
     </ul>
   </ul>
   <h2 class="no-num heading settled" id="references"><span class="content">References</span><a class="self-link" href="#references"></a></h2>
@@ -1852,6 +1869,10 @@ partial interface <a class="idl-code" data-link-type="interface" href="https://h
 
 partial interface <a class="idl-code" data-link-type="interface" href="https://html.spec.whatwg.org/multipage/embedded-content.html#htmliframeelement">HTMLIFrameElement</a> {
   attribute DOMString <a data-type="DOMString " href="#dom-htmliframeelement-referrerpolicy">referrerPolicy</a>;
+};
+
+partial interface <a class="idl-code" data-link-type="interface" href="https://html.spec.whatwg.org/multipage/semantics.html#htmllinkelement">HTMLLinkElement</a> {
+  attribute DOMString <a data-type="DOMString " href="#dom-htmllinkelement-referrerpolicy">referrerPolicy</a>;
 };
 
 </pre>

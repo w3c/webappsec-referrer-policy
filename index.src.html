@@ -134,6 +134,10 @@ spec: RFC2616; urlPrefix: https://tools.ietf.org/html/rfc7231
     text: redirection 3xx; url: section-6.4
 </pre>
 
+<pre class="link-defaults">
+spec:html; type:element; text:link
+</pre>
+
 <!--
 ████ ██    ██ ████████ ████████   ███████
  ██  ███   ██    ██    ██     ██ ██     ██
@@ -380,7 +384,7 @@ spec: RFC2616; urlPrefix: https://tools.ietf.org/html/rfc7231
     </li>
     <li>
       Via a <code>referrerpolicy</code> content attribute on an <{a}>,
-      <{area}>, <{img}> or <{iframe}> element.
+      <{area}>, <{img}>, <{iframe}>, or <{link}> element.
     </li>
     <li>
       Implicitly, via inheritance.
@@ -519,8 +523,9 @@ spec: RFC2616; urlPrefix: https://tools.ietf.org/html/rfc7231
 
   A referrer policy may be set when a <code>referrerpolicy</code> content
   attribute is added to an <code><a element>a</a></code>, <code>
-  <a element>area</a></code>, <code><a element>img</a></code> or <code>
-  <a element>iframe</a></code> element, for example:
+  <a element>area</a></code>, <code><a element>img</a></code>, <code>
+  <a element>iframe</a></code>, or <code><a element>link</a></code> element,
+  for example:
 
   <pre class="example">
     &lt;a href="http://example.com" referrerPolicy="origin"&gt;
@@ -647,6 +652,17 @@ spec: RFC2616; urlPrefix: https://tools.ietf.org/html/rfc7231
     };
   </pre>
   <h4 id="html-iframe-element-attributes">Attributes</h4>
+  The <code>referrerPolicy</code> IDL attribute must <a>reflect</a> the
+  <code>referrerpolicy</code> content attribute, <a>limited to only known
+  values</a>.
+
+  <h3 id="html-link-element">HTMLLinkElement</h3>
+  <pre class="idl">
+    partial interface HTMLLinkElement {
+      attribute DOMString referrerPolicy;
+    };
+  </pre>
+  <h4 id="html-link-element-attributes">Attributes</h4>
   The <code>referrerPolicy</code> IDL attribute must <a>reflect</a> the
   <code>referrerpolicy</code> content attribute, <a>limited to only known
   values</a>.
