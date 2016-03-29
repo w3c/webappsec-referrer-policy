@@ -1000,7 +1000,7 @@
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="http://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/Icons/w3c_home" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Referrer Policy</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2016-03-07">7 March 2016</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2016-03-28">28 March 2016</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1203,7 +1203,7 @@
       object</a> that defines the algorithm used to populate the <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2"><code>Referer</code></a> header when <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#fetching">fetching</a> subresources,
       prefetching, or performing navigations. 
       <p>If no referrer policy is explicitly set for a <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#settings-object">settings object</a>,
-      then the value of the property is <code>null</code>. Otherwise, the value
+      then the value of the property is the empty string. Otherwise, the value
       is whatever has been explicitly set, as explained in the <a href="#set-referrer-policy">§8.2 Set environment’s referrer policy to policy</a> algorithm.</p>
      <dt><dfn data-dfn-type="dfn" data-local-lt="same-origin" data-noexport="" id="same-origin-request">same-origin request<a class="self-link" href="#same-origin-request"></a></dfn>
      <dd> A <code class="idl"><a data-link-type="idl" href="https://fetch.spec.whatwg.org/#request">Request</a></code> <var>request</var> is a <strong>same-origin request</strong> if <var>request</var>’s <code class="idl"><a data-link-type="idl" href="https://fetch.spec.whatwg.org/#concept-request-origin">origin</a></code> and the <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-3.2">origin</a> of <var>request</var>’s <code class="idl"><a data-link-type="idl" href="https://fetch.spec.whatwg.org/#concept-request-url">url</a></code> are <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-5"><code>the same</code></a>. 
@@ -1215,7 +1215,7 @@
     <h2 class="heading settled" data-level="3" id="referrer-policy-states"><span class="secno">3. </span><span class="content">Referrer Policy States</span><a class="self-link" href="#referrer-policy-states"></a></h2>
     <p>Every <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#settings-object">settings object</a> has a <a data-link-type="dfn" href="#referrer-policy">referrer policy</a> which governs
   the referrer information sent along with requests made for subresources, and
-  for navigations. The <a data-link-type="dfn" href="#referrer-policy">policy</a> will be <code>null</code> if no policy has
+  for navigations. The <a data-link-type="dfn" href="#referrer-policy">policy</a> will be the empty string if no policy has
   been set, otherwise it will be one of the following five values: <code><a data-link-type="dfn" href="#no-referrer">No Referrer</a></code>, <code><a data-link-type="dfn" href="#no-referrer-when-downgrade">No Referrer When
   Downgrade</a></code>, <code><a data-link-type="dfn" href="#origin-only">Origin Only</a></code>, <code><a data-link-type="dfn" href="#origin-when-cross-origin">Origin When
   Cross-origin</a></code>, and <code><a data-link-type="dfn" href="#unsafe-url">Unsafe URL</a></code>. Each is explained
@@ -1457,7 +1457,7 @@
     <h2 class="heading settled" data-level="7" id="integration-with-html"><span class="secno">7. </span><span class="content">Integration with HTML</span><a class="self-link" href="#integration-with-html"></a></h2>
     <p>When a <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/dom/#interface-document">Document</a></code> or <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/workers.html#workerglobalscope">WorkerGlobalScope</a></code> is created with
   a <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-response">response</a> (<var>response</var>) that has a
-  non-null <var>referrer policy</var>, then execute <a href="#set-referrer-policy">§8.2 Set environment’s referrer policy to policy</a> on <var>response</var>’s <var>environment</var>.</p>
+  non-empty <var>referrer policy</var>, then execute <a href="#set-referrer-policy">§8.2 Set environment’s referrer policy to policy</a> on <var>response</var>’s <var>environment</var>.</p>
    </section>
    <section>
     <h2 class="heading settled" data-level="8" id="algorithms"><span class="secno">8. </span><span class="content">Algorithms</span><a class="self-link" href="#algorithms"></a></h2>
@@ -1465,9 +1465,9 @@
     <p>Let <var>policy-tokens</var> be the list of tokens in
   the <a data-link-type="dfn" href="#referrer-policy-header-dfn"><code>Referrer-Policy</code></a> header value.</p>
     <ol>
-     <li> Let <var>policy</var> be null. 
+     <li> Let <var>policy</var> be the empty string. 
      <li> For each <var>token</var> in <var>policy-tokens</var>, execute <a href="#determine-policy-for-token">§8.5 Determine token’s Policy</a> on <var>token</var> and
-      set <var>policy</var> to the result if it is not null. 
+      set <var>policy</var> to the result if it is not the empty string. 
      <li> Set <var>response</var>’s associated referrer policy
       to <var>policy</var>. 
     </ol>
@@ -1475,9 +1475,9 @@
     <p>If no referrer policy has been set for a <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#settings-object">settings object</a>, then
   setting its value is straightforward. If a policy has previously been
   set, then we overwrite it with the new value if the new value is
-  not <code>null</code>.</p>
+  not the empty string.</p>
     <ol>
-     <li> If <var>policy</var> is <code>null</code>, abort these steps. 
+     <li> If <var>policy</var> is the empty string, abort these steps. 
      <li> If <var>policy</var> is not one of <code><a data-link-type="dfn" href="#no-referrer">No Referrer</a></code>, <code><a data-link-type="dfn" href="#no-referrer-when-downgrade">No Referrer When Downgrade</a></code>, <code><a data-link-type="dfn" href="#origin-only">Origin
       Only</a></code>, <code><a data-link-type="dfn" href="#origin-when-cross-origin">Origin when cross-origin</a></code>, or <code><a data-link-type="dfn" href="#unsafe-url">Unsafe URL</a></code>, then return without setting <var>environment</var>’s referrer policy. 
      <li> Set <var>environment</var>’s <a data-link-type="dfn" href="#referrer-policy">referrer policy</a> to <var>policy</var>. 
@@ -1490,7 +1490,7 @@
     <p class="note" role="note">Note: If Fetch is performing a navigation in response to a link of type <code><a data-link-type="dfn" href="http://www.w3.org/TR/html5/links.html#link-type-noreferrer">noreferrer</a></code>, then <var>request</var>’s <code>referrer</code> will be <code>no referrer</code>, and Fetch won’t call
   into this algorithm.</p>
     <ol>
-     <li> Let <var>policy</var> be null. 
+     <li> Let <var>policy</var> be the empty string. 
      <li> If <var>request</var> is the result of following a redirect from
       an HTTP <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-6.4">Redirection 3xx</a> <var>response</var>, then
       let <var>referrerSource</var> be <var>request</var>’s <code>referrer</code>, and
@@ -1553,7 +1553,7 @@
          <li> Otherwise, return <var>referrerURL</var>. 
         </ol>
        <dt> <var>policy</var> is <code><a data-link-type="dfn" href="#no-referrer-when-downgrade">No Referrer When Downgrade</a></code> 
-       <dt> <var>policy</var> is <code>null</code> 
+       <dt> <var>policy</var> is the empty string. 
        <dd>
         <ol>
          <li>
@@ -1616,7 +1616,7 @@
       "<code>always</code>" or "<code>unsafe-url</code>",
       return <a data-link-type="dfn" href="#unsafe-url"><code>Unsafe URL</code></a>. 
      <li> If <var>token</var> is empty, return <a data-link-type="dfn" href="#no-referrer"><code>No Referrer</code></a>. 
-     <li> Return <code>null</code>. 
+     <li> Return the empty string. 
     </ol>
     <p class="note" role="note">Note: Authors are encouraged to avoid the legacy keywords <code>never</code>, <code>default</code>, and <code>always</code>. The
   keywords <code>no-referrer</code>, <code>no-referrer-when-downgrade</code>, and <code>unsafe-url</code> respectively are preferred.</p>

@@ -210,7 +210,7 @@ spec:html; type:element; text:link
       prefetching, or performing navigations.
 
       If no referrer policy is explicitly set for a <a>settings object</a>,
-      then the value of the property is <code>null</code>. Otherwise, the value
+      then the value of the property is the empty string. Otherwise, the value
       is whatever has been explicitly set, as explained in the
       <a section href="#set-referrer-policy"></a> algorithm.
     </dd>
@@ -235,7 +235,7 @@ spec:html; type:element; text:link
 
   Every <a>settings object</a> has a <a>referrer policy</a> which governs
   the referrer information sent along with requests made for subresources, and
-  for navigations. The <a>policy</a> will be <code>null</code> if no policy has
+  for navigations. The <a>policy</a> will be the empty string if no policy has
   been set, otherwise it will be one of the following five values:
   <code><a>No Referrer</a></code>, <code><a>No Referrer When
   Downgrade</a></code>, <code><a>Origin Only</a></code>, <code><a>Origin When
@@ -694,7 +694,7 @@ spec:html; type:element; text:link
 
   When a {{Document}} or {{WorkerGlobalScope}} is created with
   a <a>response</a> (|response|) that has a
-  non-null |referrer policy|, then execute
+  non-empty |referrer policy|, then execute
   [[#set-referrer-policy]] on |response|'s |environment|.
 
 </section>
@@ -711,12 +711,12 @@ spec:html; type:element; text:link
 
   <ol>
     <li>
-      Let <var>policy</var> be null.
+      Let <var>policy</var> be the empty string.
     </li>
     <li>
       For each <var>token</var> in <var>policy-tokens</var>, execute
       [[#determine-policy-for-token]] on <var>token</var> and
-      set <var>policy</var> to the result if it is not null.
+      set <var>policy</var> to the result if it is not the empty string.
     </li>
     <li>
       Set <var>response</var>'s associated referrer policy
@@ -731,11 +731,11 @@ spec:html; type:element; text:link
   If no referrer policy has been set for a <a>settings object</a>, then
   setting its value is straightforward. If a policy has previously been
   set, then we overwrite it with the new value if the new value is
-  not <code>null</code>.
+  not the empty string.
 
   <ol>
     <li>
-      If <var>policy</var> is <code>null</code>, abort these steps.
+      If <var>policy</var> is the empty string, abort these steps.
     </li>
 
     <li>
@@ -768,7 +768,7 @@ spec:html; type:element; text:link
 
   <ol>
     <li>
-      Let <var>policy</var> be null.
+      Let <var>policy</var> be the empty string.
     </li>
     <li>
       If <var>request</var> is the result of following a redirect from
@@ -892,7 +892,7 @@ spec:html; type:element; text:link
           <var>policy</var> is <code><a>No Referrer When Downgrade</a></code>
         </dt>
         <dt>
-          <var>policy</var> is <code>null</code>
+          <var>policy</var> is the empty string.
         </dt>
         <dd>
           <ol>
@@ -1017,7 +1017,7 @@ spec:html; type:element; text:link
       If <var>token</var> is empty, return <a><code>No Referrer</code></a>.
     </li>
     <li>
-      Return <code>null</code>.
+      Return the empty string.
     </li>
   </ol>
 
