@@ -1000,7 +1000,7 @@
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="http://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/Icons/w3c_home" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Referrer Policy</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2016-03-28">28 March 2016</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2016-04-21">21 April 2016</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1118,32 +1118,33 @@
      </ul>
     <li><a href="#integration-with-fetch"><span class="secno">6</span> <span class="content">Integration with Fetch</span></a>
     <li><a href="#integration-with-html"><span class="secno">7</span> <span class="content">Integration with HTML</span></a>
+    <li><a href="#integration-with-css"><span class="secno">8</span> <span class="content">Integration with CSS</span></a>
     <li>
-     <a href="#algorithms"><span class="secno">8</span> <span class="content">Algorithms</span></a>
+     <a href="#algorithms"><span class="secno">9</span> <span class="content">Algorithms</span></a>
      <ul class="toc">
-      <li><a href="#set-responses-referrer-policy"><span class="secno">8.1</span> <span class="content"> Set <var>response</var>’s referrer policy from a <span><code>Referrer-Policy</code></span> header </span></a>
-      <li><a href="#set-referrer-policy"><span class="secno">8.2</span> <span class="content"> Set <var>environment</var>’s referrer policy to <var>policy</var> </span></a>
-      <li><a href="#determine-requests-referrer"><span class="secno">8.3</span> <span class="content"> Determine <var>request</var>’s Referrer </span></a>
-      <li><a href="#strip-url"><span class="secno">8.4</span> <span class="content"> Strip <var>url</var> for use as a referrer </span></a>
-      <li><a href="#determine-policy-for-token"><span class="secno">8.5</span> <span class="content"> Determine <var>token</var>’s Policy </span></a>
+      <li><a href="#set-responses-referrer-policy"><span class="secno">9.1</span> <span class="content"> Set <var>response</var>’s referrer policy from a <span><code>Referrer-Policy</code></span> header </span></a>
+      <li><a href="#set-referrer-policy"><span class="secno">9.2</span> <span class="content"> Set <var>environment</var>’s referrer policy to <var>policy</var> </span></a>
+      <li><a href="#determine-requests-referrer"><span class="secno">9.3</span> <span class="content"> Determine <var>request</var>’s Referrer </span></a>
+      <li><a href="#strip-url"><span class="secno">9.4</span> <span class="content"> Strip <var>url</var> for use as a referrer </span></a>
+      <li><a href="#determine-policy-for-token"><span class="secno">9.5</span> <span class="content"> Determine <var>token</var>’s Policy </span></a>
      </ul>
     <li>
-     <a href="#privacy"><span class="secno">9</span> <span class="content">Privacy Considerations</span></a>
+     <a href="#privacy"><span class="secno">10</span> <span class="content">Privacy Considerations</span></a>
      <ul class="toc">
-      <li><a href="#user-controls"><span class="secno">9.1</span> <span class="content">User Controls</span></a>
+      <li><a href="#user-controls"><span class="secno">10.1</span> <span class="content">User Controls</span></a>
      </ul>
     <li>
-     <a href="#security"><span class="secno">10</span> <span class="content">Security Considerations</span></a>
+     <a href="#security"><span class="secno">11</span> <span class="content">Security Considerations</span></a>
      <ul class="toc">
-      <li><a href="#information-leakage"><span class="secno">10.1</span> <span class="content">Information Leakage</span></a>
-      <li><a href="#downgrade"><span class="secno">10.2</span> <span class="content">Downgrade to less strict policies</span></a>
+      <li><a href="#information-leakage"><span class="secno">11.1</span> <span class="content">Information Leakage</span></a>
+      <li><a href="#downgrade"><span class="secno">11.2</span> <span class="content">Downgrade to less strict policies</span></a>
      </ul>
     <li>
-     <a href="#authoring"><span class="secno">11</span> <span class="content">Authoring Considerations</span></a>
+     <a href="#authoring"><span class="secno">12</span> <span class="content">Authoring Considerations</span></a>
      <ul class="toc">
-      <li><a href="#unknown-policy-values"><span class="secno">11.1</span> <span class="content">Unknown Policy Values</span></a>
+      <li><a href="#unknown-policy-values"><span class="secno">12.1</span> <span class="content">Unknown Policy Values</span></a>
      </ul>
-    <li><a href="#acknowledgements"><span class="secno">12</span> <span class="content">Acknowledgements</span></a>
+    <li><a href="#acknowledgements"><span class="secno">13</span> <span class="content">Acknowledgements</span></a>
     <li>
      <a href="#conformance"><span class="secno"></span> <span class="content">Conformance</span></a>
      <ul class="toc">
@@ -1204,7 +1205,7 @@
       prefetching, or performing navigations. 
       <p>If no referrer policy is explicitly set for a <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#settings-object">settings object</a>,
       then the value of the property is the empty string. Otherwise, the value
-      is whatever has been explicitly set, as explained in the <a href="#set-referrer-policy">§8.2 Set environment’s referrer policy to policy</a> algorithm.</p>
+      is whatever has been explicitly set, as explained in the <a href="#set-referrer-policy">§9.2 Set environment’s referrer policy to policy</a> algorithm.</p>
      <dt><dfn data-dfn-type="dfn" data-local-lt="same-origin" data-noexport="" id="same-origin-request">same-origin request<a class="self-link" href="#same-origin-request"></a></dfn>
      <dd> A <code class="idl"><a data-link-type="idl" href="https://fetch.spec.whatwg.org/#request">Request</a></code> <var>request</var> is a <strong>same-origin request</strong> if <var>request</var>’s <code class="idl"><a data-link-type="idl" href="https://fetch.spec.whatwg.org/#concept-request-origin">origin</a></code> and the <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-3.2">origin</a> of <var>request</var>’s <code class="idl"><a data-link-type="idl" href="https://fetch.spec.whatwg.org/#concept-request-url">url</a></code> are <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-5"><code>the same</code></a>. 
      <dt><dfn data-dfn-type="dfn" data-local-lt="cross-origin" data-noexport="" id="cross-origin-request">cross-origin request<a class="self-link" href="#cross-origin-request"></a></dfn>
@@ -1219,7 +1220,7 @@
   been set, otherwise it will be one of the following five values: <code><a data-link-type="dfn" href="#no-referrer">No Referrer</a></code>, <code><a data-link-type="dfn" href="#no-referrer-when-downgrade">No Referrer When
   Downgrade</a></code>, <code><a data-link-type="dfn" href="#origin-only">Origin Only</a></code>, <code><a data-link-type="dfn" href="#origin-when-cross-origin">Origin When
   Cross-origin</a></code>, and <code><a data-link-type="dfn" href="#unsafe-url">Unsafe URL</a></code>. Each is explained
-  below, and a detailed algorithm for evaluating their effect is given in the <a href="#integration-with-fetch">§6 Integration with Fetch</a> and <a href="#algorithms">§8 Algorithms</a> sections:</p>
+  below, and a detailed algorithm for evaluating their effect is given in the <a href="#integration-with-fetch">§6 Integration with Fetch</a> and <a href="#algorithms">§9 Algorithms</a> sections:</p>
     <p class="note" role="note">Note: The referrer policy for a <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#settings-object">settings object</a> provides a default
   baseline policy for requests. This policy may be tightened for specific
   requests via mechanisms like the <code><a data-link-type="dfn" href="http://www.w3.org/TR/html5/links.html#link-type-noreferrer">noreferrer</a></code> link type.</p>
@@ -1321,10 +1322,10 @@
     <dl>
      <dt>no-referrer
      <dd><a data-link-type="dfn" href="#no-referrer"><code>No Referrer</code></a>
-     <dt>origin
-     <dd><a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-3.2"><code>Origin</code></a>
      <dt>no-referrer-when-downgrade
      <dd><a data-link-type="dfn" href="#no-referrer-when-downgrade"><code>No Referrer When Downgrade</code></a>
+     <dt>origin
+     <dd><a data-link-type="dfn" href="#origin-only"><code>Origin Only</code></a>
      <dt>origin-when-cross-origin
      <dd><a data-link-type="dfn" href="#origin-when-cross-origin"><code>Origin When Cross-Origin</code></a>
      <dt>unsafe-url
@@ -1344,8 +1345,8 @@
        <li> Let <var>meta-value</var> be the value of the element’s <code><a data-link-type="element-attr" href="http://www.w3.org/TR/html5/document-metadata.html#attr-meta-content">content</a></code> attribute, after <a data-link-type="dfn" href="http://www.w3.org/TR/html5/infrastructure.html#strip-leading-and-trailing-whitespace">stripping
           leading and trailing whitespace</a>. 
        <li> If <var>meta-value</var> is the empty string, then abort these steps. 
-       <li> Let <var>policy</var> be the result of executing the <a href="#determine-policy-for-token">§8.5 Determine token’s Policy</a> algorithm on <var>meta-value</var>. 
-       <li> Execute the <a href="#set-referrer-policy">§8.2 Set environment’s referrer policy to policy</a> algorithm on <var>environment</var> using <var>policy</var>. 
+       <li> Let <var>policy</var> be the result of executing the <a href="#determine-policy-for-token">§9.5 Determine token’s Policy</a> algorithm on <var>meta-value</var>. 
+       <li> Execute the <a href="#set-referrer-policy">§9.2 Set environment’s referrer policy to policy</a> algorithm on <var>environment</var> using <var>policy</var>. 
       </ol>
       <p class="note" role="note">Note: Authors are encouraged to avoid the legacy keywords <code>never</code>, <code>default</code>, and <code>always</code>. The
       keywords <code>no-referrer</code>, <code>no-referrer-when-downgrade</code>, and <code>unsafe-url</code> respectively are preferred.</p>
@@ -1364,10 +1365,10 @@
     <dl>
      <dt>no-referrer
      <dd><a data-link-type="dfn" href="#no-referrer"><code>No Referrer</code></a>
-     <dt>origin
-     <dd><a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-3.2"><code>Origin</code></a>
      <dt>no-referrer-when-downgrade
      <dd><a data-link-type="dfn" href="#no-referrer-when-downgrade"><code>No Referrer When Downgrade</code></a>
+     <dt>origin
+     <dd><a data-link-type="dfn" href="#origin-only"><code>Origin Only</code></a>
      <dt>origin-when-cross-origin
      <dd><a data-link-type="dfn" href="#origin-when-cross-origin"><code>Origin When Cross-Origin</code></a>
      <dt>unsafe-url
@@ -1388,7 +1389,7 @@
     <ol>
      <li> Let <var>environment</var> be the <a data-link-type="dfn" href="http://www.w3.org/TR/html5/browsers.html#nested-browsing-context">nested browsing context</a>’s <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#incumbent-settings-object">incumbent settings object</a>. 
      <li> Let <var>policy</var> be the <a data-link-type="dfn" href="http://www.w3.org/TR/html5/browsers.html#parent-browsing-context">parent browsing context</a>’s <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#incumbent-settings-object">incumbent settings object</a>’s <a data-link-type="dfn" href="#referrer-policy">referrer policy</a>. 
-     <li> Execute the <a href="#set-referrer-policy">§8.2 Set environment’s referrer policy to policy</a> algorithm on <var>environment</var> using <var>policy</var>. 
+     <li> Execute the <a href="#set-referrer-policy">§9.2 Set environment’s referrer policy to policy</a> algorithm on <var>environment</var> using <var>policy</var>. 
     </ol>
     <h4 class="heading settled" data-level="4.4.2" id="referrer-policy-delivery-implicit-workers"><span class="secno">4.4.2. </span><span class="content"> Workers </span><a class="self-link" href="#referrer-policy-delivery-implicit-workers"></a></h4>
     <p>Whenever a user agent <a data-link-type="dfn" href="http://www.w3.org/TR/workers/#run-a-worker">runs a worker</a> for a script with <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/url/#url">URL</a></code> <var>url</var> and <var>url</var>’s scheme is a <a data-link-type="dfn" href="http://www.w3.org/TR/url/#local-scheme">local scheme</a>:</p>
@@ -1396,7 +1397,7 @@
      <li> Let <var>environment</var> be the Worker’s <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#incumbent-settings-object">incumbent settings
       object</a>. 
      <li> Let <var>policy</var> be <code>No Referrer When Downgrade</code>. 
-     <li> Execute the <a href="#set-referrer-policy">§8.2 Set environment’s referrer policy to policy</a> algorithm on <var>environment</var> using <var>policy</var>. 
+     <li> Execute the <a href="#set-referrer-policy">§9.2 Set environment’s referrer policy to policy</a> algorithm on <var>environment</var> using <var>policy</var>. 
     </ol>
    </section>
    <section>
@@ -1446,7 +1447,7 @@
     <h2 class="heading settled" data-level="6" id="integration-with-fetch"><span class="secno">6. </span><span class="content">Integration with Fetch</span><a class="self-link" href="#integration-with-fetch"></a></h2>
     <p>The Fetch specification should have a <var>referrer policy</var> associated
   with <a href="https://fetch.spec.whatwg.org/#concept-response">responses</a>.</p>
-    <p>The Fetch specification should call out to the <a href="#set-responses-referrer-policy">§8.1 Set response’s referrer policy from a Referrer-Policy header</a> algorithm immediately
+    <p>The Fetch specification should call out to the <a href="#set-responses-referrer-policy">§9.1 Set response’s referrer policy from a Referrer-Policy header</a> algorithm immediately
   after <a href="https://fetch.spec.whatwg.org/#http-network-fetch">Step
   7 of the HTTP-network fetch algorithm</a>. This algorithm sets the
   associated <var>referrer policy</var> on a response.</p>
@@ -1457,21 +1458,25 @@
     <h2 class="heading settled" data-level="7" id="integration-with-html"><span class="secno">7. </span><span class="content">Integration with HTML</span><a class="self-link" href="#integration-with-html"></a></h2>
     <p>When a <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/dom/#interface-document">Document</a></code> or <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/workers.html#workerglobalscope">WorkerGlobalScope</a></code> is created with
   a <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-response">response</a> (<var>response</var>) that has a
-  non-empty <var>referrer policy</var>, then execute <a href="#set-referrer-policy">§8.2 Set environment’s referrer policy to policy</a> on <var>response</var>’s <var>environment</var>.</p>
+  non-empty <var>referrer policy</var>, then execute <a href="#set-referrer-policy">§9.2 Set environment’s referrer policy to policy</a> on <var>response</var>’s <var>environment</var>.</p>
+    <h2 class="heading settled" data-level="8" id="integration-with-css"><span class="secno">8. </span><span class="content">Integration with CSS</span><a class="self-link" href="#integration-with-css"></a></h2>
+    <p>When fetching a <code class="idl"><a data-link-type="idl" href="https://fetch.spec.whatwg.org/#request">Request</a></code> <var>request</var> created for resources
+  referenced from stylesheets, the <var>request</var>’s <code class="idl"><a data-link-type="idl" href="https://fetch.spec.whatwg.org/#concept-request-client">client</a></code> should be the stylesheet’s containing document, its <code class="idl"><a data-link-type="idl" href="https://fetch.spec.whatwg.org/#concept-request-referrer">referrer</a></code> should be <code>client</code>.</p>
+    <p class="note" role="note">Note: Currently, only CSS Fonts spec specifies how to create a <code class="idl"><a data-link-type="idl" href="https://fetch.spec.whatwg.org/#request">Request</a></code> but sets the <code class="idl"><a data-link-type="idl" href="https://fetch.spec.whatwg.org/#concept-request-referrer">referrer</a></code> differently than specified here.</p>
    </section>
    <section>
-    <h2 class="heading settled" data-level="8" id="algorithms"><span class="secno">8. </span><span class="content">Algorithms</span><a class="self-link" href="#algorithms"></a></h2>
-    <h3 class="heading settled" data-level="8.1" id="set-responses-referrer-policy"><span class="secno">8.1. </span><span class="content"> Set <var>response</var>’s referrer policy from a <a data-link-type="dfn" href="#referrer-policy-header-dfn"><code>Referrer-Policy</code></a> header </span><a class="self-link" href="#set-responses-referrer-policy"></a></h3>
+    <h2 class="heading settled" data-level="9" id="algorithms"><span class="secno">9. </span><span class="content">Algorithms</span><a class="self-link" href="#algorithms"></a></h2>
+    <h3 class="heading settled" data-level="9.1" id="set-responses-referrer-policy"><span class="secno">9.1. </span><span class="content"> Set <var>response</var>’s referrer policy from a <a data-link-type="dfn" href="#referrer-policy-header-dfn"><code>Referrer-Policy</code></a> header </span><a class="self-link" href="#set-responses-referrer-policy"></a></h3>
     <p>Let <var>policy-tokens</var> be the list of tokens in
   the <a data-link-type="dfn" href="#referrer-policy-header-dfn"><code>Referrer-Policy</code></a> header value.</p>
     <ol>
      <li> Let <var>policy</var> be the empty string. 
-     <li> For each <var>token</var> in <var>policy-tokens</var>, execute <a href="#determine-policy-for-token">§8.5 Determine token’s Policy</a> on <var>token</var> and
+     <li> For each <var>token</var> in <var>policy-tokens</var>, execute <a href="#determine-policy-for-token">§9.5 Determine token’s Policy</a> on <var>token</var> and
       set <var>policy</var> to the result if it is not the empty string. 
      <li> Set <var>response</var>’s associated referrer policy
       to <var>policy</var>. 
     </ol>
-    <h3 class="heading settled" data-level="8.2" id="set-referrer-policy"><span class="secno">8.2. </span><span class="content"> Set <var>environment</var>’s referrer policy to <var>policy</var> </span><a class="self-link" href="#set-referrer-policy"></a></h3>
+    <h3 class="heading settled" data-level="9.2" id="set-referrer-policy"><span class="secno">9.2. </span><span class="content"> Set <var>environment</var>’s referrer policy to <var>policy</var> </span><a class="self-link" href="#set-referrer-policy"></a></h3>
     <p>If no referrer policy has been set for a <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#settings-object">settings object</a>, then
   setting its value is straightforward. If a policy has previously been
   set, then we overwrite it with the new value if the new value is
@@ -1479,10 +1484,10 @@
     <ol>
      <li> If <var>policy</var> is the empty string, abort these steps. 
      <li> If <var>policy</var> is not one of <code><a data-link-type="dfn" href="#no-referrer">No Referrer</a></code>, <code><a data-link-type="dfn" href="#no-referrer-when-downgrade">No Referrer When Downgrade</a></code>, <code><a data-link-type="dfn" href="#origin-only">Origin
-      Only</a></code>, <code><a data-link-type="dfn" href="#origin-when-cross-origin">Origin when cross-origin</a></code>, or <code><a data-link-type="dfn" href="#unsafe-url">Unsafe URL</a></code>, then return without setting <var>environment</var>’s referrer policy. 
+      Only</a></code>, <code><a data-link-type="dfn" href="#origin-when-cross-origin">Origin When Cross-Origin</a></code>, or <code><a data-link-type="dfn" href="#unsafe-url">Unsafe URL</a></code>, then return without setting <var>environment</var>’s referrer policy. 
      <li> Set <var>environment</var>’s <a data-link-type="dfn" href="#referrer-policy">referrer policy</a> to <var>policy</var>. 
     </ol>
-    <h3 class="heading settled" data-level="8.3" id="determine-requests-referrer"><span class="secno">8.3. </span><span class="content"> Determine <var>request</var>’s Referrer </span><a class="self-link" href="#determine-requests-referrer"></a></h3>
+    <h3 class="heading settled" data-level="9.3" id="determine-requests-referrer"><span class="secno">9.3. </span><span class="content"> Determine <var>request</var>’s Referrer </span><a class="self-link" href="#determine-requests-referrer"></a></h3>
     <p>Given a <code class="idl"><a data-link-type="idl" href="https://fetch.spec.whatwg.org/#request">Request</a></code> <var>request</var>, we can determine the correct
   referrer information to send by examining the <a data-link-type="dfn" href="#referrer-policy">policy</a> associated with
   its <code class="idl"><a data-link-type="idl" href="https://fetch.spec.whatwg.org/#concept-request-client">client</a></code>, as detailed in the following steps, which return
@@ -1576,7 +1581,7 @@
         </ol>
       </dl>
     </ol>
-    <h3 class="heading settled" data-level="8.4" id="strip-url"><span class="secno">8.4. </span><span class="content"> Strip <var>url</var> for use as a referrer </span><a class="self-link" href="#strip-url"></a></h3>
+    <h3 class="heading settled" data-level="9.4" id="strip-url"><span class="secno">9.4. </span><span class="content"> Strip <var>url</var> for use as a referrer </span><a class="self-link" href="#strip-url"></a></h3>
     <p>Certain portions of URLs MUST not be included when sending a URL as the value
   of a `<code>Referer</code>` header: a URLs fragment, username, and password
   components should be stripped from the URL before it’s sent out. This
@@ -1600,16 +1605,16 @@
       </ol>
      <li> Return <var>url</var>. 
     </ol>
-    <h3 class="heading settled" data-level="8.5" id="determine-policy-for-token"><span class="secno">8.5. </span><span class="content"> Determine <var>token</var>’s Policy </span><a class="self-link" href="#determine-policy-for-token"></a></h3>
+    <h3 class="heading settled" data-level="9.5" id="determine-policy-for-token"><span class="secno">9.5. </span><span class="content"> Determine <var>token</var>’s Policy </span><a class="self-link" href="#determine-policy-for-token"></a></h3>
     <p>Given a string <var>token</var> (for example, the value of a <a data-link-type="dfn" href="#referrer-policy-header-dfn"><code>Referrer-Policy</code></a> header), this algorithm will return the <a data-link-type="dfn" href="#referrer-policy">referrer policy</a> it refers to:</p>
     <ol>
      <li> If <var>token</var> is an <a data-link-type="dfn" href="http://www.w3.org/TR/html5/infrastructure.html#ascii-case-insensitive">ASCII case-insensitive match</a> for the
       strings "<code>never</code>" or "<code>no-referrer</code>", return <a data-link-type="dfn" href="#no-referrer"><code>No Referrer</code></a>. 
-     <li> If <var>token</var> is an <a data-link-type="dfn" href="http://www.w3.org/TR/html5/infrastructure.html#ascii-case-insensitive">ASCII case-insensitive match</a> for the
-      string "<code>origin</code>", return <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-3.2"><code>Origin</code></a>. 
      <li> If <var>token</var> is <a data-link-type="dfn" href="http://www.w3.org/TR/html5/infrastructure.html#ascii-case-insensitive">ASCII case-insensitive match</a> for the string
       "<code>default</code>" or "<code>no-referrer-when-downgrade</code>",
       return <a data-link-type="dfn" href="#no-referrer-when-downgrade"><code>No Referrer When Downgrade</code></a>. 
+     <li> If <var>token</var> is an <a data-link-type="dfn" href="http://www.w3.org/TR/html5/infrastructure.html#ascii-case-insensitive">ASCII case-insensitive match</a> for the
+      string "<code>origin</code>", return <a data-link-type="dfn" href="#origin-only"><code>Origin Only</code></a>. 
      <li> If <var>token</var> is <a data-link-type="dfn" href="http://www.w3.org/TR/html5/infrastructure.html#ascii-case-insensitive">ASCII case-insensitive match</a> for the string
       "<code>origin-when-cross-origin</code>", return <a data-link-type="dfn" href="#origin-when-cross-origin"><code>Origin When Cross-Origin</code></a>. 
      <li> If <var>token</var> is <a data-link-type="dfn" href="http://www.w3.org/TR/html5/infrastructure.html#ascii-case-insensitive">ASCII case-insensitive match</a> for the strings
@@ -1622,8 +1627,8 @@
   keywords <code>no-referrer</code>, <code>no-referrer-when-downgrade</code>, and <code>unsafe-url</code> respectively are preferred.</p>
    </section>
    <section>
-    <h2 class="heading settled" data-level="9" id="privacy"><span class="secno">9. </span><span class="content">Privacy Considerations</span><a class="self-link" href="#privacy"></a></h2>
-    <h3 class="heading settled" data-level="9.1" id="user-controls"><span class="secno">9.1. </span><span class="content">User Controls</span><a class="self-link" href="#user-controls"></a></h3>
+    <h2 class="heading settled" data-level="10" id="privacy"><span class="secno">10. </span><span class="content">Privacy Considerations</span><a class="self-link" href="#privacy"></a></h2>
+    <h3 class="heading settled" data-level="10.1" id="user-controls"><span class="secno">10.1. </span><span class="content">User Controls</span><a class="self-link" href="#user-controls"></a></h3>
     <p>Nothing in this specification should be interpreted as preventing user
   agents from offering options to users which would change the information
   sent out via a `<code>Referer</code>` header. For instance, user agents
@@ -1631,26 +1636,26 @@
   active <a data-link-type="dfn" href="#referrer-policy">referrer policy</a> on a page.</p>
    </section>
    <section>
-    <h2 class="heading settled" data-level="10" id="security"><span class="secno">10. </span><span class="content">Security Considerations</span><a class="self-link" href="#security"></a></h2>
-    <h3 class="heading settled" data-level="10.1" id="information-leakage"><span class="secno">10.1. </span><span class="content">Information Leakage</span><a class="self-link" href="#information-leakage"></a></h3>
+    <h2 class="heading settled" data-level="11" id="security"><span class="secno">11. </span><span class="content">Security Considerations</span><a class="self-link" href="#security"></a></h2>
+    <h3 class="heading settled" data-level="11.1" id="information-leakage"><span class="secno">11.1. </span><span class="content">Information Leakage</span><a class="self-link" href="#information-leakage"></a></h3>
     <p>The referrer policies <code>origin</code> and <code>unsafe-url</code> might
   leak the origin and the URL of a secure site respectively via insecure
   transport.</p>
     <p>Those two policies are include in the spec nevertheless to lower the friction
   of sites adopting secure transport.</p>
-    <h3 class="heading settled" data-level="10.2" id="downgrade"><span class="secno">10.2. </span><span class="content">Downgrade to less strict policies</span><a class="self-link" href="#downgrade"></a></h3>
+    <h3 class="heading settled" data-level="11.2" id="downgrade"><span class="secno">11.2. </span><span class="content">Downgrade to less strict policies</span><a class="self-link" href="#downgrade"></a></h3>
     <p>The spec does not forbid downgrading to less strict policies, e.g., from <code>never</code> to <code>unsafe-url</code>.</p>
     <p>On the one hand, it is not clear which policy is more strict for all possible
   pairs of policies: While <code>no-referrer-when-downgrade</code> will not
   leak any information over insecure transport, and <code>origin</code> will,
   the latter reveals less information across cross-origin navigations.</p>
     <p>On the other hand, allowing for setting less strict policies enables authors
-  to define safe fallbacks as described in <a href="#unknown-policy-values">§11.1 Unknown Policy Values</a>.</p>
+  to define safe fallbacks as described in <a href="#unknown-policy-values">§12.1 Unknown Policy Values</a>.</p>
    </section>
    <section>
-    <h2 class="heading settled" data-level="11" id="authoring"><span class="secno">11. </span><span class="content">Authoring Considerations</span><a class="self-link" href="#authoring"></a></h2>
-    <h3 class="heading settled" data-level="11.1" id="unknown-policy-values"><span class="secno">11.1. </span><span class="content">Unknown Policy Values</span><a class="self-link" href="#unknown-policy-values"></a></h3>
-    <p>As described in <a href="#determine-policy-for-token">§8.5 Determine token’s Policy</a> and <a href="#set-referrer-policy">§8.2 Set environment’s referrer policy to policy</a>, unknown policy values will be ignored, and
+    <h2 class="heading settled" data-level="12" id="authoring"><span class="secno">12. </span><span class="content">Authoring Considerations</span><a class="self-link" href="#authoring"></a></h2>
+    <h3 class="heading settled" data-level="12.1" id="unknown-policy-values"><span class="secno">12.1. </span><span class="content">Unknown Policy Values</span><a class="self-link" href="#unknown-policy-values"></a></h3>
+    <p>As described in <a href="#determine-policy-for-token">§9.5 Determine token’s Policy</a> and <a href="#set-referrer-policy">§9.2 Set environment’s referrer policy to policy</a>, unknown policy values will be ignored, and
   when multiple sources specify a referrer policy, the value of the
   latest one will be used. This makes it possible to deploy new policy
   values.</p>
@@ -1662,7 +1667,7 @@
     the last to be processed. </div>
    </section>
    <section>
-    <h2 class="heading settled" data-level="12" id="acknowledgements"><span class="secno">12. </span><span class="content">Acknowledgements</span><a class="self-link" href="#acknowledgements"></a></h2>
+    <h2 class="heading settled" data-level="13" id="acknowledgements"><span class="secno">13. </span><span class="content">Acknowledgements</span><a class="self-link" href="#acknowledgements"></a></h2>
     <p>This specification is based in large part on Adam Barth and Jochen Eisinger’s <a href="http://wiki.whatwg.org/wiki/Meta_referrer">Meta referrer</a> document.</p>
    </section>
   </main>
@@ -1705,7 +1710,7 @@
    <li><a href="#no-referrer">No Referrer</a><span>, in §3.1</span>
    <li><a href="#no-referrer-when-downgrade">No Referrer When Downgrade</a><span>, in §3.2</span>
    <li><a href="#origin-only">Origin Only</a><span>, in §3.3</span>
-   <li><a href="#origin-only-flag">origin-only flag</a><span>, in §8.4</span>
+   <li><a href="#origin-only-flag">origin-only flag</a><span>, in §9.4</span>
    <li><a href="#origin-when-cross-origin">Origin When Cross-Origin</a><span>, in §3.4</span>
    <li><a href="#referrer-policy">policy</a><span>, in §2</span>
    <li><a href="#policy-token">policy-token</a><span>, in §4.1</span>
@@ -1739,6 +1744,7 @@
      <li><a href="https://fetch.spec.whatwg.org/#concept-request-client">client</a>
      <li><a href="https://fetch.spec.whatwg.org/#fetching">fetching</a>
      <li><a href="https://fetch.spec.whatwg.org/#concept-request-origin">origin</a>
+     <li><a href="https://fetch.spec.whatwg.org/#concept-request-referrer">referrer</a>
      <li><a href="https://fetch.spec.whatwg.org/#concept-response">response</a>
      <li><a href="https://fetch.spec.whatwg.org/#concept-request-url">url</a>
     </ul>

@@ -31,6 +31,7 @@ spec: FETCH; urlPrefix: https://fetch.spec.whatwg.org/
     text: url; for: Request; url: concept-request-url
     text: origin; for: Request; url: concept-request-origin
     text: client; for: Request; url: concept-request-client
+    text: referrer; for: Request; url: concept-request-referrer
     text: context; for: Request; url: concept-request-context
     text: context-frame-type; for: Request; url: concept-request-context-frame-type
 spec: HTML5; urlPrefix: http://www.w3.org/TR/html5/
@@ -697,6 +698,15 @@ spec:html; type:element; text:link
   non-empty |referrer policy|, then execute
   [[#set-referrer-policy]] on |response|'s |environment|.
 
+  <h2 id="integration-with-css">Integration with CSS</h2>
+
+  When fetching a {{Request}} <var>request</var> created for resources
+  referenced from stylesheets, the <var>request</var>'s
+  {{Request/client}} should be the stylesheet's containing document, its
+  {{Request/referrer}} should be <code>client</code>.
+
+  Note: Currently, only CSS Fonts spec specifies how to create a {{Request}}
+  but sets the {{Request/referrer}} differently than specified here.
 </section>
 
 <section>
