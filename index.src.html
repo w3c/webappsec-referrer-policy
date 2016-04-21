@@ -109,7 +109,7 @@ spec: HTML5; urlPrefix: http://www.w3.org/TR/html5/
       text: worker environment
 spec: MIX; urlPrefix: https://w3c.github.io/webappsec/specs/mixedcontent/
   type: dfn
-    text: a priori insecure origin
+    text: a priori authenticated URL
 spec: WORKERS; urlPrefix: http://www.w3.org/TR/workers/
   type: dfn
     text: runs a worker; url: run-a-worker
@@ -266,12 +266,12 @@ spec:html; type:element; text:link
 
   The <dfn>No Referrer When Downgrade</dfn> policy sends a full URL along with
   requests from <a>TLS-protected</a> <a>settings object</a> to a
-  non-<a><em>a priori</em> insecure origin</a>, and requests from <a>settings
+  <a><em>a priori</em> authenticated URL</a>, and requests from <a>settings
   objects</a> which are <em>not</em> <a>TLS-protected</a> to any
   <a>origin</a>.
 
-  Requests from <a>TLS-protected</a> <a>settings objects</a> to <a><em>a
-  priori</em> insecure origins</a>, on the other hand, will contain no referrer
+  Requests from <a>TLS-protected</a> <a>settings objects</a> to not-<a><em>a
+  priori</em> authenticated URL</a>, on the other hand, will contain no referrer
   information. A <code><a>Referer</a></code> HTTP header will not be sent.
 
   <div class="example">
@@ -280,7 +280,7 @@ spec:html; type:element; text:link
     <code>https://not.example.com/</code> would send a
     <code><a>Referer</a></code> HTTP header with a value of
     <code>https://example.com/page.html</code>, as neither resource's origin is an
-    <a><em>a priori</em> insecure origin</a>.
+    non-<a><em>a priori</em> authenticated URL</a>.
 
     Navigations from that same page to
     <code><strong>http</strong>://not.example.com/</code> would send no
@@ -311,8 +311,8 @@ spec:html; type:element; text:link
     If a document at <code>https://example.com/page.html</code> sets a policy of
     <code>Origin Only</code>, then navigations to any <a>origin</a> would send a
     <a><code>Referer</code></a> header with a value of
-    <code>https://example.com/</code>, even to <a><em>a priori</em> insecure
-    origins</a>.
+    <code>https://example.com/</code>, even to not-<a><em>a priori</em> authenticated
+    URLs</a>.
   </div>
 
   <h3 id="referrer-policy-state-origin-when-cross-origin">Origin When Cross-Origin</h3>
@@ -343,8 +343,8 @@ spec:html; type:element; text:link
 
     Navigations from that same page to <code>https://not.example.com/</code>
     would send a <a><code>Referer</code></a> header with a value of
-    <code>https://example.com/</code>, even to <a><em>a priori</em> insecure
-    origins</a>.
+    <code>https://example.com/</code>, even to not-<a><em>a priori</em> authenticated
+    URLs</a>.
   </div>
 
   <h3 id="referrer-policy-state-unsafe-url">Unsafe URL</h3>
@@ -905,7 +905,7 @@ spec:html; type:element; text:link
                   3xx</a> response was <a>TLS-protected</a> <em>and</em>
                   the <a>origin</a>
                   of <var>request</var>'s <code>URL</code> is
-                  an <a><em>a priori</em> insecure origin</a>, then
+                  an not-<a><em>a priori</em> authenticated URL</a>, then
                   return <code>no referrer</code>.
                 </li>
                 <li>
@@ -919,7 +919,7 @@ spec:html; type:element; text:link
                 <li>
                   If <var>environment</var> is <a>TLS-protected</a> <em>and</em> the
                   <a>origin</a> of <var>request</var>'s <code>URL</code> is
-                  an <a><em>a priori</em> insecure origin</a>, then return
+                  an not-<a><em>a priori</em> authenticated URL</a>, then return
                   <code>no referrer</code>.
                 </li>
                 <li>
