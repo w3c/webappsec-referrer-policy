@@ -53,6 +53,7 @@ spec: HTML5; urlPrefix: http://www.w3.org/TR/html5/
       text: the document's address
     urlPrefix: embedded-content-0.html
       text: an iframe srcdoc document
+      text: relevant mutation; url: relevant-mutations
     urlPrefix: browsers.html
       text: active document
       text: parse a sandboxing directive
@@ -644,6 +645,9 @@ spec:html; type:element; text:link
   The <code>referrerPolicy</code> IDL attribute must <a>reflect</a> the
   <code>referrerpolicy</code> content attribute, <a>limited to only known
   values</a>.
+
+  Note: Modifying the <code>referrerPolicy</code> IDL attribute is not a
+  <a>relevant mutation</a> for an <code><a element>img</a></code> element.
 
   <h3 id="html-iframe-element">HTMLIFrameElement</h3>
   <pre class="idl">
