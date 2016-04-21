@@ -24,15 +24,22 @@ spec: DOM; urlPrefix: http://www.w3.org/TR/dom/
 spec: FETCH; urlPrefix: https://fetch.spec.whatwg.org/
   type: dfn
     text: fetching
+    text: request; url: concept-request
     text: response; url: concept-response
   type: interface
     text: Request
+  type: interface
+    text: Response
   type: attribute
     text: url; for: Request; url: concept-request-url
     text: origin; for: Request; url: concept-request-origin
     text: client; for: Request; url: concept-request-client
     text: context; for: Request; url: concept-request-context
     text: context-frame-type; for: Request; url: concept-request-context-frame-type
+spec: HTML; urlPrefix: https://html.spec.whatwg.org/multipage/
+  type: dfn
+    urlPrefix: browsers.html
+      text: opaque origin; url: concept-origin-opaque
 spec: HTML5; urlPrefix: http://www.w3.org/TR/html5/
   type: element-attr
     urlPrefix: document-metadata.html
@@ -675,15 +682,10 @@ spec:html; type:element; text:link
 <section>
   <h2 id="integration-with-fetch">Integration with Fetch</h2>
 
-  The Fetch specification should have a |referrer policy|
-  associated
-  with <a href="https://fetch.spec.whatwg.org/#concept-response">responses</a>.
-
-  The Fetch specification should call out to the
-  [[#set-responses-referrer-policy]] algorithm immediately
-  after <a href="https://fetch.spec.whatwg.org/#http-network-fetch">Step
-  7 of the HTTP-network fetch algorithm</a>. This algorithm sets the
-  associated |referrer policy| on a response.
+  The Fetch specification calls out to
+  [[#set-requests-referrer-policy-on-redirect]] immediately
+  before <a href="https://fetch.spec.whatwg.org/#http-redirect-fetch">Step
+  15 of the HTTP-redirect fetch</a>.
 
   The Fetch specification calls out to the
   <a href="#determine-requests-referrer">Determine <var>request</var>'s
@@ -696,26 +698,35 @@ spec:html; type:element; text:link
 
   <h2 id="integration-with-html">Integration with HTML</h2>
 
-  When a {{Document}} or {{WorkerGlobalScope}} is created with
-  a <a>response</a> (|response|) that has a
-  non-empty |referrer policy|, then execute
-  [[#set-referrer-policy]] on |response|'s |environment|.
+  When a {{Document}} or {{WorkerGlobalScope}} is created after fetching
+  a {{Request}} |request| with a {{Response}} |response|, then the HTML
+  specification should call out to
+  [[#parse-referrer-policy-from-header]] on |response| and use the
+  resulting |policy| to execute [[#set-referrer-policy]] on |request|'s
+  |environment|.
+
+  Issue: TODO: define content attribute integrations. For example, for
+  img elements, HTML should set the request's associated referrer policy
+  before fetching.
 
 </section>
 
 <section>
   <h2 id="algorithms">Algorithms</h2>
 
-  <h3 id="set-responses-referrer-policy">
-    Set <var>response</var>'s referrer policy from a <a><code>Referrer-Policy</code></a> header
+  <h3 id="parse-referrer-policy-from-header">
+    Parse a referrer policy from a <a><code>Referrer-Policy</code></a> header
   </h3>
 
-  Let <var>policy-tokens</var> be the list of tokens in
-  the <a><code>Referrer-Policy</code></a> header value.
+  Given a {{Response}} |response|, the following steps return a <a>referrer policy</a> according to |response|'s `<code>Referrer-Policy</code>` header:
 
   <ol>
     <li>
-      Let <var>policy</var> be the empty string.
+      Let |policy-tokens| be the result of
+      parsing `<code>Referrer-Policy</code>` in |response|'s header list.
+    </li>
+    <li>
+      Let |policy| be the empty string.
     </li>
     <li>
       For each <var>token</var> in <var>policy-tokens</var>, execute
@@ -723,8 +734,7 @@ spec:html; type:element; text:link
       set <var>policy</var> to the result if it is not the empty string.
     </li>
     <li>
-      Set <var>response</var>'s associated referrer policy
-      to <var>policy</var>.
+      Return |policy|.
     </li>
   </ol>
 
@@ -756,13 +766,30 @@ spec:html; type:element; text:link
     </li>
   </ol>
 
+  <h3 id="set-requests-referrer-policy-on-redirect">
+    Set |request|'s referrer policy on redirect
+  </h3>
+
+  Given a <a>request</a> |request| and a <a>response</a> |actualResponse|,
+  this algorithm updates |request|'s associated <a>referrer policy</a>
+  according to the Referrer-Policy header (if any) in |actualResponse|.
+
+  <ol>
+    <li>
+      Let |policy| be the result of executing
+      [[#parse-referrer-policy-from-header]] on |actualResponse|.
+    </li>
+    <li>If |policy| is not the empty string, then set |request|'s
+    associated referrer policy to |policy|.</li>
+  </ol>
+
   <h3 id="determine-requests-referrer">
     Determine <var>request</var>'s Referrer
   </h3>
 
   Given a {{Request}} <var>request</var>, we can determine the correct
-  referrer information to send by examining the <a>policy</a> associated with
-  its {{Request/client}}, as detailed in the following steps, which return
+  referrer information to send by examining the <a>policy</a> associated
+  with it, as detailed in the following steps, which return
   either <code>no referrer</code> or a URL:
 
   Note: If Fetch is performing a navigation in response to a link of type
@@ -772,87 +799,67 @@ spec:html; type:element; text:link
 
   <ol>
     <li>
-      Let <var>policy</var> be the empty string.
+      Let <var>policy</var> be |request|'s associated <a>referrer policy</a>.
     </li>
     <li>
-      If <var>request</var> is the result of following a redirect from
-      an HTTP <a>Redirection 3xx</a> <var>response</var>, then
-      let <var>referrerSource</var>
-      be <var>request</var>'s <code>referrer</code>, and
-      let <var>policy</var> be <var>response</var>'s associated referrer
-      policy. If <var>referrerSource</var> is null, then return <code>no
-      referrer</code> and abort these steps.
+      Let <var>environment</var> be <var>request</var>'s <code>client</code>.
     </li>
     <li>
-      Otherwise, if <var>request</var> is not the result of following a
-      redirect:
+      If <var>request</var>'s <code>referrer</code> is a URL, then let
+      <var>referrerSource</var> be <var>request</var>'s
+      <code>referrer</code>. Otherwise:
 
       <ol>
         <li>
-          Let <var>environment</var> be <var>request</var>'s <code>client</code>.
-        </li>
-        <li>
-          If <var>request</var> was initiated by an element with
-          a <code>referrerpolicy</code> content attribute,
-          let <var>policy</var> be the attribute's value. Otherwise,
-          let <var>policy</var> be the value
-          of <var>environment</var>'s <a>referrer policy</a>.
-        </li>
-        <li>
-          If <var>request</var>'s <code>referrer</code> is a URL, then let
-          <var>referrerSource</var> be <var>request</var>'s
-          <code>referrer</code>. Otherwise:
+          If <var>environment</var> is a <a>document environment</a>:
 
           <ol>
             <li>
-              If <var>environment</var> is a <a>document environment</a>:
+              Let <var>document</var> be the {{Document}} object of the
+              <a>active document</a> of the <a>browsing context</a> of
+              <var>environment</var>'s <a>responsible browsing context</a>.
+            </li>
+          </ol>
+        </li>
+        <li>
+          Otherwise, <var>environment</var> is a <a>worker environment</a>:
 
-              <ol>
-                <li>
-                  Let <var>document</var> be the {{Document}} object of the
-                  <a>active document</a> of the <a>browsing context</a> of
-                  <var>environment</var>'s <a>responsible browsing context</a>.
-                </li>
-              </ol>
+          <ol>
+            <li>
+              Let <var>source</var> be the <a>API referrer source</a>
+              specified by the <a>incumbent settings object</a>.
             </li>
             <li>
-              Otherwise, <var>environment</var> is a <a>worker environment</a>:
+              If <var>source</var> is a URL, let <var>referrerSource</var>
+              be <var>source</var>, otherwise let <var>document</var> be
+              <var>source</var>.
+            </li>
+          </ol>
+        </li>
+        <li>
+          If <var>document</var> is set, execute the following steps:
 
-              <ol>
-                <li>
-                  Let <var>source</var> be the <a>API referrer source</a>
-                  specified by the <a>incumbent settings object</a>.
-                </li>
-                <li>
-                  If <var>source</var> is a URL, let <var>referrerSource</var>
-                  be <var>source</var>, otherwise let <var>document</var> be
-                  <var>source</var>.
-                </li>
-              </ol>
+          <ol>
+            <li>
+              If <var>document</var>'s <a>origin</a> is an <a>opaque
+              origin</a> (because, for example, it has been sandboxed
+              into a unique origin), return <code>no referrer</code> and
+              abort these steps.
             </li>
             <li>
-              If <var>document</var> is set, execute the following steps:
-
-              <ol>
-                <li>
-                  If <var>document</var>'s <a>origin</a> is not a scheme/host/port
-                  tuple (because, for example, it has been sandboxed into a unique
-                  origin), return <code>no referrer</code> and abort these steps.
-                </li>
-                <li>
-                  While <var>document</var> corresponds to <a>an iframe srcdoc Document</a>,
-                  let <var>document</var> be that Document's <a>browsing context</a>'s
-                  <a>browsing context container</a>'s {{Document}}.
-                </li>
-                <li>
-                  Let <var>referrerSource</var> be <var>document</var>'s URL.
-                </li>
-              </ol>
+              While <var>document</var> corresponds to <a>an iframe srcdoc Document</a>,
+              let <var>document</var> be that Document's <a>browsing context</a>'s
+              <a>browsing context container</a>'s {{Document}}.
+            </li>
+            <li>
+              Let <var>referrerSource</var> be <var>document</var>'s URL.
             </li>
           </ol>
         </li>
       </ol>
+
     </li>
+
     <li>
       Let <var>referrerURL</var> be the result of <a href="#strip-url">stripping
       <var>referrerSource</var> for use as a referrer.</a>
@@ -901,36 +908,18 @@ spec:html; type:element; text:link
         <dd>
           <ol>
             <li>
-              If <var>request</var> is the result of following an
-              HTTP <a>Redirection 3xx</a> response:
+              If |environment| is not null:
               <ol>
                 <li>
-                  If the request that returned the <a>Redirection
-                  3xx</a> response was <a>TLS-protected</a> <em>and</em>
+                  If |environment| is <a>TLS-protected</a> <em>and</em>
                   the <a>origin</a>
-                  of <var>request</var>'s <code>URL</code> is
-                  not an <a><em>a priori</em> authenticated URL</a>, then
-                  return <code>no referrer</code>.
-                </li>
-                <li>
-                  Otherwise, return <var>referrerURL</var>.
+                  of <var>request</var>'s <a href="https://fetch.spec.whatwg.org/#concept-request-current-url">current
+                  URL</a> is not an <a><em>a priori</em> authenticated
+                  URL</a>, then return <code>no referrer</code>.
                 </li>
               </ol>
             </li>
-            <li>
-              Otherwise:
-              <ol>
-                <li>
-                  If <var>environment</var> is <a>TLS-protected</a> <em>and</em> the
-                  <a>origin</a> of <var>request</var>'s <code>URL</code> is
-                  not an <a><em>a priori</em> authenticated URL</a>, then return
-                  <code>no referrer</code>.
-                </li>
-                <li>
-                  Otherwise, return <var>referrerURL</var>.
-                </li>
-              </ol>
-            </li>
+            <li>Return |referrerURL|.
           </ol>
         </dd>
       </dl>
