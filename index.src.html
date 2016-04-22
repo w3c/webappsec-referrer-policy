@@ -311,8 +311,8 @@ spec:html; type:element; text:link
     If a document at <code>https://example.com/page.html</code> sets a policy of
     <code>Origin Only</code>, then navigations to any <a>origin</a> would send a
     <a><code>Referer</code></a> header with a value of
-    <code>https://example.com/</code>, even to not-<a><em>a priori</em> authenticated
-    URLs</a>.
+    <code>https://example.com/</code>, even to URLs that are not <a><em>a
+    priori</em> authenticated URLs</a>.
   </div>
 
   <h3 id="referrer-policy-state-origin-when-cross-origin">Origin When Cross-Origin</h3>
@@ -343,8 +343,8 @@ spec:html; type:element; text:link
 
     Navigations from that same page to <code>https://not.example.com/</code>
     would send a <a><code>Referer</code></a> header with a value of
-    <code>https://example.com/</code>, even to not-<a><em>a priori</em> authenticated
-    URLs</a>.
+    <code>https://example.com/</code>, even to URLs that are not <a><em>a
+    priori</em> authenticated URLs</a>.
   </div>
 
   <h3 id="referrer-policy-state-unsafe-url">Unsafe URL</h3>
@@ -905,7 +905,7 @@ spec:html; type:element; text:link
                   3xx</a> response was <a>TLS-protected</a> <em>and</em>
                   the <a>origin</a>
                   of <var>request</var>'s <code>URL</code> is
-                  an not-<a><em>a priori</em> authenticated URL</a>, then
+                  not an <a><em>a priori</em> authenticated URL</a>, then
                   return <code>no referrer</code>.
                 </li>
                 <li>
@@ -919,7 +919,7 @@ spec:html; type:element; text:link
                 <li>
                   If <var>environment</var> is <a>TLS-protected</a> <em>and</em> the
                   <a>origin</a> of <var>request</var>'s <code>URL</code> is
-                  an not-<a><em>a priori</em> authenticated URL</a>, then return
+                  not an <a><em>a priori</em> authenticated URL</a>, then return
                   <code>no referrer</code>.
                 </li>
                 <li>
