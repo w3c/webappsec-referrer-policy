@@ -1000,7 +1000,7 @@
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="http://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/Icons/w3c_home" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Referrer Policy</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2016-03-28">28 March 2016</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2016-04-22">22 April 2016</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1230,14 +1230,14 @@
     <div class="example" id="example-27d86a4b"><a class="self-link" href="#example-27d86a4b"></a> If a document at <code>https://example.com/page.html</code> sets a policy of <code>No Referrer</code>, then navigations to <code>https://example.com/</code> (or any other URL) would send no <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2"><code>Referer</code></a> header. </div>
     <h3 class="heading settled" data-level="3.2" id="referrer-policy-state-no-referrer-when-downgrade"><span class="secno">3.2. </span><span class="content">No Referrer When Downgrade</span><a class="self-link" href="#referrer-policy-state-no-referrer-when-downgrade"></a></h3>
     <p>The <dfn data-dfn-type="dfn" data-noexport="" id="no-referrer-when-downgrade">No Referrer When Downgrade<a class="self-link" href="#no-referrer-when-downgrade"></a></dfn> policy sends a full URL along with
-  requests from <a data-link-type="dfn" href="http://www.w3.org/TR/2010/REC-wsc-ui-20100812/#typesoftls">TLS-protected</a> <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#settings-object">settings object</a> to a
-  non-<a data-link-type="dfn" href="https://w3c.github.io/webappsec/specs/mixedcontent/#a-priori-insecure-origin"><em>a priori</em> insecure origin</a>, and requests from <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#settings-object">settings
+  requests from <a data-link-type="dfn" href="http://www.w3.org/TR/2010/REC-wsc-ui-20100812/#typesoftls">TLS-protected</a> <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#settings-object">settings object</a> to a <a data-link-type="dfn" href="https://w3c.github.io/webappsec/specs/mixedcontent/#a-priori-authenticated-url"><em>a priori</em> authenticated URL</a>, and requests from <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#settings-object">settings
   objects</a> which are <em>not</em> <a data-link-type="dfn" href="http://www.w3.org/TR/2010/REC-wsc-ui-20100812/#typesoftls">TLS-protected</a> to any <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-3.2">origin</a>.</p>
-    <p>Requests from <a data-link-type="dfn" href="http://www.w3.org/TR/2010/REC-wsc-ui-20100812/#typesoftls">TLS-protected</a> <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#settings-object">settings objects</a> to <a data-link-type="dfn" href="https://w3c.github.io/webappsec/specs/mixedcontent/#a-priori-insecure-origin"><em>a
-  priori</em> insecure origins</a>, on the other hand, will contain no referrer
+    <p>Requests from <a data-link-type="dfn" href="http://www.w3.org/TR/2010/REC-wsc-ui-20100812/#typesoftls">TLS-protected</a> <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#settings-object">settings objects</a> to not-<a data-link-type="dfn" href="https://w3c.github.io/webappsec/specs/mixedcontent/#a-priori-authenticated-url"><em>a
+  priori</em> authenticated URL</a>, on the other hand, will contain no referrer
   information. A <code><a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2">Referer</a></code> HTTP header will not be sent.</p>
-    <div class="example" id="example-09c2ea06">
-     <a class="self-link" href="#example-09c2ea06"></a> If a document at <code>https://example.com/page.html</code> sets a policy of <code>No Referrer When Downgrade</code>, then navigations to <code>https://not.example.com/</code> would send a <code><a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2">Referer</a></code> HTTP header with a value of <code>https://example.com/page.html</code>, as neither resource’s origin is an <a data-link-type="dfn" href="https://w3c.github.io/webappsec/specs/mixedcontent/#a-priori-insecure-origin"><em>a priori</em> insecure origin</a>. 
+    <div class="example" id="example-506cf3f7">
+     <a class="self-link" href="#example-506cf3f7"></a> If a document at <code>https://example.com/page.html</code> sets a policy of <code>No Referrer When Downgrade</code>, then navigations to <code>https://not.example.com/</code> would send a <code><a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2">Referer</a></code> HTTP header with a value of <code>https://example.com/page.html</code>, as neither resource’s origin is an
+    non-<a data-link-type="dfn" href="https://w3c.github.io/webappsec/specs/mixedcontent/#a-priori-authenticated-url"><em>a priori</em> authenticated URL</a>. 
      <p>Navigations from that same page to <code><strong>http</strong>://not.example.com/</code> would send no <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2"><code>Referer</code></a> header.</p>
     </div>
     <p>This is a user agent’s default behavior, if no policy is otherwise specified.</p>
@@ -1250,8 +1250,8 @@
   ("<code>/</code>") character to the origin (e.g. <code>https://example.com/</code>).</p>
     <p class="note" role="note">Note: The <code>Origin Only</code> policy causes the origin of HTTPS referrers
   to be sent over the network as part of unencrypted HTTP requests.</p>
-    <div class="example" id="example-cecb98a9"><a class="self-link" href="#example-cecb98a9"></a> If a document at <code>https://example.com/page.html</code> sets a policy of <code>Origin Only</code>, then navigations to any <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-3.2">origin</a> would send a <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2"><code>Referer</code></a> header with a value of <code>https://example.com/</code>, even to <a data-link-type="dfn" href="https://w3c.github.io/webappsec/specs/mixedcontent/#a-priori-insecure-origin"><em>a priori</em> insecure
-    origins</a>. </div>
+    <div class="example" id="example-6fbea3ba"><a class="self-link" href="#example-6fbea3ba"></a> If a document at <code>https://example.com/page.html</code> sets a policy of <code>Origin Only</code>, then navigations to any <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-3.2">origin</a> would send a <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2"><code>Referer</code></a> header with a value of <code>https://example.com/</code>, even to URLs that are not <a data-link-type="dfn" href="https://w3c.github.io/webappsec/specs/mixedcontent/#a-priori-authenticated-url"><em>a
+    priori</em> authenticated URLs</a>. </div>
     <h3 class="heading settled" data-level="3.4" id="referrer-policy-state-origin-when-cross-origin"><span class="secno">3.4. </span><span class="content">Origin When Cross-Origin</span><a class="self-link" href="#referrer-policy-state-origin-when-cross-origin"></a></h3>
     <p>The <dfn data-dfn-type="dfn" data-noexport="" id="origin-when-cross-origin">Origin When Cross-Origin<a class="self-link" href="#origin-when-cross-origin"></a></dfn> policy specifies that a full URL, <a href="#strip-url">stripped for use as a referrer</a>, is sent as referrer
   information when making <a data-link-type="dfn" href="#same-origin-request">same-origin requests</a> from a particular <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#settings-object">settings object</a>, and only the <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-6.2">ASCII serialization</a> of the <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-3.2">origin</a> of the <a data-link-type="dfn" href="http://www.w3.org/TR/html5/webappapis.html#settings-object">settings object</a> from which a request is
@@ -1261,10 +1261,10 @@
     <p class="note" role="note">Note: The <code>Origin When Cross-Origin</code> policy causes the origin of
   HTTPS referrers to be sent over the network as part of unencrypted HTTP
   requests.</p>
-    <div class="example" id="example-8c47077e">
-     <a class="self-link" href="#example-8c47077e"></a> If a document at <code>https://example.com/page.html</code> sets a policy of <code>Origin When Cross-Origin</code>, then navigations to any <code>https://example.com/not-page.html</code> would send a <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2"><code>Referer</code></a> header with a value of <code>https://example.com/page.html</code>. 
-     <p>Navigations from that same page to <code>https://not.example.com/</code> would send a <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2"><code>Referer</code></a> header with a value of <code>https://example.com/</code>, even to <a data-link-type="dfn" href="https://w3c.github.io/webappsec/specs/mixedcontent/#a-priori-insecure-origin"><em>a priori</em> insecure
-    origins</a>.</p>
+    <div class="example" id="example-95035dec">
+     <a class="self-link" href="#example-95035dec"></a> If a document at <code>https://example.com/page.html</code> sets a policy of <code>Origin When Cross-Origin</code>, then navigations to any <code>https://example.com/not-page.html</code> would send a <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2"><code>Referer</code></a> header with a value of <code>https://example.com/page.html</code>. 
+     <p>Navigations from that same page to <code>https://not.example.com/</code> would send a <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2"><code>Referer</code></a> header with a value of <code>https://example.com/</code>, even to URLs that are not <a data-link-type="dfn" href="https://w3c.github.io/webappsec/specs/mixedcontent/#a-priori-authenticated-url"><em>a
+    priori</em> authenticated URLs</a>.</p>
     </div>
     <h3 class="heading settled" data-level="3.5" id="referrer-policy-state-unsafe-url"><span class="secno">3.5. </span><span class="content">Unsafe URL</span><a class="self-link" href="#referrer-policy-state-unsafe-url"></a></h3>
     <p>The <dfn data-dfn-type="dfn" data-noexport="" id="unsafe-url">Unsafe URL<a class="self-link" href="#unsafe-url"></a></dfn> policy specifies that a full URL, <a href="#strip-url">stripped for use as a referrer</a>, is sent along with
@@ -1321,10 +1321,10 @@
     <dl>
      <dt>no-referrer
      <dd><a data-link-type="dfn" href="#no-referrer"><code>No Referrer</code></a>
-     <dt>origin
-     <dd><a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-3.2"><code>Origin</code></a>
      <dt>no-referrer-when-downgrade
      <dd><a data-link-type="dfn" href="#no-referrer-when-downgrade"><code>No Referrer When Downgrade</code></a>
+     <dt>origin
+     <dd><a data-link-type="dfn" href="#origin-only"><code>Origin Only</code></a>
      <dt>origin-when-cross-origin
      <dd><a data-link-type="dfn" href="#origin-when-cross-origin"><code>Origin When Cross-Origin</code></a>
      <dt>unsafe-url
@@ -1364,10 +1364,10 @@
     <dl>
      <dt>no-referrer
      <dd><a data-link-type="dfn" href="#no-referrer"><code>No Referrer</code></a>
-     <dt>origin
-     <dd><a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-3.2"><code>Origin</code></a>
      <dt>no-referrer-when-downgrade
      <dd><a data-link-type="dfn" href="#no-referrer-when-downgrade"><code>No Referrer When Downgrade</code></a>
+     <dt>origin
+     <dd><a data-link-type="dfn" href="#origin-only"><code>Origin Only</code></a>
      <dt>origin-when-cross-origin
      <dd><a data-link-type="dfn" href="#origin-when-cross-origin"><code>Origin When Cross-Origin</code></a>
      <dt>unsafe-url
@@ -1479,7 +1479,7 @@
     <ol>
      <li> If <var>policy</var> is the empty string, abort these steps. 
      <li> If <var>policy</var> is not one of <code><a data-link-type="dfn" href="#no-referrer">No Referrer</a></code>, <code><a data-link-type="dfn" href="#no-referrer-when-downgrade">No Referrer When Downgrade</a></code>, <code><a data-link-type="dfn" href="#origin-only">Origin
-      Only</a></code>, <code><a data-link-type="dfn" href="#origin-when-cross-origin">Origin when cross-origin</a></code>, or <code><a data-link-type="dfn" href="#unsafe-url">Unsafe URL</a></code>, then return without setting <var>environment</var>’s referrer policy. 
+      Only</a></code>, <code><a data-link-type="dfn" href="#origin-when-cross-origin">Origin When Cross-Origin</a></code>, or <code><a data-link-type="dfn" href="#unsafe-url">Unsafe URL</a></code>, then return without setting <var>environment</var>’s referrer policy. 
      <li> Set <var>environment</var>’s <a data-link-type="dfn" href="#referrer-policy">referrer policy</a> to <var>policy</var>. 
     </ol>
     <h3 class="heading settled" data-level="8.3" id="determine-requests-referrer"><span class="secno">8.3. </span><span class="content"> Determine <var>request</var>’s Referrer </span><a class="self-link" href="#determine-requests-referrer"></a></h3>
@@ -1562,7 +1562,7 @@
           <ol>
            <li> If the request that returned the <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-6.4">Redirection
                   3xx</a> response was <a data-link-type="dfn" href="http://www.w3.org/TR/2010/REC-wsc-ui-20100812/#typesoftls">TLS-protected</a> <em>and</em> the <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-3.2">origin</a> of <var>request</var>’s <code>URL</code> is
-                  an <a data-link-type="dfn" href="https://w3c.github.io/webappsec/specs/mixedcontent/#a-priori-insecure-origin"><em>a priori</em> insecure origin</a>, then
+                  not an <a data-link-type="dfn" href="https://w3c.github.io/webappsec/specs/mixedcontent/#a-priori-authenticated-url"><em>a priori</em> authenticated URL</a>, then
                   return <code>no referrer</code>. 
            <li> Otherwise, return <var>referrerURL</var>. 
           </ol>
@@ -1570,7 +1570,7 @@
            Otherwise: 
           <ol>
            <li> If <var>environment</var> is <a data-link-type="dfn" href="http://www.w3.org/TR/2010/REC-wsc-ui-20100812/#typesoftls">TLS-protected</a> <em>and</em> the <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-3.2">origin</a> of <var>request</var>’s <code>URL</code> is
-                  an <a data-link-type="dfn" href="https://w3c.github.io/webappsec/specs/mixedcontent/#a-priori-insecure-origin"><em>a priori</em> insecure origin</a>, then return <code>no referrer</code>. 
+                  not an <a data-link-type="dfn" href="https://w3c.github.io/webappsec/specs/mixedcontent/#a-priori-authenticated-url"><em>a priori</em> authenticated URL</a>, then return <code>no referrer</code>. 
            <li> Otherwise, return <var>referrerURL</var>. 
           </ol>
         </ol>
@@ -1605,11 +1605,11 @@
     <ol>
      <li> If <var>token</var> is an <a data-link-type="dfn" href="http://www.w3.org/TR/html5/infrastructure.html#ascii-case-insensitive">ASCII case-insensitive match</a> for the
       strings "<code>never</code>" or "<code>no-referrer</code>", return <a data-link-type="dfn" href="#no-referrer"><code>No Referrer</code></a>. 
-     <li> If <var>token</var> is an <a data-link-type="dfn" href="http://www.w3.org/TR/html5/infrastructure.html#ascii-case-insensitive">ASCII case-insensitive match</a> for the
-      string "<code>origin</code>", return <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-3.2"><code>Origin</code></a>. 
      <li> If <var>token</var> is <a data-link-type="dfn" href="http://www.w3.org/TR/html5/infrastructure.html#ascii-case-insensitive">ASCII case-insensitive match</a> for the string
       "<code>default</code>" or "<code>no-referrer-when-downgrade</code>",
       return <a data-link-type="dfn" href="#no-referrer-when-downgrade"><code>No Referrer When Downgrade</code></a>. 
+     <li> If <var>token</var> is an <a data-link-type="dfn" href="http://www.w3.org/TR/html5/infrastructure.html#ascii-case-insensitive">ASCII case-insensitive match</a> for the
+      string "<code>origin</code>", return <a data-link-type="dfn" href="#origin-only"><code>Origin Only</code></a>. 
      <li> If <var>token</var> is <a data-link-type="dfn" href="http://www.w3.org/TR/html5/infrastructure.html#ascii-case-insensitive">ASCII case-insensitive match</a> for the string
       "<code>origin-when-cross-origin</code>", return <a data-link-type="dfn" href="#origin-when-cross-origin"><code>Origin When Cross-Origin</code></a>. 
      <li> If <var>token</var> is <a data-link-type="dfn" href="http://www.w3.org/TR/html5/infrastructure.html#ascii-case-insensitive">ASCII case-insensitive match</a> for the strings
@@ -1771,7 +1771,7 @@
    <li>
     <a data-link-type="biblio" href="#biblio-mix">[MIX]</a> defines the following terms:
     <ul>
-     <li><a href="https://w3c.github.io/webappsec/specs/mixedcontent/#a-priori-insecure-origin">a priori insecure origin</a>
+     <li><a href="https://w3c.github.io/webappsec/specs/mixedcontent/#a-priori-authenticated-url">a priori authenticated url</a>
     </ul>
    <li>
     <a data-link-type="biblio" href="#biblio-rfc2616">[rfc2616]</a> defines the following terms:
