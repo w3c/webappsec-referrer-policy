@@ -188,6 +188,9 @@ spec:html; type:element; text:link
   capability. Controlling the referrer can help prevent these capability URLs
   from leaking via referrer headers. [[CAPABILITY-URLS]]
 
+  Note that there are other ways for capability URLs to leak, and controlling
+  the referrer is not enough to control all those potential leaks.
+
   <h3 id="intro-trackback">Trackback</h3>
 
   A blog hosted over HTTPS might wish to link to a blog hosted over HTTP and
