@@ -16,11 +16,6 @@ Repository: w3c/webappsec-referrer-policy
 </pre>
 
 <pre class="anchors">
-spec: DOM; urlPrefix: http://www.w3.org/TR/dom/
-  type: attribute
-    text: textContent; for: Node; url: dom-node-textcontent
-  type: interface
-    text: Document; url: interface-document
 spec: FETCH; urlPrefix: https://fetch.spec.whatwg.org/
   type: dfn
     text: fetching
@@ -38,30 +33,15 @@ spec: FETCH; urlPrefix: https://fetch.spec.whatwg.org/
     text: context-frame-type; for: Request; url: concept-request-context-frame-type
 spec: HTML; urlPrefix: https://html.spec.whatwg.org/multipage/
   type: dfn
-    urlPrefix: browsers.html
-      text: opaque origin; url: concept-origin-opaque
-spec: HTML5; urlPrefix: http://www.w3.org/TR/html5/
-  type: element-attr
-    urlPrefix: document-metadata.html
-      text: name; for: meta; url: attr-meta-name
-      text: content; for: meta; url: attr-meta-content
-  type: element
-    urlPrefix: embedded-content-0.html
-      text: iframe; url: the-iframe-element
-    urlPrefix: text-level-semantics.html
-      text: a; url: the-a-element
-    urlPrefix: document-metadata.html
-      text: meta; url: the-meta-element
-  type: dfn
-    urlPrefix: document-metadata.html
+    urlPrefix: semantics.html
       text: pragma directives
-    urlPrefix: dom.html
-      text: fallback content
-      text: the document's address
-    urlPrefix: embedded-content-0.html
+      text: noreferrer; url: link-type-noreferrer
+      text: Referrer policy state; url: attr-meta-http-equiv-referrer
+    urlPrefix: embedded-content.html
       text: an iframe srcdoc document
       text: relevant mutation; url: relevant-mutations
     urlPrefix: browsers.html
+      text: opaque origin; url: concept-origin-opaque
       text: active document
       text: parse a sandboxing directive
       text: forced sandboxing flag set
@@ -97,12 +77,7 @@ spec: HTML5; urlPrefix: http://www.w3.org/TR/html5/
       text: firing; url: concept-event-fire
       text: reflect
       text: limited to only known values
-    urlPrefix: links.html
-      text: icon; url: rel-icon
-      text: link type stylesheet
-      text: noreferrer; url: link-type-noreferrer
-    urlPrefix: scripting-1.html
-      text: the script block's source
+      text: referrer policy attribute
     urlPrefix: webappapis.html
       text: queue a task
       text: task source
@@ -113,15 +88,21 @@ spec: HTML5; urlPrefix: http://www.w3.org/TR/html5/
       text: responsible document
       text: responsible browsing context
       text: API referrer source
-      text: document environment
-      text: worker environment
+      text: global object
+    urlPrefix: workers.html
+      text: run a worker
+  type: interface
+    urlPrefix: dom.html
+      text: Document
+  type: element
+    text: a; url: the-a-element
+  type: element-attr
+    urlPrefix: semantics.html
+      text: name; for: meta; url: attr-meta-name
 spec: MIX; urlPrefix: https://w3c.github.io/webappsec/specs/mixedcontent/
   type: dfn
     text: a priori authenticated URL
-spec: WORKERS; urlPrefix: http://www.w3.org/TR/workers/
-  type: dfn
-    text: runs a worker; url: run-a-worker
-spec: URL; urlPrefix: http://www.w3.org/TR/url/
+spec: URL; urlPrefix: https://url.spec.whatwg.org
   type: dfn
     text: local scheme
   type: interface
@@ -444,130 +425,18 @@ spec:html; type:element; text:link
 
   <h3 id="referrer-policy-delivery-meta">Delivery via <{meta}></h3>
 
-  A referrer policy may be set when an HTML <{meta}> element with a
-  <{meta/name}> attribute that is an <a>ASCII case-insensitive match</a>
-  for the string "<code>Referrer</code>" is inserted into a document, for
-  example:
-
-  <pre class="example">
-    &lt;meta name="referrer" content="origin"&gt;
-  </pre>
-
-  The following values for the <code>content</code> attribute are valid, and map
-  to the listed <a>referrer policy</a> values:
-
-  <dl>
-    <dt>no-referrer</dt>
-    <dd><a><code>No Referrer</code></a></dd>
-    <dt>no-referrer-when-downgrade</dt>
-    <dd><a><code>No Referrer When Downgrade</code></a></dd>
-    <dt>origin</dt>
-    <dd><a><code>Origin Only</code></a></dd>
-    <dt>origin-when-cross-origin</dt>
-    <dd><a><code>Origin When Cross-Origin</code></a></dd>
-    <dt>unsafe-url</dt>
-    <dd><a><code>Unsafe URL</code></a></dd>
-  </dl>
-
-  Add the following entry to the
-  <a href="http://www.w3.org/TR/html5/document-metadata.html#pragma-directives">pragma directives</a>
-  for the <{meta}> element:
-
-  <dl>
-    <dt>
-      Referrer policy
-      (<code>name="Referrer"</code>)
-    </dt>
-    <dd>
-      <ol>
-        <li>
-          If the Document's <{head}> element is not an ancestor of the <{meta}>
-          element, abort these steps.
-        </li>
-
-        <li>
-          If the <{meta}> element lacks a <{meta/content}> attribute then abort
-          these steps.
-        </li>
-
-        <li>
-          Let <var>environment</var> be the {{Document}}'s <a>incumbent settings
-          object</a>.
-        </li>
-
-        <li>
-          Let <var>meta-value</var> be the value of the element's
-          <{meta/content}> attribute, after
-          <a lt="strip leading and trailing whitespace" >stripping
-          leading and trailing whitespace</a>.
-        </li>
-
-        <li>
-          If <var>meta-value</var> is the empty string, then abort these steps.
-        </li>
-
-        <li>
-          Let <var>policy</var> be the result of executing the
-          [[#determine-policy-for-token]] algorithm on <var>meta-value</var>.
-        </li>
-
-        <li>
-          Execute the [[#set-referrer-policy]] algorithm on
-          |environment| using |policy|.
-        </li>
-      </ol>
-
-      Note: Authors are encouraged to avoid the legacy keywords
-      <code>never</code>, <code>default</code>, and <code>always</code>. The
-      keywords <code>no-referrer</code>,
-      <code>no-referrer-when-downgrade</code>, and <code>unsafe-url</code>
-      respectively are preferred.
-
-      Note: Implementors are advised to also respect a <a>referrer policy</a>
-      delivered via a <code><a element>meta</a></code> element during
-      speculative resource loads.
-    </dd>
-  </dl>
+  The HTML Standard defines the <a>Referrer policy state</a> for the <{meta}>
+  element, which allows setting the <a>referrer policy</a> via markup.
 
   <h3 id="referrer-policy-delivery-referrer-attribute">Delivery
   via a <code>referrerpolicy</code> content attribute</h3>
 
-  A referrer policy may be set when a <code>referrerpolicy</code> content
-  attribute is added to an <code><a element>a</a></code>, <code>
-  <a element>area</a></code>, <code><a element>img</a></code>, <code>
-  <a element>iframe</a></code>, or <code><a element>link</a></code> element,
-  for example:
+  The HTML Standard defines the concept of <a>referrer policy
+  attributes</a> which applies to several of its elements, for example:
 
   <pre class="example">
-    &lt;a href="http://example.com" referrerPolicy="origin"&gt;
+    &lt;a href="http://example.com" referrerpolicy="origin"&gt;
   </pre>
-
-  The following values for the <code>referrerpolicy</code> content attribute
-  are valid, and map to the listed <a>referrer policy</a> values:
-
-  <dl>
-    <dt>no-referrer</dt>
-    <dd><a><code>No Referrer</code></a></dd>
-    <dt>no-referrer-when-downgrade</dt>
-    <dd><a><code>No Referrer When Downgrade</code></a></dd>
-    <dt>origin</dt>
-    <dd><a><code>Origin Only</code></a></dd>
-    <dt>origin-when-cross-origin</dt>
-    <dd><a><code>Origin When Cross-Origin</code></a></dd>
-    <dt>unsafe-url</dt>
-    <dd><a><code>Unsafe URL</code></a></dd>
-  </dl>
-
-  A policy delivered via a <code>referrerpolicy</code> content attribute on an
-  element takes precedence over the policy defined for the whole document via
-  <a>Referrer-Policy header</a> or a <a element>meta</a> element unless the attribute value is invalid.
-
-  NOTE: If an <code><a element>a</a></code>
-  or <code><a element>area</a></code> element includes both
-  a <code>referrerpolicy</code> attribute as well as
-  a <a><code>noreferrer</code></a> link type then the <a><code>noreferrer</code></a>
-  link type will take precedence and the <a><code>No Referrer</code></a> policy
-  takes effect.
 
   <h3 id="referrer-policy-delivery-implicit">Implicit Delivery</h3>
 
@@ -602,8 +471,9 @@ spec:html; type:element; text:link
     Workers
   </h4>
 
-  Whenever a user agent <a>runs a worker</a> for a script with {{URL}}
-  <var>url</var> and <var>url</var>'s scheme is a <a>local scheme</a>:
+  Whenever a user agent <a lt="run a worker">runs a worker</a> for a
+  script with {{URL}} <var>url</var> and <var>url</var>'s scheme is a
+  <a>local scheme</a>:
 
   <ol>
     <li>
@@ -618,68 +488,6 @@ spec:html; type:element; text:link
       <var>environment</var> using <var>policy</var>.
     </li>
   </ol>
-</section>
-
-<section>
-  <h2 id="element-interface-extensions">Element interface extensions</h2>
-
-  <h3 id="html-anchor-element">HTMLAnchorElement</h3>
-  <pre class="idl">
-    partial interface HTMLAnchorElement {
-      attribute DOMString referrerPolicy;
-    };
-  </pre>
-  <h4 id="html-anchor-element-attributes">Attributes</h4>
-  The <code>referrerPolicy</code> IDL attribute must <a>reflect</a> the
-  <code>referrerpolicy</code> content attribute, <a>limited to only known
-  values</a>.
-
-  <h3 id="html-area-element">HTMLAreaElement</h3>
-  <pre class="idl">
-    partial interface HTMLAreaElement {
-      attribute DOMString referrerPolicy;
-    };
-  </pre>
-  <h4 id="html-area-element-attributes">Attributes</h4>
-  The <code>referrerPolicy</code> IDL attribute must <a>reflect</a> the
-  <code>referrerpolicy</code> content attribute, <a>limited to only known
-  values</a>.
-
-  <h3 id="html-image-element">HTMLImageElement</h3>
-  <pre class="idl">
-    partial interface HTMLImageElement {
-      attribute DOMString referrerPolicy;
-    };
-  </pre>
-  <h4 id="html-image-element-attributes">Attributes</h4>
-  The <code>referrerPolicy</code> IDL attribute must <a>reflect</a> the
-  <code>referrerpolicy</code> content attribute, <a>limited to only known
-  values</a>.
-
-  Note: Modifying the <code>referrerPolicy</code> IDL attribute is not a
-  <a>relevant mutation</a> for an <code><a element>img</a></code> element.
-
-  <h3 id="html-iframe-element">HTMLIFrameElement</h3>
-  <pre class="idl">
-    partial interface HTMLIFrameElement {
-      attribute DOMString referrerPolicy;
-    };
-  </pre>
-  <h4 id="html-iframe-element-attributes">Attributes</h4>
-  The <code>referrerPolicy</code> IDL attribute must <a>reflect</a> the
-  <code>referrerpolicy</code> content attribute, <a>limited to only known
-  values</a>.
-
-  <h3 id="html-link-element">HTMLLinkElement</h3>
-  <pre class="idl">
-    partial interface HTMLLinkElement {
-      attribute DOMString referrerPolicy;
-    };
-  </pre>
-  <h4 id="html-link-element-attributes">Attributes</h4>
-  The <code>referrerPolicy</code> IDL attribute must <a>reflect</a> the
-  <code>referrerpolicy</code> content attribute, <a>limited to only known
-  values</a>.
 </section>
 
 <section>
@@ -712,6 +520,10 @@ spec:html; type:element; text:link
   img elements, HTML should set the request's associated referrer policy
   before fetching.
 
+  Note: W3C HTML5 does not define the <code>referrerpolicy</code> content
+  attributes, or <code>referrerPolicy</code> IDL attributes, or the
+  <a>Referrer policy state</a> for <{meta}>. For this spec to make sense
+  with W3C HTML5, those would need to be copied from [[HTML]].
 </section>
 
 <section>
@@ -814,7 +626,8 @@ spec:html; type:element; text:link
 
       <ol>
         <li>
-          If <var>environment</var> is a <a>document environment</a>:
+          If <var>environment</var>'s <a>global object</a> is a {{Window}}
+          object:
 
           <ol>
             <li>
@@ -825,7 +638,8 @@ spec:html; type:element; text:link
           </ol>
         </li>
         <li>
-          Otherwise, <var>environment</var> is a <a>worker environment</a>:
+          Otherwise, <var>environment</var>'s <a>global object</a> is a
+          {{WorkerGlobalScope}}:
 
           <ol>
             <li>
