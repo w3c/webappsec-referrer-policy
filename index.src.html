@@ -284,9 +284,9 @@ spec:html; type:element; text:link
 
   This is a user agent's default behavior, if no policy is otherwise specified.
 
-  <h3 dfn export id="referrer-policy-origin" oldids="referrer-policy-state-origin">"<code>origin-only</code>"</h3>
+  <h3 dfn export id="referrer-policy-origin" oldids="referrer-policy-state-origin">"<code>origin</code>"</h3>
 
-  The <a>"<code>origin-only</code>"</a> policy specifies that only the
+  The <a>"<code>origin</code>"</a> policy specifies that only the
   <a lt="ASCII serialization of an origin">ASCII serialization</a> of the
   <a>origin</a> of the <a>request client</a> is sent as referrer information
   when making both <a>same-origin requests</a> and <a>cross-origin requests</a>
@@ -298,12 +298,12 @@ spec:html; type:element; text:link
   ("<code>/</code>") character to the origin (e.g.
   <code>https://example.com/</code>).
 
-  Note: The <a>"<code>origin-only</code>"</a> policy causes the origin of HTTPS
+  Note: The <a>"<code>origin</code>"</a> policy causes the origin of HTTPS
   referrers to be sent over the network as part of unencrypted HTTP requests.
 
   <div class="example">
     If a document at <code>https://example.com/page.html</code> sets a policy of
-    <a>"<code>origin-only</code>"</a>, then navigations to any
+    <a>"<code>origin</code>"</a>, then navigations to any
     <a>origin</a> would send a <a><code>Referer</code></a> header with a value
     of <code>https://example.com/</code>, even to URLs that are not <a><em>a
     priori</em> authenticated URLs</a>.
@@ -579,7 +579,7 @@ spec:html; type:element; text:link
       If <var>policy</var> is not one of
       <a>"<code>no-referrer</code>"</a>,
       <a>"<code>no-referrer-when-downgrade</code>"</a>,
-      <a>"<code>origin-only</code>"</a>,
+      <a>"<code>origin</code>"</a>,
       <a>"<code>origin-when-cross-origin</code>"</a>, or
       <a>"<code>unsafe-url</code>"</a>,
       abort these steps.
@@ -705,7 +705,7 @@ spec:html; type:element; text:link
         <dt><a>"<code>no-referrer</code>"</a></dt>
         <dd>Return <code>no referrer</code></dd>
 
-        <dt><a>"<code>origin-only</code>"</a></dt>
+        <dt><a>"<code>origin</code>"</a></dt>
         <dd>Return <var>referrerOrigin</var></dd>
 
         <dt><a>"<code>unsafe-url</code>"</a></dt>
@@ -815,7 +815,7 @@ spec:html; type:element; text:link
     </li>
     <li>
       If <var>token</var> is an <a>ASCII case-insensitive match</a> for the
-      string "<code>origin</code>", return <a>"<code>origin-only</code>"</a>.
+      string "<code>origin</code>", return <a>"<code>origin</code>"</a>.
     </li>
     <li>
       If <var>token</var> is <a>ASCII case-insensitive match</a> for the string
@@ -860,7 +860,7 @@ spec:html; type:element; text:link
 
   <h3 id="information-leakage">Information Leakage</h3>
 
-  The <a>referrer policies</a> <a>"<code>origin-only</code>"</a> and
+  The <a>referrer policies</a> <a>"<code>origin</code>"</a> and
   <a>"<code>unsafe-url</code>"</a> might leak the origin and the URL of
   a secure site respectively via insecure transport.
 
@@ -875,7 +875,7 @@ spec:html; type:element; text:link
   On the one hand, it is not clear which policy is more strict for all possible
   pairs of policies: While <a>"<code>no-referrer-when-downgrade</code>"</a> will
   not leak any information over insecure transport, and
-  <a>"<code>origin-only</code>"</a> will, the latter reveals less information
+  <a>"<code>origin</code>"</a> will, the latter reveals less information
   across cross-origin navigations.
 
   On the other hand, allowing for setting less strict policies enables authors
@@ -896,10 +896,10 @@ spec:html; type:element; text:link
   <div class="example">
   	Suppose older user agents don't understand
     the <a>"<code>unsafe-url</code>"</a> policy. A site can specify
-    an <a>"<code>origin-only</code>"</a> policy followed by an
+    an <a>"<code>origin</code>"</a> policy followed by an
     <a>"<code>unsafe-url</code>"</a> policy: older user agents will ignore the
     unknown <a>"<code>unsafe-url</code>"</a> value and use
-    <a>"<code>origin-only</code>"</a>, while newer user agents will use
+    <a>"<code>origin</code>"</a>, while newer user agents will use
     <a>"<code>unsafe-url</code>"</a> because it is the last to be processed.
   </div>
 </section>
