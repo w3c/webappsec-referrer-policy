@@ -1389,7 +1389,7 @@ Possible extra rowspan handling
      <ol class="toc">
       <li><a href="#referrer-policy-no-referrer"><span class="secno">3.1</span> <span class="content">"<code>no-referrer</code>"</span></a>
       <li><a href="#referrer-policy-no-referrer-when-downgrade"><span class="secno">3.2</span> <span class="content">"<code>no-referrer-when-downgrade</code>"</span></a>
-      <li><a href="#referrer-policy-origin"><span class="secno">3.3</span> <span class="content">"<code>origin-only</code>"</span></a>
+      <li><a href="#referrer-policy-origin"><span class="secno">3.3</span> <span class="content">"<code>origin</code>"</span></a>
       <li><a href="#referrer-policy-origin-when-cross-origin"><span class="secno">3.4</span> <span class="content">"<code>origin-when-cross-origin</code>"</span></a>
       <li><a href="#referrer-policy-unsafe-url"><span class="secno">3.5</span> <span class="content">"<code>unsafe-url</code>"</span></a>
      </ol>
@@ -1507,9 +1507,9 @@ Possible extra rowspan handling
       no <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-referrer-policy">referrer policy</a> is explicitly set for an <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#environment-settings-object">environment settings
       object</a>, then the <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-referrer-policy">referrer policy</a> is the empty string. Otherwise,
       the value is whatever has been explicitly set, as explained in the <a href="#set-referrer-policy">§7.2 Set environment’s referrer policy to policy</a> algorithm.</p>
-     <dt><dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="same-origin request" data-noexport="" id="same-origin-request">same-origin request<span class="dfn-panel" data-deco=""><b><a href="#same-origin-request">#same-origin-request</a></b><b>Referenced in:</b><span><a href="#ref-for-same-origin-request-1">2. Key Concepts and Terminology</a></span><span><a href="#ref-for-same-origin-request-2">3.3. "origin-only"</a></span><span><a href="#ref-for-same-origin-request-3">3.4. "origin-when-cross-origin"</a></span><span><a href="#ref-for-same-origin-request-4">3.5. "unsafe-url"</a></span></span></dfn>
+     <dt><dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="same-origin request" data-noexport="" id="same-origin-request">same-origin request<span class="dfn-panel" data-deco=""><b><a href="#same-origin-request">#same-origin-request</a></b><b>Referenced in:</b><span><a href="#ref-for-same-origin-request-1">2. Key Concepts and Terminology</a></span><span><a href="#ref-for-same-origin-request-2">3.3. "origin"</a></span><span><a href="#ref-for-same-origin-request-3">3.4. "origin-when-cross-origin"</a></span><span><a href="#ref-for-same-origin-request-4">3.5. "unsafe-url"</a></span></span></dfn>
      <dd> A <code class="idl"><a data-link-type="idl" href="https://fetch.spec.whatwg.org/#request">Request</a></code> <var>request</var> is a <strong>same-origin request</strong> if <var>request</var>’s <code class="idl"><a data-link-type="idl" href="https://fetch.spec.whatwg.org/#concept-request-origin">origin</a></code> and the <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-3.2">origin</a> of <var>request</var>’s <code class="idl"><a data-link-type="idl" href="https://fetch.spec.whatwg.org/#concept-request-url">url</a></code> are <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-5"><code>the same</code></a>. 
-     <dt><dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="cross-origin request" data-noexport="" id="cross-origin-request">cross-origin request<span class="dfn-panel" data-deco=""><b><a href="#cross-origin-request">#cross-origin-request</a></b><b>Referenced in:</b><span><a href="#ref-for-cross-origin-request-1">3.3. "origin-only"</a></span><span><a href="#ref-for-cross-origin-request-2">3.4. "origin-when-cross-origin"</a> <a href="#ref-for-cross-origin-request-3">(2)</a></span><span><a href="#ref-for-cross-origin-request-4">3.5. "unsafe-url"</a></span><span><a href="#ref-for-cross-origin-request-5">7.4. 
+     <dt><dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="cross-origin request" data-noexport="" id="cross-origin-request">cross-origin request<span class="dfn-panel" data-deco=""><b><a href="#cross-origin-request">#cross-origin-request</a></b><b>Referenced in:</b><span><a href="#ref-for-cross-origin-request-1">3.3. "origin"</a></span><span><a href="#ref-for-cross-origin-request-2">3.4. "origin-when-cross-origin"</a> <a href="#ref-for-cross-origin-request-3">(2)</a></span><span><a href="#ref-for-cross-origin-request-4">3.5. "unsafe-url"</a></span><span><a href="#ref-for-cross-origin-request-5">7.4. 
     Determine request’s Referrer </a></span></span></dfn>
      <dd> A <code class="idl"><a data-link-type="idl" href="https://fetch.spec.whatwg.org/#request">Request</a></code> is a <strong>cross-origin request</strong> if it is <em>not</em> <a data-link-type="dfn" href="#same-origin-request" id="ref-for-same-origin-request-1">same-origin</a>. 
     </dl>
@@ -1549,18 +1549,18 @@ Possible extra rowspan handling
      <p>Navigations from that same page to <code><strong>http</strong>://not.example.com/</code> would send no <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2"><code>Referer</code></a> header.</p>
     </div>
     <p>This is a user agent’s default behavior, if no policy is otherwise specified.</p>
-    <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-export="" data-level="3.3" data-lt="&quot;origin-only&quot;" id="referrer-policy-origin"><span class="secno">3.3. </span><span class="content">"<code>origin-only</code>"</span><span id="referrer-policy-state-origin"></span><span class="dfn-panel" data-deco=""><b><a href="#referrer-policy-origin">#referrer-policy-origin</a></b><b>Referenced in:</b><span><a href="#ref-for-referrer-policy-origin-1">3.3. "origin-only"</a> <a href="#ref-for-referrer-policy-origin-2">(2)</a> <a href="#ref-for-referrer-policy-origin-3">(3)</a></span><span><a href="#ref-for-referrer-policy-origin-4">7.2. 
+    <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-export="" data-level="3.3" data-lt="&quot;origin&quot;" id="referrer-policy-origin"><span class="secno">3.3. </span><span class="content">"<code>origin</code>"</span><span id="referrer-policy-state-origin"></span><span class="dfn-panel" data-deco=""><b><a href="#referrer-policy-origin">#referrer-policy-origin</a></b><b>Referenced in:</b><span><a href="#ref-for-referrer-policy-origin-1">3.3. "origin"</a> <a href="#ref-for-referrer-policy-origin-2">(2)</a> <a href="#ref-for-referrer-policy-origin-3">(3)</a></span><span><a href="#ref-for-referrer-policy-origin-4">7.2. 
     Set environment’s referrer policy to policy </a></span><span><a href="#ref-for-referrer-policy-origin-5">7.4. 
     Determine request’s Referrer </a></span><span><a href="#ref-for-referrer-policy-origin-6">7.6. 
     Determine token’s Policy </a></span><span><a href="#ref-for-referrer-policy-origin-7">9.1. Information Leakage</a></span><span><a href="#ref-for-referrer-policy-origin-8">9.2. Downgrade to less strict policies</a></span><span><a href="#ref-for-referrer-policy-origin-9">10.1. Unknown Policy Values</a> <a href="#ref-for-referrer-policy-origin-10">(2)</a></span></span></h3>
-    <p>The <a data-link-type="dfn" href="#referrer-policy-origin" id="ref-for-referrer-policy-origin-1">"<code>origin-only</code>"</a> policy specifies that only the <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-6.2">ASCII serialization</a> of the <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-3.2">origin</a> of the <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-client">request client</a> is sent as referrer information
+    <p>The <a data-link-type="dfn" href="#referrer-policy-origin" id="ref-for-referrer-policy-origin-1">"<code>origin</code>"</a> policy specifies that only the <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-6.2">ASCII serialization</a> of the <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-3.2">origin</a> of the <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-client">request client</a> is sent as referrer information
   when making both <a data-link-type="dfn" href="#same-origin-request" id="ref-for-same-origin-request-2">same-origin requests</a> and <a data-link-type="dfn" href="#cross-origin-request" id="ref-for-cross-origin-request-1">cross-origin requests</a> from a particular <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-client">request client</a>.</p>
     <p class="note" role="note">Note: The serialization of an origin looks like <code>https://example.com</code>. To ensure that a valid URL is sent in the
   `<code>Referer</code>` header, user agents will append a U+002F SOLIDUS
   ("<code>/</code>") character to the origin (e.g. <code>https://example.com/</code>).</p>
-    <p class="note" role="note">Note: The <a data-link-type="dfn" href="#referrer-policy-origin" id="ref-for-referrer-policy-origin-2">"<code>origin-only</code>"</a> policy causes the origin of HTTPS
+    <p class="note" role="note">Note: The <a data-link-type="dfn" href="#referrer-policy-origin" id="ref-for-referrer-policy-origin-2">"<code>origin</code>"</a> policy causes the origin of HTTPS
   referrers to be sent over the network as part of unencrypted HTTP requests.</p>
-    <div class="example" id="example-53e91b6d"><a class="self-link" href="#example-53e91b6d"></a> If a document at <code>https://example.com/page.html</code> sets a policy of <a data-link-type="dfn" href="#referrer-policy-origin" id="ref-for-referrer-policy-origin-3">"<code>origin-only</code>"</a>, then navigations to any <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-3.2">origin</a> would send a <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2"><code>Referer</code></a> header with a value
+    <div class="example" id="example-b2aaf663"><a class="self-link" href="#example-b2aaf663"></a> If a document at <code>https://example.com/page.html</code> sets a policy of <a data-link-type="dfn" href="#referrer-policy-origin" id="ref-for-referrer-policy-origin-3">"<code>origin</code>"</a>, then navigations to any <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-3.2">origin</a> would send a <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2"><code>Referer</code></a> header with a value
     of <code>https://example.com/</code>, even to URLs that are not <a data-link-type="dfn" href="https://w3c.github.io/webappsec/specs/mixedcontent/#a-priori-authenticated-url"><em>a
     priori</em> authenticated URLs</a>. </div>
     <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-export="" data-level="3.4" data-lt="&quot;origin-when-cross-origin&quot;" id="referrer-policy-origin-when-cross-origin"><span class="secno">3.4. </span><span class="content">"<code>origin-when-cross-origin</code>"</span><span id="referrer-policy-state-origin-when-cross-origin"></span><span class="dfn-panel" data-deco=""><b><a href="#referrer-policy-origin-when-cross-origin">#referrer-policy-origin-when-cross-origin</a></b><b>Referenced in:</b><span><a href="#ref-for-referrer-policy-origin-when-cross-origin-1">3.4. "origin-when-cross-origin"</a> <a href="#ref-for-referrer-policy-origin-when-cross-origin-2">(2)</a> <a href="#ref-for-referrer-policy-origin-when-cross-origin-3">(3)</a> <a href="#ref-for-referrer-policy-origin-when-cross-origin-4">(4)</a></span><span><a href="#ref-for-referrer-policy-origin-when-cross-origin-5">7.2. 
@@ -1702,7 +1702,7 @@ Possible extra rowspan handling
   new value is not the empty string.</p>
     <ol>
      <li> If <var>policy</var> is the empty string, abort these steps. 
-     <li> If <var>policy</var> is not one of <a data-link-type="dfn" href="#referrer-policy-no-referrer" id="ref-for-referrer-policy-no-referrer-3">"<code>no-referrer</code>"</a>, <a data-link-type="dfn" href="#referrer-policy-no-referrer-when-downgrade" id="ref-for-referrer-policy-no-referrer-when-downgrade-5">"<code>no-referrer-when-downgrade</code>"</a>, <a data-link-type="dfn" href="#referrer-policy-origin" id="ref-for-referrer-policy-origin-4">"<code>origin-only</code>"</a>, <a data-link-type="dfn" href="#referrer-policy-origin-when-cross-origin" id="ref-for-referrer-policy-origin-when-cross-origin-5">"<code>origin-when-cross-origin</code>"</a>, or <a data-link-type="dfn" href="#referrer-policy-unsafe-url" id="ref-for-referrer-policy-unsafe-url-3">"<code>unsafe-url</code>"</a>,
+     <li> If <var>policy</var> is not one of <a data-link-type="dfn" href="#referrer-policy-no-referrer" id="ref-for-referrer-policy-no-referrer-3">"<code>no-referrer</code>"</a>, <a data-link-type="dfn" href="#referrer-policy-no-referrer-when-downgrade" id="ref-for-referrer-policy-no-referrer-when-downgrade-5">"<code>no-referrer-when-downgrade</code>"</a>, <a data-link-type="dfn" href="#referrer-policy-origin" id="ref-for-referrer-policy-origin-4">"<code>origin</code>"</a>, <a data-link-type="dfn" href="#referrer-policy-origin-when-cross-origin" id="ref-for-referrer-policy-origin-when-cross-origin-5">"<code>origin-when-cross-origin</code>"</a>, or <a data-link-type="dfn" href="#referrer-policy-unsafe-url" id="ref-for-referrer-policy-unsafe-url-3">"<code>unsafe-url</code>"</a>,
       abort these steps. 
      <li> Set <var>environment</var>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-referrer-policy">referrer policy</a> to <var>policy</var>. 
     </ol>
@@ -1757,7 +1757,7 @@ Possible extra rowspan handling
       <dl class="switch">
        <dt><a data-link-type="dfn" href="#referrer-policy-no-referrer" id="ref-for-referrer-policy-no-referrer-4">"<code>no-referrer</code>"</a>
        <dd>Return <code>no referrer</code>
-       <dt><a data-link-type="dfn" href="#referrer-policy-origin" id="ref-for-referrer-policy-origin-5">"<code>origin-only</code>"</a>
+       <dt><a data-link-type="dfn" href="#referrer-policy-origin" id="ref-for-referrer-policy-origin-5">"<code>origin</code>"</a>
        <dd>Return <var>referrerOrigin</var>
        <dt><a data-link-type="dfn" href="#referrer-policy-unsafe-url" id="ref-for-referrer-policy-unsafe-url-4">"<code>unsafe-url</code>"</a>
        <dd>Return <var>referrerURL</var>.
@@ -1818,7 +1818,7 @@ Possible extra rowspan handling
       "<code>default</code>" or "<code>no-referrer-when-downgrade</code>",
       return <a data-link-type="dfn" href="#referrer-policy-no-referrer-when-downgrade" id="ref-for-referrer-policy-no-referrer-when-downgrade-7">"<code>no-referrer-when-downgrade</code>"</a>. 
      <li> If <var>token</var> is an <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#ascii-case-insensitive">ASCII case-insensitive match</a> for the
-      string "<code>origin</code>", return <a data-link-type="dfn" href="#referrer-policy-origin" id="ref-for-referrer-policy-origin-6">"<code>origin-only</code>"</a>. 
+      string "<code>origin</code>", return <a data-link-type="dfn" href="#referrer-policy-origin" id="ref-for-referrer-policy-origin-6">"<code>origin</code>"</a>. 
      <li> If <var>token</var> is <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#ascii-case-insensitive">ASCII case-insensitive match</a> for the string
       "<code>origin-when-cross-origin</code>", return <a data-link-type="dfn" href="#referrer-policy-origin-when-cross-origin" id="ref-for-referrer-policy-origin-when-cross-origin-7">"<code>origin-when-cross-origin</code>"</a>. 
      <li> If <var>token</var> is <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#ascii-case-insensitive">ASCII case-insensitive match</a> for the strings
@@ -1842,7 +1842,7 @@ Possible extra rowspan handling
    <section>
     <h2 class="heading settled" data-level="9" id="security"><span class="secno">9. </span><span class="content">Security Considerations</span><a class="self-link" href="#security"></a></h2>
     <h3 class="heading settled" data-level="9.1" id="information-leakage"><span class="secno">9.1. </span><span class="content">Information Leakage</span><a class="self-link" href="#information-leakage"></a></h3>
-    <p>The <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-referrer-policy">referrer policies</a> <a data-link-type="dfn" href="#referrer-policy-origin" id="ref-for-referrer-policy-origin-7">"<code>origin-only</code>"</a> and <a data-link-type="dfn" href="#referrer-policy-unsafe-url" id="ref-for-referrer-policy-unsafe-url-6">"<code>unsafe-url</code>"</a> might leak the origin and the URL of
+    <p>The <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-referrer-policy">referrer policies</a> <a data-link-type="dfn" href="#referrer-policy-origin" id="ref-for-referrer-policy-origin-7">"<code>origin</code>"</a> and <a data-link-type="dfn" href="#referrer-policy-unsafe-url" id="ref-for-referrer-policy-unsafe-url-6">"<code>unsafe-url</code>"</a> might leak the origin and the URL of
   a secure site respectively via insecure transport.</p>
     <p>Those two policies are include in the spec nevertheless to lower the friction
   of sites adopting secure transport.</p>
@@ -1850,7 +1850,7 @@ Possible extra rowspan handling
     <p>The spec does not forbid downgrading to less strict policies, e.g., from <a data-link-type="dfn" href="#referrer-policy-no-referrer" id="ref-for-referrer-policy-no-referrer-7">"<code>no-referrer</code>"</a> to <a data-link-type="dfn" href="#referrer-policy-unsafe-url" id="ref-for-referrer-policy-unsafe-url-7">"<code>unsafe-url</code>"</a>.</p>
     <p>On the one hand, it is not clear which policy is more strict for all possible
   pairs of policies: While <a data-link-type="dfn" href="#referrer-policy-no-referrer-when-downgrade" id="ref-for-referrer-policy-no-referrer-when-downgrade-8">"<code>no-referrer-when-downgrade</code>"</a> will
-  not leak any information over insecure transport, and <a data-link-type="dfn" href="#referrer-policy-origin" id="ref-for-referrer-policy-origin-8">"<code>origin-only</code>"</a> will, the latter reveals less information
+  not leak any information over insecure transport, and <a data-link-type="dfn" href="#referrer-policy-origin" id="ref-for-referrer-policy-origin-8">"<code>origin</code>"</a> will, the latter reveals less information
   across cross-origin navigations.</p>
     <p>On the other hand, allowing for setting less strict policies enables authors
   to define safe fallbacks as described in <a href="#unknown-policy-values">§10.1 Unknown Policy Values</a>.</p>
@@ -1862,10 +1862,10 @@ Possible extra rowspan handling
   when multiple sources specify a referrer policy, the value of the
   latest one will be used. This makes it possible to deploy new policy
   values.</p>
-    <div class="example" id="example-fd11ad55"><a class="self-link" href="#example-fd11ad55"></a> Suppose older user agents don’t understand
+    <div class="example" id="example-e42fe91b"><a class="self-link" href="#example-e42fe91b"></a> Suppose older user agents don’t understand
     the <a data-link-type="dfn" href="#referrer-policy-unsafe-url" id="ref-for-referrer-policy-unsafe-url-8">"<code>unsafe-url</code>"</a> policy. A site can specify
-    an <a data-link-type="dfn" href="#referrer-policy-origin" id="ref-for-referrer-policy-origin-9">"<code>origin-only</code>"</a> policy followed by an <a data-link-type="dfn" href="#referrer-policy-unsafe-url" id="ref-for-referrer-policy-unsafe-url-9">"<code>unsafe-url</code>"</a> policy: older user agents will ignore the
-    unknown <a data-link-type="dfn" href="#referrer-policy-unsafe-url" id="ref-for-referrer-policy-unsafe-url-10">"<code>unsafe-url</code>"</a> value and use <a data-link-type="dfn" href="#referrer-policy-origin" id="ref-for-referrer-policy-origin-10">"<code>origin-only</code>"</a>, while newer user agents will use <a data-link-type="dfn" href="#referrer-policy-unsafe-url" id="ref-for-referrer-policy-unsafe-url-11">"<code>unsafe-url</code>"</a> because it is the last to be processed. </div>
+    an <a data-link-type="dfn" href="#referrer-policy-origin" id="ref-for-referrer-policy-origin-9">"<code>origin</code>"</a> policy followed by an <a data-link-type="dfn" href="#referrer-policy-unsafe-url" id="ref-for-referrer-policy-unsafe-url-9">"<code>unsafe-url</code>"</a> policy: older user agents will ignore the
+    unknown <a data-link-type="dfn" href="#referrer-policy-unsafe-url" id="ref-for-referrer-policy-unsafe-url-10">"<code>unsafe-url</code>"</a> value and use <a data-link-type="dfn" href="#referrer-policy-origin" id="ref-for-referrer-policy-origin-10">"<code>origin</code>"</a>, while newer user agents will use <a data-link-type="dfn" href="#referrer-policy-unsafe-url" id="ref-for-referrer-policy-unsafe-url-11">"<code>unsafe-url</code>"</a> because it is the last to be processed. </div>
    </section>
    <section>
     <h2 class="heading settled" data-level="11" id="acknowledgements"><span class="secno">11. </span><span class="content">Acknowledgements</span><a class="self-link" href="#acknowledgements"></a></h2>
@@ -1910,7 +1910,7 @@ Possible extra rowspan handling
    <li><a href="#cross-origin-request">cross-origin request</a><span>, in §2</span>
    <li><a href="#referrer-policy-no-referrer">"no-referrer"</a><span>, in §3</span>
    <li><a href="#referrer-policy-no-referrer-when-downgrade">"no-referrer-when-downgrade"</a><span>, in §3.1</span>
-   <li><a href="#referrer-policy-origin">"origin-only"</a><span>, in §3.2</span>
+   <li><a href="#referrer-policy-origin">"origin"</a><span>, in §3.2</span>
    <li><a href="#origin-only-flag">origin-only flag</a><span>, in §7.5</span>
    <li><a href="#referrer-policy-origin-when-cross-origin">"origin-when-cross-origin"</a><span>, in §3.3</span>
    <li><a href="#policy-token">policy-token</a><span>, in §4.1</span>
