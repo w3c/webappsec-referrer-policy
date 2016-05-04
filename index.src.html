@@ -21,6 +21,8 @@ spec: FETCH; urlPrefix: https://fetch.spec.whatwg.org/
     text: fetching
     text: request; url: concept-request
     text: response; url: concept-response
+    text: referrer policy; url: concept-referrer-policy
+    text: request client; url: concept-request-client
   type: interface
     text: Request
   type: interface
@@ -36,7 +38,7 @@ spec: HTML; urlPrefix: https://html.spec.whatwg.org/multipage/
     urlPrefix: semantics.html
       text: pragma directives
       text: noreferrer; url: link-type-noreferrer
-      text: Referrer policy state; url: attr-meta-http-equiv-referrer
+      text: referrer; url: meta-referrer; for: meta
     urlPrefix: embedded-content.html
       text: an iframe srcdoc document
       text: relevant mutation; url: relevant-mutations
@@ -82,10 +84,8 @@ spec: HTML; urlPrefix: https://html.spec.whatwg.org/multipage/
       text: queue a task
       text: task source
       text: tasks; url: concept-task
-      text: settings object
+      text: environment settings object
       text: incumbent settings object
-      text: relevant settings object for a script
-      text: responsible document
       text: responsible browsing context
       text: API referrer source
       text: global object
@@ -193,82 +193,85 @@ spec:html; type:element; text:link
 
   <dl>
     <dt>
-      <dfn export local-lt="policy">referrer policy</dfn>
+      <a>referrer policy</a>
     </dt>
     <dd>
-      A <strong>referrer policy</strong> is a property of a <a>settings
-      object</a> that defines the algorithm used to populate the
+      A <a>referrer policy</a> modifies the algorithm used to populate the
       <a><code>Referer</code></a> header when <a>fetching</a> subresources,
-      prefetching, or performing navigations.
+      prefetching, or performing navigations. This document defines the various
+      behaviors for each <a>referrer policy</a>.
 
-      If no referrer policy is explicitly set for a <a>settings object</a>,
-      then the value of the property is the empty string. Otherwise, the value
-      is whatever has been explicitly set, as explained in the
-      <a section href="#set-referrer-policy"></a> algorithm.
+      The empty string corresponds to no <a>referrer policy</a>, causing a
+      fallback to a <a>referrer policy</a> defined elsewhere, or in the case
+      where no such higher-level policy is available, defaulting to
+      <a>"<code>no-referrer-when-downgrade</code>"</a>.
+
+      Every <a>environment settings object</a> has a <a>referrer policy</a>. If
+      no <a>referrer policy</a> is explicitly set for an <a>environment settings
+      object</a>, then the <a>referrer policy</a> is the empty string. Otherwise,
+      the value is whatever has been explicitly set, as explained in the <a
+      section href="#set-referrer-policy"></a> algorithm.
     </dd>
 
-    <dt><dfn local-lt="same-origin">same-origin request</dfn></dt>
+    <dt><dfn>same-origin request</dfn></dt>
     <dd>
       A {{Request}} <var>request</var> is a <strong>same-origin request</strong>
       if <var>request</var>'s {{Request/origin}} and the <a>origin</a> of
       <var>request</var>'s {{Request/url}} are <a><code>the same</code></a>.
     </dd>
 
-    <dt><dfn local-lt="cross-origin">cross-origin request</dfn></dt>
+    <dt><dfn>cross-origin request</dfn></dt>
     <dd>
       A {{Request}} is a <strong>cross-origin request</strong> if it is
-      <em>not</em> <a>same-origin</a>.
+      <em>not</em> <a lt="same-origin request">same-origin</a>.
     </dd>
   </dl>
 </section>
 
 <section>
-  <h2 id="referrer-policy-states">Referrer Policy States</h2>
+  <h2 id="referrer-policies" oldids="referrer-policy-states">Referrer Policies</h2>
 
-  Every <a>settings object</a> has a <a>referrer policy</a> which governs
-  the referrer information sent along with requests made for subresources, and
-  for navigations. The <a>policy</a> will be the empty string if no policy has
-  been set, otherwise it will be one of the following five values:
-  <code><a>No Referrer</a></code>, <code><a>No Referrer When
-  Downgrade</a></code>, <code><a>Origin Only</a></code>, <code><a>Origin When
-  Cross-origin</a></code>, and <code><a>Unsafe URL</a></code>. Each is explained
-  below, and a detailed algorithm for evaluating their effect is given in the
+  Each possible <a>referrer policy</a>, besides the empty string, is explained
+  below. A detailed algorithm for evaluating their effect is given in the
   <a section href="#integration-with-fetch"></a> and
-  <a section href="#algorithms"></a> sections:
+  <a section href="#algorithms"></a> sections.
 
-  Note: The referrer policy for a <a>settings object</a> provides a default
-  baseline policy for requests. This policy may be tightened for specific
-  requests via mechanisms like the <code><a>noreferrer</a></code> link type.
+  Note: The referrer policy for an <a>environment settings object</a> provides a
+  default baseline policy for requests when that <a>environment settings
+  object</a> is used as a <a>request client</a>. This policy may be tightened
+  for specific requests via mechanisms like the <code><a>noreferrer</a></code>
+  link type.
 
-  <h3 id="referrer-policy-state-no-referrer">No Referrer</h3>
+  <h3 dfn export id="referrer-policy-no-referrer" oldids="referrer-policy-state-no-referrer">"<code>no-referrer</code>"</h3>
 
-  The simplest policy is <dfn>No Referrer</dfn>, which specifies that no
-  referrer information is to be sent along with requests made from a particular
-  <a>settings object</a> to any <a>origin</a>. The header will be omitted
-  entirely.
+  The simplest policy is <a>"<code>no-referrer</code>"</a>, which specifies
+  that no referrer information is to be sent along with requests made from a
+  particular <a>request client</a> to any <a>origin</a>. The header will be
+  omitted entirely.
 
   <div class="example">
     If a document at <code>https://example.com/page.html</code> sets a policy of
-    <code>No Referrer</code>, then navigations to
+    <a>"<code>no-referrer</code>"</a>, then navigations to
     <code>https://example.com/</code> (or any other URL) would send no
     <a><code>Referer</code></a> header.
   </div>
 
-  <h3 id="referrer-policy-state-no-referrer-when-downgrade">No Referrer When Downgrade</h3>
+  <h3 dfn export id="referrer-policy-no-referrer-when-downgrade" oldids="referrer-policy-state-no-referrer-when-downgrade">"<code>no-referrer-when-downgrade</code>"</h3>
 
-  The <dfn>No Referrer When Downgrade</dfn> policy sends a full URL along with
-  requests from <a>TLS-protected</a> <a>settings object</a> to a
-  <a><em>a priori</em> authenticated URL</a>, and requests from <a>settings
-  objects</a> which are <em>not</em> <a>TLS-protected</a> to any
+  The <a>"<code>no-referrer-when-downgrade</code>"</a> policy sends a full URL
+  along with requests from <a>TLS-protected</a> <a>environment settings
+  object</a> to a <a><em>a priori</em> authenticated URL</a>, and requests from
+  <a>request clients</a> which are <em>not</em> <a>TLS-protected</a> to any
   <a>origin</a>.
 
-  Requests from <a>TLS-protected</a> <a>settings objects</a> to not-<a><em>a
-  priori</em> authenticated URL</a>, on the other hand, will contain no referrer
-  information. A <code><a>Referer</a></code> HTTP header will not be sent.
+  Requests from <a>TLS-protected</a> <a>request clients</a> to non-<a><em>a
+  priori</em> authenticated URLs</a>, on the other hand, will contain no
+  referrer information. A <code><a>Referer</a></code> HTTP header will not be
+  sent.
 
   <div class="example">
     If a document at <code>https://example.com/page.html</code> sets a policy of
-    <code>No Referrer When Downgrade</code>, then navigations to
+    <a>"<code>no-referrer-when-downgrade</code>"</a>, then navigations to
     <code>https://not.example.com/</code> would send a
     <code><a>Referer</a></code> HTTP header with a value of
     <code>https://example.com/page.html</code>, as neither resource's origin is an
@@ -281,14 +284,13 @@ spec:html; type:element; text:link
 
   This is a user agent's default behavior, if no policy is otherwise specified.
 
-  <h3 id="referrer-policy-state-origin">Origin Only</h3>
+  <h3 dfn export id="referrer-policy-origin" oldids="referrer-policy-state-origin">"<code>origin-only</code>"</h3>
 
-  The <dfn>Origin Only</dfn> policy specifies that only the
+  The <a>"<code>origin-only</code>"</a> policy specifies that only the
   <a lt="ASCII serialization of an origin">ASCII serialization</a> of the
-  <a>origin</a> of the <a>settings object</a> from which a request is
-  made is sent as referrer information when making both <a>same-origin
-  requests</a> and <a>cross-origin requests</a> from a particular
-  <a>settings object</a>.
+  <a>origin</a> of the <a>request client</a> is sent as referrer information
+  when making both <a>same-origin requests</a> and <a>cross-origin requests</a>
+  from a particular <a>request client</a>.
 
   Note: The serialization of an origin looks like
   <code>https://example.com</code>. To ensure that a valid URL is sent in the
@@ -296,39 +298,40 @@ spec:html; type:element; text:link
   ("<code>/</code>") character to the origin (e.g.
   <code>https://example.com/</code>).
 
-  Note: The <code>Origin Only</code> policy causes the origin of HTTPS referrers
-  to be sent over the network as part of unencrypted HTTP requests.
+  Note: The <a>"<code>origin-only</code>"</a> policy causes the origin of HTTPS
+  referrers to be sent over the network as part of unencrypted HTTP requests.
 
   <div class="example">
     If a document at <code>https://example.com/page.html</code> sets a policy of
-    <code>Origin Only</code>, then navigations to any <a>origin</a> would send a
-    <a><code>Referer</code></a> header with a value of
-    <code>https://example.com/</code>, even to URLs that are not <a><em>a
+    <a>"<code>origin-only</code>"</a>, then navigations to any
+    <a>origin</a> would send a <a><code>Referer</code></a> header with a value
+    of <code>https://example.com/</code>, even to URLs that are not <a><em>a
     priori</em> authenticated URLs</a>.
   </div>
 
-  <h3 id="referrer-policy-state-origin-when-cross-origin">Origin When Cross-Origin</h3>
+  <h3 dfn export id="referrer-policy-origin-when-cross-origin" oldids="referrer-policy-state-origin-when-cross-origin">"<code>origin-when-cross-origin</code>"</h3>
 
-  The <dfn>Origin When Cross-Origin</dfn> policy specifies that a full URL,
-  <a href="#strip-url">stripped for use as a referrer</a>, is sent as referrer
-  information when making <a>same-origin requests</a> from a particular
-  <a>settings object</a>, and only the
+  The <a>"<code>origin-when-cross-origin</code>"</a> policy specifies that a
+  full URL, <a href="#strip-url">stripped for use as a referrer</a>, is sent as
+  referrer information when making <a>same-origin requests</a> from a particular
+  <a>request client</a>, and only the
   <a lt="ASCII serialization of an origin">ASCII serialization</a> of the
-  <a>origin</a> of the <a>settings object</a> from which a request is
-  made is sent as referrer information when making <a>cross-origin requests</a>
-  from a particular <a>settings object</a>.
+  <a>origin</a> of the <a>request client</a> is sent as referrer information
+  when making <a>cross-origin requests</a> from a particular <a>request
+  client</a>.
 
-  Note: For the <code>Origin When Cross-Origin</code> policy, we also consider
-  protocol upgrades, e.g. requests from <code>http://example.com/</code> to
-  <code>https://example.com/</code> to be <a>cross-origin requests</a>.
+  Note: For the <a>"<code>origin-when-cross-origin</code>"</a> policy, we also
+  consider protocol upgrades, e.g. requests from
+  <code>http://example.com/</code> to <code>https://example.com/</code>, to be
+  <a>cross-origin requests</a>.
 
-  Note: The <code>Origin When Cross-Origin</code> policy causes the origin of
-  HTTPS referrers to be sent over the network as part of unencrypted HTTP
-  requests.
+  Note: The <a>"<code>origin-when-cross-origin</code>"</a> policy causes the
+  origin of HTTPS referrers to be sent over the network as part of unencrypted
+  HTTP requests.
 
   <div class="example">
     If a document at <code>https://example.com/page.html</code> sets a policy of
-    <code>Origin When Cross-Origin</code>, then navigations to any
+    <a>"<code>origin-when-cross-origin</code>"</a>, then navigations to any
     <code>https://example.com/not-page.html</code> would send a
     <a><code>Referer</code></a> header with a value of
     <code>https://example.com/page.html</code>.
@@ -339,16 +342,16 @@ spec:html; type:element; text:link
     priori</em> authenticated URLs</a>.
   </div>
 
-  <h3 id="referrer-policy-state-unsafe-url">Unsafe URL</h3>
+  <h3 dfn export id="referrer-policy-unsafe-url" oldids="referrer-policy-state-unsafe-url">"<code>unsafe-url</code>"</h3>
 
-  The <dfn>Unsafe URL</dfn> policy specifies that a full URL,
+  The <a>"<code>unsafe-url</code>"</a> policy specifies that a full URL,
   <a href="#strip-url">stripped for use as a referrer</a>, is sent along with
   both <a>cross-origin requests</a> and <a>same-origin requests</a> made from
-  a particular <a>settings object</a>.
+  a particular <a>request client</a>.
 
   <div class="example">
     If a document at <code>https://example.com/sekrit.html</code> sets a policy
-    of <code>Unsafe URL</code>, then navigations to
+    of <a>"<code>unsafe-url</code>"</a>, then navigations to
     <code>http://not.example.com/</code> (and every other origin) would send a
     <code><a>Referer</a></code> HTTP header with a value of
     <code>https://example.com/sekrit.html</code>.
@@ -363,8 +366,7 @@ spec:html; type:element; text:link
 <section>
   <h2 id="referrer-policy-delivery">Referrer Policy Delivery</h2>
 
-  A <a>settings object</a>'s <a>referrer policy</a> is delivered in one of four
-  ways:
+  A <a>request</a>'s <a>referrer policy</a> is delivered in one of five ways:
 
   <ul>
     <li>
@@ -372,11 +374,16 @@ spec:html; type:element; text:link
       in [[#referrer-policy-header]]).
     </li>
     <li>
-      Via a <{meta}> element with a <{meta/name}> of <code>referrer</code>.
+      Via a <{meta}> element with a <{meta/name}> of
+      <a for="meta"><code>referrer</code></a>.
     </li>
     <li>
       Via a <code>referrerpolicy</code> content attribute on an <{a}>,
       <{area}>, <{img}>, <{iframe}>, or <{link}> element.
+    </li>
+    <li>
+      Via the <code><a>noreferrer</a></code> link relation on an <{a}>,
+      <{area}>, or <{link}> element.
     </li>
     <li>
       Implicitly, via inheritance.
@@ -398,7 +405,7 @@ spec:html; type:element; text:link
     "Referrer-Policy:" 1#<a>policy-token</a>
   </pre>
   <pre>
-    <dfn>policy-token</dfn>   = "no-referrer" / "no-referrer-when-downgrade" / "origin" / "origin-when-cross-origin" / "unsafe-url"
+    <dfn export>policy-token</dfn>   = "no-referrer" / "no-referrer-when-downgrade" / "origin" / "origin-when-cross-origin" / "unsafe-url"
   </pre>
 
   Note: The header name does not share the HTTP Referer header's misspelling.
@@ -425,8 +432,9 @@ spec:html; type:element; text:link
 
   <h3 id="referrer-policy-delivery-meta">Delivery via <{meta}></h3>
 
-  The HTML Standard defines the <a>Referrer policy state</a> for the <{meta}>
-  element, which allows setting the <a>referrer policy</a> via markup.
+  The HTML Standard defines the <a for="meta"><code>referrer</code></a>
+  keyword for the <{meta}> element, which allows setting the <a>referrer
+  policy</a> via markup.
 
   <h3 id="referrer-policy-delivery-referrer-attribute">Delivery
   via a <code>referrerpolicy</code> content attribute</h3>
@@ -440,8 +448,8 @@ spec:html; type:element; text:link
 
   <h3 id="referrer-policy-delivery-implicit">Implicit Delivery</h3>
 
-  A <a>settings object</a> inherits the <a>referrer policy</a> of another object
-  in several circumstances:
+  An <a>environment settings object</a> inherits the <a>referrer
+  policy</a> of another object in several circumstances:
 
   <h4 id="referrer-policy-delivery-implicit-nested">
      Nested Browsing Contexts
@@ -481,7 +489,7 @@ spec:html; type:element; text:link
       object</a>.
     </li>
     <li>
-      Let <var>policy</var> be <code>No Referrer When Downgrade</code>.
+      Let <var>policy</var> be <a>"<code>no-referrer-when-downgrade</code>"</a>.
     </li>
     <li>
       Execute the <a section href="#set-referrer-policy"></a> algorithm on
@@ -522,8 +530,8 @@ spec:html; type:element; text:link
 
   Note: W3C HTML5 does not define the <code>referrerpolicy</code> content
   attributes, or <code>referrerPolicy</code> IDL attributes, or the
-  <a>Referrer policy state</a> for <{meta}>. For this spec to make sense
-  with W3C HTML5, those would need to be copied from [[HTML]].
+  <a for="meta"><code>referrer</code></a> keyword for <{meta}>. For this spec to
+  make sense with W3C HTML5, those would need to be copied from [[HTML]].
 </section>
 
 <section>
@@ -557,10 +565,10 @@ spec:html; type:element; text:link
     Set <var>environment</var>'s referrer policy to <var>policy</var>
   </h3>
 
-  If no referrer policy has been set for a <a>settings object</a>, then
-  setting its value is straightforward. If a policy has previously been
-  set, then we overwrite it with the new value if the new value is
-  not the empty string.
+  If no referrer policy has been set for an <a>environment settings
+  object</a>, then setting its value is straightforward. If a policy has
+  previously been set, then we overwrite it with the new value if the
+  new value is not the empty string.
 
   <ol>
     <li>
@@ -568,11 +576,13 @@ spec:html; type:element; text:link
     </li>
 
     <li>
-      If <var>policy</var> is not one of <code><a>No Referrer</a></code>,
-      <code><a>No Referrer When Downgrade</a></code>, <code><a>Origin
-      Only</a></code>, <code><a>Origin When Cross-Origin</a></code>, or
-      <code><a>Unsafe URL</a></code>, then return without setting
-      <var>environment</var>'s referrer policy.
+      If <var>policy</var> is not one of
+      <a>"<code>no-referrer</code>"</a>,
+      <a>"<code>no-referrer-when-downgrade</code>"</a>,
+      <a>"<code>origin-only</code>"</a>,
+      <a>"<code>origin-when-cross-origin</code>"</a>, or
+      <a>"<code>unsafe-url</code>"</a>,
+      abort these steps.
     </li>
 
     <li>
@@ -603,8 +613,8 @@ spec:html; type:element; text:link
   </h3>
 
   Given a {{Request}} <var>request</var>, we can determine the correct
-  referrer information to send by examining the <a>policy</a> associated
-  with it, as detailed in the following steps, which return
+  referrer information to send by examining the <a>referrer policy</a>
+  associated with it, as detailed in the following steps, which return
   either <code>no referrer</code> or a URL:
 
   Note: If Fetch is performing a navigation in response to a link of type
@@ -691,19 +701,17 @@ spec:html; type:element; text:link
     <li>
       Execute the statements corresponding to the value of <var>policy</var>:
 
-      <dl>
-        <dt><var>policy</var> is <code><a>No Referrer</a></code></dt>
+      <dl class="switch">
+        <dt><a>"<code>no-referrer</code>"</a></dt>
         <dd>Return <code>no referrer</code></dd>
 
-        <dt><var>policy</var> is <code><a>Origin Only</a></code></dt>
+        <dt><a>"<code>origin-only</code>"</a></dt>
         <dd>Return <var>referrerOrigin</var></dd>
 
-        <dt><var>policy</var> is <code><a>Unsafe URL</a></code></dt>
+        <dt><a>"<code>unsafe-url</code>"</a></dt>
         <dd>Return <var>referrerURL</var>.</dd>
 
-        <dt>
-          <var>policy</var> is <code><a>Origin When Cross-Origin</a></code>
-        </dt>
+        <dt><a>"<code>origin-when-cross-origin</code>"</a></dt>
         <dd>
           <ol>
             <li>
@@ -716,12 +724,8 @@ spec:html; type:element; text:link
           </ol>
         </dd>
 
-        <dt>
-          <var>policy</var> is <code><a>No Referrer When Downgrade</a></code>
-        </dt>
-        <dt>
-          <var>policy</var> is the empty string.
-        </dt>
+        <dt><a>"<code>no-referrer-when-downgrade</code>"</a></dt>
+        <dt>the empty string</dt>
         <dd>
           <ol>
             <li>
@@ -760,17 +764,17 @@ spec:html; type:element; text:link
       If <var>url</var> is <code>null</code>, return <code>no referrer</code>.
     </li>
     <li>
-      If <var>url</var>'s <code>scheme</code> is a <a>local scheme</a>, then
+      If <var>url</var>'s <a for=url>scheme</a> is a <a>local scheme</a>, then
       return <code>no referrer</code>.
     </li>
     <li>
-      Set <var>url</var>'s <code>username</code> to the empty string.
+      Set <var>url</var>'s <a>username</a> to the empty string.
     </li>
     <li>
-      Set <var>url</var>'s <code>password</code> to <code>null</code>.
+      Set <var>url</var>'s <a>password</a> to <code>null</code>.
     </li>
     <li>
-      Set <var>url</var>'s <code>fragment</code> to <code>null</code>.
+      Set <var>url</var>'s <a>fragment</a> to <code>null</code>.
     </li>
     <li>
       If the <code><a>origin-only flag</a></code> is <code>true</code>,
@@ -778,10 +782,10 @@ spec:html; type:element; text:link
 
       <ol>
         <li>
-          Set <var>url</var>'s <code>path</code> to <code>null</code>.
+          Set <var>url</var>'s <a for=url>path</a> to <code>null</code>.
         </li>
         <li>
-          Set <var>url</var>'s <code>query</code> to <code>null</code>.
+          Set <var>url</var>'s <a for=url>query</a> to <code>null</code>.
         </li>
       </ol>
     </li>
@@ -802,29 +806,29 @@ spec:html; type:element; text:link
     <li>
       If <var>token</var> is an <a>ASCII case-insensitive match</a> for the
       strings "<code>never</code>" or "<code>no-referrer</code>", return
-      <a><code>No Referrer</code></a>.
+      <a>"<code>no-referrer</code>"</a>.
     </li>
     <li>
       If <var>token</var> is <a>ASCII case-insensitive match</a> for the string
       "<code>default</code>" or "<code>no-referrer-when-downgrade</code>",
-      return <a><code>No Referrer When Downgrade</code></a>.
+      return <a>"<code>no-referrer-when-downgrade</code>"</a>.
     </li>
     <li>
       If <var>token</var> is an <a>ASCII case-insensitive match</a> for the
-      string "<code>origin</code>", return <a><code>Origin Only</code></a>.
+      string "<code>origin</code>", return <a>"<code>origin-only</code>"</a>.
     </li>
     <li>
       If <var>token</var> is <a>ASCII case-insensitive match</a> for the string
       "<code>origin-when-cross-origin</code>", return
-      <a><code>Origin When Cross-Origin</code></a>.
+      <a>"<code>origin-when-cross-origin</code>"</a>.
     </li>
     <li>
       If <var>token</var> is <a>ASCII case-insensitive match</a> for the strings
       "<code>always</code>" or "<code>unsafe-url</code>",
-      return <a><code>Unsafe URL</code></a>.
+      return <a>"<code>unsafe-url</code>"</a>.
     </li>
     <li>
-      If <var>token</var> is empty, return <a><code>No Referrer</code></a>.
+      If <var>token</var> is empty, return <a>"<code>no-referrer</code>"</a>.
     </li>
     <li>
       Return the empty string.
@@ -856,9 +860,9 @@ spec:html; type:element; text:link
 
   <h3 id="information-leakage">Information Leakage</h3>
 
-  The referrer policies <code>origin</code> and <code>unsafe-url</code> might
-  leak the origin and the URL of a secure site respectively via insecure
-  transport.
+  The <a>referrer policies</a> <a>"<code>origin-only</code>"</a> and
+  <a>"<code>unsafe-url</code>"</a> might leak the origin and the URL of
+  a secure site respectively via insecure transport.
 
   Those two policies are include in the spec nevertheless to lower the friction
   of sites adopting secure transport.
@@ -866,12 +870,13 @@ spec:html; type:element; text:link
   <h3 id="downgrade">Downgrade to less strict policies</h3>
 
   The spec does not forbid downgrading to less strict policies, e.g., from
-  <code>never</code> to <code>unsafe-url</code>.
+  <a>"<code>no-referrer</code>"</a> to <a>"<code>unsafe-url</code>"</a>.
 
   On the one hand, it is not clear which policy is more strict for all possible
-  pairs of policies: While <code>no-referrer-when-downgrade</code> will not
-  leak any information over insecure transport, and <code>origin</code> will,
-  the latter reveals less information across cross-origin navigations.
+  pairs of policies: While <a>"<code>no-referrer-when-downgrade</code>"</a> will
+  not leak any information over insecure transport, and
+  <a>"<code>origin-only</code>"</a> will, the latter reveals less information
+  across cross-origin navigations.
 
   On the other hand, allowing for setting less strict policies enables authors
   to define safe fallbacks as described in [[#unknown-policy-values]].
@@ -889,13 +894,13 @@ spec:html; type:element; text:link
   values.
 
   <div class="example">
-	Suppose older user agents don't understand
-    the <code>unsafe-url</code> policy. A site can specify
-    an <code>origin</code> policy followed by an <code>unsafe-url</code>
-    policy: older user agents will ignore the
-    unknown <code>unsafe-url</code> value and use <code>origin</code>,
-    while newer user agents will use <code>unsafe-url</code> because it is
-    the last to be processed.
+  	Suppose older user agents don't understand
+    the <a>"<code>unsafe-url</code>"</a> policy. A site can specify
+    an <a>"<code>origin-only</code>"</a> policy followed by an
+    <a>"<code>unsafe-url</code>"</a> policy: older user agents will ignore the
+    unknown <a>"<code>unsafe-url</code>"</a> value and use
+    <a>"<code>origin-only</code>"</a>, while newer user agents will use
+    <a>"<code>unsafe-url</code>"</a> because it is the last to be processed.
   </div>
 </section>
 
