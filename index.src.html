@@ -54,7 +54,7 @@ spec: HTML; urlPrefix: https://html.spec.whatwg.org/multipage/
       text: browsing context container
       text: child browsing context
       text: creating a new Document object
-      text: navigated
+      text: navigation; url: navigate
       text: nested browsing context
       text: nested through; url: browsing-context-nested-through
       text: opener browsing context
@@ -90,15 +90,20 @@ spec: HTML; urlPrefix: https://html.spec.whatwg.org/multipage/
       text: API referrer source
       text: global object
     urlPrefix: workers.html
-      text: run a worker
+      text: running a worker; url: run a worker
+    urlPrefix: dom.html
+      text: referrer policy; url: concept-document-referrer-policy; for: Document
   type: interface
     urlPrefix: dom.html
       text: Document
   type: element
-    text: a; url: the-a-element
+    urlPrefix: semantics.html
+      text: a; url: the-a-element
+      text: link; url: the-link-element
   type: element-attr
     urlPrefix: semantics.html
       text: name; for: meta; url: attr-meta-name
+      text: referrerpolicy; for: a; url: attr-a-referrerpolicy
 spec: MIX; urlPrefix: https://w3c.github.io/webappsec/specs/mixedcontent/
   type: dfn
     text: a priori authenticated URL
@@ -124,7 +129,8 @@ spec: RFC2616; urlPrefix: https://tools.ietf.org/html/rfc7231
 </pre>
 
 <pre class="link-defaults">
-spec:html; type:element; text:link
+spec: HTML; type: element; text: link;
+spec: FETCH; type: dfn; text: referrer policy; for: /;
 </pre>
 
 <!--
@@ -201,16 +207,10 @@ spec:html; type:element; text:link
       prefetching, or performing navigations. This document defines the various
       behaviors for each <a>referrer policy</a>.
 
-      The empty string corresponds to no <a>referrer policy</a>, causing a
-      fallback to a <a>referrer policy</a> defined elsewhere, or in the case
-      where no such higher-level policy is available, defaulting to
-      <a>"<code>no-referrer-when-downgrade</code>"</a>.
-
-      Every <a>environment settings object</a> has a <a>referrer policy</a>. If
-      no <a>referrer policy</a> is explicitly set for an <a>environment settings
-      object</a>, then the <a>referrer policy</a> is the empty string. Otherwise,
-      the value is whatever has been explicitly set, as explained in the <a
-      section href="#set-referrer-policy"></a> algorithm.
+      Every <a>environment settings object</a> has an algorithm for obtaining a
+      <a>referrer policy</a>, which is used by default for all <a>requests</a>
+      with that <a>environment settings object</a> as their <a>request
+      client</a>.
     </dd>
 
     <dt><dfn>same-origin request</dfn></dt>
@@ -384,6 +384,25 @@ spec:html; type:element; text:link
   origins and paths from <a>TLS-protected</a> resources to insecure origins.
   Carefully consider the impact of setting such a policy for potentially
   sensitive documents.
+
+  <h3 dfn export id="referrer-policy-empty-string">The empty string</h3>
+
+  The empty string "" corresponds to no <a>referrer policy</a>, causing a
+  fallback to a <a>referrer policy</a> defined elsewhere, or in the case where
+  no such higher-level policy is available, defaulting to
+  <a>"<code>no-referrer-when-downgrade</code>"</a>. This defaulting happens in
+  the [[#determine-requests-referrer]] algorithm.
+
+  <div class="example">
+    Given a HTML <{a}> element without any declared <{a/referrerpolicy}>
+    attribute, its referrer policy is "". Thus, navigation requests initiated
+    by clicking on that <{a}> element will be sent with the <a
+    for="Document">referrer policy</a> of the <{a}> element's <a>node
+    document</a>. If that {{Document}} has "" as its referrer policy, the
+    [[#determine-requests-referrer]] algorithm will treat "" the same as
+    <a>"<code>no-referrer-when-downgrade</code>"</a>.
+  </div>
+
 </section>
 
 <section>
@@ -453,76 +472,47 @@ spec:html; type:element; text:link
     context to have an empty <code>Referer</code> [sic] header.
   </section>
 
-  <h3 id="referrer-policy-delivery-meta">Delivery via <{meta}></h3>
+  <section class="informative">
+    <h3 id="referrer-policy-delivery-meta">Delivery via <{meta}></h3>
 
-  The HTML Standard defines the <a for="meta"><code>referrer</code></a>
-  keyword for the <{meta}> element, which allows setting the <a>referrer
-  policy</a> via markup.
+    <em>This section is not normative.</em>
 
-  <h3 id="referrer-policy-delivery-referrer-attribute">Delivery
-  via a <code>referrerpolicy</code> content attribute</h3>
+    The HTML Standard defines the <a for="meta"><code>referrer</code></a>
+    keyword for the <{meta}> element, which allows setting the <a>referrer
+    policy</a> via markup.
+  </section>
 
-  The HTML Standard defines the concept of <a>referrer policy
-  attributes</a> which applies to several of its elements, for example:
+  <section class="informative">
+    <h3 id="referrer-policy-delivery-referrer-attribute">Delivery
+    via a <code>referrerpolicy</code> content attribute</h3>
 
-  <pre class="example">
-    &lt;a href="http://example.com" referrerpolicy="origin"&gt;
-  </pre>
+    <em>This section is not normative.</em>
 
-  <h3 id="referrer-policy-delivery-implicit">Implicit Delivery</h3>
+    The HTML Standard defines the concept of <a>referrer policy
+    attributes</a> which applies to several of its elements, for example:
 
-  An <a>environment settings object</a> inherits the <a>referrer
-  policy</a> of another object in several circumstances:
+    <pre class="example"><code class="lang-html">
+      &lt;a href="http://example.com" referrerpolicy="origin"&gt;
+    </code></pre>
+  </section>
 
-  <h4 id="referrer-policy-delivery-implicit-nested">
-     Nested Browsing Contexts
-  </h4>
+  <section class="informative">
+    <h3 id="referrer-policy-delivery-nested"
+    oldids="referrer-policy-delivery-implicit">Nested browsing contexts</h3>
 
-  Whenever a user agent creates a <a>nested browsing context</a> containing
-  <a>an iframe srcdoc document</a> or a resource whose <a>origin</a>'s scheme
-  is a <a>local scheme</a> (for instance, a <code>blob</code> or
-  <code>data</code> resource):
+    <em>This section is not normative.</em>
 
-  <ol>
-    <li>
-      Let <var>environment</var> be the <a>nested browsing context</a>'s
-      <a>incumbent settings object</a>.
-    </li>
-    <li>
-      Let <var>policy</var> be the <a>parent browsing context</a>'s
-      <a>incumbent settings object</a>'s <a>referrer policy</a>.
-    </li>
-    <li>
-      Execute the <a section href="#set-referrer-policy"></a> algorithm on
-      <var>environment</var> using <var>policy</var>.
-    </li>
-  </ol>
-
-  <h4 id="referrer-policy-delivery-implicit-workers">
-    Workers
-  </h4>
-
-  Whenever a user agent <a lt="run a worker">runs a worker</a> for a
-  script with {{URL}} <var>url</var> and <var>url</var>'s scheme is a
-  <a>local scheme</a>:
-
-  <ol>
-    <li>
-      Let <var>environment</var> be the Worker's <a>incumbent settings
-      object</a>.
-    </li>
-    <li>
-      Let <var>policy</var> be <a>"<code>no-referrer-when-downgrade</code>"</a>.
-    </li>
-    <li>
-      Execute the <a section href="#set-referrer-policy"></a> algorithm on
-      <var>environment</var> using <var>policy</var>.
-    </li>
-  </ol>
+    The HTML Standard and Fetch Standard define how nested browsing contexts
+    that are not created from <a>responses</a>, such as <{iframe}> elements with
+    their <{iframe/srcdoc}> attribute set, or created from a blob URL, inherit
+    their <a>referrer policy</a> from the creator browsing context or blob URL.
+  </section>
 </section>
 
-<section>
+<section class="informative">
   <h2 id="integration-with-fetch">Integration with Fetch</h2>
+
+  <em>This section is not normative.</em>
 
   The Fetch specification calls out to
   [[#set-requests-referrer-policy-on-redirect]] immediately
@@ -537,15 +527,19 @@ spec:html; type:element; text:link
   <code>referrer</code> property. Fetch is responsible for serializing the
   URL provided, and setting the `<code>Referer</code>` header on
   <var>request</var>.
+</section>
 
+<section class="informative">
   <h2 id="integration-with-html">Integration with HTML</h2>
 
-  When a {{Document}} or {{WorkerGlobalScope}} is created after fetching
-  a {{Request}} |request| with a {{Response}} |response|, then the HTML
-  specification should call out to
-  [[#parse-referrer-policy-from-header]] on |response| and use the
-  resulting |policy| to execute [[#set-referrer-policy]] on |request|'s
-  |environment|.
+  <em>This section is not normative.</em>
+
+  The HTML Standard determines the <a>referrer policy</a> of any response
+  received during <a>navigation</a> or while <a>running a worker</a>, and uses
+  the result to set the resulting {{Document}} or {{WorkerGlobalScope}}'s
+  referrer policy. This is later used by the corresponding <a>environment
+  settings object</a>, which serves as a <a>request client</a> for <a
+  lt="fetch">fetches</a> it initiates.
 
   Issue: TODO: define content attribute integrations. For example, for
   img elements, HTML should set the request's associated referrer policy
@@ -553,8 +547,9 @@ spec:html; type:element; text:link
 
   Note: W3C HTML5 does not define the <code>referrerpolicy</code> content
   attributes, or <code>referrerPolicy</code> IDL attributes, or the
-  <a for="meta"><code>referrer</code></a> keyword for <{meta}>. For this spec to
-  make sense with W3C HTML5, those would need to be copied from [[HTML]].
+  <a for="meta"><code>referrer</code></a> keyword for <{meta}>, or the
+  integration with navigation or running a worker. For this spec to make sense
+  with W3C HTML5, those would need to be copied from [[HTML]].
 </section>
 
 <section>
@@ -581,37 +576,6 @@ spec:html; type:element; text:link
     </li>
     <li>
       Return |policy|.
-    </li>
-  </ol>
-
-  <h3 id="set-referrer-policy">
-    Set <var>environment</var>'s referrer policy to <var>policy</var>
-  </h3>
-
-  If no referrer policy has been set for an <a>environment settings
-  object</a>, then setting its value is straightforward. If a policy has
-  previously been set, then we overwrite it with the new value if the
-  new value is not the empty string.
-
-  <ol>
-    <li>
-      If <var>policy</var> is the empty string, abort these steps.
-    </li>
-
-    <li>
-      If <var>policy</var> is not one of
-      <a>"<code>no-referrer</code>"</a>,
-      <a>"<code>no-referrer-when-downgrade</code>"</a>,
-      <a>"<code>same-origin</code>"</a>,
-      <a>"<code>origin</code>"</a>,
-      <a>"<code>origin-when-cross-origin</code>"</a>, or
-      <a>"<code>unsafe-url</code>"</a>,
-      abort these steps.
-    </li>
-
-    <li>
-      Set <var>environment</var>'s <a>referrer policy</a> to
-      <var>policy</var>.
     </li>
   </ol>
 
@@ -928,11 +892,10 @@ spec:html; type:element; text:link
 
   <h3 id="unknown-policy-values">Unknown Policy Values</h3>
 
-  As described in [[#determine-policy-for-token]] and
-  [[#set-referrer-policy]], unknown policy values will be ignored, and
-  when multiple sources specify a referrer policy, the value of the
-  latest one will be used. This makes it possible to deploy new policy
-  values.
+  As described in [[#determine-policy-for-token]], unknown policy values
+  will be ignored, and when multiple sources specify a referrer policy,
+  the value of the latest one will be used. This makes it possible to
+  deploy new policy values.
 
   <div class="example">
   	Suppose older user agents don't understand
