@@ -505,7 +505,7 @@ spec: FETCH; type: dfn; text: referrer policy; for: /;
     "Referrer-Policy:" 1#<a>policy-token</a>
   </pre>
   <pre>
-    <dfn export>policy-token</dfn>   = "no-referrer" / "no-referrer-when-downgrade" / "same-origin" / "origin" / "origin-when-cross-origin" / "unsafe-url"
+    <dfn export>policy-token</dfn>   = "no-referrer" / "no-referrer-when-downgrade" / "safe-origin" / "safe-origin-when-cross-origin" / "same-origin" / "origin" / "origin-when-cross-origin" / "unsafe-url"
   </pre>
 
   Note: The header name does not share the HTTP Referer header's misspelling.
@@ -757,6 +757,53 @@ spec: FETCH; type: dfn; text: referrer policy; for: /;
         <dt><a>"<code>unsafe-url</code>"</a></dt>
         <dd>Return <var>referrerURL</var>.</dd>
 
+        <dt><a>"<code>safe-origin</code>"</a></dt>
+        <dd>
+          <ol>
+            <li>
+              If |environment| is not null:
+              <ol>
+                <li>
+                  If |environment| is <a>TLS-protected</a> <em>and</em>
+                  the <a>origin</a>
+                  of <var>request</var>'s <a href="https://fetch.spec.whatwg.org/#concept-request-current-url">current
+                  URL</a> is not an <a><em>a priori</em> authenticated
+                  URL</a>, then return <code>no referrer</code>.
+                </li>
+              </ol>
+            </li>
+            <li>Return |referrerOrigin|.
+          </ol>
+        </dd>
+
+        <dt><a>"<code>safe-origin-when-cross-origin</code>"</a></dt>
+        <dt>the empty string</dt>
+        <dd>
+          <ol>
+            <li>
+              If |environment| is not null:
+              <ol>
+                <li>
+                  If |environment| is <a>TLS-protected</a> <em>and</em>
+                  the <a>origin</a>
+                  of <var>request</var>'s <a href="https://fetch.spec.whatwg.org/#concept-request-current-url">current
+                  URL</a> is not an <a><em>a priori</em> authenticated URL</a>
+                  <ol>
+                    <li>
+                      If <var>request</var> is a <a>same-origin request</a>, then
+                      return <var>referrerURL</var>.
+                    </li>
+                    <li>
+                      Otherwise, return <var>referrerOrigin</var>.
+                    </li>
+                  </ol>
+                </li>
+              </ol>
+            </li>
+            <li>Return <code>no referrer</code>.
+          </ol>
+        </dd>
+
         <dt><a>"<code>same-origin</code>"</a></dt>
         <dd>
           <ol>
@@ -878,6 +925,15 @@ spec: FETCH; type: dfn; text: referrer policy; for: /;
     </li>
     <li>
       If <var>token</var> is an <a>ASCII case-insensitive match</a> for the
+      string "<code>safe-origin</code>", return <a>"<code>safe-origin</code>"</a>.
+    </li>
+    <li>
+      If <var>token</var> is an <a>ASCII case-insensitive match</a> for the
+      string "<code>safe-origin-when-cross-origin</code>", return
+      <a>"<code>safe-origin-when-cross-origin</code>"</a>.
+    </li>
+    <li>
+      If <var>token</var> is an <a>ASCII case-insensitive match</a> for the
       string "<code>same-origin</code>", return <a>"<code>same-origin</code>"</a>.
     </li>
     <li>
@@ -932,7 +988,7 @@ spec: FETCH; type: dfn; text: referrer policy; for: /;
 
   Authors can use the policy states <a>"<code>safe-origin</code>"</a>,
   <a>"<code>safe-origin-when-cross-origin</code>"</a> and
-  <a>"<code>no-referrer</code>"</a> to preserve sensitive information from
+  <a>"<code>no-referrer</code>"</a> to prevent sensitive information from
   leaking via referrer headers. [[CAPABILITY-URLS]]
 
   <h3 id="downgrade">Downgrade to less strict policies</h3>
