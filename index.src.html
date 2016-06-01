@@ -332,7 +332,7 @@ spec: FETCH; type: dfn; text: referrer policy; for: /;
     priori</em> authenticated URLs</a>.
   </div>
 
-  <h3 dfn export id="referrer-policy-safe-origin" oldids="referrer-policy-state-safe-origin">"<code>safe-origin</code></h3>
+  <h3 dfn export id="referrer-policy-safe-origin" oldids="referrer-policy-state-safe-origin">"<code>safe-origin</code>"</h3>
 
   The <a>"<code>safe-origin</code>"</a> policy sends the
   <a lt="ASCII serialization of an origin">ASCII serialization</a> of the
@@ -777,30 +777,27 @@ spec: FETCH; type: dfn; text: referrer policy; for: /;
         </dd>
 
         <dt><a>"<code>safe-origin-when-cross-origin</code>"</a></dt>
-        <dt>the empty string</dt>
         <dd>
           <ol>
+            <li>
+              If <var>request</var> is a <a>same-origin request</a>, then
+              return <var>referrerURL</var>.
+            </li>
             <li>
               If |environment| is not null:
               <ol>
                 <li>
                   If |environment| is <a>TLS-protected</a> <em>and</em>
-                  the <a>origin</a>
-                  of <var>request</var>'s <a href="https://fetch.spec.whatwg.org/#concept-request-current-url">current
+                  the <a>origin</a> of <var>request</var>'s
+                  <a href="https://fetch.spec.whatwg.org/#concept-request-current-url">current
                   URL</a> is not an <a><em>a priori</em> authenticated URL</a>
                   <ol>
-                    <li>
-                      If <var>request</var> is a <a>same-origin request</a>, then
-                      return <var>referrerURL</var>.
-                    </li>
-                    <li>
-                      Otherwise, return <var>referrerOrigin</var>.
-                    </li>
+                      <li>Return <code>no referrer</code>.
                   </ol>
                 </li>
               </ol>
             </li>
-            <li>Return <code>no referrer</code>.
+            <li>Return |referrerOrigin|.
           </ol>
         </dd>
 
