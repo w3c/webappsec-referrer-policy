@@ -336,7 +336,7 @@ spec: FETCH; type: dfn; text: referrer policy; for: /;
 
   The <a>"<code>safe-origin</code>"</a> policy sends the
   <a lt="ASCII serialization of an origin">ASCII serialization</a> of the
-  <a>origin</a> of the <a>request client</a> when making requests from
+  <a>origin</a> of the <a>request client</a> when making requests from a
   <a>TLS-protected</a> <a>environment settings object</a> to a
   <a><em>a priori</em> authenticated URL</a>, and requests from
   <a>request clients</a> which are <em>not</em> <a>TLS-protected</a> to any
@@ -350,7 +350,7 @@ spec: FETCH; type: dfn; text: referrer policy; for: /;
   <div class="example">
     If a document at <code>https://example.com/page.html</code> sets a policy of
     <a>"<code>safe-origin</code>"</a>, then navigations to
-    <code>https://<strong>not</strong>.eaxmple.com</code> would send a
+    <code>https://<strong>not</strong>.example.com</code> would send a
     <a><code>Referer</code></a> header with a value of
     <code>https://example.com/</code>. This explicitly excludes navigations to
     URLs that are not <a><em>a priori</em> authenticated URLs</a>.
