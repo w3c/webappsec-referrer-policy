@@ -352,10 +352,20 @@ spec: FETCH; type: dfn; text: referrer policy; for: /;
     <a>"<code>safe-origin</code>"</a>, then navigations to
     <code>https://<strong>not</strong>.example.com</code> would send a
     <a><code>Referer</code></a> header with a value of
-    <code>https://example.com/</code>. This explicitly excludes navigations to
-    URLs that are not <a><em>a priori</em> authenticated URLs</a>.
-    Navigations to <code><strong>http://not</strong>.example.com</code> would
-    send no <a><code>Referer</code></a> header.
+    <code>https://example.com/</code>.
+
+    Navigations from that same page to
+    <code><strong>http://</strong>not.example.com</code> would send no
+    <a><code>Referer</code></a> header.
+  </div>
+
+  <div class="example">
+    If a document at <code>http://example.com/page.html</code> sets a policy of
+    <a>"<code>safe-origin</code>"</a>, then navigations to
+    <code>http://<strong>not</strong>.example.com</code> or
+    <code><strong>https</strong>://example.com</code> would send a
+    <a><code>Referer</code></a> header with a value of
+    <code>http://example.com/</code>.
   </div>
 
   <h3 dfn export id="referrer-policy-origin-when-cross-origin" oldids="referrer-policy-state-origin-when-cross-origin">"<code>origin-when-cross-origin</code>"</h3>
@@ -417,9 +427,9 @@ spec: FETCH; type: dfn; text: referrer policy; for: /;
     Navigations from that same page to <code>https://not.example.com/</code>
     would send a <a><code>Referer</code></a> header with a value of
     <code>https://example.com/</code>.
-    This excludes URLs that are not <a><em>a priori</em> authenticated URLs</a>.
+
     Navigations from that same page to
-    <code><strong>http://not</strong>.example.com/</code> would send no
+    <code><strong>http://</strong>not.example.com/</code> would send no
     <a><code>Referer</code></a> header.
   </div>
 
