@@ -986,17 +986,19 @@ spec: FETCH; type: dfn; text: referrer policy; for: /;
 
   <h3 id="information-leakage">Information Leakage</h3>
 
-  The <a>referrer policies</a> <a>"<code>origin</code>"</a> and
+  The <a>referrer policies</a> <a>"<code>origin</code>"</a>,
+  <a>"<code>origin-when-cross-origin</code>"</a> and
   <a>"<code>unsafe-url</code>"</a> might leak the origin and the URL of
   a secure site respectively via insecure transport.
 
   Those two policies are included in the spec nevertheless to lower the friction
   of sites adopting secure transport.
 
-  Authors can use the policy states <a>"<code>safe-origin</code>"</a>,
-  <a>"<code>safe-origin-when-cross-origin</code>"</a> and
-  <a>"<code>no-referrer</code>"</a> to prevent sensitive information from
-  leaking via referrer headers. [[CAPABILITY-URLS]]
+  Authors wanting to ensure that they do not leak any more information than
+  the default policy should instead use the policy states
+  <a>"<code>same-origin</code>"</a>, <a>"<code>safe-origin</code>"</a>,
+  <a>"<code>safe-origin-when-cross-origin</code>"</a> or
+  <a>"<code>no-referrer</code>"</a>.
 
   <h3 id="downgrade">Downgrade to less strict policies</h3>
 
