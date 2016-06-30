@@ -323,6 +323,7 @@ spec: FETCH; type: dfn; text: referrer policy; for: /;
 
   Note: The <a>"<code>origin</code>"</a> policy causes the origin of HTTPS
   referrers to be sent over the network as part of unencrypted HTTP requests.
+  The <a>"<code>strict-origin</code>"</a> policy addresses this concern.
 
   <div class="example">
     If a document at <code>https://example.com/page.html</code> sets a policy of
@@ -389,7 +390,8 @@ spec: FETCH; type: dfn; text: referrer policy; for: /;
 
   Note: The <a>"<code>origin-when-cross-origin</code>"</a> policy causes the
   origin of HTTPS referrers to be sent over the network as part of unencrypted
-  HTTP requests.
+  HTTP requests. The <a>"<code>strict-origin-when-cross-origin</code>"</a> policy
+  addresses this concern.
 
   <div class="example">
     If a document at <code>https://example.com/page.html</code> sets a policy of
