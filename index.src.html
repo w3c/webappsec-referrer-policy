@@ -336,11 +336,14 @@ spec: FETCH; type: dfn; text: referrer policy; for: /;
 
   The <a>"<code>strict-origin</code>"</a> policy sends the
   <a lt="ASCII serialization of an origin">ASCII serialization</a> of the
-  <a>origin</a> of the <a>request client</a> when making requests from a
-  <a>TLS-protected</a> <a>environment settings object</a> to a
-  <a><em>a priori</em> authenticated URL</a>, and requests from
-  <a>request clients</a> which are <em>not</em> <a>TLS-protected</a> to any
-  <a>origin</a>.
+  <a>origin</a> of the <a>request client</a> when making requests:
+
+  <ul>
+      <li>from a <a>TLS-protected</a> <a>environment settings object</a> to a
+          <a><em>a priori</em> authenticated URL</a>, and</li>
+      <li>from <em>non-</em><a>TLS-protected</a> <a>environment settings objects</a> to
+          any <a>origin</a>.</li>
+  </ul>
 
   Requests from <a>TLS-protected</a> <a>request clients</a> to non-<a><em>a
   priori</em> authenticated URLs</a>, on the other hand, will contain no
@@ -408,9 +411,14 @@ spec: FETCH; type: dfn; text: referrer policy; for: /;
   referrer information when making <a>same-origin requests</a> from a particular
   <a>request client</a>, and only the
   <a lt="ASCII serialization of an origin">ASCII serialization</a> of the
-  <a>origin</a> of the <a>request client</a> is sent as referrer information
-  when making <a>cross-origin requests</a> from a particular <a>request
-  client</a>.
+  <a>origin</a> of the <a>request client</a> when making <a>cross-origin requests</a>:
+
+  <ul>
+      <li>from a <a>TLS-protected</a> <a>environment settings object</a> to a
+          <a><em>a priori</em> authenticated URL</a>, and</li>
+      <li>from <em>non-</em><a>TLS-protected</a> <a>environment settings objects</a> to
+          any <a>origin</a>.</li>
+  </ul>
 
   Requests from <a>TLS-protected</a> <a>request clients</a> to non-<a><em>a
   priori</em> authenticated URLs</a>, on the other hand, will contain no
