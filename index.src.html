@@ -323,6 +323,7 @@ spec: FETCH; type: dfn; text: referrer policy; for: /;
 
   Note: The <a>"<code>origin</code>"</a> policy causes the origin of HTTPS
   referrers to be sent over the network as part of unencrypted HTTP requests.
+  The <a>"<code>strict-origin</code>"</a> policy addresses this concern.
 
   <div class="example">
     If a document at <code>https://example.com/page.html</code> sets a policy of
@@ -330,6 +331,45 @@ spec: FETCH; type: dfn; text: referrer policy; for: /;
     <a>origin</a> would send a <a><code>Referer</code></a> header with a value
     of <code>https://example.com/</code>, even to URLs that are not <a><em>a
     priori</em> authenticated URLs</a>.
+  </div>
+
+  <h3 dfn export id="referrer-policy-strict-origin">"<code>strict-origin</code>"</h3>
+
+  The <a>"<code>strict-origin</code>"</a> policy sends the
+  <a lt="ASCII serialization of an origin">ASCII serialization</a> of the
+  <a>origin</a> of the <a>request client</a> when making requests:
+
+  <ul>
+      <li>from a <a>TLS-protected</a> <a>environment settings object</a> to a
+          <a><em>a priori</em> authenticated URL</a>, and</li>
+      <li>from <em>non-</em><a>TLS-protected</a> <a>environment settings objects</a> to
+          any <a>origin</a>.</li>
+  </ul>
+
+  Requests from <a>TLS-protected</a> <a>request clients</a> to non-<a><em>a
+  priori</em> authenticated URLs</a>, on the other hand, will contain no
+  referrer information. A <code><a>Referer</a></code> HTTP header will not be
+  sent.
+
+  <div class="example">
+    If a document at <code>https://example.com/page.html</code> sets a policy of
+    <a>"<code>strict-origin</code>"</a>, then navigations to
+    <code>https://<strong>not</strong>.example.com</code> would send a
+    <a><code>Referer</code></a> header with a value of
+    <code>https://example.com/</code>.
+
+    Navigations from that same page to
+    <code><strong>http://</strong>not.example.com</code> would send no
+    <a><code>Referer</code></a> header.
+  </div>
+
+  <div class="example">
+    If a document at <code>http://example.com/page.html</code> sets a policy of
+    <a>"<code>strict-origin</code>"</a>, then navigations to
+    <code>http://<strong>not</strong>.example.com</code> or
+    <code><strong>https</strong>://example.com</code> would send a
+    <a><code>Referer</code></a> header with a value of
+    <code>http://example.com/</code>.
   </div>
 
   <h3 dfn export id="referrer-policy-origin-when-cross-origin" oldids="referrer-policy-state-origin-when-cross-origin">"<code>origin-when-cross-origin</code>"</h3>
@@ -350,7 +390,8 @@ spec: FETCH; type: dfn; text: referrer policy; for: /;
 
   Note: The <a>"<code>origin-when-cross-origin</code>"</a> policy causes the
   origin of HTTPS referrers to be sent over the network as part of unencrypted
-  HTTP requests.
+  HTTP requests. The <a>"<code>strict-origin-when-cross-origin</code>"</a> policy
+  addresses this concern.
 
   <div class="example">
     If a document at <code>https://example.com/page.html</code> sets a policy of
@@ -363,6 +404,43 @@ spec: FETCH; type: dfn; text: referrer policy; for: /;
     would send a <a><code>Referer</code></a> header with a value of
     <code>https://example.com/</code>, even to URLs that are not <a><em>a
     priori</em> authenticated URLs</a>.
+  </div>
+
+  <h3 dfn export id="referrer-policy-strict-origin-when-cross-origin">"<code>strict-origin-when-cross-origin</code>"</h3>
+
+  The <a>"<code>strict-origin-when-cross-origin</code>"</a> policy specifies that a
+  full URL, <a href="#strip-url">stripped for use as a referrer</a>, is sent as
+  referrer information when making <a>same-origin requests</a> from a particular
+  <a>request client</a>, and only the
+  <a lt="ASCII serialization of an origin">ASCII serialization</a> of the
+  <a>origin</a> of the <a>request client</a> when making <a>cross-origin requests</a>:
+
+  <ul>
+      <li>from a <a>TLS-protected</a> <a>environment settings object</a> to a
+          <a><em>a priori</em> authenticated URL</a>, and</li>
+      <li>from <em>non-</em><a>TLS-protected</a> <a>environment settings objects</a> to
+          any <a>origin</a>.</li>
+  </ul>
+
+  Requests from <a>TLS-protected</a> <a>request clients</a> to non-<a><em>a
+  priori</em> authenticated URLs</a>, on the other hand, will contain no
+  referrer information. A <code><a>Referer</a></code> HTTP header will not be
+  sent.
+
+  <div class="example">
+    If a document at <code>https://example.com/page.html</code> sets a policy of
+    <a>"<code>strict-origin-when-cross-origin</code>"</a>, then navigations to
+    <code>https://example.com/not-page.html</code> would send a
+    <a><code>Referer</code></a> header with a value of
+    <code>https://example.com/page.html</code>.
+
+    Navigations from that same page to <code>https://not.example.com/</code>
+    would send a <a><code>Referer</code></a> header with a value of
+    <code>https://example.com/</code>.
+
+    Navigations from that same page to
+    <code><strong>http://</strong>not.example.com/</code> would send no
+    <a><code>Referer</code></a> header.
   </div>
 
   <h3 dfn export id="referrer-policy-unsafe-url" oldids="referrer-policy-state-unsafe-url">"<code>unsafe-url</code>"</h3>
@@ -447,7 +525,7 @@ spec: FETCH; type: dfn; text: referrer policy; for: /;
     "Referrer-Policy:" 1#<a>policy-token</a>
   </pre>
   <pre>
-    <dfn export>policy-token</dfn>   = "no-referrer" / "no-referrer-when-downgrade" / "same-origin" / "origin" / "origin-when-cross-origin" / "unsafe-url"
+    <dfn export>policy-token</dfn>   = "no-referrer" / "no-referrer-when-downgrade" / "strict-origin" / "strict-origin-when-cross-origin" / "same-origin" / "origin" / "origin-when-cross-origin" / "unsafe-url"
   </pre>
 
   Note: The header name does not share the HTTP Referer header's misspelling.
@@ -699,6 +777,50 @@ spec: FETCH; type: dfn; text: referrer policy; for: /;
         <dt><a>"<code>unsafe-url</code>"</a></dt>
         <dd>Return <var>referrerURL</var>.</dd>
 
+        <dt><a>"<code>strict-origin</code>"</a></dt>
+        <dd>
+          <ol>
+            <li>
+              If |environment| is not null:
+              <ol>
+                <li>
+                  If |environment| is <a>TLS-protected</a> <em>and</em>
+                  the <a>origin</a>
+                  of <var>request</var>'s <a href="https://fetch.spec.whatwg.org/#concept-request-current-url">current
+                  URL</a> is not an <a><em>a priori</em> authenticated
+                  URL</a>, then return <code>no referrer</code>.
+                </li>
+              </ol>
+            </li>
+            <li>Return |referrerOrigin|.
+          </ol>
+        </dd>
+
+        <dt><a>"<code>strict-origin-when-cross-origin</code>"</a></dt>
+        <dd>
+          <ol>
+            <li>
+              If <var>request</var> is a <a>same-origin request</a>, then
+              return <var>referrerURL</var>.
+            </li>
+            <li>
+              If |environment| is not null:
+              <ol>
+                <li>
+                  If |environment| is <a>TLS-protected</a> <em>and</em>
+                  the <a>origin</a> of <var>request</var>'s
+                  <a href="https://fetch.spec.whatwg.org/#concept-request-current-url">current
+                  URL</a> is not an <a><em>a priori</em> authenticated URL</a>
+                  <ol>
+                      <li>Return <code>no referrer</code>.
+                  </ol>
+                </li>
+              </ol>
+            </li>
+            <li>Return |referrerOrigin|.
+          </ol>
+        </dd>
+
         <dt><a>"<code>same-origin</code>"</a></dt>
         <dd>
           <ol>
@@ -820,6 +942,15 @@ spec: FETCH; type: dfn; text: referrer policy; for: /;
     </li>
     <li>
       If <var>token</var> is an <a>ASCII case-insensitive match</a> for the
+      string "<code>strict-origin</code>", return <a>"<code>strict-origin</code>"</a>.
+    </li>
+    <li>
+      If <var>token</var> is an <a>ASCII case-insensitive match</a> for the
+      string "<code>strict-origin-when-cross-origin</code>", return
+      <a>"<code>strict-origin-when-cross-origin</code>"</a>.
+    </li>
+    <li>
+      If <var>token</var> is an <a>ASCII case-insensitive match</a> for the
       string "<code>same-origin</code>", return <a>"<code>same-origin</code>"</a>.
     </li>
     <li>
@@ -865,12 +996,19 @@ spec: FETCH; type: dfn; text: referrer policy; for: /;
 
   <h3 id="information-leakage">Information Leakage</h3>
 
-  The <a>referrer policies</a> <a>"<code>origin</code>"</a> and
+  The <a>referrer policies</a> <a>"<code>origin</code>"</a>,
+  <a>"<code>origin-when-cross-origin</code>"</a> and
   <a>"<code>unsafe-url</code>"</a> might leak the origin and the URL of
   a secure site respectively via insecure transport.
 
-  Those two policies are include in the spec nevertheless to lower the friction
+  Those two policies are included in the spec nevertheless to lower the friction
   of sites adopting secure transport.
+
+  Authors wanting to ensure that they do not leak any more information than
+  the default policy should instead use the policy states
+  <a>"<code>same-origin</code>"</a>, <a>"<code>strict-origin</code>"</a>,
+  <a>"<code>strict-origin-when-cross-origin</code>"</a> or
+  <a>"<code>no-referrer</code>"</a>.
 
   <h3 id="downgrade">Downgrade to less strict policies</h3>
 
