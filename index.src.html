@@ -594,15 +594,14 @@ spec: FETCH; type: dfn; text: referrer policy; for: /;
   <em>This section is not normative.</em>
 
   The Fetch specification calls out to
-  [[#set-requests-referrer-policy-on-redirect]] immediately
+  [[#set-requests-referrer-policy-on-redirect]]
   before <a href="https://fetch.spec.whatwg.org/#http-redirect-fetch">Step
-  15 of the HTTP-redirect fetch</a>.
+  13 of the HTTP-redirect fetch</a>, so that a request's referrer policy
+  can be updated before following a redirect.
 
-  The Fetch specification calls out to the
-  <a href="#determine-requests-referrer">Determine <var>request</var>'s
-  referrer</a> algorithm as
-  <a href="http://fetch.spec.whatwg.org/#concept-fetch">Step 2 of the
-  Fetching algorithm</a>, and uses the result to set the <var>request</var>'s
+  The Fetch specification calls out to [[#determine-requests-referrer]]
+  as <a href="https://fetch.spec.whatwg.org/#main-fetch">Step 8 of the
+  Main fetch algorithm</a>, and uses the result to set the <var>request</var>'s
   <code>referrer</code> property. Fetch is responsible for serializing the
   URL provided, and setting the `<code>Referer</code>` header on
   <var>request</var>.
