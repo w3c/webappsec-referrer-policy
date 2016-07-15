@@ -49,6 +49,7 @@ spec: HTML; urlPrefix: https://html.spec.whatwg.org/multipage/
       text: forced sandboxing flag set
       text: auxiliary browsing context
       text: browsing context
+      text: browsing context; for: Document; url: concept-document-bc
       text: parent browsing context
       text: ancestor browsing context
       text: browsing context container
@@ -85,10 +86,9 @@ spec: HTML; urlPrefix: https://html.spec.whatwg.org/multipage/
       text: task source
       text: tasks; url: concept-task
       text: environment settings object
-      text: incumbent settings object
       text: responsible browsing context
-      text: API referrer source
-      text: global object
+      text: global object; for: environment settings object; url: concept-settings-object-global
+      text: creation URL
     urlPrefix: workers.html
       text: running a worker; url: run a worker
     urlPrefix: dom.html
@@ -110,6 +110,7 @@ spec: MIX; urlPrefix: https://w3c.github.io/webappsec/specs/mixedcontent/
 spec: URL; urlPrefix: https://url.spec.whatwg.org
   type: dfn
     text: local scheme
+    text: URL
   type: interface
     text: URL
 spec: WSC-UI; urlPrefix: http://www.w3.org/TR/2010/REC-wsc-ui-20100812/
@@ -683,74 +684,53 @@ spec: FETCH; type: dfn; text: referrer policy; for: /;
   associated with it, as detailed in the following steps, which return
   either <code>no referrer</code> or a URL:
 
-  Note: If Fetch is performing a navigation in response to a link of type
-  <code><a>noreferrer</a></code>, then <var>request</var>'s
-  <code>referrer</code> will be <code>no referrer</code>, and Fetch won't call
-  into this algorithm.
-
   <ol>
     <li>
       Let <var>policy</var> be |request|'s associated <a>referrer policy</a>.
     </li>
     <li>
-      Let <var>environment</var> be <var>request</var>'s <code>client</code>.
+      Let <var>environment</var> be <var>request</var>'s <a lt="request
+      client">client</a>.
     </li>
     <li>
-      If <var>request</var>'s <code>referrer</code> is a URL, then let
-      <var>referrerSource</var> be <var>request</var>'s
-      <code>referrer</code>. Otherwise:
+      Switch on |request|'s <a>referrer</a>:
 
-      <ol>
-        <li>
-          If <var>environment</var>'s <a>global object</a> is a {{Window}}
-          object:
-
+      <dl class="switch">
+        <dt>"<code>client</code>"</dt>
+        <dd>
           <ol>
             <li>
-              Let <var>document</var> be the {{Document}} object of the
-              <a>active document</a> of the <a>browsing context</a> of
-              <var>environment</var>'s <a>responsible browsing context</a>.
-            </li>
-          </ol>
-        </li>
-        <li>
-          Otherwise, <var>environment</var>'s <a>global object</a> is a
-          {{WorkerGlobalScope}}:
+              If |environment|'s <a for="environment settings object">global
+              object</a> is a {{Window}} object, then
 
-          <ol>
-            <li>
-              Let <var>source</var> be the <a>API referrer source</a>
-              specified by the <a>incumbent settings object</a>.
-            </li>
-            <li>
-              If <var>source</var> is a URL, let <var>referrerSource</var>
-              be <var>source</var>, otherwise let <var>document</var> be
-              <var>source</var>.
-            </li>
-          </ol>
-        </li>
-        <li>
-          If <var>document</var> is set, execute the following steps:
+              <ol>
+                <li>Let |document| be the <a>active document</a> of
+                |environment|'s <a>responsible browsing context</a>.</li>
 
-          <ol>
-            <li>
-              If <var>document</var>'s <a>origin</a> is an <a>opaque
-              origin</a> (because, for example, it has been sandboxed
-              into a unique origin), return <code>no referrer</code> and
-              abort these steps.
-            </li>
-            <li>
-              While <var>document</var> corresponds to <a>an iframe srcdoc Document</a>,
-              let <var>document</var> be that Document's <a>browsing context</a>'s
-              <a>browsing context container</a>'s {{Document}}.
-            </li>
-            <li>
-              Let <var>referrerSource</var> be <var>document</var>'s URL.
-            </li>
-          </ol>
-        </li>
-      </ol>
+                <li>If |document|'s <a>origin</a> is an <a>opaque origin</a>,
+                return <code>no referrer</code>.</li>
 
+                <li>While |document| is <a>an <code>iframe srcdoc</code>
+                document</a>, let |document| be |document|'s <a
+                for="Document">browsing context</a>'s <a>browsing context
+                container</a>'s <a>node document</a>.</li>
+
+                <li>Let |referrerSource| be |document|'s <a
+                for="Document">URL</a>.</li>
+              </ol>
+            </li>
+
+            <li>Otherwise, let |referrerSource| be |environment|'s <a>creation
+            URL</a>.</li>
+          </ol>
+        </dd>
+
+        <dt>a <a>URL</a></dt>
+        <dd>Let |referrerSource| be |request|'s <a>referrer</a>.</dd>
+      </dl>
+
+      Note: If <var>request</var>'s <a>referrer</a> is
+      "<code>no-referrer</code>", Fetch will not call into this algorithm.
     </li>
 
     <li>
@@ -848,7 +828,6 @@ spec: FETCH; type: dfn; text: referrer policy; for: /;
         </dd>
 
         <dt><a>"<code>no-referrer-when-downgrade</code>"</a></dt>
-        <dt>the empty string</dt>
         <dd>
           <ol>
             <li>
@@ -867,6 +846,9 @@ spec: FETCH; type: dfn; text: referrer policy; for: /;
           </ol>
         </dd>
       </dl>
+
+      Note: Fetch will ensure |request|'s <a>referrer policy</a> is not the
+      empty string before calling this algorithm.
     </li>
   </ol>
 
