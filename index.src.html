@@ -45,6 +45,7 @@ spec: HTML; urlPrefix: https://html.spec.whatwg.org/multipage/
     urlPrefix: browsers.html
       text: opaque origin; url: concept-origin-opaque
       text: active document
+      text: associated Document; url: concept-document-window
       text: parse a sandboxing directive
       text: forced sandboxing flag set
       text: auxiliary browsing context
@@ -703,8 +704,9 @@ spec: FETCH; type: dfn; text: referrer policy; for: /;
               object</a> is a {{Window}} object, then
 
               <ol>
-                <li>Let |document| be the <a>active document</a> of
-                |environment|'s <a>responsible browsing context</a>.</li>
+                <li>Let |document| be
+                the <a>associated <code>Document</code></a> of |environment|'s
+                <a for="environment settings object">global object</a>.</li>
 
                 <li>If |document|'s <a>origin</a> is an <a>opaque origin</a>,
                 return <code>no referrer</code>.</li>
