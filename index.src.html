@@ -21,7 +21,6 @@ spec: FETCH; urlPrefix: https://fetch.spec.whatwg.org/
     text: fetching
     text: request; url: concept-request
     text: response; url: concept-response
-    text: referrer policy; url: concept-referrer-policy
     text: request client; url: concept-request-client
   type: interface
     text: Request
@@ -93,7 +92,7 @@ spec: HTML; urlPrefix: https://html.spec.whatwg.org/multipage/
     urlPrefix: workers.html
       text: running a worker; url: run a worker
     urlPrefix: dom.html
-      text: referrer policy; url: concept-document-referrer-policy; for: Document
+      text: document referrer policy; url: concept-document-referrer-policy; for: Document
   type: interface
     urlPrefix: dom.html
       text: Document
@@ -132,7 +131,6 @@ spec: RFC2616; urlPrefix: https://tools.ietf.org/html/rfc7231
 
 <pre class="link-defaults">
 spec: HTML; type: element; text: link;
-spec: FETCH; type: dfn; text: referrer policy; for: /;
 </pre>
 
 <!--
@@ -233,8 +231,29 @@ spec: FETCH; type: dfn; text: referrer policy; for: /;
 <section>
   <h2 id="referrer-policies" oldids="referrer-policy-states">Referrer Policies</h2>
 
-  Each possible <a>referrer policy</a>, besides the empty string, is explained
-  below. A detailed algorithm for evaluating their effect is given in the
+  A <dfn title="concept-referrer-policy" data-export>referrer policy</dfn>
+  is the empty string, "<code>no-referrer</code>",
+  "<code>no-referrer-when-downgrade</code>", "<code>same-origin</code>",
+  "<code>origin</code>", "<code>strict-origin</code>",
+  "<code>origin-when-cross-origin</code>",
+  "<code>strict-origin-when-cross-origin</code>", or
+  "<code>unsafe-url</code>".
+
+<pre class=idl>enum <dfn data-dfn-type=enum data-export>ReferrerPolicy</dfn> {
+
+  "",
+  "no-referrer",
+  "no-referrer-when-downgrade",
+  "same-origin",
+  "origin",
+  "strict-origin",
+  "origin-when-cross-origin",
+  "strict-origin-when-cross-origin",
+  "unsafe-url"
+};</pre>
+
+  Each possible <a>referrer policy</a> is explained below. A detailed
+  algorithm for evaluating their effect is given in the
   <a section href="#integration-with-fetch"></a> and
   <a section href="#algorithms"></a> sections.
 
@@ -475,10 +494,11 @@ spec: FETCH; type: dfn; text: referrer policy; for: /;
 
   <div class="example">
     Given a HTML <{a}> element without any declared <{a/referrerpolicy}>
-    attribute, its referrer policy is "". Thus, navigation requests initiated
-    by clicking on that <{a}> element will be sent with the <a
-    for="Document">referrer policy</a> of the <{a}> element's <a>node
-    document</a>. If that {{Document}} has "" as its referrer policy, the
+    attribute, its referrer policy is "". Thus, navigation requests
+    initiated by clicking on that <{a}> element will be sent with
+    the <a for="Document" lt="document referrer policy">referrer
+    policy</a> of the <{a}> element's <a>node document</a>. If that
+    {{Document}} has "" as its referrer policy, the
     [[#determine-requests-referrer]] algorithm will treat "" the same as
     <a>"<code>no-referrer-when-downgrade</code>"</a>.
   </div>
