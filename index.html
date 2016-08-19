@@ -1058,7 +1058,7 @@
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="http://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/Icons/w3c_home" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Referrer Policy</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2016-08-18">18 August 2016</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2016-08-19">19 August 2016</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1258,7 +1258,8 @@
   "origin-when-cross-origin",
   "strict-origin-when-cross-origin",
   "unsafe-url"
-};</pre>
+};
+</pre>
     <p>Each possible <a data-link-type="dfn" href="#referrer-policy">referrer policy</a> is explained below. A detailed
   algorithm for evaluating their effect is given in the <a href="#integration-with-fetch">§5 Integration with Fetch</a> and <a href="#algorithms">§7 Algorithms</a> sections.</p>
     <p class="note" role="note">Note: The referrer policy for an <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#environment-settings-object">environment settings object</a> provides a
@@ -1374,14 +1375,16 @@
   fallback to a <a data-link-type="dfn" href="#referrer-policy">referrer policy</a> defined elsewhere, or in the case where
   no such higher-level policy is available, defaulting to <a data-link-type="dfn" href="#referrer-policy-no-referrer-when-downgrade">"<code>no-referrer-when-downgrade</code>"</a>. This defaulting happens in
   the <a href="#determine-requests-referrer">§7.3 Determine request’s Referrer</a> algorithm.</p>
-    <div class="example" id="example-624d8bad"><a class="self-link" href="#example-624d8bad"></a> Given a HTML <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/semantics.html#the-a-element">a</a></code> element without any declared <code><a data-link-type="element-attr" href="https://html.spec.whatwg.org/multipage/semantics.html#attr-a-referrerpolicy">referrerpolicy</a></code> attribute, its referrer policy is "". Thus, navigation requests
-    initiated by clicking on that <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/semantics.html#the-a-element">a</a></code> element will be sent with
-    the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/dom.html#concept-document-referrer-policy">referrer
-    policy</a> of the <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/semantics.html#the-a-element">a</a></code> element’s <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-node-document">node document</a>. If that <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/dom.html#document">Document</a></code> has "" as its referrer policy, the <a href="#determine-requests-referrer">§7.3 Determine request’s Referrer</a> algorithm will treat "" the same as <a data-link-type="dfn" href="#referrer-policy-no-referrer-when-downgrade">"<code>no-referrer-when-downgrade</code>"</a>. </div>
+    <div class="example" id="example-97db3ccc"><a class="self-link" href="#example-97db3ccc"></a> Given a HTML <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/semantics.html#the-a-element">a</a></code> element without any declared <code><a data-link-type="element-attr" href="https://html.spec.whatwg.org/multipage/semantics.html#attr-a-referrerpolicy">referrerpolicy</a></code> attribute, its referrer policy is the empty string. Thus, navigation
+    requests initiated by clicking on that <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/semantics.html#the-a-element">a</a></code> element will be sent
+    with the {{Document/referrer policy}} of the <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/semantics.html#the-a-element">a</a></code> element’s <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-node-document">node
+    document</a>. If that <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/dom.html#document">Document</a></code> has the empty string as its
+    referrer policy, the <a href="#determine-requests-referrer">§7.3 Determine request’s Referrer</a> algorithm will
+    treat the empty string the same as <a data-link-type="dfn" href="#referrer-policy-no-referrer-when-downgrade">"<code>no-referrer-when-downgrade</code>"</a>. </div>
    </section>
    <section>
     <h2 class="heading settled" data-level="4" id="referrer-policy-delivery"><span class="secno">4. </span><span class="content">Referrer Policy Delivery</span><a class="self-link" href="#referrer-policy-delivery"></a></h2>
-    <p>A <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request">request</a>’s <a data-link-type="dfn" href="#referrer-policy">referrer policy</a> is delivered in one of five ways:</p>
+    <p>A <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request">request</a>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-referrer-policy">referrer policy</a> is delivered in one of five ways:</p>
     <ul>
      <li> Via the <code>Referrer-Policy</code> HTTP header (defined
       in <a href="#referrer-policy-header">§4.1 Delivery via Referrer-Policy header</a>). 
@@ -1473,7 +1476,7 @@
     </ol>
     <h3 class="heading settled" data-level="7.2" id="set-requests-referrer-policy-on-redirect"><span class="secno">7.2. </span><span class="content"> Set <var>request</var>’s referrer policy on redirect </span><a class="self-link" href="#set-requests-referrer-policy-on-redirect"></a></h3>
     <p>Given a <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request">request</a> <var>request</var> and a <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-response">response</a> <var>actualResponse</var>,
-  this algorithm updates <var>request</var>’s associated <a data-link-type="dfn" href="#referrer-policy">referrer policy</a> according to the Referrer-Policy header (if any) in <var>actualResponse</var>.</p>
+  this algorithm updates <var>request</var>’s associated <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-referrer-policy">referrer policy</a> according to the Referrer-Policy header (if any) in <var>actualResponse</var>.</p>
     <ol>
      <li> Let <var>policy</var> be the result of executing <a href="#parse-referrer-policy-from-header">§7.1 Parse a referrer policy from a Referrer-Policy header</a> on <var>actualResponse</var>. 
      <li>If <var>policy</var> is not the empty string, then set <var>request</var>’s
@@ -1481,10 +1484,10 @@
     </ol>
     <h3 class="heading settled" data-level="7.3" id="determine-requests-referrer"><span class="secno">7.3. </span><span class="content"> Determine <var>request</var>’s Referrer </span><a class="self-link" href="#determine-requests-referrer"></a></h3>
     <p>Given a <code class="idl"><a data-link-type="idl" href="https://fetch.spec.whatwg.org/#request">Request</a></code> <var>request</var>, we can determine the correct
-  referrer information to send by examining the <a data-link-type="dfn" href="#referrer-policy">referrer policy</a> associated with it, as detailed in the following steps, which return
+  referrer information to send by examining the <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-referrer-policy">referrer policy</a> associated with it, as detailed in the following steps, which return
   either <code>no referrer</code> or a URL:</p>
     <ol>
-     <li> Let <var>policy</var> be <var>request</var>’s associated <a data-link-type="dfn" href="#referrer-policy">referrer policy</a>. 
+     <li> Let <var>policy</var> be <var>request</var>’s associated <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-referrer-policy">referrer policy</a>. 
      <li> Let <var>environment</var> be <var>request</var>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-client">client</a>. 
      <li>
        Switch on <var>request</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/semantics.html#meta-referrer">referrer</a>: 
@@ -1741,6 +1744,7 @@
      <li><a href="https://fetch.spec.whatwg.org/#concept-request-origin">origin</a>
      <li><a href="https://fetch.spec.whatwg.org/#concept-request">request</a>
      <li><a href="https://fetch.spec.whatwg.org/#concept-request-client">request client</a>
+     <li><a href="https://fetch.spec.whatwg.org/#concept-request-referrer-policy">request referrer policy</a>
      <li><a href="https://fetch.spec.whatwg.org/#concept-response">response</a>
      <li><a href="https://fetch.spec.whatwg.org/#concept-request-url">url</a>
     </ul>
@@ -1755,7 +1759,6 @@
      <li><a href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context">browsing context</a>
      <li><a href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context-container">browsing context container</a>
      <li><a href="https://html.spec.whatwg.org/multipage/webappapis.html#creation-url">creation url</a>
-     <li><a href="https://html.spec.whatwg.org/multipage/dom.html#concept-document-referrer-policy">document referrer policy</a>
      <li><a href="https://html.spec.whatwg.org/multipage/webappapis.html#environment-settings-object">environment settings object</a>
      <li><a href="https://html.spec.whatwg.org/multipage/infrastructure.html#concept-url-fragment">fragment</a>
      <li><a href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-settings-object-global">global object</a>
@@ -1863,6 +1866,7 @@
   "strict-origin-when-cross-origin",
   "unsafe-url"
 };
+
 </pre>
  </body>
 </html>
