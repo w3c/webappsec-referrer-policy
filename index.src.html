@@ -92,10 +92,11 @@ spec: HTML; urlPrefix: https://html.spec.whatwg.org/multipage/
       text: creation URL
     urlPrefix: workers.html
       text: running a worker; url: run a worker
+    urlPrefix: dom.html
+      text: document referrer policy; url: concept-document-referrer-policy; for: Document
   type: interface
     urlPrefix: dom.html
       text: Document
-      text: referrer policy; url: concept-document-referrer-policy; for: Document
   type: element
     urlPrefix: semantics.html
       text: a; url: the-a-element
@@ -497,10 +498,13 @@ spec: HTML; type: element; text: link;
     Given a HTML <{a}> element without any declared <{a/referrerpolicy}>
     attribute, its referrer policy is the empty string. Thus, navigation
     requests initiated by clicking on that <{a}> element will be sent
-    with the {{Document/referrer policy}} of the <{a}> element's <a>node
-    document</a>. If that {{Document}} has the empty string as its
-    referrer policy, the [[#determine-requests-referrer]] algorithm will
-    treat the empty string the same as
+    <!-- The 'lt' below is a workaround for
+    https://github.com/tabatkins/bikeshed/issues/786-->
+    with the <a lt="document referrer policy" for="Document">referrer
+    policy</a> of the <{a}> element's <a>node document</a>. If that
+    {{Document}} has the empty string as its referrer policy, the
+    [[#determine-requests-referrer]] algorithm will treat the empty
+    string the same as
     <a>"<code>no-referrer-when-downgrade</code>"</a>.
   </div>
 
