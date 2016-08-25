@@ -19,6 +19,8 @@ Repository: w3c/webappsec-referrer-policy
 spec: FETCH; urlPrefix: https://fetch.spec.whatwg.org/
   type: dfn
     text: fetching
+    text: header list; url: concept-response-header-list
+    text: parsing; url: concept-header-parse
     text: request referrer policy; url: concept-request-referrer-policy
     text: request; url: concept-request
     text: response; url: concept-response
@@ -665,15 +667,20 @@ spec: HTML; type: element; text: link;
   <ol>
     <li>
       Let |policy-tokens| be the result of
-      parsing `<code>Referrer-Policy</code>` in |response|'s header list.
+      <a>parsing</a> `<code>Referrer-Policy</code>` in
+      |response|'s <a>header list</a>.
     </li>
     <li>
       Let |policy| be the empty string.
     </li>
     <li>
-      For each <var>token</var> in <var>policy-tokens</var>, execute
-      [[#determine-policy-for-token]] on <var>token</var> and
-      set <var>policy</var> to the result if it is not the empty string.
+      For each |token| in |policy-tokens|, if |token| is a <a>referrer
+      policy</a> and |token| is not the empty string, then set |policy|
+      to |token|.
+
+	  Note: This algorithm loops over multiple policy values to allow
+	  deployment of new policy values with fallbacks for older user
+	  agents, as described in [[#unknown-policy-values]].
     </li>
     <li>
       Return |policy|.

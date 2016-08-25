@@ -1058,7 +1058,7 @@
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="http://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/Icons/w3c_home" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Referrer Policy</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2016-08-19">19 August 2016</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2016-08-25">25 August 2016</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1467,11 +1467,14 @@
     <h3 class="heading settled" data-level="7.1" id="parse-referrer-policy-from-header"><span class="secno">7.1. </span><span class="content"> Parse a referrer policy from a <a data-link-type="dfn" href="#referrer-policy-header-dfn"><code>Referrer-Policy</code></a> header </span><a class="self-link" href="#parse-referrer-policy-from-header"></a></h3>
     <p>Given a <code class="idl"><a data-link-type="idl" href="https://fetch.spec.whatwg.org/#response">Response</a></code> <var>response</var>, the following steps return a <a data-link-type="dfn" href="#referrer-policy">referrer policy</a> according to <var>response</var>’s `<code>Referrer-Policy</code>` header:</p>
     <ol>
-     <li> Let <var>policy-tokens</var> be the result of
-      parsing `<code>Referrer-Policy</code>` in <var>response</var>’s header list. 
+     <li> Let <var>policy-tokens</var> be the result of <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-header-parse">parsing</a> `<code>Referrer-Policy</code>` in <var>response</var>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-response-header-list">header list</a>. 
      <li> Let <var>policy</var> be the empty string. 
-     <li> For each <var>token</var> in <var>policy-tokens</var>, execute <a href="#determine-policy-for-token">§7.5 Determine token’s Policy</a> on <var>token</var> and
-      set <var>policy</var> to the result if it is not the empty string. 
+     <li>
+       For each <var>token</var> in <var>policy-tokens</var>, if <var>token</var> is a <a data-link-type="dfn" href="#referrer-policy">referrer
+      policy</a> and <var>token</var> is not the empty string, then set <var>policy</var> to <var>token</var>. 
+      <p class="note" role="note">Note: This algorithm loops over multiple policy values to allow
+	  deployment of new policy values with fallbacks for older user
+	  agents, as described in <a href="#unknown-policy-values">§10.1 Unknown Policy Values</a>.</p>
      <li> Return <var>policy</var>. 
     </ol>
     <h3 class="heading settled" data-level="7.2" id="set-requests-referrer-policy-on-redirect"><span class="secno">7.2. </span><span class="content"> Set <var>request</var>’s referrer policy on redirect </span><a class="self-link" href="#set-requests-referrer-policy-on-redirect"></a></h3>
@@ -1741,7 +1744,9 @@
      <li><a href="https://fetch.spec.whatwg.org/#request">Request</a>
      <li><a href="https://fetch.spec.whatwg.org/#response">Response</a>
      <li><a href="https://fetch.spec.whatwg.org/#fetching">fetching</a>
+     <li><a href="https://fetch.spec.whatwg.org/#concept-response-header-list">header list</a>
      <li><a href="https://fetch.spec.whatwg.org/#concept-request-origin">origin</a>
+     <li><a href="https://fetch.spec.whatwg.org/#concept-header-parse">parsing</a>
      <li><a href="https://fetch.spec.whatwg.org/#concept-request">request</a>
      <li><a href="https://fetch.spec.whatwg.org/#concept-request-client">request client</a>
      <li><a href="https://fetch.spec.whatwg.org/#concept-request-referrer-policy">request referrer policy</a>
