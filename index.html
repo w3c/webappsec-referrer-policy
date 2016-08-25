@@ -1469,9 +1469,12 @@
     <ol>
      <li> Let <var>policy-tokens</var> be the result of <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-header-parse">parsing</a> `<code>Referrer-Policy</code>` in <var>response</var>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-response-header-list">header list</a>. 
      <li> Let <var>policy</var> be the empty string. 
-     <li> For each <var>token</var> in <var>policy-tokens</var>,
-      if <var>token</var> is a <a data-link-type="dfn" href="#referrer-policy">referrer policy</a> and <var>token</var> is not the empty string, then
-      set <var>policy</var> to <var>token</var>. 
+     <li>
+       For each <var>token</var> in <var>policy-tokens</var>, if <var>token</var> is a <a data-link-type="dfn" href="#referrer-policy">referrer
+      policy</a> and <var>token</var> is not the empty string, then set <var>policy</var> to <var>token</var>. 
+      <p class="note" role="note">Note: This algorithm loops over multiple policy values to allow
+	  deployment of new policy values with fallbacks for older user
+	  agents, as described in <a href="#unknown-policy-values">§10.1 Unknown Policy Values</a>.</p>
      <li> Return <var>policy</var>. 
     </ol>
     <h3 class="heading settled" data-level="7.2" id="set-requests-referrer-policy-on-redirect"><span class="secno">7.2. </span><span class="content"> Set <var>request</var>’s referrer policy on redirect </span><a class="self-link" href="#set-requests-referrer-policy-on-redirect"></a></h3>

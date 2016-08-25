@@ -674,10 +674,13 @@ spec: HTML; type: element; text: link;
       Let |policy| be the empty string.
     </li>
     <li>
-      For each <var>token</var> in <var>policy-tokens</var>,
-      if <var>token</var> is a <a>referrer policy</a>
-      and <var>token</var> is not the empty string, then
-      set <var>policy</var> to <var>token</var>.
+      For each |token| in |policy-tokens|, if |token| is a <a>referrer
+      policy</a> and |token| is not the empty string, then set |policy|
+      to |token|.
+
+	  Note: This algorithm loops over multiple policy values to allow
+	  deployment of new policy values with fallbacks for older user
+	  agents, as described in [[#unknown-policy-values]].
     </li>
     <li>
       Return |policy|.
