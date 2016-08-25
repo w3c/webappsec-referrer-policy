@@ -1153,7 +1153,6 @@
       <li><a href="#set-requests-referrer-policy-on-redirect"><span class="secno">7.2</span> <span class="content"> Set <var>request</var>’s referrer policy on redirect </span></a>
       <li><a href="#determine-requests-referrer"><span class="secno">7.3</span> <span class="content"> Determine <var>request</var>’s Referrer </span></a>
       <li><a href="#strip-url"><span class="secno">7.4</span> <span class="content"> Strip <var>url</var> for use as a referrer </span></a>
-      <li><a href="#determine-policy-for-token"><span class="secno">7.5</span> <span class="content"> Determine <var>token</var>’s Policy </span></a>
      </ul>
     <li>
      <a href="#privacy"><span class="secno">8</span> <span class="content">Privacy Considerations</span></a>
@@ -1613,32 +1612,6 @@
       </ol>
      <li> Return <var>url</var>. 
     </ol>
-    <h3 class="heading settled" data-level="7.5" id="determine-policy-for-token"><span class="secno">7.5. </span><span class="content"> Determine <var>token</var>’s Policy </span><a class="self-link" href="#determine-policy-for-token"></a></h3>
-    <p>Given a string <var>token</var> (for example, the value of a <a data-link-type="dfn" href="#referrer-policy-header-dfn"><code>Referrer-Policy</code></a> header), this algorithm will return the <a data-link-type="dfn" href="#referrer-policy">referrer policy</a> it refers to:</p>
-    <ol>
-     <li> If <var>token</var> is an <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#ascii-case-insensitive">ASCII case-insensitive match</a> for the
-      strings "<code>never</code>" or "<code>no-referrer</code>", return <a data-link-type="dfn" href="#referrer-policy-no-referrer">"<code>no-referrer</code>"</a>. 
-     <li> If <var>token</var> is <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#ascii-case-insensitive">ASCII case-insensitive match</a> for the string
-      "<code>default</code>" or "<code>no-referrer-when-downgrade</code>",
-      return <a data-link-type="dfn" href="#referrer-policy-no-referrer-when-downgrade">"<code>no-referrer-when-downgrade</code>"</a>. 
-     <li> If <var>token</var> is an <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#ascii-case-insensitive">ASCII case-insensitive match</a> for the
-      string "<code>origin</code>", return <a data-link-type="dfn" href="#referrer-policy-origin">"<code>origin</code>"</a>. 
-     <li> If <var>token</var> is an <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#ascii-case-insensitive">ASCII case-insensitive match</a> for the
-      string "<code>strict-origin</code>", return <a data-link-type="dfn" href="#referrer-policy-strict-origin">"<code>strict-origin</code>"</a>. 
-     <li> If <var>token</var> is an <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#ascii-case-insensitive">ASCII case-insensitive match</a> for the
-      string "<code>strict-origin-when-cross-origin</code>", return <a data-link-type="dfn" href="#referrer-policy-strict-origin-when-cross-origin">"<code>strict-origin-when-cross-origin</code>"</a>. 
-     <li> If <var>token</var> is an <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#ascii-case-insensitive">ASCII case-insensitive match</a> for the
-      string "<code>same-origin</code>", return <a data-link-type="dfn" href="#referrer-policy-same-origin">"<code>same-origin</code>"</a>. 
-     <li> If <var>token</var> is <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#ascii-case-insensitive">ASCII case-insensitive match</a> for the string
-      "<code>origin-when-cross-origin</code>", return <a data-link-type="dfn" href="#referrer-policy-origin-when-cross-origin">"<code>origin-when-cross-origin</code>"</a>. 
-     <li> If <var>token</var> is <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#ascii-case-insensitive">ASCII case-insensitive match</a> for the strings
-      "<code>always</code>" or "<code>unsafe-url</code>",
-      return <a data-link-type="dfn" href="#referrer-policy-unsafe-url">"<code>unsafe-url</code>"</a>. 
-     <li> If <var>token</var> is empty, return <a data-link-type="dfn" href="#referrer-policy-no-referrer">"<code>no-referrer</code>"</a>. 
-     <li> Return the empty string. 
-    </ol>
-    <p class="note" role="note">Note: Authors are encouraged to avoid the legacy keywords <code>never</code>, <code>default</code>, and <code>always</code>. The
-  keywords <code>no-referrer</code>, <code>no-referrer-when-downgrade</code>, and <code>unsafe-url</code> respectively are preferred.</p>
    </section>
    <section>
     <h2 class="heading settled" data-level="8" id="privacy"><span class="secno">8. </span><span class="content">Privacy Considerations</span><a class="self-link" href="#privacy"></a></h2>
@@ -1670,14 +1643,18 @@
    <section>
     <h2 class="heading settled" data-level="10" id="authoring"><span class="secno">10. </span><span class="content">Authoring Considerations</span><a class="self-link" href="#authoring"></a></h2>
     <h3 class="heading settled" data-level="10.1" id="unknown-policy-values"><span class="secno">10.1. </span><span class="content">Unknown Policy Values</span><a class="self-link" href="#unknown-policy-values"></a></h3>
-    <p>As described in <a href="#determine-policy-for-token">§7.5 Determine token’s Policy</a>, unknown policy values
-  will be ignored, and when multiple sources specify a referrer policy,
-  the value of the latest one will be used. This makes it possible to
-  deploy new policy values.</p>
+    <p>As described in <a href="#parse-referrer-policy-from-header">§7.1 Parse a referrer policy from a Referrer-Policy header</a> and in the <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/semantics.html#meta">meta</a></code> <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/semantics.html#meta-referrer"><code>referrer</code></a> algorithm, unknown
+  policy values will be ignored, and when multiple sources specify a
+  referrer policy, the value of the latest one will be used. This makes
+  it possible to deploy new policy values.</p>
     <div class="example" id="example-e42fe91b"><a class="self-link" href="#example-e42fe91b"></a> Suppose older user agents don’t understand
     the <a data-link-type="dfn" href="#referrer-policy-unsafe-url">"<code>unsafe-url</code>"</a> policy. A site can specify
     an <a data-link-type="dfn" href="#referrer-policy-origin">"<code>origin</code>"</a> policy followed by an <a data-link-type="dfn" href="#referrer-policy-unsafe-url">"<code>unsafe-url</code>"</a> policy: older user agents will ignore the
     unknown <a data-link-type="dfn" href="#referrer-policy-unsafe-url">"<code>unsafe-url</code>"</a> value and use <a data-link-type="dfn" href="#referrer-policy-origin">"<code>origin</code>"</a>, while newer user agents will use <a data-link-type="dfn" href="#referrer-policy-unsafe-url">"<code>unsafe-url</code>"</a> because it is the last to be processed. </div>
+    <p>This behavior does not, however, apply to
+  the <code>referrerpolicy</code> attribute. Authors may dynamically set
+  and get the <code>referrerpolicy</code> attribute to detect whether a
+  particular policy value is supported.</p>
    </section>
    <section>
     <h2 class="heading settled" data-level="11" id="acknowledgements"><span class="secno">11. </span><span class="content">Acknowledgements</span><a class="self-link" href="#acknowledgements"></a></h2>
@@ -1759,7 +1736,6 @@
      <li><a href="https://html.spec.whatwg.org/multipage/dom.html#document">Document</a>
      <li><a href="https://html.spec.whatwg.org/multipage/semantics.html#the-a-element">a</a>
      <li><a href="https://html.spec.whatwg.org/multipage/embedded-content.html#an-iframe-srcdoc-document">an iframe srcdoc document</a>
-     <li><a href="https://html.spec.whatwg.org/multipage/infrastructure.html#ascii-case-insensitive">ascii case-insensitive match</a>
      <li><a href="https://html.spec.whatwg.org/multipage/browsers.html#concept-document-window">associated document</a>
      <li><a href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context">browsing context</a>
      <li><a href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context-container">browsing context container</a>

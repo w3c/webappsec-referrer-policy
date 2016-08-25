@@ -932,66 +932,6 @@ spec: HTML; type: element; text: link;
     </li>
   </ol>
 
-  <h3 id="determine-policy-for-token">
-    Determine <var>token</var>'s Policy
-  </h3>
-
-  Given a string <var>token</var> (for example, the value of a
-  <a><code>Referrer-Policy</code></a> header), this algorithm will return the
-  <a>referrer policy</a> it refers to:
-
-  <ol>
-    <li>
-      If <var>token</var> is an <a>ASCII case-insensitive match</a> for the
-      strings "<code>never</code>" or "<code>no-referrer</code>", return
-      <a>"<code>no-referrer</code>"</a>.
-    </li>
-    <li>
-      If <var>token</var> is <a>ASCII case-insensitive match</a> for the string
-      "<code>default</code>" or "<code>no-referrer-when-downgrade</code>",
-      return <a>"<code>no-referrer-when-downgrade</code>"</a>.
-    </li>
-    <li>
-      If <var>token</var> is an <a>ASCII case-insensitive match</a> for the
-      string "<code>origin</code>", return <a>"<code>origin</code>"</a>.
-    </li>
-    <li>
-      If <var>token</var> is an <a>ASCII case-insensitive match</a> for the
-      string "<code>strict-origin</code>", return <a>"<code>strict-origin</code>"</a>.
-    </li>
-    <li>
-      If <var>token</var> is an <a>ASCII case-insensitive match</a> for the
-      string "<code>strict-origin-when-cross-origin</code>", return
-      <a>"<code>strict-origin-when-cross-origin</code>"</a>.
-    </li>
-    <li>
-      If <var>token</var> is an <a>ASCII case-insensitive match</a> for the
-      string "<code>same-origin</code>", return <a>"<code>same-origin</code>"</a>.
-    </li>
-    <li>
-      If <var>token</var> is <a>ASCII case-insensitive match</a> for the string
-      "<code>origin-when-cross-origin</code>", return
-      <a>"<code>origin-when-cross-origin</code>"</a>.
-    </li>
-    <li>
-      If <var>token</var> is <a>ASCII case-insensitive match</a> for the strings
-      "<code>always</code>" or "<code>unsafe-url</code>",
-      return <a>"<code>unsafe-url</code>"</a>.
-    </li>
-    <li>
-      If <var>token</var> is empty, return <a>"<code>no-referrer</code>"</a>.
-    </li>
-    <li>
-      Return the empty string.
-    </li>
-  </ol>
-
-  Note: Authors are encouraged to avoid the legacy keywords
-  <code>never</code>, <code>default</code>, and <code>always</code>. The
-  keywords <code>no-referrer</code>,
-  <code>no-referrer-when-downgrade</code>, and <code>unsafe-url</code>
-  respectively are preferred.
-
 </section>
 
 <section>
@@ -1045,10 +985,11 @@ spec: HTML; type: element; text: link;
 
   <h3 id="unknown-policy-values">Unknown Policy Values</h3>
 
-  As described in [[#determine-policy-for-token]], unknown policy values
-  will be ignored, and when multiple sources specify a referrer policy,
-  the value of the latest one will be used. This makes it possible to
-  deploy new policy values.
+  As described in [[#parse-referrer-policy-from-header]] and in the
+  <{meta}> <a for="meta"><code>referrer</code></a> algorithm, unknown
+  policy values will be ignored, and when multiple sources specify a
+  referrer policy, the value of the latest one will be used. This makes
+  it possible to deploy new policy values.
 
   <div class="example">
   	Suppose older user agents don't understand
@@ -1059,6 +1000,12 @@ spec: HTML; type: element; text: link;
     <a>"<code>origin</code>"</a>, while newer user agents will use
     <a>"<code>unsafe-url</code>"</a> because it is the last to be processed.
   </div>
+
+  This behavior does not, however, apply to
+  the <code>referrerpolicy</code> attribute. Authors may dynamically set
+  and get the <code>referrerpolicy</code> attribute to detect whether a
+  particular policy value is supported.
+
 </section>
 
 <!--
