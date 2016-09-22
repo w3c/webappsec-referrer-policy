@@ -655,6 +655,27 @@ spec: HTML; type: element; text: link;
   with W3C HTML5, those would need to be copied from [[HTML]].
 </section>
 
+<section class="informative">
+  <h2 id="integration-with-css">Integration with CSS</h2>
+
+  <em>This section is not normative.</em>
+
+  The CSS Standard does not specify how it fetches resources referenced from
+  stylesheets. However, implementations use the URL a given stylesheet was
+  loaded from as referrer for the requests for resources form that stylesheet.
+
+  Implementations should keep track of a referrer policy for each stylesheet
+  that should be used to create requests for resources from the respective
+  stylesheet. The referrer policy should be inherited from the entity that
+  triggered the load of the stylesheet, i.e., a document, or another
+  stylesheet.  If the network response of the stylesheet included an
+  `<code>Referrer-Policy</code>` header, the header's policy should take
+  precedence.
+
+  Both, the value of the referrer and the value of the referrer policy should be
+  captured when the request for the stylesheet is created.
+</section>
+
 <section>
   <h2 id="algorithms">Algorithms</h2>
 
