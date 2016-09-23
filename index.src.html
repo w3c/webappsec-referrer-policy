@@ -658,22 +658,23 @@ spec: HTML; type: element; text: link;
 <section class="informative">
   <h2 id="integration-with-css">Integration with CSS</h2>
 
-  <em>This section is not normative.</em>
-
   The CSS Standard does not specify how it fetches resources referenced from
   stylesheets. However, implementations use the URL a given stylesheet was
-  loaded from as referrer for the requests for resources form that stylesheet.
+  loaded from as referrer for the requests for resources from that stylesheet.
 
   Implementations should keep track of a referrer policy for each stylesheet
   that should be used to create requests for resources from the respective
-  stylesheet. The referrer policy should be inherited from the entity that
-  triggered the load of the stylesheet, i.e., a document, or another
-  stylesheet.  If the network response of the stylesheet included an
-  `<code>Referrer-Policy</code>` header, the header's policy should take
-  precedence.
+  stylesheet. 
 
-  Both, the value of the referrer and the value of the referrer policy should be
-  captured when the request for the stylesheet is created.
+  For external stylesheets, the referrer policy should be
+  <a>"<code>no-referrer-when-downgrade</code>"</a> unless overwritten by an
+  `<code>Referrer-Policy</code>` header.
+
+  For inline stylesheets, the referrer policy is the containing {{Document}}'s
+  referrer policy.
+
+  Both the value of the referrer and the value of the referrer policy should be
+  captured at the time a given request is created.
 </section>
 
 <section>
