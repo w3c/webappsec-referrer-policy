@@ -670,6 +670,10 @@ spec: HTML; type: element; text: link;
   <a>"<code>no-referrer-when-downgrade</code>"</a> unless overwritten by an
   `<code>Referrer-Policy</code>` header.
 
+  Note: If the stylesheet was loaded via a HTML <{link}> element with a
+  declared <{link/referrerpolicy}>, this referrer policy will not affect the
+  requests for resources referenced from the stylesheet.
+
   For inline stylesheets, the referrer policy is the containing {{Document}}'s
   referrer policy.
 

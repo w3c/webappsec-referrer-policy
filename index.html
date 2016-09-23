@@ -1835,6 +1835,9 @@ pre.idl.highlight { color: #708090; }
   stylesheet.</p>
     <p>For external stylesheets, the referrer policy should be <a data-link-type="dfn" href="#referrer-policy-no-referrer-when-downgrade" id="ref-for-referrer-policy-no-referrer-when-downgrade-5">"<code>no-referrer-when-downgrade</code>"</a> unless overwritten by an
   `<code>Referrer-Policy</code>` header.</p>
+    <p class="note" role="note">Note: If the stylesheet was loaded via a HTML <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/semantics.html#the-link-element">link</a></code> element with a
+  declared <code><a data-link-type="element-sub" href="https://html.spec.whatwg.org/multipage/semantics.html#attr-link-referrerpolicy">referrerpolicy</a></code>, this referrer policy will not affect the
+  requests for resources referenced from the stylesheet.</p>
     <p>For inline stylesheets, the referrer policy is the containing <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/dom.html#document">Document</a></code>'s
   referrer policy.</p>
     <p>Both the value of the referrer and the value of the referrer policy should be
