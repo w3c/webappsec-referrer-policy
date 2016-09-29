@@ -641,6 +641,9 @@ spec: HTML; type: element; text: link;
 
   <em>This section is not normative.</em>
 
+	<h3 id="html-update-environment-settings-object">
+		Update the environment settings object
+	</h3>
   The HTML Standard determines the <a>referrer policy</a> of any response
   received during <a>navigation</a> or while <a>running a worker</a>, and uses
   the result to set the resulting {{Document}} or {{WorkerGlobalScope}}'s
@@ -653,6 +656,33 @@ spec: HTML; type: element; text: link;
   <a for="meta"><code>referrer</code></a> keyword for <{meta}>, or the
   integration with navigation or running a worker. For this spec to make sense
   with W3C HTML5, those would need to be copied from [[HTML]].
+
+	<h3 id="html-redact-ancestorOrigins">Redact ancestorOrigins</h3>
+	Th HTML Standard defines the concept of an 
+	<a href="https://html.spec.whatwg.org/multipage/browsers.html#concept-location-ancestor-origins-array">ancestor origins array</a>
+	which should be redacted in accordance with referrer policy.
+	The algorithm to produce this array should be amended as follows:
+
+	Replace step 5, "Append the Unicode serialization of <em>current</em>'s
+	active document's origin to <em>output</em> as a new value."
+	with the following:
+	<ol start="5">
+		<li>
+			Let <em>referrer</em> be the value of the Referer header 
+			which would be sent if <em>current</em>'s active document initiated
+			a <a lt="fetch">fetch</a> of the <tt>Document</tt> this <tt>Location</tt>
+			object is associated with.
+		</li>
+		<li>
+			Let <em>referrerOrigin</em> be the <em>origin</em> of the result of 
+			parsing <em>referrer</em> as a <a lt="url">URL</a>.
+		</li>
+		<li>
+			If <em>referrerOrigin</em> is the empty string, apppend  <tt>"null"</tt> to
+			<em>output</em> as a new value.  Otherwise append the Unicode serialiation of
+			<em>referrerOrigin</em> to <em>output</em> as a new value.
+		</li>
+	</ol>
 </section>
 
 <section>
