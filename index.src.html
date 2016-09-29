@@ -674,7 +674,8 @@ spec: HTML; type: element; text: link;
   declared <{link/referrerpolicy}>, this referrer policy will not affect the
   requests for resources referenced from the stylesheet.
 
-  For inline stylesheets, the referrer policy is the containing {{Document}}'s
+  For inline stylesheets, and styles applied via an <code>style</code>
+  attribute on an element, the referrer policy is the containing {{Document}}'s
   referrer policy.  Both the value of the referrer and the value of the
   referrer policy should be captured at the time a given request is created.
 </section>

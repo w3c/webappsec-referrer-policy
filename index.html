@@ -1421,7 +1421,7 @@ pre.idl.highlight { color: #708090; }
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1>Referrer Policy</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2016-09-28">28 September 2016</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2016-09-29">29 September 2016</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1759,7 +1759,7 @@ pre.idl.highlight { color: #708090; }
     <p>The <code><dfn class="dfn-paneled" data-dfn-type="dfn" data-local-lt="referrer-policy header" data-noexport="" id="referrer-policy-header-dfn">Referrer-Policy</dfn></code> HTTP
   header specifies the referrer policy that the user agent applies when
   determining what referrer information should be included with requests
-  made, and with <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context">browsing contexts</a> created from the context of the protected resource.
+  made, and with <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#concept-document-bc">browsing contexts</a> created from the context of the protected resource.
   The syntax for the name and value of the header are described by the
   following ABNF grammar:</p>
 <pre>"Referrer-Policy:" 1#<a data-link-type="dfn" href="#policy-token" id="ref-for-policy-token-1">policy-token</a>
@@ -1838,7 +1838,7 @@ pre.idl.highlight { color: #708090; }
     <p class="note" role="note">Note: If the stylesheet was loaded via a HTML <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/semantics.html#the-link-element">link</a></code> element with a
   declared <code><a data-link-type="element-sub" href="https://html.spec.whatwg.org/multipage/semantics.html#attr-link-referrerpolicy">referrerpolicy</a></code>, this referrer policy will not affect the
   requests for resources referenced from the stylesheet.</p>
-    <p>For inline stylesheets, the referrer policy is the containing <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/dom.html#document">Document</a></code>'s
+    <p>For inline stylesheets, and styles applied via an <code>style</code> attribute on an element, the referrer policy is the containing <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/dom.html#document">Document</a></code>'s
   referrer policy.  Both the value of the referrer and the value of the
   referrer policy should be captured at the time a given request is created.</p>
    </section>
@@ -2177,7 +2177,7 @@ pre.idl.highlight { color: #708090; }
      <li><a href="https://html.spec.whatwg.org/multipage/embedded-content.html#an-iframe-srcdoc-document">an iframe srcdoc document</a>
      <li><a href="https://html.spec.whatwg.org/multipage/embedded-content.html#the-area-element">area</a>
      <li><a href="https://html.spec.whatwg.org/multipage/browsers.html#concept-document-window">associated document</a>
-     <li><a href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context">browsing context</a>
+     <li><a href="https://html.spec.whatwg.org/multipage/browsers.html#concept-document-bc">browsing context</a>
      <li><a href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context-container">browsing context container</a>
      <li><a href="https://html.spec.whatwg.org/multipage/webappapis.html#creation-url">creation url</a>
      <li><a href="https://html.spec.whatwg.org/multipage/dom.html#concept-document-referrer-policy">document referrer policy</a>
