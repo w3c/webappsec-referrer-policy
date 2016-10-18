@@ -84,6 +84,8 @@ spec: HTML; urlPrefix: https://html.spec.whatwg.org/multipage/
       text: reflect
       text: limited to only known values
       text: referrer policy attribute
+      text: location
+      text: ancestor origins array; url: concept-location-ancestor-origins-array
     urlPrefix: webappapis.html
       text: queue a task
       text: task source
@@ -955,6 +957,103 @@ spec: HTML; type: element; text: link;
     </li>
     <li>
       Return <var>url</var>.
+    </li>
+  </ol>
+
+  <h3 id="ancestor-origin">
+    Determine the Ancestor Origin availble to a Location
+  </h3>
+  Given a <a>Location</a> <var>location</var> and a <a>browsing context</a> <var>context</var>
+  we can determine what origin information for <var>context</var> should be included in
+  <var>location</var>'s <a>ancestor origins array</a>.
+
+  <ol>
+    <li>Let <var>document</var> be <var>context</var>'s <a>active document</a>.</li>
+    <li>Let <var>documentOrigin</var> be <var>document</var>'s <a>origin</a>.</li>
+    <li>If <var>documentOrigin</var> is an <a>opaque origin</a>, return <code>"null"</code>.
+    <li>Let <var>locationOrigin</var> be <var>location</var>'s relevant <a>Document</a>'s <a>origin</a>.
+    <li>Let <var>policy</var> be <var>document</var>'s <a>referrer policy</a>.</li>
+    <li>
+      Execute the statements corresponding to the value of <var>policy</var>:
+
+      <dl class="switch">
+        <dt><a>"<code>no-referrer</code>"</a></dt>
+        <dd>Return <code>"null"</code></dd>
+
+        <dt><a>"<code>origin</code>"</a></dt>
+        <dd>Return <var>documentOrigin</var>.</dd>
+
+        <dt><a>"<code>unsafe-url</code>"</a></dt>
+        <dd>Return <var>documentOrigin</var>.</dd>
+
+        <dt><a>"<code>strict-origin</code>"</a></dt>
+        <dd>
+          <ol>
+            <li>
+              If <var>context</var> is <a>TLS-protected</a> <em>and</em>
+              <var>locationOrigin</var> is not an <a><em>a priori</em> authenticated
+              URL</a>, return <code>"null"</code>.
+            </li>
+            <li>
+              Return <var>documentOrigin</var>
+            </li>
+          </ol>
+        </dd>
+
+        <dt><a>"<code>strict-origin-when-cross-origin</code>"</a></dt>
+        <dd>
+          <ol>
+            <li>
+              If <var>documentOrigin</var> and <var>locationOrigin</var>
+              are <a>same origin</a>, return <var>documentOrigin</var>.
+            </li>
+            <li>
+              If <var>context</var> is <a>TLS-protected</a> <em>and</em>
+              <var>locationOrigin</var> is not an <a><em>a priori</em> authenticated
+              URL</a>, return <code>"null"</code>.
+            </li>
+            <li>
+              Return <var>documentOrigin</var>
+            </li>
+          </ol>
+        </dd>
+
+        <dt><a>"<code>same-origin</code>"</a></dt>
+        <dd>
+          <ol>
+            <li>
+              If <var>documentOrigin</var> and <var>locationOrigin</var>
+              are <a>same origin</a>, return <var>documentOrigin</var>.
+            </li>
+            <li>
+              Otherwise, return <code>"null"</code>.
+            </li>
+          </ol>
+        </dd>
+
+        <dt><a>"<code>origin-when-cross-origin</code>"</a></dt>
+        <dd>
+          <ol>
+            <li>
+              Return <var>documentOrigin</var>.
+            </li>
+          </ol>
+        </dd>
+
+        <dt><a>"<code>no-referrer-when-downgrade</code>"</a></dt>
+        <dd>
+          <ol>
+            <li>
+              If <var>context</var> is <a>TLS-protected</a> <em>and</em>
+              <var>locationOrigin</var> is not an <a><em>a priori</em> authenticated
+              URL</a>, return <code>"null"</code>.
+            </li>
+            <li>
+              Return <var>documentOrigin</var>
+            </li>
+          </ol>
+        </dd>
+      </dl>
     </li>
   </ol>
 
