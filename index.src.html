@@ -65,7 +65,7 @@ spec: HTML; urlPrefix: https://html.spec.whatwg.org/multipage/
       text: sandboxed origin browsing context flag
       text: sandboxing flag set
       text: top-level browsing context
-			text: unicode serialization; url: unicode-serialisation-of-an-origin
+      text: unicode serialization; url: unicode-serialisation-of-an-origin
     urlPrefix: infrastructure.html
       text: ascii case-insensitive match; url: ascii-case-insensitive
       text: fragment; url: concept-url-fragment
@@ -450,7 +450,7 @@ spec: HTML; type: element; text: link;
   </ul>
 
   Requests from <a>TLS-protected</a> <a>request clients</a> to non-
-	<a>potentially trustworthy URL</a>s, on the other hand, will contain no
+  <a>potentially trustworthy URL</a>s, on the other hand, will contain no
   referrer information. A <code><a>Referer</a></code> HTTP header will not be
   sent.
 
@@ -705,9 +705,9 @@ spec: HTML; type: element; text: link;
       policy</a> and |token| is not the empty string, then set |policy|
       to |token|.
 
-	  Note: This algorithm loops over multiple policy values to allow
-	  deployment of new policy values with fallbacks for older user
-	  agents, as described in [[#unknown-policy-values]].
+    Note: This algorithm loops over multiple policy values to allow
+    deployment of new policy values with fallbacks for older user
+    agents, as described in [[#unknown-policy-values]].
     </li>
     <li>
       Return |policy|.
@@ -964,7 +964,7 @@ spec: HTML; type: element; text: link;
   </h3>
   Given a <a>Location</a> <var>location</var> and a <a>browsing context</a> <var>context</var>,
   determine what serialized <a>origin</a> <var>context</var>'s <a>referrer policy</a>
-	allows exposing to <var>location</var>.
+  allows exposing to <var>location</var>.
 
   <ol>
     <li>Let <var>document</var> be <var>context</var>'s <a>active document</a>.</li>
@@ -992,7 +992,7 @@ spec: HTML; type: element; text: link;
             <li>
               If <var>context</var> is <a>TLS-protected</a> <em>and</em>
               <var>locationURL</var> is not a <a>potentially trustworthy URL</a>,
-							return <code>"null"</code>.
+              return <code>"null"</code>.
             </li>
             <li>
               Return the <a>Unicode serialization</a> of <var>documentOrigin</var>
@@ -1006,12 +1006,12 @@ spec: HTML; type: element; text: link;
             <li>
               If <var>documentOrigin</var> and <var>locationOrigin</var>
               are <a>same origin</a>, return  the <a>Unicode serialization</a> of 
-							<var>documentOrigin</var>.
+              <var>documentOrigin</var>.
             </li>
             <li>
               If <var>context</var> is <a>TLS-protected</a> <em>and</em>
               <var>locationURL</var> is not a <a>potentially trustworthy URL</a>,
-							return <code>"null"</code>.
+              return <code>"null"</code>.
             </li>
             <li>
               Return the <a>Unicode serialization</a> of <var>documentOrigin</var>
@@ -1025,7 +1025,7 @@ spec: HTML; type: element; text: link;
             <li>
               If <var>documentOrigin</var> and <var>locationOrigin</var>
               are <a>same origin</a>, return the <a>Unicode serialization</a> of
-							<var>documentOrigin</var>.
+              <var>documentOrigin</var>.
             </li>
             <li>
               Otherwise, return <code>"null"</code>.
@@ -1119,7 +1119,7 @@ spec: HTML; type: element; text: link;
   it possible to deploy new policy values.
 
   <div class="example">
-  	Suppose older user agents don't understand
+    Suppose older user agents don't understand
     the <a>"<code>unsafe-url</code>"</a> policy. A site can specify
     an <a>"<code>origin</code>"</a> policy followed by an
     <a>"<code>unsafe-url</code>"</a> policy: older user agents will ignore the

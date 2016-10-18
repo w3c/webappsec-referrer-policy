@@ -1826,8 +1826,8 @@ Possible extra rowspan handling
        For each <var>token</var> in <var>policy-tokens</var>, if <var>token</var> is a <a data-link-type="dfn" href="#referrer-policy" id="ref-for-referrer-policy-12">referrer
       policy</a> and <var>token</var> is not the empty string, then set <var>policy</var> to <var>token</var>. 
       <p class="note" role="note">Note: This algorithm loops over multiple policy values to allow
-	  deployment of new policy values with fallbacks for older user
-	  agents, as described in <a href="#unknown-policy-values">§11.1 Unknown Policy Values</a>.</p>
+    deployment of new policy values with fallbacks for older user
+    agents, as described in <a href="#unknown-policy-values">§11.1 Unknown Policy Values</a>.</p>
      <li> Return <var>policy</var>. 
     </ol>
     <h3 class="heading settled" data-level="8.2" id="set-requests-referrer-policy-on-redirect"><span class="secno">8.2. </span><span class="content"> Set <var>request</var>’s referrer policy on redirect </span><a class="self-link" href="#set-requests-referrer-policy-on-redirect"></a></h3>
@@ -1989,7 +1989,7 @@ Possible extra rowspan handling
        <dd>
         <ol>
          <li> If <var>context</var> is <a data-link-type="dfn" href="http://www.w3.org/TR/2010/REC-wsc-ui-20100812/#typesoftls">TLS-protected</a> <em>and</em> <var>locationURL</var> is not a <a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-url">potentially trustworthy URL</a>,
-							return <code>"null"</code>. 
+              return <code>"null"</code>. 
          <li> Return the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#unicode-serialisation-of-an-origin">Unicode serialization</a> of <var>documentOrigin</var> 
         </ol>
        <dt><a data-link-type="dfn" href="#referrer-policy-strict-origin-when-cross-origin" id="ref-for-referrer-policy-strict-origin-when-cross-origin-5">"<code>strict-origin-when-cross-origin</code>"</a>
@@ -1997,7 +1997,7 @@ Possible extra rowspan handling
         <ol>
          <li> If <var>documentOrigin</var> and <var>locationOrigin</var> are <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#same-origin">same origin</a>, return  the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#unicode-serialisation-of-an-origin">Unicode serialization</a> of <var>documentOrigin</var>. 
          <li> If <var>context</var> is <a data-link-type="dfn" href="http://www.w3.org/TR/2010/REC-wsc-ui-20100812/#typesoftls">TLS-protected</a> <em>and</em> <var>locationURL</var> is not a <a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-url">potentially trustworthy URL</a>,
-							return <code>"null"</code>. 
+              return <code>"null"</code>. 
          <li> Return the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#unicode-serialisation-of-an-origin">Unicode serialization</a> of <var>documentOrigin</var> 
         </ol>
        <dt><a data-link-type="dfn" href="#referrer-policy-same-origin" id="ref-for-referrer-policy-same-origin-4">"<code>same-origin</code>"</a>
