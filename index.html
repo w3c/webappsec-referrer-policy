@@ -1617,14 +1617,13 @@ Possible extra rowspan handling
     <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-export="" data-level="3.2" data-lt="&quot;no-referrer-when-downgrade&quot;" id="referrer-policy-no-referrer-when-downgrade"><span class="secno">3.2. </span><span class="content">"<code>no-referrer-when-downgrade</code>"</span><span id="referrer-policy-state-no-referrer-when-downgrade"></span></h3>
     <p>The <a data-link-type="dfn" href="#referrer-policy-no-referrer-when-downgrade" id="ref-for-referrer-policy-no-referrer-when-downgrade-1">"<code>no-referrer-when-downgrade</code>"</a> policy sends a full URL
   along with requests from a <a data-link-type="dfn" href="http://www.w3.org/TR/2010/REC-wsc-ui-20100812/#typesoftls">TLS-protected</a> <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#environment-settings-object">environment settings
-  object</a> to a <a data-link-type="dfn" href="https://w3c.github.io/webappsec/specs/mixedcontent/#a-priori-authenticated-url"><em>a priori</em> authenticated URL</a>, and requests from <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-client">request clients</a> which are <em>not</em> <a data-link-type="dfn" href="http://www.w3.org/TR/2010/REC-wsc-ui-20100812/#typesoftls">TLS-protected</a> to any <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-3.2">origin</a>.</p>
-    <p>Requests from <a data-link-type="dfn" href="http://www.w3.org/TR/2010/REC-wsc-ui-20100812/#typesoftls">TLS-protected</a> <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-client">request clients</a> to non-<a data-link-type="dfn" href="https://w3c.github.io/webappsec/specs/mixedcontent/#a-priori-authenticated-url"><em>a
-  priori</em> authenticated URLs</a>, on the other hand, will contain no
+  object</a> to a <a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-url">potentially trustworthy URL</a>, and requests from <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-client">request clients</a> which are <em>not</em> <a data-link-type="dfn" href="http://www.w3.org/TR/2010/REC-wsc-ui-20100812/#typesoftls">TLS-protected</a> to any <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-3.2">origin</a>.</p>
+    <p>Requests from <a data-link-type="dfn" href="http://www.w3.org/TR/2010/REC-wsc-ui-20100812/#typesoftls">TLS-protected</a> <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-client">request clients</a> to non- <a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-url">potentially trustworthy URL</a>s, on the other hand, will contain no
   referrer information. A <code><a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2">Referer</a></code> HTTP header will not be
   sent.</p>
-    <div class="example" id="example-0323e875">
-     <a class="self-link" href="#example-0323e875"></a> If a document at <code>https://example.com/page.html</code> sets a policy of <a data-link-type="dfn" href="#referrer-policy-no-referrer-when-downgrade" id="ref-for-referrer-policy-no-referrer-when-downgrade-2">"<code>no-referrer-when-downgrade</code>"</a>, then navigations to <code>https://not.example.com/</code> would send a <code><a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2">Referer</a></code> HTTP header with a value of <code>https://example.com/page.html</code>, as neither resource’s origin is an
-    non-<a data-link-type="dfn" href="https://w3c.github.io/webappsec/specs/mixedcontent/#a-priori-authenticated-url"><em>a priori</em> authenticated URL</a>. 
+    <div class="example" id="example-e13d3d6c">
+     <a class="self-link" href="#example-e13d3d6c"></a> If a document at <code>https://example.com/page.html</code> sets a policy of <a data-link-type="dfn" href="#referrer-policy-no-referrer-when-downgrade" id="ref-for-referrer-policy-no-referrer-when-downgrade-2">"<code>no-referrer-when-downgrade</code>"</a>, then navigations to <code>https://not.example.com/</code> would send a <code><a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2">Referer</a></code> HTTP header with a value of <code>https://example.com/page.html</code>, as neither resource’s origin is a
+    non-<a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-url">potentially trustworthy URL</a>. 
      <p>Navigations from that same page to <code><strong>http</strong>://not.example.com/</code> would send no <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2"><code>Referer</code></a> header.</p>
     </div>
     <p>This is a user agent’s default behavior, if no policy is otherwise specified.</p>
@@ -1648,18 +1647,16 @@ Possible extra rowspan handling
     <p class="note" role="note">Note: The <a data-link-type="dfn" href="#referrer-policy-origin" id="ref-for-referrer-policy-origin-2">"<code>origin</code>"</a> policy causes the origin of HTTPS
   referrers to be sent over the network as part of unencrypted HTTP requests.
   The <a data-link-type="dfn" href="#referrer-policy-strict-origin" id="ref-for-referrer-policy-strict-origin-1">"<code>strict-origin</code>"</a> policy addresses this concern.</p>
-    <div class="example" id="example-b2aaf663"><a class="self-link" href="#example-b2aaf663"></a> If a document at <code>https://example.com/page.html</code> sets a policy of <a data-link-type="dfn" href="#referrer-policy-origin" id="ref-for-referrer-policy-origin-3">"<code>origin</code>"</a>, then navigations to any <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-3.2">origin</a> would send a <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2"><code>Referer</code></a> header with a value
-    of <code>https://example.com/</code>, even to URLs that are not <a data-link-type="dfn" href="https://w3c.github.io/webappsec/specs/mixedcontent/#a-priori-authenticated-url"><em>a
-    priori</em> authenticated URLs</a>. </div>
+    <div class="example" id="example-c4bac395"><a class="self-link" href="#example-c4bac395"></a> If a document at <code>https://example.com/page.html</code> sets a policy of <a data-link-type="dfn" href="#referrer-policy-origin" id="ref-for-referrer-policy-origin-3">"<code>origin</code>"</a>, then navigations to any <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-3.2">origin</a> would send a <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2"><code>Referer</code></a> header with a value
+    of <code>https://example.com/</code>, even to URLs that are not <a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-url">potentially trustworthy URL</a>. </div>
     <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-export="" data-level="3.5" data-lt="&quot;strict-origin&quot;" id="referrer-policy-strict-origin"><span class="secno">3.5. </span><span class="content">"<code>strict-origin</code>"</span></h3>
     <p>The <a data-link-type="dfn" href="#referrer-policy-strict-origin" id="ref-for-referrer-policy-strict-origin-2">"<code>strict-origin</code>"</a> policy sends the <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-6.2">ASCII serialization</a> of the <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-3.2">origin</a> of the <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-client">request client</a> when making requests:</p>
     <ul>
-     <li>from a <a data-link-type="dfn" href="http://www.w3.org/TR/2010/REC-wsc-ui-20100812/#typesoftls">TLS-protected</a> <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#environment-settings-object">environment settings object</a> to a <a data-link-type="dfn" href="https://w3c.github.io/webappsec/specs/mixedcontent/#a-priori-authenticated-url"><em>a priori</em> authenticated URL</a>, and
+     <li>from a <a data-link-type="dfn" href="http://www.w3.org/TR/2010/REC-wsc-ui-20100812/#typesoftls">TLS-protected</a> <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#environment-settings-object">environment settings object</a> to a <a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-url">potentially trustworthy URL</a>, and
      <li>from <em>non-</em><a data-link-type="dfn" href="http://www.w3.org/TR/2010/REC-wsc-ui-20100812/#typesoftls">TLS-protected</a> <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#environment-settings-object">environment settings objects</a> to
           any <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-3.2">origin</a>.
     </ul>
-    <p>Requests from <a data-link-type="dfn" href="http://www.w3.org/TR/2010/REC-wsc-ui-20100812/#typesoftls">TLS-protected</a> <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-client">request clients</a> to non-<a data-link-type="dfn" href="https://w3c.github.io/webappsec/specs/mixedcontent/#a-priori-authenticated-url"><em>a
-  priori</em> authenticated URLs</a>, on the other hand, will contain no
+    <p>Requests from <a data-link-type="dfn" href="http://www.w3.org/TR/2010/REC-wsc-ui-20100812/#typesoftls">TLS-protected</a> <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-client">request clients</a> to non- <a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-url">potentially trustworthy URL</a>s, on the other hand, will contain no
   referrer information. A <code><a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2">Referer</a></code> HTTP header will not be
   sent.</p>
     <div class="example" id="example-e6df45e4">
@@ -1679,22 +1676,20 @@ Possible extra rowspan handling
   origin of HTTPS referrers to be sent over the network as part of unencrypted
   HTTP requests. The <a data-link-type="dfn" href="#referrer-policy-strict-origin-when-cross-origin" id="ref-for-referrer-policy-strict-origin-when-cross-origin-1">"<code>strict-origin-when-cross-origin</code>"</a> policy
   addresses this concern.</p>
-    <div class="example" id="example-5fad2266">
-     <a class="self-link" href="#example-5fad2266"></a> If a document at <code>https://example.com/page.html</code> sets a policy of <a data-link-type="dfn" href="#referrer-policy-origin-when-cross-origin" id="ref-for-referrer-policy-origin-when-cross-origin-4">"<code>origin-when-cross-origin</code>"</a>, then navigations to <code>https://example.com/not-page.html</code> would send a <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2"><code>Referer</code></a> header with a value of <code>https://example.com/page.html</code>. 
-     <p>Navigations from that same page to <code>https://not.example.com/</code> would send a <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2"><code>Referer</code></a> header with a value of <code>https://example.com/</code>, even to URLs that are not <a data-link-type="dfn" href="https://w3c.github.io/webappsec/specs/mixedcontent/#a-priori-authenticated-url"><em>a
-    priori</em> authenticated URLs</a>.</p>
+    <div class="example" id="example-89738769">
+     <a class="self-link" href="#example-89738769"></a> If a document at <code>https://example.com/page.html</code> sets a policy of <a data-link-type="dfn" href="#referrer-policy-origin-when-cross-origin" id="ref-for-referrer-policy-origin-when-cross-origin-4">"<code>origin-when-cross-origin</code>"</a>, then navigations to <code>https://example.com/not-page.html</code> would send a <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2"><code>Referer</code></a> header with a value of <code>https://example.com/page.html</code>. 
+     <p>Navigations from that same page to <code>https://not.example.com/</code> would send a <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2"><code>Referer</code></a> header with a value of <code>https://example.com/</code>, even to URLs that are not <a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-url">potentially trustworthy URL</a>s.</p>
     </div>
     <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-export="" data-level="3.7" data-lt="&quot;strict-origin-when-cross-origin&quot;" id="referrer-policy-strict-origin-when-cross-origin"><span class="secno">3.7. </span><span class="content">"<code>strict-origin-when-cross-origin</code>"</span></h3>
     <p>The <a data-link-type="dfn" href="#referrer-policy-strict-origin-when-cross-origin" id="ref-for-referrer-policy-strict-origin-when-cross-origin-2">"<code>strict-origin-when-cross-origin</code>"</a> policy specifies that a
   full URL, <a href="#strip-url">stripped for use as a referrer</a>, is sent as
   referrer information when making <a data-link-type="dfn" href="#same-origin-request" id="ref-for-same-origin-request-5">same-origin requests</a> from a particular <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-client">request client</a>, and only the <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-6.2">ASCII serialization</a> of the <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-3.2">origin</a> of the <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-client">request client</a> when making <a data-link-type="dfn" href="#cross-origin-request" id="ref-for-cross-origin-request-5">cross-origin requests</a>:</p>
     <ul>
-     <li>from a <a data-link-type="dfn" href="http://www.w3.org/TR/2010/REC-wsc-ui-20100812/#typesoftls">TLS-protected</a> <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#environment-settings-object">environment settings object</a> to a <a data-link-type="dfn" href="https://w3c.github.io/webappsec/specs/mixedcontent/#a-priori-authenticated-url"><em>a priori</em> authenticated URL</a>, and
+     <li>from a <a data-link-type="dfn" href="http://www.w3.org/TR/2010/REC-wsc-ui-20100812/#typesoftls">TLS-protected</a> <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#environment-settings-object">environment settings object</a> to a <a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-url">potentially trustworthy URL</a>, and
      <li>from <em>non-</em><a data-link-type="dfn" href="http://www.w3.org/TR/2010/REC-wsc-ui-20100812/#typesoftls">TLS-protected</a> <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#environment-settings-object">environment settings objects</a> to
           any <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-3.2">origin</a>.
     </ul>
-    <p>Requests from <a data-link-type="dfn" href="http://www.w3.org/TR/2010/REC-wsc-ui-20100812/#typesoftls">TLS-protected</a> <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-client">request clients</a> to non-<a data-link-type="dfn" href="https://w3c.github.io/webappsec/specs/mixedcontent/#a-priori-authenticated-url"><em>a
-  priori</em> authenticated URLs</a>, on the other hand, will contain no
+    <p>Requests from <a data-link-type="dfn" href="http://www.w3.org/TR/2010/REC-wsc-ui-20100812/#typesoftls">TLS-protected</a> <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-client">request clients</a> to non- <a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-url">potentially trustworthy URL</a>s, on the other hand, will contain no
   referrer information. A <code><a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2">Referer</a></code> HTTP header will not be
   sent.</p>
     <div class="example" id="example-2269af87">
@@ -1894,8 +1889,8 @@ Possible extra rowspan handling
          <li>
            If <var>environment</var> is not null: 
           <ol>
-           <li> If <var>environment</var> is <a data-link-type="dfn" href="http://www.w3.org/TR/2010/REC-wsc-ui-20100812/#typesoftls">TLS-protected</a> <em>and</em> the <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-3.2">origin</a> of <var>request</var>’s <a href="https://fetch.spec.whatwg.org/#concept-request-current-url">current
-                  URL</a> is not an <a data-link-type="dfn" href="https://w3c.github.io/webappsec/specs/mixedcontent/#a-priori-authenticated-url"><em>a priori</em> authenticated
+           <li> If <var>environment</var> is <a data-link-type="dfn" href="http://www.w3.org/TR/2010/REC-wsc-ui-20100812/#typesoftls">TLS-protected</a> <em>and</em> <var>request</var>’s <a href="https://fetch.spec.whatwg.org/#concept-request-current-url">current
+                  URL</a> is not a <a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-url">potentially trustworthy
                   URL</a>, then return <code>no referrer</code>. 
           </ol>
          <li>Return <var>referrerOrigin</var>. 
@@ -1909,8 +1904,8 @@ Possible extra rowspan handling
            If <var>environment</var> is not null: 
           <ol>
            <li>
-             If <var>environment</var> is <a data-link-type="dfn" href="http://www.w3.org/TR/2010/REC-wsc-ui-20100812/#typesoftls">TLS-protected</a> <em>and</em> the <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-3.2">origin</a> of <var>request</var>’s <a href="https://fetch.spec.whatwg.org/#concept-request-current-url">current
-                  URL</a> is not an <a data-link-type="dfn" href="https://w3c.github.io/webappsec/specs/mixedcontent/#a-priori-authenticated-url"><em>a priori</em> authenticated URL</a> 
+             If <var>environment</var> is <a data-link-type="dfn" href="http://www.w3.org/TR/2010/REC-wsc-ui-20100812/#typesoftls">TLS-protected</a> <em>and</em> <var>request</var>’s <a href="https://fetch.spec.whatwg.org/#concept-request-current-url">current
+                  URL</a> is not a <a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-url">potentially trustworthy URL</a> 
             <ol>
              <li>Return <code>no referrer</code>. 
             </ol>
@@ -1937,8 +1932,8 @@ Possible extra rowspan handling
          <li>
            If <var>environment</var> is not null: 
           <ol>
-           <li> If <var>environment</var> is <a data-link-type="dfn" href="http://www.w3.org/TR/2010/REC-wsc-ui-20100812/#typesoftls">TLS-protected</a> <em>and</em> the <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-3.2">origin</a> of <var>request</var>’s <a href="https://fetch.spec.whatwg.org/#concept-request-current-url">current
-                  URL</a> is not an <a data-link-type="dfn" href="https://w3c.github.io/webappsec/specs/mixedcontent/#a-priori-authenticated-url"><em>a priori</em> authenticated
+           <li> If <var>environment</var> is <a data-link-type="dfn" href="http://www.w3.org/TR/2010/REC-wsc-ui-20100812/#typesoftls">TLS-protected</a> <em>and</em> <var>request</var>’s <a href="https://fetch.spec.whatwg.org/#concept-request-current-url">current
+                  URL</a> is not a <a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-url">potentially trustworthy
                   URL</a>, then return <code>no referrer</code>. 
           </ol>
          <li>Return <var>referrerURL</var>. 
@@ -1979,6 +1974,7 @@ Possible extra rowspan handling
      <li>Let <var>documentOrigin</var> be <var>document</var>’s <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-3.2">origin</a>.
      <li>If <var>documentOrigin</var> is an <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#concept-origin-opaque">opaque origin</a>, return <code>"null"</code>. 
      <li>Let <var>locationOrigin</var> be <var>location</var>’s relevant <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-document">Document</a>’s <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-3.2">origin</a>. 
+     <li>Let <var>locationURL</var> be <var>location</var>’s <a data-link-type="dfn" href="https://url.spec.whatwg.org#url">URL</a>. 
      <li>Let <var>policy</var> be <var>document</var>’s <a data-link-type="dfn" href="#referrer-policy" id="ref-for-referrer-policy-15">referrer policy</a>.
      <li>
        Execute the statements corresponding to the value of <var>policy</var>: 
@@ -1986,41 +1982,41 @@ Possible extra rowspan handling
        <dt><a data-link-type="dfn" href="#referrer-policy-no-referrer" id="ref-for-referrer-policy-no-referrer-4">"<code>no-referrer</code>"</a>
        <dd>Return <code>"null"</code>
        <dt><a data-link-type="dfn" href="#referrer-policy-origin" id="ref-for-referrer-policy-origin-5">"<code>origin</code>"</a>
-       <dd>Return the <a data-link-type="dfn">Unicode serialization</a> of <var>documentOrigin</var>.
+       <dd>Return the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#unicode-serialisation-of-an-origin">Unicode serialization</a> of <var>documentOrigin</var>.
        <dt><a data-link-type="dfn" href="#referrer-policy-unsafe-url" id="ref-for-referrer-policy-unsafe-url-4">"<code>unsafe-url</code>"</a>
-       <dd>Return  the <a data-link-type="dfn">Unicode serialization</a> of <var>documentOrigin</var>.
+       <dd>Return  the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#unicode-serialisation-of-an-origin">Unicode serialization</a> of <var>documentOrigin</var>.
        <dt><a data-link-type="dfn" href="#referrer-policy-strict-origin" id="ref-for-referrer-policy-strict-origin-6">"<code>strict-origin</code>"</a>
        <dd>
         <ol>
-         <li> If <var>context</var> is <a data-link-type="dfn" href="http://www.w3.org/TR/2010/REC-wsc-ui-20100812/#typesoftls">TLS-protected</a> <em>and</em> <var>locationOrigin</var> is not an <a data-link-type="dfn" href="https://w3c.github.io/webappsec/specs/mixedcontent/#a-priori-authenticated-url"><em>a priori</em> authenticated
-              URL</a>, return <code>"null"</code>. 
-         <li> Return the <a data-link-type="dfn">Unicode serialization</a> of <var>documentOrigin</var> 
+         <li> If <var>context</var> is <a data-link-type="dfn" href="http://www.w3.org/TR/2010/REC-wsc-ui-20100812/#typesoftls">TLS-protected</a> <em>and</em> <var>locationURL</var> is not a <a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-url">potentially trustworthy URL</a>,
+							return <code>"null"</code>. 
+         <li> Return the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#unicode-serialisation-of-an-origin">Unicode serialization</a> of <var>documentOrigin</var> 
         </ol>
        <dt><a data-link-type="dfn" href="#referrer-policy-strict-origin-when-cross-origin" id="ref-for-referrer-policy-strict-origin-when-cross-origin-5">"<code>strict-origin-when-cross-origin</code>"</a>
        <dd>
         <ol>
-         <li> If <var>documentOrigin</var> and <var>locationOrigin</var> are <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#same-origin">same origin</a>, return  the <a data-link-type="dfn">Unicode serialization</a> of <var>documentOrigin</var>. 
-         <li> If <var>context</var> is <a data-link-type="dfn" href="http://www.w3.org/TR/2010/REC-wsc-ui-20100812/#typesoftls">TLS-protected</a> <em>and</em> <var>locationOrigin</var> is not an <a data-link-type="dfn" href="https://w3c.github.io/webappsec/specs/mixedcontent/#a-priori-authenticated-url"><em>a priori</em> authenticated
-              URL</a>, return <code>"null"</code>. 
-         <li> Return the <a data-link-type="dfn">Unicode serialization</a> of <var>documentOrigin</var> 
+         <li> If <var>documentOrigin</var> and <var>locationOrigin</var> are <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#same-origin">same origin</a>, return  the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#unicode-serialisation-of-an-origin">Unicode serialization</a> of <var>documentOrigin</var>. 
+         <li> If <var>context</var> is <a data-link-type="dfn" href="http://www.w3.org/TR/2010/REC-wsc-ui-20100812/#typesoftls">TLS-protected</a> <em>and</em> <var>locationURL</var> is not a <a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-url">potentially trustworthy URL</a>,
+							return <code>"null"</code>. 
+         <li> Return the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#unicode-serialisation-of-an-origin">Unicode serialization</a> of <var>documentOrigin</var> 
         </ol>
        <dt><a data-link-type="dfn" href="#referrer-policy-same-origin" id="ref-for-referrer-policy-same-origin-4">"<code>same-origin</code>"</a>
        <dd>
         <ol>
-         <li> If <var>documentOrigin</var> and <var>locationOrigin</var> are <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#same-origin">same origin</a>, return the <a data-link-type="dfn">Unicode serialization</a> of <var>documentOrigin</var>. 
+         <li> If <var>documentOrigin</var> and <var>locationOrigin</var> are <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#same-origin">same origin</a>, return the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#unicode-serialisation-of-an-origin">Unicode serialization</a> of <var>documentOrigin</var>. 
          <li> Otherwise, return <code>"null"</code>. 
         </ol>
        <dt><a data-link-type="dfn" href="#referrer-policy-origin-when-cross-origin" id="ref-for-referrer-policy-origin-when-cross-origin-6">"<code>origin-when-cross-origin</code>"</a>
        <dd>
         <ol>
-         <li> Return the <a data-link-type="dfn">Unicode serialization</a> of <var>documentOrigin</var>. 
+         <li> Return the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#unicode-serialisation-of-an-origin">Unicode serialization</a> of <var>documentOrigin</var>. 
         </ol>
        <dt><a data-link-type="dfn" href="#referrer-policy-no-referrer-when-downgrade" id="ref-for-referrer-policy-no-referrer-when-downgrade-7">"<code>no-referrer-when-downgrade</code>"</a>
        <dd>
         <ol>
-         <li> If <var>context</var> is <a data-link-type="dfn" href="http://www.w3.org/TR/2010/REC-wsc-ui-20100812/#typesoftls">TLS-protected</a> <em>and</em> <var>locationOrigin</var> is not an <a data-link-type="dfn" href="https://w3c.github.io/webappsec/specs/mixedcontent/#a-priori-authenticated-url"><em>a priori</em> authenticated
-              URL</a>, return <code>"null"</code>. 
-         <li> Return the <a data-link-type="dfn">Unicode serialization</a> of <var>documentOrigin</var> 
+         <li> If <var>context</var> is <a data-link-type="dfn" href="http://www.w3.org/TR/2010/REC-wsc-ui-20100812/#typesoftls">TLS-protected</a> <em>and</em> <var>locationURL</var> is not a <a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-url">potentially trustworthy URL</a>,
+              return <code>"null"</code>. 
+         <li> Return the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#unicode-serialisation-of-an-origin">Unicode serialization</a> of <var>documentOrigin</var> 
         </ol>
       </dl>
     </ol>
@@ -2217,11 +2213,7 @@ Possible extra rowspan handling
      <li><a href="https://html.spec.whatwg.org/multipage/infrastructure.html#referrer-policy-attribute">referrer policy attribute</a>
      <li><a href="https://html.spec.whatwg.org/multipage/semantics.html#attr-a-referrerpolicy">referrerpolicy</a>
      <li><a href="https://html.spec.whatwg.org/multipage/workers.html#run a worker">running a worker</a>
-    </ul>
-   <li>
-    <a data-link-type="biblio">[MIX]</a> defines the following terms:
-    <ul>
-     <li><a href="https://w3c.github.io/webappsec/specs/mixedcontent/#a-priori-authenticated-url">a priori authenticated url</a>
+     <li><a href="https://html.spec.whatwg.org/multipage/browsers.html#unicode-serialisation-of-an-origin">unicode serialization</a>
     </ul>
    <li>
     <a data-link-type="biblio">[RFC6454]</a> defines the following terms:
@@ -2266,6 +2258,11 @@ Possible extra rowspan handling
      <li><a href="https://html.spec.whatwg.org/multipage/embedded-content.html#attr-iframe-srcdoc">srcdoc</a>
     </ul>
    <li>
+    <a data-link-type="biblio">[secure-contexts]</a> defines the following terms:
+    <ul>
+     <li><a href="https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-url">potentially trustworthy url</a>
+    </ul>
+   <li>
     <a data-link-type="biblio">[WHATWG-URL]</a> defines the following terms:
     <ul>
      <li><a href="https://url.spec.whatwg.org/#concept-url-password">password</a>
@@ -2282,14 +2279,14 @@ Possible extra rowspan handling
    <dd>Anne van Kesteren. <a href="http://fetch.spec.whatwg.org/">Fetch</a>. Living Standard. URL: <a href="http://fetch.spec.whatwg.org/">http://fetch.spec.whatwg.org/</a>
    <dt id="biblio-html">[HTML]
    <dd>Ian Hickson. <a href="https://html.spec.whatwg.org/multipage/">HTML Standard</a>. Living Standard. URL: <a href="https://html.spec.whatwg.org/multipage/">https://html.spec.whatwg.org/multipage/</a>
-   <dt id="biblio-mix">[MIX]
-   <dd>Mike West. <a href="https://w3c.github.io/webappsec/specs/mixedcontent/">Mixed Content</a>. ED. URL: <a href="https://w3c.github.io/webappsec/specs/mixedcontent/">https://w3c.github.io/webappsec/specs/mixedcontent/</a>
    <dt id="biblio-rfc2119">[RFC2119]
    <dd>S. Bradner. <a href="https://tools.ietf.org/html/rfc2119">Key words for use in RFCs to Indicate Requirement Levels</a>. March 1997. Best Current Practice. URL: <a href="https://tools.ietf.org/html/rfc2119">https://tools.ietf.org/html/rfc2119</a>
    <dt id="biblio-rfc6454">[RFC6454]
    <dd>Adam Barth. <a href="http://www.ietf.org/rfc/rfc6454.txt">The Web Origin Concept</a>. RFC. URL: <a href="http://www.ietf.org/rfc/rfc6454.txt">http://www.ietf.org/rfc/rfc6454.txt</a>
    <dt id="biblio-rfc7231">[RFC7231]
    <dd>Roy T. Fielding; Julian F. Reschke. <a href="http://www.ietf.org/rfc/rfc7231.txt">HTTP/1.1 Semantics and Content</a>. RFC. URL: <a href="http://www.ietf.org/rfc/rfc7231.txt">http://www.ietf.org/rfc/rfc7231.txt</a>
+   <dt id="biblio-secure-contexts">[SECURE-CONTEXTS]
+   <dd>Mike West. <a href="https://w3c.github.io/webappsec-secure-contexts/">Secure Contexts</a>. 19 July 2016. WD. URL: <a href="https://w3c.github.io/webappsec-secure-contexts/">https://w3c.github.io/webappsec-secure-contexts/</a>
    <dt id="biblio-whatwg-dom">[WHATWG-DOM]
    <dd>Anne van Kesteren. <a href="https://dom.spec.whatwg.org/">DOM Standard</a>. Living Standard. URL: <a href="https://dom.spec.whatwg.org/">https://dom.spec.whatwg.org/</a>
    <dt id="biblio-whatwg-url">[WHATWG-URL]
