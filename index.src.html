@@ -66,6 +66,7 @@ spec: HTML; urlPrefix: https://html.spec.whatwg.org/multipage/
       text: sandboxed origin browsing context flag
       text: sandboxing flag set
       text: top-level browsing context
+			text: unicode serialization url: unicode-serialisation-of-an-origin
     urlPrefix: infrastructure.html
       text: ascii case-insensitive match; url: ascii-case-insensitive
       text: fragment; url: concept-url-fragment
@@ -981,10 +982,10 @@ spec: HTML; type: element; text: link;
         <dd>Return <code>"null"</code></dd>
 
         <dt><a>"<code>origin</code>"</a></dt>
-        <dd>Return <var>documentOrigin</var>.</dd>
+        <dd>Return the <a>Unicode serialization</a> of <var>documentOrigin</var>.</dd>
 
         <dt><a>"<code>unsafe-url</code>"</a></dt>
-        <dd>Return <var>documentOrigin</var>.</dd>
+        <dd>Return  the <a>Unicode serialization</a> of <var>documentOrigin</var>.</dd>
 
         <dt><a>"<code>strict-origin</code>"</a></dt>
         <dd>
@@ -995,7 +996,7 @@ spec: HTML; type: element; text: link;
               URL</a>, return <code>"null"</code>.
             </li>
             <li>
-              Return <var>documentOrigin</var>
+              Return the <a>Unicode serialization</a> of <var>documentOrigin</var>
             </li>
           </ol>
         </dd>
@@ -1005,7 +1006,8 @@ spec: HTML; type: element; text: link;
           <ol>
             <li>
               If <var>documentOrigin</var> and <var>locationOrigin</var>
-              are <a>same origin</a>, return <var>documentOrigin</var>.
+              are <a>same origin</a>, return  the <a>Unicode serialization</a> of 
+							<var>documentOrigin</var>.
             </li>
             <li>
               If <var>context</var> is <a>TLS-protected</a> <em>and</em>
@@ -1013,7 +1015,7 @@ spec: HTML; type: element; text: link;
               URL</a>, return <code>"null"</code>.
             </li>
             <li>
-              Return <var>documentOrigin</var>
+              Return the <a>Unicode serialization</a> of <var>documentOrigin</var>
             </li>
           </ol>
         </dd>
@@ -1023,7 +1025,8 @@ spec: HTML; type: element; text: link;
           <ol>
             <li>
               If <var>documentOrigin</var> and <var>locationOrigin</var>
-              are <a>same origin</a>, return <var>documentOrigin</var>.
+              are <a>same origin</a>, return the <a>Unicode serialization</a> of
+							<var>documentOrigin</var>.
             </li>
             <li>
               Otherwise, return <code>"null"</code>.
@@ -1035,7 +1038,7 @@ spec: HTML; type: element; text: link;
         <dd>
           <ol>
             <li>
-              Return <var>documentOrigin</var>.
+              Return the <a>Unicode serialization</a> of <var>documentOrigin</var>.
             </li>
           </ol>
         </dd>
@@ -1049,7 +1052,7 @@ spec: HTML; type: element; text: link;
               URL</a>, return <code>"null"</code>.
             </li>
             <li>
-              Return <var>documentOrigin</var>
+              Return the <a>Unicode serialization</a> of <var>documentOrigin</var>
             </li>
           </ol>
         </dd>
