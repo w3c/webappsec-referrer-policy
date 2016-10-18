@@ -291,7 +291,7 @@ spec: HTML; type: element; text: link;
   <a>origin</a>.
 
   Requests from <a>TLS-protected</a> <a>request clients</a> to non-
-	<a>potentially trustworthy URL</a>s, on the other hand, will contain no
+  <a>potentially trustworthy URL</a>s, on the other hand, will contain no
   referrer information. A <code><a>Referer</a></code> HTTP header will not be
   sent.
 
@@ -356,7 +356,7 @@ spec: HTML; type: element; text: link;
     <a>"<code>origin</code>"</a>, then navigations to any
     <a>origin</a> would send a <a><code>Referer</code></a> header with a value
     of <code>https://example.com/</code>, even to URLs that are not 
-		<a>potentially trustworthy URL</a>.
+    <a>potentially trustworthy URL</a>.
   </div>
 
   <h3 dfn export id="referrer-policy-strict-origin">"<code>strict-origin</code>"</h3>
@@ -373,7 +373,7 @@ spec: HTML; type: element; text: link;
   </ul>
 
   Requests from <a>TLS-protected</a> <a>request clients</a> to non-
-	<a>potentially trustworthy URL</a>s, on the other hand, will contain no
+  <a>potentially trustworthy URL</a>s, on the other hand, will contain no
   referrer information. A <code><a>Referer</a></code> HTTP header will not be
   sent.
 
@@ -429,7 +429,7 @@ spec: HTML; type: element; text: link;
     Navigations from that same page to <code>https://not.example.com/</code>
     would send a <a><code>Referer</code></a> header with a value of
     <code>https://example.com/</code>, even to URLs that are not 
-		<a>potentially trustworthy URL</a>s.
+    <a>potentially trustworthy URL</a>s.
   </div>
 
   <h3 dfn export id="referrer-policy-strict-origin-when-cross-origin">"<code>strict-origin-when-cross-origin</code>"</h3>
@@ -825,7 +825,7 @@ spec: HTML; type: element; text: link;
                 <li>
                   If |environment| is <a>TLS-protected</a> <em>and</em>
                   <var>request</var>'s 
-									<a href="https://fetch.spec.whatwg.org/#concept-request-current-url">current
+                  <a href="https://fetch.spec.whatwg.org/#concept-request-current-url">current
                   URL</a> is not a <a>potentially trustworthy
                   URL</a>, then return <code>no referrer</code>.
                 </li>
@@ -895,7 +895,7 @@ spec: HTML; type: element; text: link;
                 <li>
                   If |environment| is <a>TLS-protected</a> <em>and</em>
                   <var>request</var>'s
-									<a href="https://fetch.spec.whatwg.org/#concept-request-current-url">current
+                  <a href="https://fetch.spec.whatwg.org/#concept-request-current-url">current
                   URL</a> is not a <a>potentially trustworthy
                   URL</a>, then return <code>no referrer</code>.
                 </li>
