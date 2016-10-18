@@ -108,9 +108,9 @@ spec: HTML; urlPrefix: https://html.spec.whatwg.org/multipage/
       text: name; for: meta; url: attr-meta-name
       text: referrerpolicy; for: a; url: attr-a-referrerpolicy
       text: referrerpolicy; for: link; url: attr-link-referrerpolicy
-spec: MIX; urlPrefix: https://w3c.github.io/webappsec/specs/mixedcontent/
+spec: SECURE-CONTEXTS; urlPrefix: https://w3c.github.io/webappsec-secure-contexts
   type: dfn
-    text: a priori authenticated URL
+    text: potentially trustworthy URL url: is-url-trustworthy
 spec: URL; urlPrefix: https://url.spec.whatwg.org
   type: dfn
     text: local scheme
@@ -286,12 +286,12 @@ spec: HTML; type: element; text: link;
 
   The <a>"<code>no-referrer-when-downgrade</code>"</a> policy sends a full URL
   along with requests from a <a>TLS-protected</a> <a>environment settings
-  object</a> to a <a><em>a priori</em> authenticated URL</a>, and requests from
+  object</a> to a <a>potentially trustworthy URL</a>, and requests from
   <a>request clients</a> which are <em>not</em> <a>TLS-protected</a> to any
   <a>origin</a>.
 
-  Requests from <a>TLS-protected</a> <a>request clients</a> to non-<a><em>a
-  priori</em> authenticated URLs</a>, on the other hand, will contain no
+  Requests from <a>TLS-protected</a> <a>request clients</a> to non-
+  <a>potentially trustworthy URL</a>s, on the other hand, will contain no
   referrer information. A <code><a>Referer</a></code> HTTP header will not be
   sent.
 
@@ -300,8 +300,8 @@ spec: HTML; type: element; text: link;
     <a>"<code>no-referrer-when-downgrade</code>"</a>, then navigations to
     <code>https://not.example.com/</code> would send a
     <code><a>Referer</a></code> HTTP header with a value of
-    <code>https://example.com/page.html</code>, as neither resource's origin is an
-    non-<a><em>a priori</em> authenticated URL</a>.
+    <code>https://example.com/page.html</code>, as neither resource's origin is a
+    non-<a>potentially trustworthy URL</a>.
 
     Navigations from that same page to
     <code><strong>http</strong>://not.example.com/</code> would send no
@@ -355,8 +355,8 @@ spec: HTML; type: element; text: link;
     If a document at <code>https://example.com/page.html</code> sets a policy of
     <a>"<code>origin</code>"</a>, then navigations to any
     <a>origin</a> would send a <a><code>Referer</code></a> header with a value
-    of <code>https://example.com/</code>, even to URLs that are not <a><em>a
-    priori</em> authenticated URLs</a>.
+    of <code>https://example.com/</code>, even to URLs that are not 
+    <a>potentially trustworthy URL</a>.
   </div>
 
   <h3 dfn export id="referrer-policy-strict-origin">"<code>strict-origin</code>"</h3>
@@ -367,13 +367,13 @@ spec: HTML; type: element; text: link;
 
   <ul>
       <li>from a <a>TLS-protected</a> <a>environment settings object</a> to a
-          <a><em>a priori</em> authenticated URL</a>, and</li>
+          <a>potentially trustworthy URL</a>, and</li>
       <li>from <em>non-</em><a>TLS-protected</a> <a>environment settings objects</a> to
           any <a>origin</a>.</li>
   </ul>
 
-  Requests from <a>TLS-protected</a> <a>request clients</a> to non-<a><em>a
-  priori</em> authenticated URLs</a>, on the other hand, will contain no
+  Requests from <a>TLS-protected</a> <a>request clients</a> to non-
+  <a>potentially trustworthy URL</a>s, on the other hand, will contain no
   referrer information. A <code><a>Referer</a></code> HTTP header will not be
   sent.
 
@@ -428,8 +428,8 @@ spec: HTML; type: element; text: link;
 
     Navigations from that same page to <code>https://not.example.com/</code>
     would send a <a><code>Referer</code></a> header with a value of
-    <code>https://example.com/</code>, even to URLs that are not <a><em>a
-    priori</em> authenticated URLs</a>.
+    <code>https://example.com/</code>, even to URLs that are not 
+    <a>potentially trustworthy URL</a>s.
   </div>
 
   <h3 dfn export id="referrer-policy-strict-origin-when-cross-origin">"<code>strict-origin-when-cross-origin</code>"</h3>
@@ -443,13 +443,13 @@ spec: HTML; type: element; text: link;
 
   <ul>
       <li>from a <a>TLS-protected</a> <a>environment settings object</a> to a
-          <a><em>a priori</em> authenticated URL</a>, and</li>
+          <a>potentially trustworthy URL</a>, and</li>
       <li>from <em>non-</em><a>TLS-protected</a> <a>environment settings objects</a> to
           any <a>origin</a>.</li>
   </ul>
 
-  Requests from <a>TLS-protected</a> <a>request clients</a> to non-<a><em>a
-  priori</em> authenticated URLs</a>, on the other hand, will contain no
+  Requests from <a>TLS-protected</a> <a>request clients</a> to non-
+	<a>potentially trustworthy URL</a>s, on the other hand, will contain no
   referrer information. A <code><a>Referer</a></code> HTTP header will not be
   sent.
 
@@ -824,9 +824,9 @@ spec: HTML; type: element; text: link;
               <ol>
                 <li>
                   If |environment| is <a>TLS-protected</a> <em>and</em>
-                  the <a>origin</a>
-                  of <var>request</var>'s <a href="https://fetch.spec.whatwg.org/#concept-request-current-url">current
-                  URL</a> is not an <a><em>a priori</em> authenticated
+                  <var>request</var>'s 
+                  <a href="https://fetch.spec.whatwg.org/#concept-request-current-url">current
+                  URL</a> is not a <a>potentially trustworthy
                   URL</a>, then return <code>no referrer</code>.
                 </li>
               </ol>
@@ -847,9 +847,9 @@ spec: HTML; type: element; text: link;
               <ol>
                 <li>
                   If |environment| is <a>TLS-protected</a> <em>and</em>
-                  the <a>origin</a> of <var>request</var>'s
+                  <var>request</var>'s
                   <a href="https://fetch.spec.whatwg.org/#concept-request-current-url">current
-                  URL</a> is not an <a><em>a priori</em> authenticated URL</a>
+                  URL</a> is not a <a>potentially trustworthy URL</a>
                   <ol>
                       <li>Return <code>no referrer</code>.
                   </ol>
@@ -894,9 +894,9 @@ spec: HTML; type: element; text: link;
               <ol>
                 <li>
                   If |environment| is <a>TLS-protected</a> <em>and</em>
-                  the <a>origin</a>
-                  of <var>request</var>'s <a href="https://fetch.spec.whatwg.org/#concept-request-current-url">current
-                  URL</a> is not an <a><em>a priori</em> authenticated
+                  <var>request</var>'s
+                  <a href="https://fetch.spec.whatwg.org/#concept-request-current-url">current
+                  URL</a> is not a <a>potentially trustworthy
                   URL</a>, then return <code>no referrer</code>.
                 </li>
               </ol>
