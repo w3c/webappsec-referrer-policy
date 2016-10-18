@@ -54,7 +54,6 @@ spec: HTML; urlPrefix: https://html.spec.whatwg.org/multipage/
       text: browsing context
       text: browsing context; for: Document; url: concept-document-bc
       text: parent browsing context
-      text: ancestor browsing context
       text: browsing context container
       text: child browsing context
       text: creating a new Document object
@@ -66,7 +65,6 @@ spec: HTML; urlPrefix: https://html.spec.whatwg.org/multipage/
       text: sandboxed origin browsing context flag
       text: sandboxing flag set
       text: top-level browsing context
-			text: unicode serialization url: unicode-serialisation-of-an-origin
     urlPrefix: infrastructure.html
       text: ascii case-insensitive match; url: ascii-case-insensitive
       text: fragment; url: concept-url-fragment
@@ -86,7 +84,6 @@ spec: HTML; urlPrefix: https://html.spec.whatwg.org/multipage/
       text: limited to only known values
       text: referrer policy attribute
       text: location
-      text: ancestor origins array; url: concept-location-ancestor-origins-array
     urlPrefix: webappapis.html
       text: queue a task
       text: task source
@@ -961,12 +958,12 @@ spec: HTML; type: element; text: link;
     </li>
   </ol>
 
-  <h3 id="ancestor-origin">
-    Determine the Ancestor Origin availble to a Location
+  <h3 id="origin-for-location">
+    Determine the origin serialization available to a Location
   </h3>
-  Given a <a>Location</a> <var>location</var> and a <a>browsing context</a> <var>context</var>
-  we can determine what origin information for <var>context</var> should be included in
-  <var>location</var>'s <a>ancestor origins array</a>.
+  Given a <a>Location</a> <var>location</var> and a <a>browsing context</a> <var>context</var>,
+  determine what serialized <a>origin</a> <var>context</var>'s <a>referrer policy</a>
+	allows exposing to <var>location</var>.
 
   <ol>
     <li>Let <var>document</var> be <var>context</var>'s <a>active document</a>.</li>

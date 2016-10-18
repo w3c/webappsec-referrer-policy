@@ -1495,7 +1495,7 @@ Possible extra rowspan handling
       <li><a href="#set-requests-referrer-policy-on-redirect"><span class="secno">8.2</span> <span class="content"> Set <var>request</var>’s referrer policy on redirect </span></a>
       <li><a href="#determine-requests-referrer"><span class="secno">8.3</span> <span class="content"> Determine <var>request</var>’s Referrer </span></a>
       <li><a href="#strip-url"><span class="secno">8.4</span> <span class="content"> Strip <var>url</var> for use as a referrer </span></a>
-      <li><a href="#ancestor-origin"><span class="secno">8.5</span> <span class="content"> Determine the Ancestor Origin availble to a Location </span></a>
+      <li><a href="#origin-for-location"><span class="secno">8.5</span> <span class="content"> Determine the origin serialization available to a Location </span></a>
      </ol>
     <li>
      <a href="#privacy"><span class="secno">9</span> <span class="content">Privacy Considerations</span></a>
@@ -1971,14 +1971,15 @@ Possible extra rowspan handling
       </ol>
      <li> Return <var>url</var>. 
     </ol>
-    <h3 class="heading settled" data-level="8.5" id="ancestor-origin"><span class="secno">8.5. </span><span class="content"> Determine the Ancestor Origin availble to a Location </span><a class="self-link" href="#ancestor-origin"></a></h3>
-     Given a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#location">Location</a> <var>location</var> and a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context">browsing context</a> <var>context</var> we can determine what origin information for <var>context</var> should be included in <var>location</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#concept-location-ancestor-origins-array">ancestor origins array</a>. 
+    <h3 class="heading settled" data-level="8.5" id="origin-for-location"><span class="secno">8.5. </span><span class="content"> Determine the origin serialization available to a Location </span><a class="self-link" href="#origin-for-location"></a></h3>
+     Given a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#location">Location</a> <var>location</var> and a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context">browsing context</a> <var>context</var>,
+  determine what serialized <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-3.2">origin</a> <var>context</var>’s <a data-link-type="dfn" href="#referrer-policy" id="ref-for-referrer-policy-14">referrer policy</a> allows exposing to <var>location</var>. 
     <ol>
      <li>Let <var>document</var> be <var>context</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#active-document">active document</a>.
      <li>Let <var>documentOrigin</var> be <var>document</var>’s <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-3.2">origin</a>.
      <li>If <var>documentOrigin</var> is an <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#concept-origin-opaque">opaque origin</a>, return <code>"null"</code>. 
      <li>Let <var>locationOrigin</var> be <var>location</var>’s relevant <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-document">Document</a>’s <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-3.2">origin</a>. 
-     <li>Let <var>policy</var> be <var>document</var>’s <a data-link-type="dfn" href="#referrer-policy" id="ref-for-referrer-policy-14">referrer policy</a>.
+     <li>Let <var>policy</var> be <var>document</var>’s <a data-link-type="dfn" href="#referrer-policy" id="ref-for-referrer-policy-15">referrer policy</a>.
      <li>
        Execute the statements corresponding to the value of <var>policy</var>: 
       <dl class="switch">
@@ -2031,12 +2032,12 @@ Possible extra rowspan handling
   agents from offering options to users which would change the information
   sent out via a `<code>Referer</code>` header. For instance, user agents
   MAY allow users to suppress the referrer header entirely, regardless of the
-  active <a data-link-type="dfn" href="#referrer-policy" id="ref-for-referrer-policy-15">referrer policy</a> on a page.</p>
+  active <a data-link-type="dfn" href="#referrer-policy" id="ref-for-referrer-policy-16">referrer policy</a> on a page.</p>
    </section>
    <section>
     <h2 class="heading settled" data-level="10" id="security"><span class="secno">10. </span><span class="content">Security Considerations</span><a class="self-link" href="#security"></a></h2>
     <h3 class="heading settled" data-level="10.1" id="information-leakage"><span class="secno">10.1. </span><span class="content">Information Leakage</span><a class="self-link" href="#information-leakage"></a></h3>
-    <p>The <a data-link-type="dfn" href="#referrer-policy" id="ref-for-referrer-policy-16">referrer policies</a> <a data-link-type="dfn" href="#referrer-policy-origin" id="ref-for-referrer-policy-origin-6">"<code>origin</code>"</a>, <a data-link-type="dfn" href="#referrer-policy-origin-when-cross-origin" id="ref-for-referrer-policy-origin-when-cross-origin-7">"<code>origin-when-cross-origin</code>"</a> and <a data-link-type="dfn" href="#referrer-policy-unsafe-url" id="ref-for-referrer-policy-unsafe-url-5">"<code>unsafe-url</code>"</a> might leak the origin and the URL of
+    <p>The <a data-link-type="dfn" href="#referrer-policy" id="ref-for-referrer-policy-17">referrer policies</a> <a data-link-type="dfn" href="#referrer-policy-origin" id="ref-for-referrer-policy-origin-6">"<code>origin</code>"</a>, <a data-link-type="dfn" href="#referrer-policy-origin-when-cross-origin" id="ref-for-referrer-policy-origin-when-cross-origin-7">"<code>origin-when-cross-origin</code>"</a> and <a data-link-type="dfn" href="#referrer-policy-unsafe-url" id="ref-for-referrer-policy-unsafe-url-5">"<code>unsafe-url</code>"</a> might leak the origin and the URL of
   a secure site respectively via insecure transport.</p>
     <p>Those three policies are included in the spec nevertheless to lower the friction
   of sites adopting secure transport.</p>
@@ -2198,7 +2199,6 @@ Possible extra rowspan handling
      <li><a href="https://html.spec.whatwg.org/multipage/semantics.html#the-a-element">a</a>
      <li><a href="https://html.spec.whatwg.org/multipage/browsers.html#active-document">active document</a>
      <li><a href="https://html.spec.whatwg.org/multipage/embedded-content.html#an-iframe-srcdoc-document">an iframe srcdoc document</a>
-     <li><a href="https://html.spec.whatwg.org/multipage/infrastructure.html#concept-location-ancestor-origins-array">ancestor origins array</a>
      <li><a href="https://html.spec.whatwg.org/multipage/browsers.html#concept-document-window">associated document</a>
      <li><a href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context">browsing context</a>
      <li><a href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context-container">browsing context container</a>
@@ -2355,9 +2355,9 @@ Possible extra rowspan handling
     <li><a href="#ref-for-referrer-policy-13">8.3. 
     Determine request’s Referrer </a>
     <li><a href="#ref-for-referrer-policy-14">8.5. 
-    Determine the Ancestor Origin availble to a Location </a>
-    <li><a href="#ref-for-referrer-policy-15">9.1. User Controls</a>
-    <li><a href="#ref-for-referrer-policy-16">10.1. Information Leakage</a>
+    Determine the origin serialization available to a Location </a> <a href="#ref-for-referrer-policy-15">(2)</a>
+    <li><a href="#ref-for-referrer-policy-16">9.1. User Controls</a>
+    <li><a href="#ref-for-referrer-policy-17">10.1. Information Leakage</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="referrer-policy-no-referrer">
@@ -2367,7 +2367,7 @@ Possible extra rowspan handling
     <li><a href="#ref-for-referrer-policy-no-referrer-3">8.3. 
     Determine request’s Referrer </a>
     <li><a href="#ref-for-referrer-policy-no-referrer-4">8.5. 
-    Determine the Ancestor Origin availble to a Location </a>
+    Determine the origin serialization available to a Location </a>
     <li><a href="#ref-for-referrer-policy-no-referrer-5">10.1. Information Leakage</a>
     <li><a href="#ref-for-referrer-policy-no-referrer-6">10.2. Downgrade to less strict policies</a>
    </ul>
@@ -2381,7 +2381,7 @@ Possible extra rowspan handling
     <li><a href="#ref-for-referrer-policy-no-referrer-when-downgrade-6">8.3. 
     Determine request’s Referrer </a>
     <li><a href="#ref-for-referrer-policy-no-referrer-when-downgrade-7">8.5. 
-    Determine the Ancestor Origin availble to a Location </a>
+    Determine the origin serialization available to a Location </a>
     <li><a href="#ref-for-referrer-policy-no-referrer-when-downgrade-8">10.2. Downgrade to less strict policies</a>
    </ul>
   </aside>
@@ -2392,7 +2392,7 @@ Possible extra rowspan handling
     <li><a href="#ref-for-referrer-policy-same-origin-3">8.3. 
     Determine request’s Referrer </a>
     <li><a href="#ref-for-referrer-policy-same-origin-4">8.5. 
-    Determine the Ancestor Origin availble to a Location </a>
+    Determine the origin serialization available to a Location </a>
     <li><a href="#ref-for-referrer-policy-same-origin-5">10.1. Information Leakage</a>
    </ul>
   </aside>
@@ -2403,7 +2403,7 @@ Possible extra rowspan handling
     <li><a href="#ref-for-referrer-policy-origin-4">8.3. 
     Determine request’s Referrer </a>
     <li><a href="#ref-for-referrer-policy-origin-5">8.5. 
-    Determine the Ancestor Origin availble to a Location </a>
+    Determine the origin serialization available to a Location </a>
     <li><a href="#ref-for-referrer-policy-origin-6">10.1. Information Leakage</a>
     <li><a href="#ref-for-referrer-policy-origin-7">10.2. Downgrade to less strict policies</a>
     <li><a href="#ref-for-referrer-policy-origin-8">11.1. Unknown Policy Values</a> <a href="#ref-for-referrer-policy-origin-9">(2)</a>
@@ -2417,7 +2417,7 @@ Possible extra rowspan handling
     <li><a href="#ref-for-referrer-policy-strict-origin-5">8.3. 
     Determine request’s Referrer </a>
     <li><a href="#ref-for-referrer-policy-strict-origin-6">8.5. 
-    Determine the Ancestor Origin availble to a Location </a>
+    Determine the origin serialization available to a Location </a>
     <li><a href="#ref-for-referrer-policy-strict-origin-7">10.1. Information Leakage</a>
    </ul>
   </aside>
@@ -2428,7 +2428,7 @@ Possible extra rowspan handling
     <li><a href="#ref-for-referrer-policy-origin-when-cross-origin-5">8.3. 
     Determine request’s Referrer </a>
     <li><a href="#ref-for-referrer-policy-origin-when-cross-origin-6">8.5. 
-    Determine the Ancestor Origin availble to a Location </a>
+    Determine the origin serialization available to a Location </a>
     <li><a href="#ref-for-referrer-policy-origin-when-cross-origin-7">10.1. Information Leakage</a>
    </ul>
   </aside>
@@ -2440,7 +2440,7 @@ Possible extra rowspan handling
     <li><a href="#ref-for-referrer-policy-strict-origin-when-cross-origin-4">8.3. 
     Determine request’s Referrer </a>
     <li><a href="#ref-for-referrer-policy-strict-origin-when-cross-origin-5">8.5. 
-    Determine the Ancestor Origin availble to a Location </a>
+    Determine the origin serialization available to a Location </a>
     <li><a href="#ref-for-referrer-policy-strict-origin-when-cross-origin-6">10.1. Information Leakage</a>
    </ul>
   </aside>
@@ -2451,7 +2451,7 @@ Possible extra rowspan handling
     <li><a href="#ref-for-referrer-policy-unsafe-url-3">8.3. 
     Determine request’s Referrer </a>
     <li><a href="#ref-for-referrer-policy-unsafe-url-4">8.5. 
-    Determine the Ancestor Origin availble to a Location </a>
+    Determine the origin serialization available to a Location </a>
     <li><a href="#ref-for-referrer-policy-unsafe-url-5">10.1. Information Leakage</a>
     <li><a href="#ref-for-referrer-policy-unsafe-url-6">10.2. Downgrade to less strict policies</a>
     <li><a href="#ref-for-referrer-policy-unsafe-url-7">11.1. Unknown Policy Values</a> <a href="#ref-for-referrer-policy-unsafe-url-8">(2)</a> <a href="#ref-for-referrer-policy-unsafe-url-9">(3)</a> <a href="#ref-for-referrer-policy-unsafe-url-10">(4)</a>
