@@ -19,20 +19,8 @@ Repository: w3c/webappsec-referrer-policy
 spec: FETCH; urlPrefix: https://fetch.spec.whatwg.org/
   type: dfn
     text: fetching
-    text: header list; url: concept-response-header-list
-    text: parsing; url: concept-header-parse
-    text: request referrer policy; url: concept-request-referrer-policy
-    text: request; url: concept-request
-    text: response; url: concept-response
-    text: request client; url: concept-request-client
-  type: interface
-    text: Request
-  type: interface
-    text: Response
   type: attribute
     text: url; for: Request; url: concept-request-url
-    text: origin; for: Request; url: concept-request-origin
-    text: client; for: Request; url: concept-request-client
     text: context; for: Request; url: concept-request-context
     text: context-frame-type; for: Request; url: concept-request-context-frame-type
 spec: HTML; urlPrefix: https://html.spec.whatwg.org/multipage/
@@ -51,8 +39,6 @@ spec: HTML; urlPrefix: https://html.spec.whatwg.org/multipage/
       text: parse a sandboxing directive
       text: forced sandboxing flag set
       text: auxiliary browsing context
-      text: browsing context
-      text: browsing context; for: Document; url: concept-document-bc
       text: parent browsing context
       text: ancestor browsing context
       text: browsing context container
@@ -99,10 +85,6 @@ spec: HTML; urlPrefix: https://html.spec.whatwg.org/multipage/
   type: interface
     urlPrefix: dom.html
       text: Document
-  type: element
-    urlPrefix: semantics.html
-      text: a; url: the-a-element
-      text: link; url: the-link-element
   type: element-attr
     urlPrefix: semantics.html
       text: name; for: meta; url: attr-meta-name
@@ -111,12 +93,6 @@ spec: HTML; urlPrefix: https://html.spec.whatwg.org/multipage/
 spec: SECURE-CONTEXTS; urlPrefix: https://w3c.github.io/webappsec-secure-contexts
   type: dfn
     text: potentially trustworthy URL url: is-url-trustworthy
-spec: URL; urlPrefix: https://url.spec.whatwg.org
-  type: dfn
-    text: local scheme
-    text: URL
-  type: interface
-    text: URL
 spec: WSC-UI; urlPrefix: http://www.w3.org/TR/2010/REC-wsc-ui-20100812/
   type: dfn
     text: TLS-protected; url: typesoftls
@@ -134,7 +110,8 @@ spec: RFC2616; urlPrefix: https://tools.ietf.org/html/rfc7231
 </pre>
 
 <pre class="link-defaults">
-spec: HTML; type: element; text: link;
+spec: html; type: element; text: link;
+spec: html; type: element; text: a;
 </pre>
 
 <!--
@@ -212,16 +189,15 @@ spec: HTML; type: element; text: link;
       behaviors for each <a>referrer policy</a>.
 
       Every <a>environment settings object</a> has an algorithm for obtaining a
-      <a>referrer policy</a>, which is used by default for all <a>requests</a>
-      with that <a>environment settings object</a> as their <a>request
-      client</a>.
+      <a>referrer policy</a>, which is used by default for all <a for=/>requests</a>
+      with that <a>environment settings object</a> as their <a for=request>client</a>.
     </dd>
 
     <dt><dfn>same-origin request</dfn></dt>
     <dd>
       A {{Request}} <var>request</var> is a <strong>same-origin request</strong>
-      if <var>request</var>'s {{Request/origin}} and the <a>origin</a> of
-      <var>request</var>'s {{Request/url}} are <a><code>the same</code></a>.
+      if <var>request</var>'s <a for=request>origin</a> and the <a for=url>origin</a> of
+      <var>request</var>'s <a for=request>current url</a> are <a><code>the same</code></a>.
     </dd>
 
     <dt><dfn>cross-origin request</dfn></dt>
@@ -264,7 +240,7 @@ spec: HTML; type: element; text: link;
 
   Note: The referrer policy for an <a>environment settings object</a> provides a
   default baseline policy for requests when that <a>environment settings
-  object</a> is used as a <a>request client</a>. This policy may be tightened
+  object</a> is used as a <a for=request lt=client>request client</a>. This policy may be tightened
   for specific requests via mechanisms like the <code><a>noreferrer</a></code>
   link type.
 
@@ -272,7 +248,7 @@ spec: HTML; type: element; text: link;
 
   The simplest policy is <a>"<code>no-referrer</code>"</a>, which specifies
   that no referrer information is to be sent along with requests made from a
-  particular <a>request client</a> to any <a>origin</a>. The header will be
+  particular <a for=request lt=client>request client</a> to any <a>origin</a>. The header will be
   omitted entirely.
 
   <div class="example">
@@ -287,10 +263,10 @@ spec: HTML; type: element; text: link;
   The <a>"<code>no-referrer-when-downgrade</code>"</a> policy sends a full URL
   along with requests from a <a>TLS-protected</a> <a>environment settings
   object</a> to a <a>potentially trustworthy URL</a>, and requests from
-  <a>request clients</a> which are <em>not</em> <a>TLS-protected</a> to any
+  <a for=request>clients</a> which are <em>not</em> <a>TLS-protected</a> to any
   <a>origin</a>.
 
-  Requests from <a>TLS-protected</a> <a>request clients</a> to non-
+  Requests from <a>TLS-protected</a> <a for=request>clients</a> to non-
   <a>potentially trustworthy URL</a>s, on the other hand, will contain no
   referrer information. A <code><a>Referer</a></code> HTTP header will not be
   sent.
@@ -315,7 +291,7 @@ spec: HTML; type: element; text: link;
   The <a>"<code>same-origin</code>"</a> policy specifies that a
   full URL, <a href="#strip-url">stripped for use as a referrer</a>, is sent as
   referrer information when making <a>same-origin requests</a> from a particular
-  <a>request client</a>.
+  <a for=request>client</a>.
 
   <a>Cross-origin requests</a>, on the other hand, will contain no
   referrer information. A <code><a>Referer</a></code> HTTP header will not be
@@ -337,9 +313,9 @@ spec: HTML; type: element; text: link;
 
   The <a>"<code>origin</code>"</a> policy specifies that only the
   <a lt="ASCII serialization of an origin">ASCII serialization</a> of the
-  <a>origin</a> of the <a>request client</a> is sent as referrer information
+  <a>origin</a> of the <a for=request lt=client>request client</a> is sent as referrer information
   when making both <a>same-origin requests</a> and <a>cross-origin requests</a>
-  from a particular <a>request client</a>.
+  from a particular <a for=request>client</a>.
 
   Note: The serialization of an origin looks like
   <code>https://example.com</code>. To ensure that a valid URL is sent in the
@@ -355,7 +331,7 @@ spec: HTML; type: element; text: link;
     If a document at <code>https://example.com/page.html</code> sets a policy of
     <a>"<code>origin</code>"</a>, then navigations to any
     <a>origin</a> would send a <a><code>Referer</code></a> header with a value
-    of <code>https://example.com/</code>, even to URLs that are not 
+    of <code>https://example.com/</code>, even to URLs that are not
     <a>potentially trustworthy URL</a>.
   </div>
 
@@ -363,7 +339,7 @@ spec: HTML; type: element; text: link;
 
   The <a>"<code>strict-origin</code>"</a> policy sends the
   <a lt="ASCII serialization of an origin">ASCII serialization</a> of the
-  <a>origin</a> of the <a>request client</a> when making requests:
+  <a>origin</a> of the <a for=request lt=client>request client</a> when making requests:
 
   <ul>
       <li>from a <a>TLS-protected</a> <a>environment settings object</a> to a
@@ -372,7 +348,7 @@ spec: HTML; type: element; text: link;
           any <a>origin</a>.</li>
   </ul>
 
-  Requests from <a>TLS-protected</a> <a>request clients</a> to non-
+  Requests from <a>TLS-protected</a> <a for=request lt=client>request clients</a> to non-
   <a>potentially trustworthy URL</a>s, on the other hand, will contain no
   referrer information. A <code><a>Referer</a></code> HTTP header will not be
   sent.
@@ -403,11 +379,10 @@ spec: HTML; type: element; text: link;
   The <a>"<code>origin-when-cross-origin</code>"</a> policy specifies that a
   full URL, <a href="#strip-url">stripped for use as a referrer</a>, is sent as
   referrer information when making <a>same-origin requests</a> from a particular
-  <a>request client</a>, and only the
+  <a for=request lt=client>request client</a>, and only the
   <a lt="ASCII serialization of an origin">ASCII serialization</a> of the
-  <a>origin</a> of the <a>request client</a> is sent as referrer information
-  when making <a>cross-origin requests</a> from a particular <a>request
-  client</a>.
+  <a>origin</a> of the <a for=request lt=client>request client</a> is sent as referrer information
+  when making <a>cross-origin requests</a> from a particular <a for=request>client</a>.
 
   Note: For the <a>"<code>origin-when-cross-origin</code>"</a> policy, we also
   consider protocol upgrades, e.g. requests from
@@ -428,7 +403,7 @@ spec: HTML; type: element; text: link;
 
     Navigations from that same page to <code>https://not.example.com/</code>
     would send a <a><code>Referer</code></a> header with a value of
-    <code>https://example.com/</code>, even to URLs that are not 
+    <code>https://example.com/</code>, even to URLs that are not
     <a>potentially trustworthy URL</a>s.
   </div>
 
@@ -437,9 +412,9 @@ spec: HTML; type: element; text: link;
   The <a>"<code>strict-origin-when-cross-origin</code>"</a> policy specifies that a
   full URL, <a href="#strip-url">stripped for use as a referrer</a>, is sent as
   referrer information when making <a>same-origin requests</a> from a particular
-  <a>request client</a>, and only the
+  <a for=request lt=client>request client</a>, and only the
   <a lt="ASCII serialization of an origin">ASCII serialization</a> of the
-  <a>origin</a> of the <a>request client</a> when making <a>cross-origin requests</a>:
+  <a>origin</a> of the <a for=request lt=client>request client</a> when making <a>cross-origin requests</a>:
 
   <ul>
       <li>from a <a>TLS-protected</a> <a>environment settings object</a> to a
@@ -448,7 +423,7 @@ spec: HTML; type: element; text: link;
           any <a>origin</a>.</li>
   </ul>
 
-  Requests from <a>TLS-protected</a> <a>request clients</a> to non-
+  Requests from <a>TLS-protected</a> <a for=request>clients</a> to non-
 	<a>potentially trustworthy URL</a>s, on the other hand, will contain no
   referrer information. A <code><a>Referer</a></code> HTTP header will not be
   sent.
@@ -474,7 +449,7 @@ spec: HTML; type: element; text: link;
   The <a>"<code>unsafe-url</code>"</a> policy specifies that a full URL,
   <a href="#strip-url">stripped for use as a referrer</a>, is sent along with
   both <a>cross-origin requests</a> and <a>same-origin requests</a> made from
-  a particular <a>request client</a>.
+  a particular <a for=request>client</a>.
 
   <div class="example">
     If a document at <code>https://example.com/sekrit.html</code> sets a policy
@@ -516,7 +491,7 @@ spec: HTML; type: element; text: link;
 <section>
   <h2 id="referrer-policy-delivery">Referrer Policy Delivery</h2>
 
-  A <a>request</a>'s <a lt="request referrer policy">referrer policy</a>
+  A <a for=/>request</a>'s <a for=request>referrer policy</a>
   is delivered in one of five ways:
 
   <ul>
@@ -548,7 +523,7 @@ spec: HTML; type: element; text: link;
   header specifies the referrer policy that the user agent applies when
   determining what referrer information should be included with requests
   made, and with
-  <a>browsing contexts</a> created from the context of the protected resource.
+  <a for=/>browsing contexts</a> created from the context of the protected resource.
   The syntax for the name and value of the header are described by the
   following ABNF grammar:
 
@@ -646,7 +621,7 @@ spec: HTML; type: element; text: link;
   received during <a>navigation</a> or while <a>running a worker</a>, and uses
   the result to set the resulting {{Document}} or {{WorkerGlobalScope}}'s
   referrer policy. This is later used by the corresponding <a>environment
-  settings object</a>, which serves as a <a>request client</a> for <a
+  settings object</a>, which serves as a <a for=request lt=client>request client</a> for <a
   lt="fetch">fetches</a> it initiates.
 
   Note: W3C HTML5 does not define the <code>referrerpolicy</code> content
@@ -665,7 +640,7 @@ spec: HTML; type: element; text: link;
 
   Implementations should keep track of a referrer policy for each stylesheet
   that should be used to create requests for resources from the respective
-  stylesheet. 
+  stylesheet.
 
   For external stylesheets, the referrer policy should be
   <a>"<code>no-referrer-when-downgrade</code>"</a> unless overwritten by an
@@ -693,8 +668,8 @@ spec: HTML; type: element; text: link;
   <ol>
     <li>
       Let |policy-tokens| be the result of
-      <a>parsing</a> `<code>Referrer-Policy</code>` in
-      |response|'s <a>header list</a>.
+      <a for=header lt="parse a header value">parsing</a> `<code>Referrer-Policy</code>` in
+      |response|'s <a for=response>header list</a>.
     </li>
     <li>
       Let |policy| be the empty string.
@@ -717,9 +692,9 @@ spec: HTML; type: element; text: link;
     Set |request|'s referrer policy on redirect
   </h3>
 
-  Given a <a>request</a> |request| and a <a>response</a> |actualResponse|,
+  Given a <a for=/>request</a> |request| and a <a for=/>response</a> |actualResponse|,
   this algorithm updates |request|'s associated
-  <a lt="request referrer policy">referrer policy</a>
+  <a for=request>referrer policy</a>
   according to the Referrer-Policy header (if any) in |actualResponse|.
 
   <ol>
@@ -737,21 +712,19 @@ spec: HTML; type: element; text: link;
 
   Given a {{Request}} <var>request</var>, we can determine the correct
   referrer information to send by examining the
-  <a lt="request referrer policy">referrer policy</a>
+  <a for=request>referrer policy</a>
   associated with it, as detailed in the following steps, which return
   either <code>no referrer</code> or a URL:
 
   <ol>
     <li>
-      Let <var>policy</var> be |request|'s associated <a lt="request
-      referrer policy">referrer policy</a>.
+      Let <var>policy</var> be |request|'s associated <a for=request>referrer policy</a>.
     </li>
     <li>
-      Let <var>environment</var> be <var>request</var>'s <a lt="request
-      client">client</a>.
+      Let <var>environment</var> be <var>request</var>'s <a for=request>client</a>.
     </li>
     <li>
-      Switch on |request|'s <a>referrer</a>:
+      Switch on |request|'s <a for=request>referrer</a>:
 
       <dl class="switch">
         <dt>"<code>client</code>"</dt>
@@ -784,11 +757,11 @@ spec: HTML; type: element; text: link;
           </ol>
         </dd>
 
-        <dt>a <a>URL</a></dt>
-        <dd>Let |referrerSource| be |request|'s <a>referrer</a>.</dd>
+        <dt>a <a for=/>URL</a></dt>
+        <dd>Let |referrerSource| be |request|'s <a for=request>referrer</a>.</dd>
       </dl>
 
-      Note: If <var>request</var>'s <a>referrer</a> is
+      Note: If <var>request</var>'s <a for=request>referrer</a> is
       "<code>no-referrer</code>", Fetch will not call into this algorithm.
     </li>
 
@@ -824,7 +797,7 @@ spec: HTML; type: element; text: link;
               <ol>
                 <li>
                   If |environment| is <a>TLS-protected</a> <em>and</em>
-                  <var>request</var>'s 
+                  <var>request</var>'s
                   <a href="https://fetch.spec.whatwg.org/#concept-request-current-url">current
                   URL</a> is not a <a>potentially trustworthy
                   URL</a>, then return <code>no referrer</code>.
