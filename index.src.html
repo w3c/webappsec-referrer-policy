@@ -16,6 +16,12 @@ Repository: w3c/webappsec-referrer-policy
 </pre>
 
 <pre class="anchors">
+spec: CSSOM-1; urlPrefix: https://drafts.csswg.org/cssom-1/
+  type: dfn
+    text: CSS declaration block
+    text: location; url: concept-css-style-sheet-location
+    text: owner node; for: CSSStyleDeclaration; url: cssstyledeclaration-owner-node
+    text: owner node; for: CSSStyleSheet; url: concept-css-style-sheet-owner-node
 spec: FETCH; urlPrefix: https://fetch.spec.whatwg.org/
   type: dfn
     text: fetching
@@ -180,16 +186,16 @@ spec: html; type: element; text: a;
 
   <dl>
     <dt>
-      <a>referrer policy</a>
+      <a for="/">referrer policy</a>
     </dt>
     <dd>
-      A <a>referrer policy</a> modifies the algorithm used to populate the
+      A <a for="/">referrer policy</a> modifies the algorithm used to populate the
       <a><code>Referer</code></a> header when <a>fetching</a> subresources,
       prefetching, or performing navigations. This document defines the various
-      behaviors for each <a>referrer policy</a>.
+      behaviors for each <a for="/">referrer policy</a>.
 
       Every <a>environment settings object</a> has an algorithm for obtaining a
-      <a>referrer policy</a>, which is used by default for all <a for=/>requests</a>
+      <a for="/">referrer policy</a>, which is used by default for all <a for=/>requests</a>
       with that <a>environment settings object</a> as their <a for=request>client</a>.
     </dd>
 
@@ -233,7 +239,7 @@ spec: html; type: element; text: a;
     };
   </pre>
 
-  Each possible <a>referrer policy</a> is explained below. A detailed
+  Each possible <a for="/">referrer policy</a> is explained below. A detailed
   algorithm for evaluating their effect is given in the
   <a section href="#integration-with-fetch"></a> and
   <a section href="#algorithms"></a> sections.
@@ -466,8 +472,8 @@ spec: html; type: element; text: a;
 
   <h3 dfn export id="referrer-policy-empty-string">The empty string</h3>
 
-  The empty string "" corresponds to no <a>referrer policy</a>, causing a
-  fallback to a <a>referrer policy</a> defined elsewhere, or in the case where
+  The empty string "" corresponds to no <a for="/">referrer policy</a>, causing a
+  fallback to a <a for="/">referrer policy</a> defined elsewhere, or in the case where
   no such higher-level policy is available, defaulting to
   <a>"<code>no-referrer-when-downgrade</code>"</a>. This defaulting happens in
   the [[#determine-requests-referrer]] algorithm.
@@ -562,7 +568,7 @@ spec: html; type: element; text: a;
     <em>This section is not normative.</em>
 
     The HTML Standard defines the <a for="meta"><code>referrer</code></a>
-    keyword for the <{meta}> element, which allows setting the <a>referrer
+    keyword for the <{meta}> element, which allows setting the <a for="/">referrer
     policy</a> via markup.
   </section>
 
@@ -587,9 +593,9 @@ spec: html; type: element; text: a;
     <em>This section is not normative.</em>
 
     The HTML Standard and Fetch Standard define how nested browsing contexts
-    that are not created from <a>responses</a>, such as <{iframe}> elements with
+    that are not created from <a for="/">responses</a>, such as <{iframe}> elements with
     their <{iframe/srcdoc}> attribute set, or created from a blob URL, inherit
-    their <a>referrer policy</a> from the creator browsing context or blob URL.
+    their <a for="/">referrer policy</a> from the creator browsing context or blob URL.
   </section>
 </section>
 
@@ -617,7 +623,7 @@ spec: html; type: element; text: a;
 
   <em>This section is not normative.</em>
 
-  The HTML Standard determines the <a>referrer policy</a> of any response
+  The HTML Standard determines the <a for="/">referrer policy</a> of any response
   received during <a>navigation</a> or while <a>running a worker</a>, and uses
   the result to set the resulting {{Document}} or {{WorkerGlobalScope}}'s
   referrer policy. This is later used by the corresponding <a>environment
@@ -635,25 +641,50 @@ spec: html; type: element; text: a;
   <h2 id="integration-with-css">Integration with CSS</h2>
 
   The CSS Standard does not specify how it fetches resources referenced from
-  stylesheets. However, implementations use the URL a given stylesheet was
-  loaded from as referrer for the requests for resources from that stylesheet.
+  stylesheets. However, implementations should be sure to set the
+  referrer-related properties of any <a for="/">requests</a> initiated by stylesheets
+  as follows:
 
-  Implementations should keep track of a referrer policy for each stylesheet
-  that should be used to create requests for resources from the respective
-  stylesheet.
+  <ol>
+    <li>
+       If a <a>CSS declaration block</a> is responsible for the request,
+       set the <a for="request">referrer</a> to the block's
+       <a for="CSSStyleDeclaration">owner node</a>'s
+       <a>node document</a>'s <a for="Document">URL</a>, and the
+       <a for="request">referrer policy</a> to the block's
+       <a for="CSSStyleDeclaration">owner node</a>'s
+       <a>node document</a>'s <a for="Document">referrer policy</a>.
+    </li>
 
-  For external stylesheets, the referrer policy should be
-  <a>"<code>no-referrer-when-downgrade</code>"</a> unless overwritten by an
-  `<code>Referrer-Policy</code>` header.
+    <li>
+       If a <a>CSS style sheet</a> is responsible for the request,
+       and its <a>location</a> is non-null,
+       set the <a for="request">referrer</a> to its
+       <a>location</a>, and the <a for="request">referrer
+       policy</a> to its <a for="CSSStyleSheet">referrer policy</a>.
 
-  Note: If the stylesheet was loaded via a HTML <{link}> element with a
-  declared <{link/referrerpolicy}>, this referrer policy will not affect the
-  requests for resources referenced from the stylesheet.
+       Issue: This requires that CSS style sheets process `Referrer-Policy`
+       headers, and store a <dfn for="CSSStyleSheet">referrer policy</dfn>
+       in the same way that <a for="Document" lt="referrer policy">Documents
+       do</a>.
+    </li>
 
-  For inline stylesheets, and styles applied via an <code>style</code>
-  attribute on an element, the referrer policy is the containing {{Document}}'s
-  referrer policy.  Both the value of the referrer and the value of the
-  referrer policy should be captured at the time a given request is created.
+    <li>
+      Otherwise, a <a>CSS style sheet</a> with a null <a>location</a> is responsible
+      for the request: set the <a for="request">referrer</a> to its
+      <a for="CSSStyleSheet">owner node</a>'s
+      <a>node document</a>'s <a for="Document">URL</a>, and the
+      <a for="request">referrer policy</a> to the block's
+      <a for="CSSStyleSheet">owner node</a>'s
+      <a>node document</a>'s <a for="Document">referrer policy</a>.
+    </li>
+  </ol>
+
+  Note: Both the value of the <a for="/">request</a>'s <a for="request">referrer</a>
+  and <a for="request">referrer policy</a> are set based on the values at the
+  time a given <a for="/">request</a> is created. If a document's referrer policy
+  changes during its lifetime, the policy associated with inline stylesheet
+  requests will also change.
 </section>
 
 <section>
@@ -663,7 +694,7 @@ spec: html; type: element; text: a;
     Parse a referrer policy from a <a><code>Referrer-Policy</code></a> header
   </h3>
 
-  Given a {{Response}} |response|, the following steps return a <a>referrer policy</a> according to |response|'s `<code>Referrer-Policy</code>` header:
+  Given a {{Response}} |response|, the following steps return a <a for="/">referrer policy</a> according to |response|'s `<code>Referrer-Policy</code>` header:
 
   <ol>
     <li>
@@ -675,7 +706,7 @@ spec: html; type: element; text: a;
       Let |policy| be the empty string.
     </li>
     <li>
-      For each |token| in |policy-tokens|, if |token| is a <a>referrer
+      For each |token| in |policy-tokens|, if |token| is a <a for="/">referrer
       policy</a> and |token| is not the empty string, then set |policy|
       to |token|.
 
@@ -879,7 +910,7 @@ spec: html; type: element; text: a;
         </dd>
       </dl>
 
-      Note: Fetch will ensure |request|'s <a>referrer policy</a> is not the
+      Note: Fetch will ensure |request|'s <a for="/">referrer policy</a> is not the
       empty string before calling this algorithm.
     </li>
   </ol>
@@ -942,7 +973,7 @@ spec: html; type: element; text: a;
   agents from offering options to users which would change the information
   sent out via a `<code>Referer</code>` header. For instance, user agents
   MAY allow users to suppress the referrer header entirely, regardless of the
-  active <a>referrer policy</a> on a page.
+  active <a for="/">referrer policy</a> on a page.
 </section>
 
 <section>
@@ -950,7 +981,7 @@ spec: html; type: element; text: a;
 
   <h3 id="information-leakage">Information Leakage</h3>
 
-  The <a>referrer policies</a> <a>"<code>origin</code>"</a>,
+  The <a for="/">referrer policies</a> <a>"<code>origin</code>"</a>,
   <a>"<code>origin-when-cross-origin</code>"</a> and
   <a>"<code>unsafe-url</code>"</a> might leak the origin and the URL of
   a secure site respectively via insecure transport.
