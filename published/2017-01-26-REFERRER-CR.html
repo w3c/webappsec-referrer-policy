@@ -4,7 +4,7 @@
   <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
   <title>Referrer Policy</title>
   <meta content="CR" name="w3c-status">
-  <link href="https://www.w3.org/StyleSheets/TR/2016/W3C-CR" rel="stylesheet" type="text/css">
+
   <meta content="Bikeshed version af155f2e5c3bb772c32f7c8fe6857fd648994d60" name="generator">
 <style>/* style-md-lists */
 
@@ -247,24 +247,30 @@ pre.idl.highlight { color: #708090; }
         .highlight .vg { color: #0077aa } /* Name.Variable.Global */
         .highlight .vi { color: #0077aa } /* Name.Variable.Instance */
         .highlight .il { color: #000000 } /* Literal.Number.Integer.Long */
-        </style>
+</style>
+  <link href="https://www.w3.org/StyleSheets/TR/2016/W3C-CR" rel="stylesheet" type="text/css">
  <body class="h-entry">
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1>Referrer Policy</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">W3C Candidate Recommendation, <time class="dt-updated" datetime="2017-01-12">12 January 2017</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">W3C Candidate Recommendation, <time class="dt-updated" datetime="2017-01-26">26 January 2017</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
-     <dd><a class="u-url" href="https://www.w3.org/TR/2017/CR-referrer-policy-20170112/">https://www.w3.org/TR/2017/CR-referrer-policy-20170112/</a>
+     <dd><a class="u-url" href="https://www.w3.org/TR/2017/CR-referrer-policy-20170126/">https://www.w3.org/TR/2017/CR-referrer-policy-20170126/</a>
      <dt>Latest published version:
-     <dd><a href="http://www.w3.org/TR/referrer-policy/">http://www.w3.org/TR/referrer-policy/</a>
+       <dd><a href="https://www.w3.org/TR/referrer-policy/">https://www.w3.org/TR/referrer-policy/</a>
+	 <dt>Previous Version:
+	   <dd><a href="https://www.w3.org/TR/2016/WD-referrer-policy-20161222/
+">https://www.w3.org/TR/2016/WD-referrer-policy-20161222/</a>
+
      <dt>Editor's Draft:
      <dd><a href="https://w3c.github.io/webappsec-referrer-policy/">https://w3c.github.io/webappsec-referrer-policy/</a>
      <dt>Version History:
      <dd><a href="https://github.com/w3c/webappsec-referrer-policy/commits/master/index.src.html">https://github.com/w3c/webappsec-referrer-policy/commits/master/index.src.html</a>
      <dt>Feedback:
-     <dd><span><a href="mailto:public-webappsec@w3.org?subject=%5Breferrer-policy%5D%20YOUR%20TOPIC%20HERE">public-webappsec@w3.org</a> with subject line “<kbd>[referrer-policy] <i data-lt="">… message topic …</i></kbd>” (<a href="https://lists.w3.org/Archives/Public/public-webappsec/" rel="discussion">archives</a>)</span>
+       <dd><span><a href="mailto:public-webappsec@w3.org?subject=%5Breferrer-policy%5D%20YOUR%20TOPIC%20HERE">public-webappsec@w3.org</a> with subject line “<kbd>[referrer-policy] <i data-lt="">… message topic …</i></kbd>” (<a href="https://lists.w3.org/Archives/Public/public-webappsec/" rel="discussion">archives</a>)</span>
+	 
      <dt>Issue Tracking:
      <dd><a href="https://github.com/w3c/webappsec-referrer-policy/issues/">GitHub</a>
      <dd><a href="#issues-index">Inline In Spec</a>
@@ -289,7 +295,7 @@ pre.idl.highlight { color: #708090; }
   can be found in the <a href="https://www.w3.org/TR/">W3C technical reports
   index at https://www.w3.org/TR/.</a></em> </p>
    <p> This document was published by the <a href="https://www.w3.org/2011/webappsec/">Web Application Security Working Group</a> as a Candidate Recommendation. This document is intended to become a W3C Recommendation.
-  This document will remain a Candidate Recommendation at least until <time class="status-deadline" datetime="2017-02-12">12 February 2017</time> in order
+  This document will remain a Candidate Recommendation at least until <time class="status-deadline" datetime="2017-02-26">26 February 2017</time> in order
   to ensure the opportunity for wide review. </p>
    <p> The (<a href="https://lists.w3.org/Archives/Public/public-webappsec/">archived</a>) public mailing list <a href="mailto:public-webappsec@w3.org?Subject=%5Breferrer-policy%5D%20PUT%20SUBJECT%20HERE">public-webappsec@w3.org</a> (see <a href="https://www.w3.org/Mail/Request">instructions</a>)
 	is preferred for discussion of this specification.
@@ -482,9 +488,9 @@ pre.idl.highlight { color: #708090; }
     <div class="example" id="example-df4273ed"><a class="self-link" href="#example-df4273ed"></a> If a document at <code>https://example.com/page.html</code> sets a policy of <a data-link-type="dfn" href="#referrer-policy-no-referrer" id="ref-for-referrer-policy-no-referrer-2">"<code>no-referrer</code>"</a>, then navigations to <code>https://example.com/</code> (or any other URL) would send no <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2"><code>Referer</code></a> header. </div>
     <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-export="" data-level="3.2" data-lt="&quot;no-referrer-when-downgrade&quot;" id="referrer-policy-no-referrer-when-downgrade"><span class="secno">3.2. </span><span class="content">"<code>no-referrer-when-downgrade</code>"</span><span id="referrer-policy-state-no-referrer-when-downgrade"></span></h3>
     <p>The <a data-link-type="dfn" href="#referrer-policy-no-referrer-when-downgrade" id="ref-for-referrer-policy-no-referrer-when-downgrade-1">"<code>no-referrer-when-downgrade</code>"</a> policy sends a full URL
-  along with requests from a <a data-link-type="dfn" href="http://www.w3.org/TR/2010/REC-wsc-ui-20100812/#typesoftls">TLS-protected</a> <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#environment-settings-object">environment settings
-  object</a> to a <a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-url">potentially trustworthy URL</a>, and requests from <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-client">clients</a> which are <em>not</em> <a data-link-type="dfn" href="http://www.w3.org/TR/2010/REC-wsc-ui-20100812/#typesoftls">TLS-protected</a> to any <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-3.2">origin</a>.</p>
-    <p>Requests from <a data-link-type="dfn" href="http://www.w3.org/TR/2010/REC-wsc-ui-20100812/#typesoftls">TLS-protected</a> <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-client">clients</a> to non- <a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-url">potentially trustworthy URL</a>s, on the other hand, will contain no
+  along with requests from a <a data-link-type="dfn" href="https://www.w3.org/TR/2010/REC-wsc-ui-20100812/#typesoftls">TLS-protected</a> <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#environment-settings-object">environment settings
+  object</a> to a <a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-url">potentially trustworthy URL</a>, and requests from <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-client">clients</a> which are <em>not</em> <a data-link-type="dfn" href="https://www.w3.org/TR/2010/REC-wsc-ui-20100812/#typesoftls">TLS-protected</a> to any <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-3.2">origin</a>.</p>
+    <p>Requests from <a data-link-type="dfn" href="https://www.w3.org/TR/2010/REC-wsc-ui-20100812/#typesoftls">TLS-protected</a> <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-client">clients</a> to non- <a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-url">potentially trustworthy URL</a>s, on the other hand, will contain no
   referrer information. A <code><a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2">Referer</a></code> HTTP header will not be
   sent.</p>
     <div class="example" id="example-e13d3d6c">
@@ -518,11 +524,11 @@ pre.idl.highlight { color: #708090; }
     <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-export="" data-level="3.5" data-lt="&quot;strict-origin&quot;" id="referrer-policy-strict-origin"><span class="secno">3.5. </span><span class="content">"<code>strict-origin</code>"</span></h3>
     <p>The <a data-link-type="dfn" href="#referrer-policy-strict-origin" id="ref-for-referrer-policy-strict-origin-2">"<code>strict-origin</code>"</a> policy sends the <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-6.2">ASCII serialization</a> of the <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-3.2">origin</a> of the <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-client">request client</a> when making requests:</p>
     <ul>
-     <li>from a <a data-link-type="dfn" href="http://www.w3.org/TR/2010/REC-wsc-ui-20100812/#typesoftls">TLS-protected</a> <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#environment-settings-object">environment settings object</a> to a <a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-url">potentially trustworthy URL</a>, and
-     <li>from <em>non-</em><a data-link-type="dfn" href="http://www.w3.org/TR/2010/REC-wsc-ui-20100812/#typesoftls">TLS-protected</a> <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#environment-settings-object">environment settings objects</a> to
+     <li>from a <a data-link-type="dfn" href="https://www.w3.org/TR/2010/REC-wsc-ui-20100812/#typesoftls">TLS-protected</a> <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#environment-settings-object">environment settings object</a> to a <a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-url">potentially trustworthy URL</a>, and
+     <li>from <em>non-</em><a data-link-type="dfn" href="https://www.w3.org/TR/2010/REC-wsc-ui-20100812/#typesoftls">TLS-protected</a> <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#environment-settings-object">environment settings objects</a> to
           any <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-3.2">origin</a>.
     </ul>
-    <p>Requests from <a data-link-type="dfn" href="http://www.w3.org/TR/2010/REC-wsc-ui-20100812/#typesoftls">TLS-protected</a> <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-client">request clients</a> to non- <a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-url">potentially trustworthy URL</a>s, on the other hand, will contain no
+    <p>Requests from <a data-link-type="dfn" href="https://www.w3.org/TR/2010/REC-wsc-ui-20100812/#typesoftls">TLS-protected</a> <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-client">request clients</a> to non- <a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-url">potentially trustworthy URL</a>s, on the other hand, will contain no
   referrer information. A <code><a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2">Referer</a></code> HTTP header will not be
   sent.</p>
     <div class="example" id="example-e6df45e4">
@@ -550,11 +556,11 @@ pre.idl.highlight { color: #708090; }
   full URL, <a href="#strip-url">stripped for use as a referrer</a>, is sent as
   referrer information when making <a data-link-type="dfn" href="#same-origin-request" id="ref-for-same-origin-request-5">same-origin requests</a> from a particular <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-client">request client</a>, and only the <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-6.2">ASCII serialization</a> of the <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-3.2">origin</a> of the <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-client">request client</a> when making <a data-link-type="dfn" href="#cross-origin-request" id="ref-for-cross-origin-request-5">cross-origin requests</a>:</p>
     <ul>
-     <li>from a <a data-link-type="dfn" href="http://www.w3.org/TR/2010/REC-wsc-ui-20100812/#typesoftls">TLS-protected</a> <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#environment-settings-object">environment settings object</a> to a <a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-url">potentially trustworthy URL</a>, and
-     <li>from <em>non-</em><a data-link-type="dfn" href="http://www.w3.org/TR/2010/REC-wsc-ui-20100812/#typesoftls">TLS-protected</a> <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#environment-settings-object">environment settings objects</a> to
+     <li>from a <a data-link-type="dfn" href="https://www.w3.org/TR/2010/REC-wsc-ui-20100812/#typesoftls">TLS-protected</a> <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#environment-settings-object">environment settings object</a> to a <a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-url">potentially trustworthy URL</a>, and
+     <li>from <em>non-</em><a data-link-type="dfn" href="https://www.w3.org/TR/2010/REC-wsc-ui-20100812/#typesoftls">TLS-protected</a> <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#environment-settings-object">environment settings objects</a> to
           any <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc6454#section-3.2">origin</a>.
     </ul>
-    <p>Requests from <a data-link-type="dfn" href="http://www.w3.org/TR/2010/REC-wsc-ui-20100812/#typesoftls">TLS-protected</a> <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-client">clients</a> to non- <a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-url">potentially trustworthy URL</a>s, on the other hand, will contain no
+    <p>Requests from <a data-link-type="dfn" href="https://www.w3.org/TR/2010/REC-wsc-ui-20100812/#typesoftls">TLS-protected</a> <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-client">clients</a> to non- <a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-url">potentially trustworthy URL</a>s, on the other hand, will contain no
   referrer information. A <code><a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2">Referer</a></code> HTTP header will not be
   sent.</p>
     <div class="example" id="example-2269af87">
@@ -569,7 +575,7 @@ pre.idl.highlight { color: #708090; }
     <div class="example" id="example-32de6eb8"><a class="self-link" href="#example-32de6eb8"></a> If a document at <code>https://example.com/sekrit.html</code> sets a policy
     of <a data-link-type="dfn" href="#referrer-policy-unsafe-url" id="ref-for-referrer-policy-unsafe-url-2">"<code>unsafe-url</code>"</a>, then navigations to <code>http://not.example.com/</code> (and every other origin) would send a <code><a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2">Referer</a></code> HTTP header with a value of <code>https://example.com/sekrit.html</code>. </div>
     <p class="note" role="note">Note: The policy’s name doesn’t lie; it is unsafe. This policy will leak
-  origins and paths from <a data-link-type="dfn" href="http://www.w3.org/TR/2010/REC-wsc-ui-20100812/#typesoftls">TLS-protected</a> resources to insecure origins.
+  origins and paths from <a data-link-type="dfn" href="https://www.w3.org/TR/2010/REC-wsc-ui-20100812/#typesoftls">TLS-protected</a> resources to insecure origins.
   Carefully consider the impact of setting such a policy for potentially
   sensitive documents.</p>
     <h3 class="heading settled" data-dfn-type="dfn" data-export="" data-level="3.9" data-lt="The empty string" id="referrer-policy-empty-string"><span class="secno">3.9. </span><span class="content">The empty string</span><a class="self-link" href="#referrer-policy-empty-string"></a></h3>
@@ -577,7 +583,7 @@ pre.idl.highlight { color: #708090; }
   fallback to a <a data-link-type="dfn" href="#referrer-policy" id="ref-for-referrer-policy-7">referrer policy</a> defined elsewhere, or in the case where
   no such higher-level policy is available, defaulting to <a data-link-type="dfn" href="#referrer-policy-no-referrer-when-downgrade" id="ref-for-referrer-policy-no-referrer-when-downgrade-3">"<code>no-referrer-when-downgrade</code>"</a>. This defaulting happens in
   the <a href="#determine-requests-referrer" id="ref-for-determine-requests-referrer-1">§8.3 Determine request’s Referrer</a> algorithm.</p>
-    <div class="example" id="example-27ee7725"><a class="self-link" href="#example-27ee7725"></a> Given a HTML <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/semantics.html#the-a-element">a</a></code> element without any declared <code><a data-link-type="element-sub" href="https://html.spec.whatwg.org/multipage/semantics.html#attr-a-referrerpolicy">referrerpolicy</a></code> attribute, its referrer policy is the empty string. Thus, navigation
+    <div class="example" id="example-27ee7725"><a class="self-link" href="#example-27ee7725"></a> Given a HTML <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/semantics.html#the-a-element">a</a></code> element without any declared <code><a data-link-type="element-sub" href="https://html.spec.whatwg.org/multipage/semantics.html#attr-hyperlink-referrerpolicy">referrerpolicy</a></code> attribute, its referrer policy is the empty string. Thus, navigation
     requests initiated by clicking on that <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/semantics.html#the-a-element">a</a></code> element will be sent
     with the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/dom.html#concept-document-referrer-policy">referrer
     policy</a> of the <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/semantics.html#the-a-element">a</a></code> element’s <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-node-document">node document</a>. If that <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/dom.html#document">Document</a></code> has the empty string as its referrer policy, the <a href="#determine-requests-referrer" id="ref-for-determine-requests-referrer-2">§8.3 Determine request’s Referrer</a> algorithm will treat the empty
@@ -737,7 +743,7 @@ pre.idl.highlight { color: #708090; }
                 container</a>’s <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-node-document">node document</a>.
            <li>Let <var>referrerSource</var> be <var>document</var>’s <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-document-url">URL</a>.
           </ol>
-         <li>Otherwise, let <var>referrerSource</var> be <var>environment</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#creation-url">creation
+         <li>Otherwise, let <var>referrerSource</var> be <var>environment</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-environment-creation-url">creation
             URL</a>.
         </ol>
        <dt>a <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url">URL</a>
@@ -763,7 +769,7 @@ pre.idl.highlight { color: #708090; }
          <li>
            If <var>environment</var> is not null: 
           <ol>
-           <li> If <var>environment</var> is <a data-link-type="dfn" href="http://www.w3.org/TR/2010/REC-wsc-ui-20100812/#typesoftls">TLS-protected</a> <em>and</em> <var>request</var>’s <a href="https://fetch.spec.whatwg.org/#concept-request-current-url">current
+           <li> If <var>environment</var> is <a data-link-type="dfn" href="https://www.w3.org/TR/2010/REC-wsc-ui-20100812/#typesoftls">TLS-protected</a> <em>and</em> <var>request</var>’s <a href="https://fetch.spec.whatwg.org/#concept-request-current-url">current
                   URL</a> is not a <a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-url">potentially trustworthy
                   URL</a>, then return <code>no referrer</code>. 
           </ol>
@@ -778,7 +784,7 @@ pre.idl.highlight { color: #708090; }
            If <var>environment</var> is not null: 
           <ol>
            <li>
-             If <var>environment</var> is <a data-link-type="dfn" href="http://www.w3.org/TR/2010/REC-wsc-ui-20100812/#typesoftls">TLS-protected</a> <em>and</em> <var>request</var>’s <a href="https://fetch.spec.whatwg.org/#concept-request-current-url">current
+             If <var>environment</var> is <a data-link-type="dfn" href="https://www.w3.org/TR/2010/REC-wsc-ui-20100812/#typesoftls">TLS-protected</a> <em>and</em> <var>request</var>’s <a href="https://fetch.spec.whatwg.org/#concept-request-current-url">current
                   URL</a> is not a <a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-url">potentially trustworthy URL</a> 
             <ol>
              <li>Return <code>no referrer</code>. 
@@ -806,7 +812,7 @@ pre.idl.highlight { color: #708090; }
          <li>
            If <var>environment</var> is not null: 
           <ol>
-           <li> If <var>environment</var> is <a data-link-type="dfn" href="http://www.w3.org/TR/2010/REC-wsc-ui-20100812/#typesoftls">TLS-protected</a> <em>and</em> <var>request</var>’s <a href="https://fetch.spec.whatwg.org/#concept-request-current-url">current
+           <li> If <var>environment</var> is <a data-link-type="dfn" href="https://www.w3.org/TR/2010/REC-wsc-ui-20100812/#typesoftls">TLS-protected</a> <em>and</em> <var>request</var>’s <a href="https://fetch.spec.whatwg.org/#concept-request-current-url">current
                   URL</a> is not a <a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-url">potentially trustworthy
                   URL</a>, then return <code>no referrer</code>. 
           </ol>
@@ -1010,10 +1016,10 @@ pre.idl.highlight { color: #708090; }
      <li><a href="https://drafts.csswg.org/cssom-1/#concept-css-style-sheet-owner-node">owner node <small>(for CSSStyleSheet)</small></a>
     </ul>
    <li>
-    <a data-link-type="biblio">[WHATWG-DOM]</a> defines the following terms:
+    <a data-link-type="biblio">[DOM4]</a> defines the following terms:
     <ul>
-     <li><a href="https://dom.spec.whatwg.org/#concept-node-document">node document</a>
-     <li><a href="https://dom.spec.whatwg.org/#concept-document-url">url</a>
+     <li><a href="https://www.w3.org/TR/dom/#concept-node-document">node document</a>
+     <li><a href="https://www.w3.org/TR/dom/#concept-document-url">url</a>
     </ul>
    <li>
     <a data-link-type="biblio">[FETCH]</a> defines the following terms:
@@ -1044,7 +1050,7 @@ pre.idl.highlight { color: #708090; }
      <li><a href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context">browsing context</a>
      <li><a href="https://html.spec.whatwg.org/multipage/browsers.html#concept-document-bc">browsing context <small>(for Document)</small></a>
      <li><a href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context-container">browsing context container</a>
-     <li><a href="https://html.spec.whatwg.org/multipage/webappapis.html#creation-url">creation url</a>
+     <li><a href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-environment-creation-url">creation url</a>
      <li><a href="https://html.spec.whatwg.org/multipage/dom.html#concept-document-referrer-policy">document referrer policy</a>
      <li><a href="https://html.spec.whatwg.org/multipage/webappapis.html#environment-settings-object">environment settings object</a>
      <li><a href="https://html.spec.whatwg.org/multipage/infrastructure.html#concept-url-fragment">fragment</a>
@@ -1060,7 +1066,7 @@ pre.idl.highlight { color: #708090; }
      <li><a href="https://html.spec.whatwg.org/multipage/semantics.html#meta-referrer">referrer</a>
      <li><a href="https://html.spec.whatwg.org/multipage/dom.html#concept-document-referrer-policy">referrer policy</a>
      <li><a href="https://html.spec.whatwg.org/multipage/infrastructure.html#referrer-policy-attribute">referrer policy attribute</a>
-     <li><a href="https://html.spec.whatwg.org/multipage/semantics.html#attr-a-referrerpolicy">referrerpolicy</a>
+     <li><a href="https://html.spec.whatwg.org/multipage/semantics.html#attr-hyperlink-referrerpolicy">referrerpolicy</a>
      <li><a href="https://html.spec.whatwg.org/multipage/workers.html#run-a-worker">running a worker</a>
      <li><a href="https://html.spec.whatwg.org/multipage/embedded-content.html#attr-iframe-srcdoc">srcdoc</a>
     </ul>
@@ -1096,7 +1102,7 @@ pre.idl.highlight { color: #708090; }
    <li>
     <a data-link-type="biblio">[wsc-ui]</a> defines the following terms:
     <ul>
-     <li><a href="http://www.w3.org/TR/2010/REC-wsc-ui-20100812/#typesoftls">tls-protected</a>
+     <li><a href="https://www.w3.org/TR/2010/REC-wsc-ui-20100812/#typesoftls">tls-protected</a>
     </ul>
   </ul>
   <h2 class="no-num no-ref heading settled" id="references"><span class="content">References</span><a class="self-link" href="#references"></a></h2>
@@ -1116,8 +1122,8 @@ pre.idl.highlight { color: #708090; }
    <dd>Roy T. Fielding; Julian F. Reschke. <a href="http://www.ietf.org/rfc/rfc7231.txt">HTTP/1.1 Semantics and Content</a>. RFC. URL: <a href="http://www.ietf.org/rfc/rfc7231.txt">http://www.ietf.org/rfc/rfc7231.txt</a>
    <dt id="biblio-secure-contexts">[SECURE-CONTEXTS]
    <dd>Mike West. <a href="https://www.w3.org/TR/secure-contexts/">Secure Contexts</a>. 15 September 2016. CR. URL: <a href="https://www.w3.org/TR/secure-contexts/">https://www.w3.org/TR/secure-contexts/</a>
-   <dt id="biblio-whatwg-dom">[WHATWG-DOM]
-   <dd>Anne van Kesteren. <a href="https://dom.spec.whatwg.org/">DOM Standard</a>. Living Standard. URL: <a href="https://dom.spec.whatwg.org/">https://dom.spec.whatwg.org/</a>
+   <dt id="biblio-dom4">[DOM4]
+   <dd>Anne van Kesteren, Aryeh Gregor, Ms2ger, Alex Russel, Robin Berjon. <a href="https://www.w3.org/TR/dom">W3C DOM4</a>, 19 November, 2015. REC. URL:  <a href="https://www.w3.org/TR/dom">https://www.w3.org/TR/dom</a>
    <dt id="biblio-whatwg-url">[WHATWG-URL]
    <dd>Anne van Kesteren. <a href="https://url.spec.whatwg.org/">URL Standard</a>. Living Standard. URL: <a href="https://url.spec.whatwg.org/">https://url.spec.whatwg.org/</a>
    <dt id="biblio-wsc-ui">[WSC-UI]
@@ -1126,7 +1132,7 @@ pre.idl.highlight { color: #708090; }
   <h3 class="no-num no-ref heading settled" id="informative"><span class="content">Informative References</span><a class="self-link" href="#informative"></a></h3>
   <dl>
    <dt id="biblio-capability-urls">[CAPABILITY-URLS]
-   <dd>Jenni Tennison. <a href="http://www.w3.org/TR/capability-urls/">Capability URLs</a>. WD. URL: <a href="http://www.w3.org/TR/capability-urls/">http://www.w3.org/TR/capability-urls/</a>
+   <dd>Jenni Tennison. <a href="https://www.w3.org/TR/capability-urls/">Capability URLs</a>. WD. URL: <a href="https://www.w3.org/TR/capability-urls/">https://www.w3.org/TR/capability-urls/</a>
   </dl>
   <h2 class="no-num no-ref heading settled" id="idl-index"><span class="content">IDL Index</span><a class="self-link" href="#idl-index"></a></h2>
 <pre class="idl def"><span class="kt">enum</span> <a class="nv" href="#enumdef-referrerpolicy">ReferrerPolicy</a> {
