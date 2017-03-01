@@ -698,9 +698,8 @@ spec: html; type: element; text: a;
 
   <ol>
     <li>
-      Let |policy-tokens| be the result of
-      <a for=header lt="parse a header value">parsing</a> `<code>Referrer-Policy</code>` in
-      |response|'s <a for=response>header list</a>.
+      Let |policy-tokens| be the result of <a>extracting header list values</a> given
+      `<code>Referrer-Policy</code>` and |response|'s <a for=response>header list</a>.
     </li>
     <li>
       Let |policy| be the empty string.
