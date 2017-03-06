@@ -1176,7 +1176,7 @@ Possible extra rowspan handling
 		}
 	}
 </style>
-  <meta content="Bikeshed version 0060add2b6463a7a7a099173ff2c8a54d3e0ce53" name="generator">
+  <meta content="Bikeshed version 6aa0219b7426f80ce4f3a9e687f521fc0ec917f4" name="generator">
 <style>/* style-md-lists */
 
             /* This is a weird hack for me not yet following the commonmark spec
@@ -1423,7 +1423,7 @@ pre.idl.highlight { color: #708090; }
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1>Referrer Policy</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2017-03-01">1 March 2017</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2017-03-06">6 March 2017</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1469,7 +1469,7 @@ pre.idl.highlight { color: #708090; }
 	W3C maintains a <a href="https://www.w3.org/2004/01/pp-impl/49309/status" rel="disclosure">public list of any patent disclosures</a> made in connection with the deliverables of the group;
 	that page also includes instructions for disclosing a patent.
 	An individual who has actual knowledge of a patent which the individual believes contains <a href="https://www.w3.org/Consortium/Patent-Policy-20040205/#def-essential">Essential Claim(s)</a> must disclose the information in accordance with <a href="https://www.w3.org/Consortium/Patent-Policy-20040205/#sec-Disclosure">section 6 of the W3C Patent Policy</a>. </p>
-   <p> This document is governed by the <a href="https://www.w3.org/2015/Process-20150901/" id="w3c_process_revision">1 September 2015 W3C Process Document</a>. </p>
+   <p> This document is governed by the <a href="https://www.w3.org/2017/Process-20170301/" id="w3c_process_revision">1 March 2017 W3C Process Document</a>. </p>
    <p></p>
   </div>
   <div data-fill-with="at-risk"></div>
@@ -1787,7 +1787,7 @@ pre.idl.highlight { color: #708090; }
      <p><em>This section is not normative.</em></p>
      <p>The HTML Standard defines the concept of <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#referrer-policy-attribute">referrer policy
     attributes</a> which applies to several of its elements, for example:</p>
-<pre class="example" id="example-4214a796"><a class="self-link" href="#example-4214a796"></a><code class="lang-html highlight"><span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">"http://example.com"</span> <span class="na">referrerpolicy</span><span class="o">=</span><span class="s">"origin"</span><span class="p">></span>
+<pre class="example" id="example-4214a796"><a class="self-link" href="#example-4214a796"></a><code class="lang-html highlight"><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"http://example.com"</span> <span class="na">referrerpolicy=</span><span class="s">"origin"</span><span class="nt">></span>
 </code></pre>
     </section>
     <section class="informative">
@@ -1852,7 +1852,8 @@ pre.idl.highlight { color: #708090; }
     <h3 class="heading settled" data-level="8.1" id="parse-referrer-policy-from-header"><span class="secno">8.1. </span><span class="content"> Parse a referrer policy from a <a data-link-type="dfn" href="#referrer-policy-header-dfn" id="ref-for-referrer-policy-header-dfn-1"><code>Referrer-Policy</code></a> header </span><a class="self-link" href="#parse-referrer-policy-from-header"></a></h3>
     <p>Given a <code class="idl"><a data-link-type="idl" href="https://fetch.spec.whatwg.org/#response">Response</a></code> <var>response</var>, the following steps return a <a data-link-type="dfn" href="#referrer-policy" id="ref-for-referrer-policy-11">referrer policy</a> according to <var>response</var>’s `<code>Referrer-Policy</code>` header:</p>
     <ol>
-     <li> Let <var>policy-tokens</var> be the result of <a data-link-type="dfn">parsing</a> `<code>Referrer-Policy</code>` in <var>response</var>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-response-header-list">header list</a>. 
+     <li> Let <var>policy-tokens</var> be the result of <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#extract-header-list-values">extracting header list values</a> given
+      `<code>Referrer-Policy</code>` and <var>response</var>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-response-header-list">header list</a>. 
      <li> Let <var>policy</var> be the empty string. 
      <li>
        For each <var>token</var> in <var>policy-tokens</var>, if <var>token</var> is a <a data-link-type="dfn" href="#referrer-policy" id="ref-for-referrer-policy-12">referrer
@@ -2181,6 +2182,7 @@ pre.idl.highlight { color: #708090; }
      <li><a href="https://fetch.spec.whatwg.org/#response">Response</a>
      <li><a href="https://fetch.spec.whatwg.org/#concept-request-client">client</a>
      <li><a href="https://fetch.spec.whatwg.org/#concept-request-current-url">current url</a>
+     <li><a href="https://fetch.spec.whatwg.org/#extract-header-list-values">extracting header list values</a>
      <li><a href="https://fetch.spec.whatwg.org/#concept-fetch">fetch</a>
      <li><a href="https://fetch.spec.whatwg.org/#concept-response-header-list">header list</a>
      <li><a href="https://fetch.spec.whatwg.org/#concept-request-origin">origin</a>
@@ -2258,7 +2260,7 @@ pre.idl.highlight { color: #708090; }
   <h3 class="no-num no-ref heading settled" id="normative"><span class="content">Normative References</span><a class="self-link" href="#normative"></a></h3>
   <dl>
    <dt id="biblio-cssom-1">[CSSOM-1]
-   <dd>Simon Pieters; Glenn Adams. <a href="https://drafts.csswg.org/cssom/">CSS Object Model (CSSOM)</a>. URL: <a href="https://drafts.csswg.org/cssom/">https://drafts.csswg.org/cssom/</a>
+   <dd>Simon Pieters; Glenn Adams. <a href="https://www.w3.org/TR/cssom-1/">CSS Object Model (CSSOM)</a>. URL: <a href="https://www.w3.org/TR/cssom-1/">https://www.w3.org/TR/cssom-1/</a>
    <dt id="biblio-dom">[DOM]
    <dd>Anne van Kesteren. <a href="https://dom.spec.whatwg.org/">DOM Standard</a>. Living Standard. URL: <a href="https://dom.spec.whatwg.org/">https://dom.spec.whatwg.org/</a>
    <dt id="biblio-fetch">[FETCH]
@@ -2270,7 +2272,7 @@ pre.idl.highlight { color: #708090; }
    <dt id="biblio-rfc7231">[RFC7231]
    <dd>Roy T. Fielding; Julian F. Reschke. <a href="http://www.ietf.org/rfc/rfc7231.txt">HTTP/1.1 Semantics and Content</a>. RFC. URL: <a href="http://www.ietf.org/rfc/rfc7231.txt">http://www.ietf.org/rfc/rfc7231.txt</a>
    <dt id="biblio-secure-contexts">[SECURE-CONTEXTS]
-   <dd>Mike West. <a href="https://w3c.github.io/webappsec-secure-contexts/">Secure Contexts</a>. URL: <a href="https://w3c.github.io/webappsec-secure-contexts/">https://w3c.github.io/webappsec-secure-contexts/</a>
+   <dd>Mike West. <a href="https://www.w3.org/TR/secure-contexts/">Secure Contexts</a>. URL: <a href="https://www.w3.org/TR/secure-contexts/">https://www.w3.org/TR/secure-contexts/</a>
    <dt id="biblio-url">[URL]
    <dd>Anne van Kesteren. <a href="https://url.spec.whatwg.org/">URL Standard</a>. Living Standard. URL: <a href="https://url.spec.whatwg.org/">https://url.spec.whatwg.org/</a>
    <dt id="biblio-wsc-ui">[WSC-UI]
