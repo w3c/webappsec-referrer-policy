@@ -1030,6 +1030,19 @@ spec: html; type: element; text: a;
     <a>"<code>unsafe-url</code>"</a> because it is the last to be processed.
   </div>
 
+  <div class="example">
+    To specify multiple policy values in the Referrer-Policy header, a site can
+    send multiple Referrer-Policy headers:
+    <pre>
+      Referrer-Policy: no-referrer
+      Referrer-Policy: unsafe-url
+    </pre>
+    or multiple comma-separated header values:
+    <pre>
+      Referrer-Policy: no-referrer,unsafe-url
+    </pre>
+  </div>
+
   This behavior does not, however, apply to
   the <code>referrerpolicy</code> attribute. Authors may dynamically set
   and get the <code>referrerpolicy</code> attribute to detect whether a
