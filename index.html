@@ -1423,7 +1423,7 @@ pre.idl.highlight { color: #708090; }
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1>Referrer Policy</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2017-03-06">6 March 2017</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2017-03-07">7 March 2017</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -2038,13 +2038,13 @@ pre.idl.highlight { color: #708090; }
     the <a data-link-type="dfn" href="#referrer-policy-unsafe-url" id="ref-for-referrer-policy-unsafe-url-6">"<code>unsafe-url</code>"</a> policy. A site can specify
     an <a data-link-type="dfn" href="#referrer-policy-origin" id="ref-for-referrer-policy-origin-7">"<code>origin</code>"</a> policy followed by an <a data-link-type="dfn" href="#referrer-policy-unsafe-url" id="ref-for-referrer-policy-unsafe-url-7">"<code>unsafe-url</code>"</a> policy: older user agents will ignore the
     unknown <a data-link-type="dfn" href="#referrer-policy-unsafe-url" id="ref-for-referrer-policy-unsafe-url-8">"<code>unsafe-url</code>"</a> value and use <a data-link-type="dfn" href="#referrer-policy-origin" id="ref-for-referrer-policy-origin-8">"<code>origin</code>"</a>, while newer user agents will use <a data-link-type="dfn" href="#referrer-policy-unsafe-url" id="ref-for-referrer-policy-unsafe-url-9">"<code>unsafe-url</code>"</a> because it is the last to be processed. </div>
-    <div class="example" id="example-bb161dbb">
-     <a class="self-link" href="#example-bb161dbb"></a> To specify multiple policy values in the Referrer-Policy header, a site can
+    <div class="example" id="example-af01a355">
+     <a class="self-link" href="#example-af01a355"></a> To specify multiple policy values in the Referrer-Policy header, a site can
     send multiple Referrer-Policy headers: 
 <pre>Referrer-Policy: no-referrer
 Referrer-Policy: unsafe-url
 </pre>
-     <p>or multiple comma-separated header values:</p>
+     <p>or, equivalently, multiple comma-separated header values:</p>
 <pre>Referrer-Policy: no-referrer,unsafe-url
 </pre>
     </div>
