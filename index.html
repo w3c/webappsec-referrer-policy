@@ -1423,7 +1423,7 @@ pre.idl.highlight { color: #708090; }
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1>Referrer Policy</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2017-03-06">6 March 2017</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2017-03-07">7 March 2017</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1758,10 +1758,10 @@ pre.idl.highlight { color: #708090; }
   determining what referrer information should be included with requests
   made, and with <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context">browsing contexts</a> created from the context of the protected resource.
   The syntax for the name and value of the header are described by the
-  following ABNF grammar:</p>
+  following <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc5234#">ABNF</a> grammar:</p>
 <pre>"Referrer-Policy:" 1#<a data-link-type="dfn" href="#policy-token" id="ref-for-policy-token-1">policy-token</a>
 </pre>
-<pre><dfn class="dfn-paneled" data-dfn-type="dfn" data-export="" id="policy-token">policy-token</dfn>   = "no-referrer" / "no-referrer-when-downgrade" / "strict-origin" / "strict-origin-when-cross-origin" / "same-origin" / "origin" / "origin-when-cross-origin" / "unsafe-url"
+<pre><dfn class="dfn-paneled" data-dfn-type="dfn" data-export="" id="policy-token">policy-token</dfn>   = 1*( <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc5234#appendix-B.1">ALPHA</a> / "-" )
 </pre>
     <p class="note" role="note"><span>Note:</span> The header name does not share the HTTP Referer header’s misspelling.</p>
     <p><a href="#integration-with-fetch">§5 Integration with Fetch</a> and <a href="#integration-with-html">§6 Integration with HTML</a> describe
@@ -2038,13 +2038,13 @@ pre.idl.highlight { color: #708090; }
     the <a data-link-type="dfn" href="#referrer-policy-unsafe-url" id="ref-for-referrer-policy-unsafe-url-6">"<code>unsafe-url</code>"</a> policy. A site can specify
     an <a data-link-type="dfn" href="#referrer-policy-origin" id="ref-for-referrer-policy-origin-7">"<code>origin</code>"</a> policy followed by an <a data-link-type="dfn" href="#referrer-policy-unsafe-url" id="ref-for-referrer-policy-unsafe-url-7">"<code>unsafe-url</code>"</a> policy: older user agents will ignore the
     unknown <a data-link-type="dfn" href="#referrer-policy-unsafe-url" id="ref-for-referrer-policy-unsafe-url-8">"<code>unsafe-url</code>"</a> value and use <a data-link-type="dfn" href="#referrer-policy-origin" id="ref-for-referrer-policy-origin-8">"<code>origin</code>"</a>, while newer user agents will use <a data-link-type="dfn" href="#referrer-policy-unsafe-url" id="ref-for-referrer-policy-unsafe-url-9">"<code>unsafe-url</code>"</a> because it is the last to be processed. </div>
-    <div class="example" id="example-bb161dbb">
-     <a class="self-link" href="#example-bb161dbb"></a> To specify multiple policy values in the Referrer-Policy header, a site can
+    <div class="example" id="example-af01a355">
+     <a class="self-link" href="#example-af01a355"></a> To specify multiple policy values in the Referrer-Policy header, a site can
     send multiple Referrer-Policy headers: 
 <pre>Referrer-Policy: no-referrer
 Referrer-Policy: unsafe-url
 </pre>
-     <p>or multiple comma-separated header values:</p>
+     <p>or, equivalently, multiple comma-separated header values:</p>
 <pre>Referrer-Policy: no-referrer,unsafe-url
 </pre>
     </div>
@@ -2239,6 +2239,12 @@ Referrer-Policy: unsafe-url
      <li><a href="https://html.spec.whatwg.org/multipage/embedded-content.html#attr-iframe-srcdoc">srcdoc</a>
     </ul>
    <li>
+    <a data-link-type="biblio">[rfc5234]</a> defines the following terms:
+    <ul>
+     <li><a href="https://tools.ietf.org/html/rfc5234#">abnf</a>
+     <li><a href="https://tools.ietf.org/html/rfc5234#appendix-B.1">alpha</a>
+    </ul>
+   <li>
     <a data-link-type="biblio">[RFC7231]</a> defines the following terms:
     <ul>
      <li><a href="https://tools.ietf.org/html/rfc7231#section-5.5.2">referer</a>
@@ -2279,6 +2285,8 @@ Referrer-Policy: unsafe-url
    <dd>Anne van Kesteren; et al. <a href="https://html.spec.whatwg.org/multipage/">HTML Standard</a>. Living Standard. URL: <a href="https://html.spec.whatwg.org/multipage/">https://html.spec.whatwg.org/multipage/</a>
    <dt id="biblio-rfc2119">[RFC2119]
    <dd>S. Bradner. <a href="https://tools.ietf.org/html/rfc2119">Key words for use in RFCs to Indicate Requirement Levels</a>. March 1997. Best Current Practice. URL: <a href="https://tools.ietf.org/html/rfc2119">https://tools.ietf.org/html/rfc2119</a>
+   <dt id="biblio-rfc5234">[RFC5234]
+   <dd>D. Crocker, Ed.; P. Overell. <a href="https://tools.ietf.org/html/rfc5234">Augmented BNF for Syntax Specifications: ABNF</a>. January 2008. Internet Standard. URL: <a href="https://tools.ietf.org/html/rfc5234">https://tools.ietf.org/html/rfc5234</a>
    <dt id="biblio-rfc7231">[RFC7231]
    <dd>Roy T. Fielding; Julian F. Reschke. <a href="http://www.ietf.org/rfc/rfc7231.txt">HTTP/1.1 Semantics and Content</a>. RFC. URL: <a href="http://www.ietf.org/rfc/rfc7231.txt">http://www.ietf.org/rfc/rfc7231.txt</a>
    <dt id="biblio-secure-contexts">[SECURE-CONTEXTS]

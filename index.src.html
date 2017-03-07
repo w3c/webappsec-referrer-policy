@@ -95,6 +95,10 @@ spec: SECURE-CONTEXTS; urlPrefix: https://w3c.github.io/webappsec-secure-context
 spec: WSC-UI; urlPrefix: http://www.w3.org/TR/2010/REC-wsc-ui-20100812/
   type: dfn
     text: TLS-protected; url: typesoftls
+spec: RFC5234; urlPrefix: https://tools.ietf.org/html/rfc5234
+  type: dfn
+    text: ABNF; url:
+    text: ALPHA; url: appendix-B.1
 spec: RFC7231; urlPrefix: https://tools.ietf.org/html/rfc7231
   type: dfn
     text: referer; url: section-5.5.2
@@ -519,13 +523,13 @@ spec: html; type: element; text: a;
   made, and with
   <a for=/>browsing contexts</a> created from the context of the protected resource.
   The syntax for the name and value of the header are described by the
-  following ABNF grammar:
+  following <a>ABNF</a> grammar:
 
   <pre>
     "Referrer-Policy:" 1#<a>policy-token</a>
   </pre>
   <pre>
-    <dfn export>policy-token</dfn>   = "no-referrer" / "no-referrer-when-downgrade" / "strict-origin" / "strict-origin-when-cross-origin" / "same-origin" / "origin" / "origin-when-cross-origin" / "unsafe-url"
+    <dfn export>policy-token</dfn>   = 1*( <a>ALPHA</a> / "-" )
   </pre>
 
   Note: The header name does not share the HTTP Referer header's misspelling.
