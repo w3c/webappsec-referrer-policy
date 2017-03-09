@@ -1423,7 +1423,7 @@ pre.idl.highlight { color: #708090; }
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1>Referrer Policy</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2017-03-07">7 March 2017</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2017-03-09">9 March 2017</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1759,11 +1759,16 @@ pre.idl.highlight { color: #708090; }
   made, and with <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context">browsing contexts</a> created from the context of the protected resource.
   The syntax for the name and value of the header are described by the
   following <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc5234#">ABNF</a> grammar:</p>
-<pre>"Referrer-Policy:" 1#<a data-link-type="dfn" href="#policy-token" id="ref-for-policy-token-1">policy-token</a>
+<pre>"Referrer-Policy:" 1#(<a data-link-type="dfn" href="#policy-token" id="ref-for-policy-token-1">policy-token</a> / <a data-link-type="dfn" href="#extension-token" id="ref-for-extension-token-1">extension-token</a>)
 </pre>
-<pre><dfn class="dfn-paneled" data-dfn-type="dfn" data-export="" id="policy-token">policy-token</dfn>   = 1*( <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc5234#appendix-B.1">ALPHA</a> / "-" )
+<pre><dfn class="dfn-paneled" data-dfn-type="dfn" data-export="" id="policy-token">policy-token</dfn> = "no-referrer" / "no-referrer-when-downgrade" / "strict-origin" / "strict-origin-when-cross-origin" / "same-origin" / "origin" / "origin-when-cross-origin" / "unsafe-url"
+<dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="extension-token">extension-token</dfn> = 1*( <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc5234#appendix-B.1">ALPHA</a> / "-" )
 </pre>
     <p class="note" role="note"><span>Note:</span> The header name does not share the HTTP Referer header’s misspelling.</p>
+    <p class="note" role="note"><span>Note:</span> The purpose of <a data-link-type="dfn" href="#extension-token" id="ref-for-extension-token-2">extension-token</a> is so that browsers do not fail to
+  parse the entire header field if it includes an unknown policy
+  value. <a href="#unknown-policy-values">§11.1 Unknown Policy Values</a> describes in greater detail how new policy
+  values can be deployed.</p>
     <p><a href="#integration-with-fetch">§5 Integration with Fetch</a> and <a href="#integration-with-html">§6 Integration with HTML</a> describe
   how the <code>Referrer-Policy</code> header is processed.</p>
     <section class="informative">
@@ -2096,6 +2101,7 @@ Referrer-Policy: unsafe-url
    <li><a href="#dom-referrerpolicy">""</a><span>, in §3</span>
    <li><a href="#cross-origin-request">cross-origin request</a><span>, in §2</span>
    <li><a href="#determine-requests-referrer">Determine request’s Referrer</a><span>, in §8.2</span>
+   <li><a href="#extension-token">extension-token</a><span>, in §4.1</span>
    <li>
     "no-referrer"
     <ul>
@@ -2454,6 +2460,12 @@ Referrer-Policy: unsafe-url
    <b><a href="#policy-token">#policy-token</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-policy-token-1">4.1. Delivery via Referrer-Policy header</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="extension-token">
+   <b><a href="#extension-token">#extension-token</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-extension-token-1">4.1. Delivery via Referrer-Policy header</a> <a href="#ref-for-extension-token-2">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="cssstylesheet-referrer-policy">

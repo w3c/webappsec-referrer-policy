@@ -526,13 +526,19 @@ spec: html; type: element; text: a;
   following <a>ABNF</a> grammar:
 
   <pre>
-    "Referrer-Policy:" 1#<a>policy-token</a>
+    "Referrer-Policy:" 1#(<a>policy-token</a> / <a>extension-token</a>)
   </pre>
   <pre>
-    <dfn export>policy-token</dfn>   = 1*( <a>ALPHA</a> / "-" )
+    <dfn export>policy-token</dfn> = "no-referrer" / "no-referrer-when-downgrade" / "strict-origin" / "strict-origin-when-cross-origin" / "same-origin" / "origin" / "origin-when-cross-origin" / "unsafe-url"
+    <dfn>extension-token</dfn> = 1*( <a>ALPHA</a> / "-" )
   </pre>
 
   Note: The header name does not share the HTTP Referer header's misspelling.
+
+  Note: The purpose of <a>extension-token</a> is so that browsers do not fail to
+  parse the entire header field if it includes an unknown policy
+  value. [[#unknown-policy-values]] describes in greater detail how new policy
+  values can be deployed.
 
   [[#integration-with-fetch]] and [[#integration-with-html]] describe
   how the <code>Referrer-Policy</code> header is processed.
