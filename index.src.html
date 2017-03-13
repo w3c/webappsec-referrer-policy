@@ -22,9 +22,6 @@ spec: CSSOM-1; urlPrefix: https://drafts.csswg.org/cssom-1/
     text: location; url: concept-css-style-sheet-location
     text: owner node; for: CSSStyleDeclaration; url: cssstyledeclaration-owner-node
     text: owner node; for: CSSStyleSheet; url: concept-css-style-sheet-owner-node
-spec: Fetch; urlPrefix: https://fetch.spec.whatwg.org/
-  type: dfn
-    text: ABNF; url: abnf
 spec: HTML; urlPrefix: https://html.spec.whatwg.org/multipage/
   type: dfn
     urlPrefix: semantics.html
@@ -99,7 +96,7 @@ spec: WSC-UI; urlPrefix: http://www.w3.org/TR/2010/REC-wsc-ui-20100812/
   type: dfn
     text: TLS-protected; url: typesoftls
 spec: RFC5234; urlPrefix: https://tools.ietf.org/html/rfc5234
-  type: dfn
+  type: grammar
     text: ALPHA; url: appendix-B.1
 spec: RFC7231; urlPrefix: https://tools.ietf.org/html/rfc7231
   type: dfn
@@ -519,28 +516,32 @@ spec: html; type: element; text: a;
   <h3 id="referrer-policy-header">Delivery via Referrer-Policy header</h3>
 
   The <code><dfn local-lt="referrer-policy header"
-  id="referrer-policy-header-dfn">Referrer-Policy</dfn></code> HTTP
-  header specifies the referrer policy that the user agent applies when
-  determining what referrer information should be included with requests
-  made, and with
-  <a for=/>browsing contexts</a> created from the context of the protected resource.
-  The syntax for the name and value of the header are described by the
-  following <a>ABNF</a> grammar:
+  id="referrer-policy-header-dfn">Referrer-Policy</dfn></code> HTTP header
+  specifies the referrer policy that the user agent applies when determining
+  what referrer information should be included with requests made, and with
+  <a for=/>browsing contexts</a> created from the context of the protected
+  resource.
 
-  <pre>
+  The syntax for the name and value of the header are described by the following
+  ABNF grammar. ABNF is defined in [[!RFC5234]], and the <code>#rule</code> ABNF
+  extension used below is defined in
+  <a href="https://tools.ietf.org/html/rfc7230#section-7">Section 7</a> of
+  [[!RFC7230]].
+
+  <pre dfn-type="grammar" link-type="grammar">
     "Referrer-Policy:" 1#(<a>policy-token</a> / <a>extension-token</a>)
   </pre>
-  <pre>
+  <pre dfn-type="grammar" link-type="grammar">
     <dfn export>policy-token</dfn> = "no-referrer" / "no-referrer-when-downgrade" / "strict-origin" / "strict-origin-when-cross-origin" / "same-origin" / "origin" / "origin-when-cross-origin" / "unsafe-url"
     <dfn>extension-token</dfn> = 1*( <a>ALPHA</a> / "-" )
   </pre>
 
   Note: The header name does not share the HTTP Referer header's misspelling.
 
-  Note: The purpose of <a>extension-token</a> is so that browsers do not fail to
-  parse the entire header field if it includes an unknown policy
-  value. [[#unknown-policy-values]] describes in greater detail how new policy
-  values can be deployed.
+  Note: The purpose of <a link-type="grammar">extension-token</a> is so that
+  browsers do not fail to parse the entire header field if it includes an
+  unknown policy value.  [[#unknown-policy-values]] describes in greater detail
+  how new policy values can be deployed.
 
   [[#integration-with-fetch]] and [[#integration-with-html]] describe
   how the <code>Referrer-Policy</code> header is processed.
