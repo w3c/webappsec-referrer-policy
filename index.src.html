@@ -81,6 +81,10 @@ spec: HTML; urlPrefix: https://html.spec.whatwg.org/multipage/
       text: running a worker; url: run-a-worker
     urlPrefix: dom.html
       text: document referrer policy; url: concept-document-referrer-policy; for: Document
+      text: style attribute; url: the-style-attribute
+    urlPrefix: rendering.html
+      text: presentational hints
+
   type: interface
     urlPrefix: dom.html
       text: Document
@@ -671,14 +675,17 @@ spec: html; type: element; text: a;
     </li>
 
     <li>
-       Otherwise, a <a>CSS declaration block</a> that is part of an element's
-       inline style properties is responsible for the request: set the
-       <a for="request">referrer</a> to the block's
-       <a for="CSSStyleDeclaration">owner node</a>'s
-       <a>node document</a>'s <a for="Document">URL</a>, and the
+       Otherwise, a <a>CSS declaration block</a> that was created by the
+       embedder is responsible for the request - either from parsing of an
+       element's <a>style attribute</a>, or to implement an <a>presentational
+       hint</a> for an element. We assume that in this case the <a>CSS
+       declaration block</a>'s <a for="CSSStyleDeclaration">owner node</a>
+       points to that element, and set the <a for="request">referrer</a> to the
+       block's <a for="CSSStyleDeclaration">owner node</a>'s <a>node
+       document</a>'s <a for="Document">URL</a>, and the
        <a for="request">referrer policy</a> to the block's
-       <a for="CSSStyleDeclaration">owner node</a>'s
-       <a>node document</a>'s <a for="Document">referrer policy</a>.
+       <a for="CSSStyleDeclaration">owner node</a>'s <a>node document</a>'s
+       <a for="Document">referrer policy</a>.
     </li>
   </ol>
 

@@ -1845,8 +1845,13 @@ pre.idl.highlight { color: #708090; }
        do</a>.</p>
      <li> If a <a data-link-type="dfn" href="https://drafts.csswg.org/cssom-1/#css-style-sheet">CSS style sheet</a> with a null <a data-link-type="dfn" href="https://drafts.csswg.org/cssom-1/#concept-css-style-sheet-location">location</a> is responsible
       for the request, set the <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-referrer">referrer</a> to its <a data-link-type="dfn" href="https://drafts.csswg.org/cssom-1/#concept-css-style-sheet-owner-node">owner node</a>’s <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-node-document">node document</a>’s <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-document-url">URL</a>, and the <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-referrer-policy">referrer policy</a> to its <a data-link-type="dfn" href="https://drafts.csswg.org/cssom-1/#concept-css-style-sheet-owner-node">owner node</a>’s <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-node-document">node document</a>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/dom.html#concept-document-referrer-policy">referrer policy</a>. 
-     <li> Otherwise, a <a data-link-type="dfn" href="https://drafts.csswg.org/cssom-1/#css-declaration-block">CSS declaration block</a> that is part of an element’s
-       inline style properties is responsible for the request: set the <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-referrer">referrer</a> to the block’s <a data-link-type="dfn" href="https://drafts.csswg.org/cssom-1/#cssstyledeclaration-owner-node">owner node</a>’s <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-node-document">node document</a>’s <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-document-url">URL</a>, and the <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-referrer-policy">referrer policy</a> to the block’s <a data-link-type="dfn" href="https://drafts.csswg.org/cssom-1/#cssstyledeclaration-owner-node">owner node</a>’s <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-node-document">node document</a>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/dom.html#concept-document-referrer-policy">referrer policy</a>. 
+     <li> Otherwise, a <a data-link-type="dfn" href="https://drafts.csswg.org/cssom-1/#css-declaration-block">CSS declaration block</a> that was created by the
+       embedder is responsible for the request - either from parsing of an
+       element’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/dom.html#the-style-attribute">style attribute</a>, or to implement an <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/rendering.html#presentational-hints">presentational
+       hint</a> for an element. We assume that in this case the <a data-link-type="dfn" href="https://drafts.csswg.org/cssom-1/#css-declaration-block">CSS
+       declaration block</a>’s <a data-link-type="dfn" href="https://drafts.csswg.org/cssom-1/#cssstyledeclaration-owner-node">owner node</a> points to that element, and set the <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-referrer">referrer</a> to the
+       block’s <a data-link-type="dfn" href="https://drafts.csswg.org/cssom-1/#cssstyledeclaration-owner-node">owner node</a>’s <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-node-document">node
+       document</a>’s <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-document-url">URL</a>, and the <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-referrer-policy">referrer policy</a> to the block’s <a data-link-type="dfn" href="https://drafts.csswg.org/cssom-1/#cssstyledeclaration-owner-node">owner node</a>’s <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-node-document">node document</a>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/dom.html#concept-document-referrer-policy">referrer policy</a>. 
     </ol>
     <p class="note" role="note">Note: Both the value of the <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request">request</a>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-referrer">referrer</a> and <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-referrer-policy">referrer policy</a> are set based on the values at the
   time a given <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request">request</a> is created. If a document’s referrer policy
@@ -2236,6 +2241,7 @@ Referrer-Policy: unsafe-url
      <li><a href="https://html.spec.whatwg.org/multipage/browsers.html#concept-origin-opaque">opaque origin</a>
      <li><a href="https://html.spec.whatwg.org/multipage/browsers.html#concept-origin">origin</a>
      <li><a href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-settings-object-origin">origin <small>(for environment settings object)</small></a>
+     <li><a href="https://html.spec.whatwg.org/multipage/rendering.html#presentational-hints">presentational hints</a>
      <li><a href="https://html.spec.whatwg.org/multipage/semantics.html#meta-referrer">referrer</a>
      <li><a href="https://html.spec.whatwg.org/multipage/dom.html#concept-document-referrer-policy">referrer policy</a>
      <li><a href="https://html.spec.whatwg.org/multipage/infrastructure.html#referrer-policy-attribute">referrer policy attribute</a>
@@ -2243,6 +2249,7 @@ Referrer-Policy: unsafe-url
      <li><a href="https://html.spec.whatwg.org/multipage/workers.html#run-a-worker">running a worker</a>
      <li><a href="https://html.spec.whatwg.org/multipage/browsers.html#same-origin">same origin</a>
      <li><a href="https://html.spec.whatwg.org/multipage/embedded-content.html#attr-iframe-srcdoc">srcdoc</a>
+     <li><a href="https://html.spec.whatwg.org/multipage/dom.html#the-style-attribute">style attribute</a>
     </ul>
    <li>
     <a data-link-type="biblio">[RFC5234]</a> defines the following terms:
