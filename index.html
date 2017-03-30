@@ -1176,7 +1176,7 @@ Possible extra rowspan handling
 		}
 	}
 </style>
-  <meta content="Bikeshed version 26ea3a45cb5052b41bc87174096f9f0093d5064f" name="generator">
+  <meta content="Bikeshed version 0f4697271bbbaeef35323d2211ff865ee6dd1178" name="generator">
   <link href="http://www.w3.org/TR/referrer-policy/" rel="canonical">
 <style>/* style-md-lists */
 
@@ -1424,7 +1424,7 @@ pre.idl.highlight { color: #708090; }
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1>Referrer Policy</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2017-03-28">28 March 2017</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2017-03-30">30 March 2017</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1836,8 +1836,6 @@ pre.idl.highlight { color: #708090; }
   referrer-related properties of any <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request">requests</a> initiated by stylesheets
   as follows:</p>
     <ol>
-     <li> If a <a data-link-type="dfn" href="https://drafts.csswg.org/cssom-1/#css-declaration-block">CSS declaration block</a> is responsible for the request,
-       set the <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-referrer">referrer</a> to the block’s <a data-link-type="dfn" href="https://drafts.csswg.org/cssom-1/#cssstyledeclaration-owner-node">owner node</a>’s <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-node-document">node document</a>’s <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-document-url">URL</a>, and the <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-referrer-policy">referrer policy</a> to the block’s <a data-link-type="dfn" href="https://drafts.csswg.org/cssom-1/#cssstyledeclaration-owner-node">owner node</a>’s <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-node-document">node document</a>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/dom.html#concept-document-referrer-policy">referrer policy</a>. 
      <li>
        If a <a data-link-type="dfn" href="https://drafts.csswg.org/cssom-1/#css-style-sheet">CSS style sheet</a> is responsible for the request,
        and its <a data-link-type="dfn" href="https://drafts.csswg.org/cssom-1/#concept-css-style-sheet-location">location</a> is non-null,
@@ -1846,8 +1844,15 @@ pre.idl.highlight { color: #708090; }
       <p class="issue" id="issue-8299c74c"><a class="self-link" href="#issue-8299c74c"></a> This requires that CSS style sheets process `Referrer-Policy`
        headers, and store a <dfn class="dfn-paneled" data-dfn-for="CSSStyleSheet" data-dfn-type="dfn" data-noexport="" id="cssstylesheet-referrer-policy">referrer policy</dfn> in the same way that <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/dom.html#concept-document-referrer-policy">Documents
        do</a>.</p>
-     <li> Otherwise, a <a data-link-type="dfn" href="https://drafts.csswg.org/cssom-1/#css-style-sheet">CSS style sheet</a> with a null <a data-link-type="dfn" href="https://drafts.csswg.org/cssom-1/#concept-css-style-sheet-location">location</a> is responsible
-      for the request: set the <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-referrer">referrer</a> to its <a data-link-type="dfn" href="https://drafts.csswg.org/cssom-1/#concept-css-style-sheet-owner-node">owner node</a>’s <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-node-document">node document</a>’s <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-document-url">URL</a>, and the <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-referrer-policy">referrer policy</a> to its <a data-link-type="dfn" href="https://drafts.csswg.org/cssom-1/#concept-css-style-sheet-owner-node">owner node</a>’s <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-node-document">node document</a>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/dom.html#concept-document-referrer-policy">referrer policy</a>. 
+     <li> If a <a data-link-type="dfn" href="https://drafts.csswg.org/cssom-1/#css-style-sheet">CSS style sheet</a> with a null <a data-link-type="dfn" href="https://drafts.csswg.org/cssom-1/#concept-css-style-sheet-location">location</a> is responsible
+      for the request, set the <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-referrer">referrer</a> to its <a data-link-type="dfn" href="https://drafts.csswg.org/cssom-1/#concept-css-style-sheet-owner-node">owner node</a>’s <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-node-document">node document</a>’s <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-document-url">URL</a>, and the <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-referrer-policy">referrer policy</a> to its <a data-link-type="dfn" href="https://drafts.csswg.org/cssom-1/#concept-css-style-sheet-owner-node">owner node</a>’s <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-node-document">node document</a>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/dom.html#concept-document-referrer-policy">referrer policy</a>. 
+     <li> Otherwise, a <a data-link-type="dfn" href="https://drafts.csswg.org/cssom-1/#css-declaration-block">CSS declaration block</a> that was created by the
+       embedder is responsible for the request - either from parsing of an
+       element’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/dom.html#the-style-attribute">style attribute</a>, or to implement an <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/rendering.html#presentational-hints">presentational
+       hint</a> for an element. We assume that in this case the <a data-link-type="dfn" href="https://drafts.csswg.org/cssom-1/#css-declaration-block">CSS
+       declaration block</a>’s <a data-link-type="dfn" href="https://drafts.csswg.org/cssom-1/#cssstyledeclaration-owner-node">owner node</a> points to that element, and set the <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-referrer">referrer</a> to the
+       block’s <a data-link-type="dfn" href="https://drafts.csswg.org/cssom-1/#cssstyledeclaration-owner-node">owner node</a>’s <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-node-document">node
+       document</a>’s <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-document-url">URL</a>, and the <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-referrer-policy">referrer policy</a> to the block’s <a data-link-type="dfn" href="https://drafts.csswg.org/cssom-1/#cssstyledeclaration-owner-node">owner node</a>’s <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-node-document">node document</a>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/dom.html#concept-document-referrer-policy">referrer policy</a>. 
     </ol>
     <p class="note" role="note"><span>Note:</span> Both the value of the <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request">request</a>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-referrer">referrer</a> and <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-referrer-policy">referrer policy</a> are set based on the values at the
   time a given <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request">request</a> is created. If a document’s referrer policy
@@ -1992,7 +1997,7 @@ pre.idl.highlight { color: #708090; }
   scheme, host, and port.</p>
     <ol>
      <li> If <var>url</var> is <code>null</code>, return <code>no referrer</code>. 
-     <li> If <var>url</var>’s <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-scheme">scheme</a> is a <a data-link-type="dfn" href="https://url.spec.whatwg.org/#local-scheme">local scheme</a>, then
+     <li> If <var>url</var>’s <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-scheme">scheme</a> is a <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#local-scheme">local scheme</a>, then
       return <code>no referrer</code>. 
      <li> Set <var>url</var>’s <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-username">username</a> to the empty string. 
      <li> Set <var>url</var>’s <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-password">password</a> to <code>null</code>. 
@@ -2203,6 +2208,7 @@ Referrer-Policy: unsafe-url
      <li><a href="https://fetch.spec.whatwg.org/#extract-header-list-values">extracting header list values</a>
      <li><a href="https://fetch.spec.whatwg.org/#concept-fetch">fetch</a>
      <li><a href="https://fetch.spec.whatwg.org/#concept-response-header-list">header list</a>
+     <li><a href="https://fetch.spec.whatwg.org/#local-scheme">local scheme</a>
      <li><a href="https://fetch.spec.whatwg.org/#concept-request-origin">origin</a>
      <li><a href="https://fetch.spec.whatwg.org/#concept-request-referrer">referrer</a>
      <li><a href="https://fetch.spec.whatwg.org/#concept-request-referrer-policy">referrer policy</a>
@@ -2238,6 +2244,7 @@ Referrer-Policy: unsafe-url
      <li><a href="https://html.spec.whatwg.org/multipage/browsers.html#concept-origin-opaque">opaque origin</a>
      <li><a href="https://html.spec.whatwg.org/multipage/browsers.html#concept-origin">origin</a>
      <li><a href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-settings-object-origin">origin <small>(for environment settings object)</small></a>
+     <li><a href="https://html.spec.whatwg.org/multipage/rendering.html#presentational-hints">presentational hints</a>
      <li><a href="https://html.spec.whatwg.org/multipage/semantics.html#meta-referrer">referrer</a>
      <li><a href="https://html.spec.whatwg.org/multipage/dom.html#concept-document-referrer-policy">referrer policy</a>
      <li><a href="https://html.spec.whatwg.org/multipage/infrastructure.html#referrer-policy-attribute">referrer policy attribute</a>
@@ -2245,6 +2252,7 @@ Referrer-Policy: unsafe-url
      <li><a href="https://html.spec.whatwg.org/multipage/workers.html#run-a-worker">running a worker</a>
      <li><a href="https://html.spec.whatwg.org/multipage/browsers.html#same-origin">same origin</a>
      <li><a href="https://html.spec.whatwg.org/multipage/embedded-content.html#attr-iframe-srcdoc">srcdoc</a>
+     <li><a href="https://html.spec.whatwg.org/multipage/dom.html#the-style-attribute">style attribute</a>
     </ul>
    <li>
     <a data-link-type="biblio">[RFC5234]</a> defines the following terms:
@@ -2252,7 +2260,7 @@ Referrer-Policy: unsafe-url
      <li><a href="https://tools.ietf.org/html/rfc5234#appendix-B.1">alpha</a>
     </ul>
    <li>
-    <a data-link-type="biblio">[RFC7231]</a> defines the following terms:
+    <a data-link-type="biblio">[rfc7231]</a> defines the following terms:
     <ul>
      <li><a href="https://tools.ietf.org/html/rfc7231#section-5.5.2">referer</a>
     </ul>
@@ -2264,7 +2272,6 @@ Referrer-Policy: unsafe-url
    <li>
     <a data-link-type="biblio">[URL]</a> defines the following terms:
     <ul>
-     <li><a href="https://url.spec.whatwg.org/#local-scheme">local scheme</a>
      <li><a href="https://url.spec.whatwg.org/#concept-url-origin">origin</a>
      <li><a href="https://url.spec.whatwg.org/#concept-url-password">password</a>
      <li><a href="https://url.spec.whatwg.org/#concept-url-path">path</a>
@@ -2287,7 +2294,7 @@ Referrer-Policy: unsafe-url
    <dt id="biblio-dom">[DOM]
    <dd>Anne van Kesteren. <a href="https://dom.spec.whatwg.org/">DOM Standard</a>. Living Standard. URL: <a href="https://dom.spec.whatwg.org/">https://dom.spec.whatwg.org/</a>
    <dt id="biblio-fetch">[FETCH]
-   <dd>Anne van Kesteren. <a href="http://fetch.spec.whatwg.org/">Fetch</a>. Living Standard. URL: <a href="http://fetch.spec.whatwg.org/">http://fetch.spec.whatwg.org/</a>
+   <dd>Anne van Kesteren. <a href="https://fetch.spec.whatwg.org/">Fetch Standard</a>. Living Standard. URL: <a href="https://fetch.spec.whatwg.org/">https://fetch.spec.whatwg.org/</a>
    <dt id="biblio-html">[HTML]
    <dd>Anne van Kesteren; et al. <a href="https://html.spec.whatwg.org/multipage/">HTML Standard</a>. Living Standard. URL: <a href="https://html.spec.whatwg.org/multipage/">https://html.spec.whatwg.org/multipage/</a>
    <dt id="biblio-rfc2119">[RFC2119]
@@ -2297,7 +2304,7 @@ Referrer-Policy: unsafe-url
    <dt id="biblio-rfc7230">[RFC7230]
    <dd>R. Fielding, Ed.; J. Reschke, Ed.. <a href="https://tools.ietf.org/html/rfc7230">Hypertext Transfer Protocol (HTTP/1.1): Message Syntax and Routing</a>. June 2014. Proposed Standard. URL: <a href="https://tools.ietf.org/html/rfc7230">https://tools.ietf.org/html/rfc7230</a>
    <dt id="biblio-rfc7231">[RFC7231]
-   <dd>Roy T. Fielding; Julian F. Reschke. <a href="http://www.ietf.org/rfc/rfc7231.txt">HTTP/1.1 Semantics and Content</a>. RFC. URL: <a href="http://www.ietf.org/rfc/rfc7231.txt">http://www.ietf.org/rfc/rfc7231.txt</a>
+   <dd>R. Fielding, Ed.; J. Reschke, Ed.. <a href="https://tools.ietf.org/html/rfc7231">Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content</a>. June 2014. Proposed Standard. URL: <a href="https://tools.ietf.org/html/rfc7231">https://tools.ietf.org/html/rfc7231</a>
    <dt id="biblio-secure-contexts">[SECURE-CONTEXTS]
    <dd>Mike West. <a href="https://www.w3.org/TR/secure-contexts/">Secure Contexts</a>. URL: <a href="https://www.w3.org/TR/secure-contexts/">https://www.w3.org/TR/secure-contexts/</a>
    <dt id="biblio-url">[URL]
@@ -2308,7 +2315,7 @@ Referrer-Policy: unsafe-url
   <h3 class="no-num no-ref heading settled" id="informative"><span class="content">Informative References</span><a class="self-link" href="#informative"></a></h3>
   <dl>
    <dt id="biblio-capability-urls">[CAPABILITY-URLS]
-   <dd>Jenni Tennison. <a href="http://www.w3.org/TR/capability-urls/">Capability URLs</a>. WD. URL: <a href="http://www.w3.org/TR/capability-urls/">http://www.w3.org/TR/capability-urls/</a>
+   <dd>Jeni Tennison. <a href="https://www.w3.org/TR/capability-urls/">Good Practices for Capability URLs</a>. URL: <a href="https://www.w3.org/TR/capability-urls/">https://www.w3.org/TR/capability-urls/</a>
   </dl>
   <h2 class="no-num no-ref heading settled" id="idl-index"><span class="content">IDL Index</span><a class="self-link" href="#idl-index"></a></h2>
 <pre class="idl def"><span class="kt">enum</span> <a class="nv" href="#enumdef-referrerpolicy">ReferrerPolicy</a> {
