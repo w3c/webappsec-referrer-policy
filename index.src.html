@@ -928,9 +928,9 @@ spec: html; type: element; text: a;
     Strip <var>url</var> for use as a referrer
   </h3>
 
-  Certain portions of URLs MUST not be included when sending a URL as the value
+  Certain portions of URLs must not be included when sending a URL as the value
   of a `<code>Referer</code>` header: a URLs fragment, username, and password
-  components should be stripped from the URL before it's sent out. This
+  components must be stripped from the URL before it's sent out. This
   algorithm accepts a <code><dfn>origin-only flag</dfn></code>, which defaults
   to <code>false</code>. If set to <code>true</code>, the algorithm will
   additionally remove the URL's path and query components, leaving only the
