@@ -1178,7 +1178,7 @@ Possible extra rowspan handling
 </style>
   <meta content="Bikeshed version 67155cabad72a8ab669a7d4421c90e2999a29b68" name="generator">
   <link href="http://www.w3.org/TR/referrer-policy/" rel="canonical">
-  <meta content="455b22cbd48aac776da73cba0688a3b3143d827c" name="document-revision">
+  <meta content="42f952a8cbe3b0d6d469ea29e3e576c9ff6f414b" name="document-revision">
 <style>/* style-md-lists */
 
 /* This is a weird hack for me not yet following the commonmark spec
@@ -1865,7 +1865,8 @@ pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em
    <section>
     <h2 class="heading settled" data-level="8" id="algorithms"><span class="secno">8. </span><span class="content">Algorithms</span><a class="self-link" href="#algorithms"></a></h2>
     <h3 class="heading settled" data-level="8.1" id="parse-referrer-policy-from-header"><span class="secno">8.1. </span><span class="content"> Parse a referrer policy from a <a data-link-type="dfn" href="#referrer-policy-header-dfn" id="ref-for-referrer-policy-header-dfn"><code>Referrer-Policy</code></a> header </span><a class="self-link" href="#parse-referrer-policy-from-header"></a></h3>
-    <p>Given a <code class="idl"><a data-link-type="idl" href="https://fetch.spec.whatwg.org/#response" id="ref-for-response">Response</a></code> <var>response</var>, the following steps return a <a data-link-type="dfn" href="#referrer-policy" id="ref-for-referrer-policy①⓪">referrer policy</a> according to <var>response</var>’s `<code>Referrer-Policy</code>` header:</p>
+    <p>Given a <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-response" id="ref-for-concept-response①">response</a> <var>response</var>, the following steps return a <a data-link-type="dfn" href="#referrer-policy" id="ref-for-referrer-policy①⓪">referrer policy</a> according to <var>response</var>’s
+  `<code>Referrer-Policy</code>` header:</p>
     <ol>
      <li> Let <var>policy-tokens</var> be the result of <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#extract-header-list-values" id="ref-for-extract-header-list-values">extracting header list values</a> given
       `<code>Referrer-Policy</code>` and <var>response</var>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-response-header-list" id="ref-for-concept-response-header-list">header list</a>. 
@@ -1879,7 +1880,7 @@ pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em
      <li> Return <var>policy</var>. 
     </ol>
     <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-export="" data-level="8.2" data-lt="Set request’s referrer policy on redirect" id="set-requests-referrer-policy-on-redirect"><span class="secno">8.2. </span><span class="content"> Set <var>request</var>’s referrer policy on redirect </span></h3>
-    <p>Given a <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request" id="ref-for-concept-request⑤">request</a> <var>request</var> and a <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-response" id="ref-for-concept-response①">response</a> <var>actualResponse</var>,
+    <p>Given a <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request" id="ref-for-concept-request⑤">request</a> <var>request</var> and a <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-response" id="ref-for-concept-response②">response</a> <var>actualResponse</var>,
   this algorithm updates <var>request</var>’s associated <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-referrer-policy" id="ref-for-concept-request-referrer-policy⑤">referrer policy</a> according to the Referrer-Policy header (if any) in <var>actualResponse</var>.</p>
     <ol>
      <li> Let <var>policy</var> be the result of executing <a href="#parse-referrer-policy-from-header">§8.1 Parse a referrer policy from a Referrer-Policy header</a> on <var>actualResponse</var>. 
@@ -1887,7 +1888,7 @@ pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em
     associated referrer policy to <var>policy</var>.
     </ol>
     <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-export="" data-level="8.3" data-lt="Determine request’s Referrer" id="determine-requests-referrer"><span class="secno">8.3. </span><span class="content"> Determine <var>request</var>’s Referrer </span></h3>
-    <p>Given a <code class="idl"><a data-link-type="idl" href="https://fetch.spec.whatwg.org/#request" id="ref-for-request②">Request</a></code> <var>request</var>, we can determine the correct
+    <p>Given a <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request" id="ref-for-concept-request⑥">request</a> <var>request</var>, we can determine the correct
   referrer information to send by examining the <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-referrer-policy" id="ref-for-concept-request-referrer-policy⑥">referrer policy</a> associated with it, as detailed in the following steps, which return
   either <code>no referrer</code> or a URL:</p>
     <ol>
@@ -2205,7 +2206,6 @@ Referrer-Policy: unsafe-url
     <a data-link-type="biblio">[FETCH]</a> defines the following terms:
     <ul>
      <li><a href="https://fetch.spec.whatwg.org/#request">Request</a>
-     <li><a href="https://fetch.spec.whatwg.org/#response">Response</a>
      <li><a href="https://fetch.spec.whatwg.org/#concept-request-client">client</a>
      <li><a href="https://fetch.spec.whatwg.org/#concept-request-current-url">current url</a>
      <li><a href="https://fetch.spec.whatwg.org/#extract-header-list-values">extracting header list values</a>
