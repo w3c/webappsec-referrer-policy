@@ -97,9 +97,6 @@ spec: HTML; urlPrefix: https://html.spec.whatwg.org/multipage/
 spec: SECURE-CONTEXTS; urlPrefix: https://w3c.github.io/webappsec-secure-contexts
   type: dfn
     text: potentially trustworthy URL url: is-url-trustworthy
-spec: WSC-UI; urlPrefix: http://www.w3.org/TR/2010/REC-wsc-ui-20100812/
-  type: dfn
-    text: TLS-protected; url: typesoftls
 spec: RFC5234; urlPrefix: https://tools.ietf.org/html/rfc5234
   type: grammar
     text: ALPHA; url: appendix-B.1
@@ -263,13 +260,13 @@ spec: html; type: element; text: a;
   <h3 dfn export id="referrer-policy-no-referrer-when-downgrade" oldids="referrer-policy-state-no-referrer-when-downgrade">"<code>no-referrer-when-downgrade</code>"</h3>
 
   The <a>"<code>no-referrer-when-downgrade</code>"</a> policy sends a full URL
-  along with requests from a <a>TLS-protected</a> <a>environment settings
-  object</a> to a <a>potentially trustworthy URL</a>, and requests from
-  <a for=request>clients</a> which are <em>not</em> <a>TLS-protected</a> to any
-  <a for=/>origin</a>.
+  along with requests from <a>environment settings objects</a> whose <a for="environment settings object">HTTPS state</a>
+  is "`modern`" to a <a>potentially trustworthy URL</a>, and requests from
+  <a for=request>clients</a> whose <a for="environment settings object">HTTPS state</a> is not "`modern`"
+  to any <a for=/>origin</a>.
 
-  Requests from <a>TLS-protected</a> <a for=request>clients</a> to non-
-  <a>potentially trustworthy URL</a>s, on the other hand, will contain no
+  Requests from <a for=request>clients</a> whose <a for="environment settings object">HTTPS state</a> is "`modern`"
+  to non-<a>potentially trustworthy URL</a>s, on the other hand, will contain no
   referrer information. A <code><a>Referer</a></code> HTTP header will not be
   sent.
 
@@ -344,14 +341,14 @@ spec: html; type: element; text: a;
   <a for="environment settings object">origin</a> of the <a for=request lt=client>request client</a> when making requests:
 
   <ul>
-      <li>from a <a>TLS-protected</a> <a>environment settings object</a> to a
+      <li>from an <a>environment settings object</a> whose <a for="environment settings object">HTTPS state</a> is "`modern`" to a
           <a>potentially trustworthy URL</a>, and</li>
-      <li>from <em>non-</em><a>TLS-protected</a> <a>environment settings objects</a> to
+      <li>from <a>environment settings objects</a> whose <a for="environment settings object">HTTPS state</a> is not "`modern`" to
           any <a for=/>origin</a>.</li>
   </ul>
 
-  Requests from <a>TLS-protected</a> <a for=request lt=client>request clients</a> to non-
-  <a>potentially trustworthy URL</a>s, on the other hand, will contain no
+  Requests from <a for=request lt=client>request clients</a> whose <a for="environment settings object">HTTPS state</a> is "`modern`"
+  to non-<a>potentially trustworthy URL</a>s, on the other hand, will contain no
   referrer information. A <code><a>Referer</a></code> HTTP header will not be
   sent.
 
@@ -419,13 +416,13 @@ spec: html; type: element; text: a;
   <a for="environment settings object">origin</a> of the <a for=request lt=client>request client</a> when making <a>cross-origin requests</a>:
 
   <ul>
-      <li>from a <a>TLS-protected</a> <a>environment settings object</a> to a
+      <li>from a <a>environment settings object</a> whose <a for="environment settings object">HTTPS state</a> is "`modern`" to a
           <a>potentially trustworthy URL</a>, and</li>
-      <li>from <em>non-</em><a>TLS-protected</a> <a>environment settings objects</a> to
+      <li>from <a>environment settings objects</a> whose <a for="environment settings object">HTTPS state</a> is not "`modern`" to
           any <a for=/>origin</a>.</li>
   </ul>
 
-  Requests from <a>TLS-protected</a> <a for=request>clients</a> to non-
+  Requests from <a for=request>clients</a> whose <a for="environment settings object">HTTPS state</a> is "`modern`" to non-
 	<a>potentially trustworthy URL</a>s, on the other hand, will contain no
   referrer information. A <code><a>Referer</a></code> HTTP header will not be
   sent.
@@ -462,7 +459,7 @@ spec: html; type: element; text: a;
   </div>
 
   Note: The policy's name doesn't lie; it is unsafe. This policy will leak
-  origins and paths from <a>TLS-protected</a> resources to insecure origins.
+  origins and paths from secure resources to insecure origins.
   Carefully consider the impact of setting such a policy for potentially
   sensitive documents.
 
@@ -841,7 +838,7 @@ spec: html; type: element; text: a;
               If |environment| is not null:
               <ol>
                 <li>
-                  If |environment| is <a>TLS-protected</a> <em>and</em>
+                  If |environment|'s <a for="environment settings object">HTTPS state</a> is "`modern`" <em>and</em>
                   <var>request</var>'s
                   <a href="https://fetch.spec.whatwg.org/#concept-request-current-url">current
                   URL</a> is not a <a>potentially trustworthy
@@ -864,7 +861,7 @@ spec: html; type: element; text: a;
               If |environment| is not null:
               <ol>
                 <li>
-                  If |environment| is <a>TLS-protected</a> <em>and</em>
+                  If |environment|'s <a for="environment settings object">HTTPS state</a> is "`modern`" <em>and</em>
                   <var>request</var>'s
                   <a href="https://fetch.spec.whatwg.org/#concept-request-current-url">current
                   URL</a> is not a <a>potentially trustworthy URL</a>
@@ -911,7 +908,7 @@ spec: html; type: element; text: a;
               If |environment| is not null:
               <ol>
                 <li>
-                  If |environment| is <a>TLS-protected</a> <em>and</em>
+                  If |environment|'s <a for="environment settings object">HTTPS state</a> is "`modern`" <em>and</em>
                   <var>request</var>'s
                   <a href="https://fetch.spec.whatwg.org/#concept-request-current-url">current
                   URL</a> is not a <a>potentially trustworthy
