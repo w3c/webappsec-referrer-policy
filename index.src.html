@@ -812,6 +812,10 @@ spec: html; type: element; text: a;
       <var>referrerSource</var> for use as a referrer.</a>
     </li>
     <li>
+      If <var>referrerURL</var>'s length is greater than 4096, set <var>referrerURL</var>
+      to <var>referrerOrigin</var>.
+    </li>
+    <li>
       Let <var>referrerOrigin</var> be the result of
       <a href="#strip-url">stripping <var>referrerSource</var> for use as a
       referrer</a>, with the <code><a>origin-only flag</a></code> set to
