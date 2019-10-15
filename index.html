@@ -1214,7 +1214,7 @@ Possible extra rowspan handling
 </style>
   <meta content="Bikeshed version 08c4b0e94d147852f66673459784d3429bb3bda1" name="generator">
   <link href="http://www.w3.org/TR/referrer-policy/" rel="canonical">
-  <meta content="20aad3a785a5ba2ab67c0780c9cded9c45e37735" name="document-revision">
+  <meta content="565f2168062f4122af48f20905e14f749ac348f9" name="document-revision">
 <style>/* style-md-lists */
 
 /* This is a weird hack for me not yet following the commonmark spec
@@ -1672,6 +1672,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   default baseline policy for requests when that <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#environment-settings-object" id="ref-for-environment-settings-object③">environment settings
   object</a> is used as a <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-client" id="ref-for-concept-request-client①">request client</a>. This policy may be tightened
   for specific requests via mechanisms like the <code><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/semantics.html#link-type-noreferrer" id="ref-for-link-type-noreferrer①">noreferrer</a></code> link type.</p>
+    <p>The <dfn data-dfn-type="dfn" data-export id="default-referrer-policy">default referrer policy<a class="self-link" href="#default-referrer-policy"></a></dfn> is <a data-link-type="dfn" href="#referrer-policy-strict-origin-when-cross-origin" id="ref-for-referrer-policy-strict-origin-when-cross-origin">"<code>strict-origin-when-cross-origin</code>"</a>.</p>
     <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-export data-level="3.1" data-lt="&quot;no-referrer&quot;" id="referrer-policy-no-referrer"><span class="secno">3.1. </span><span class="content">"<code>no-referrer</code>"</span><span id="referrer-policy-state-no-referrer"></span></h3>
     <p>The simplest policy is <a data-link-type="dfn" href="#referrer-policy-no-referrer" id="ref-for-referrer-policy-no-referrer">"<code>no-referrer</code>"</a>, which specifies
   that no referrer information is to be sent along with requests made from a
@@ -1738,14 +1739,14 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   consider protocol upgrades, e.g. requests from <code>http://example.com/</code> to <code>https://example.com/</code>, to be <a data-link-type="dfn" href="#cross-origin-request" id="ref-for-cross-origin-request③">cross-origin requests</a>.</p>
     <p class="note" role="note"><span>Note:</span> The <a data-link-type="dfn" href="#referrer-policy-origin-when-cross-origin" id="ref-for-referrer-policy-origin-when-cross-origin②">"<code>origin-when-cross-origin</code>"</a> policy causes the
   origin of HTTPS referrers to be sent over the network as part of unencrypted
-  HTTP requests. The <a data-link-type="dfn" href="#referrer-policy-strict-origin-when-cross-origin" id="ref-for-referrer-policy-strict-origin-when-cross-origin">"<code>strict-origin-when-cross-origin</code>"</a> policy
+  HTTP requests. The <a data-link-type="dfn" href="#referrer-policy-strict-origin-when-cross-origin" id="ref-for-referrer-policy-strict-origin-when-cross-origin①">"<code>strict-origin-when-cross-origin</code>"</a> policy
   addresses this concern.</p>
     <div class="example" id="example-f8a49432">
      <a class="self-link" href="#example-f8a49432"></a> If a document at <code>https://example.com/page.html</code> sets a policy of <a data-link-type="dfn" href="#referrer-policy-origin-when-cross-origin" id="ref-for-referrer-policy-origin-when-cross-origin③">"<code>origin-when-cross-origin</code>"</a>, then navigations to <code>https://example.com/not-page.html</code> would send a <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2" id="ref-for-section-5.5.2①⑤"><code>Referer</code></a> header with a value of <code>https://example.com/page.html</code>. 
      <p>Navigations from that same page to <code>https://not.example.com/</code> would send a <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2" id="ref-for-section-5.5.2①⑥"><code>Referer</code></a> header with a value of <code>https://example.com/</code>, even to URLs that are not <a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-url" id="ref-for-potentially-trustworthy-url⑥">potentially trustworthy URL</a>s.</p>
     </div>
     <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-export data-level="3.7" data-lt="&quot;strict-origin-when-cross-origin&quot;" id="referrer-policy-strict-origin-when-cross-origin"><span class="secno">3.7. </span><span class="content">"<code>strict-origin-when-cross-origin</code>"</span></h3>
-    <p>The <a data-link-type="dfn" href="#referrer-policy-strict-origin-when-cross-origin" id="ref-for-referrer-policy-strict-origin-when-cross-origin①">"<code>strict-origin-when-cross-origin</code>"</a> policy specifies that a
+    <p>The <a data-link-type="dfn" href="#referrer-policy-strict-origin-when-cross-origin" id="ref-for-referrer-policy-strict-origin-when-cross-origin②">"<code>strict-origin-when-cross-origin</code>"</a> policy specifies that a
   full URL, <a href="#strip-url">stripped for use as a referrer</a>, is sent as
   referrer information when making <a data-link-type="dfn" href="#same-origin-request" id="ref-for-same-origin-request④">same-origin requests</a> from a particular <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-client" id="ref-for-concept-request-client①③">request client</a>, and only the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#ascii-serialisation-of-an-origin" id="ref-for-ascii-serialisation-of-an-origin③">ASCII serialization</a> of the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-settings-object-origin" id="ref-for-concept-settings-object-origin③">origin</a> of the <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-client" id="ref-for-concept-request-client①④">request client</a> when making <a data-link-type="dfn" href="#cross-origin-request" id="ref-for-cross-origin-request④">cross-origin requests</a>:</p>
     <ul>
@@ -1757,7 +1758,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   referrer information. A <code><a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2" id="ref-for-section-5.5.2①⑦">Referer</a></code> HTTP header will not be
   sent.</p>
     <div class="example" id="example-2e47c322">
-     <a class="self-link" href="#example-2e47c322"></a> If a document at <code>https://example.com/page.html</code> sets a policy of <a data-link-type="dfn" href="#referrer-policy-strict-origin-when-cross-origin" id="ref-for-referrer-policy-strict-origin-when-cross-origin②">"<code>strict-origin-when-cross-origin</code>"</a>, then navigations to <code>https://example.com/not-page.html</code> would send a <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2" id="ref-for-section-5.5.2①⑧"><code>Referer</code></a> header with a value of <code>https://example.com/page.html</code>. 
+     <a class="self-link" href="#example-2e47c322"></a> If a document at <code>https://example.com/page.html</code> sets a policy of <a data-link-type="dfn" href="#referrer-policy-strict-origin-when-cross-origin" id="ref-for-referrer-policy-strict-origin-when-cross-origin③">"<code>strict-origin-when-cross-origin</code>"</a>, then navigations to <code>https://example.com/not-page.html</code> would send a <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2" id="ref-for-section-5.5.2①⑧"><code>Referer</code></a> header with a value of <code>https://example.com/page.html</code>. 
      <p>Navigations from that same page to <code>https://not.example.com/</code> would send a <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2" id="ref-for-section-5.5.2①⑨"><code>Referer</code></a> header with a value of <code>https://example.com/</code>.</p>
      <p>Navigations from that same page to <code><strong>http://</strong>not.example.com/</code> would send no <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2" id="ref-for-section-5.5.2②⓪"><code>Referer</code></a> header.</p>
     </div>
@@ -1775,7 +1776,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <h3 class="heading settled" data-dfn-type="dfn" data-export data-level="3.9" data-lt="The empty string" id="referrer-policy-empty-string"><span class="secno">3.9. </span><span class="content">The empty string</span><a class="self-link" href="#referrer-policy-empty-string"></a></h3>
     <p>The empty string "" corresponds to no <a data-link-type="dfn" href="#referrer-policy" id="ref-for-referrer-policy⑤">referrer policy</a>, causing a
   fallback to a <a data-link-type="dfn" href="#referrer-policy" id="ref-for-referrer-policy⑥">referrer policy</a> defined elsewhere, or in the case where
-  no such higher-level policy is available, defaulting to <a data-link-type="dfn" href="#referrer-policy-strict-origin-when-cross-origin" id="ref-for-referrer-policy-strict-origin-when-cross-origin③">"<code>strict-origin-when-cross-origin</code>"</a>. This defaulting happens in
+  no such higher-level policy is available, defaulting to <a data-link-type="dfn" href="#referrer-policy-strict-origin-when-cross-origin" id="ref-for-referrer-policy-strict-origin-when-cross-origin④">"<code>strict-origin-when-cross-origin</code>"</a>. This defaulting happens in
   Fetch’s main fetch algorithm.</p>
     <p class="issue" id="issue-d81b0b41"><a class="self-link" href="#issue-d81b0b41"></a> It seems strange that we define the default behavior in Fetch rather than in
   this document. Should we change that?</p>
@@ -1986,7 +1987,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
           </ol>
          <li>Return <var>referrerOrigin</var>. 
         </ol>
-       <dt><a data-link-type="dfn" href="#referrer-policy-strict-origin-when-cross-origin" id="ref-for-referrer-policy-strict-origin-when-cross-origin④">"<code>strict-origin-when-cross-origin</code>"</a>
+       <dt><a data-link-type="dfn" href="#referrer-policy-strict-origin-when-cross-origin" id="ref-for-referrer-policy-strict-origin-when-cross-origin⑤">"<code>strict-origin-when-cross-origin</code>"</a>
        <dd>
         <ol>
          <li> If <var>request</var> is a <a data-link-type="dfn" href="#same-origin-request" id="ref-for-same-origin-request⑥">same-origin request</a>, then
@@ -2153,6 +2154,7 @@ Referrer-Policy: unsafe-url
   <ul class="index">
    <li><a href="#dom-referrerpolicy">""</a><span>, in §3</span>
    <li><a href="#cross-origin-request">cross-origin request</a><span>, in §2</span>
+   <li><a href="#default-referrer-policy">default referrer policy</a><span>, in §3</span>
    <li><a href="#determine-requests-referrer">Determine request’s Referrer</a><span>, in §8.2</span>
    <li><a href="#grammardef-extension-token">extension-token</a><span>, in §4.1</span>
    <li>
@@ -2182,13 +2184,13 @@ Referrer-Policy: unsafe-url
     </ul>
    <li><a href="#grammardef-policy-token">policy-token</a><span>, in §4.1</span>
    <li><a href="#enumdef-referrerpolicy">ReferrerPolicy</a><span>, in §3</span>
-   <li><a href="#referrer-policy-header-dfn">Referrer-Policy</a><span>, in §4.1</span>
    <li>
     referrer policy
     <ul>
      <li><a href="#referrer-policy">definition of</a><span>, in §3</span>
      <li><a href="#cssstylesheet-referrer-policy">dfn for CSSStyleSheet</a><span>, in §7</span>
     </ul>
+   <li><a href="#referrer-policy-header-dfn">Referrer-Policy</a><span>, in §4.1</span>
    <li><a href="#referrer-policy-header-dfn">referrer-policy header</a><span>, in §4.1</span>
    <li>
     "same-origin"
@@ -2949,10 +2951,11 @@ Referrer-Policy: unsafe-url
   <aside class="dfn-panel" data-for="referrer-policy-strict-origin-when-cross-origin">
    <b><a href="#referrer-policy-strict-origin-when-cross-origin">#referrer-policy-strict-origin-when-cross-origin</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-referrer-policy-strict-origin-when-cross-origin">3.6. "origin-when-cross-origin"</a>
-    <li><a href="#ref-for-referrer-policy-strict-origin-when-cross-origin①">3.7. "strict-origin-when-cross-origin"</a> <a href="#ref-for-referrer-policy-strict-origin-when-cross-origin②">(2)</a>
-    <li><a href="#ref-for-referrer-policy-strict-origin-when-cross-origin③">3.9. The empty string</a>
-    <li><a href="#ref-for-referrer-policy-strict-origin-when-cross-origin④">8.3. 
+    <li><a href="#ref-for-referrer-policy-strict-origin-when-cross-origin">3. Referrer Policies</a>
+    <li><a href="#ref-for-referrer-policy-strict-origin-when-cross-origin①">3.6. "origin-when-cross-origin"</a>
+    <li><a href="#ref-for-referrer-policy-strict-origin-when-cross-origin②">3.7. "strict-origin-when-cross-origin"</a> <a href="#ref-for-referrer-policy-strict-origin-when-cross-origin③">(2)</a>
+    <li><a href="#ref-for-referrer-policy-strict-origin-when-cross-origin④">3.9. The empty string</a>
+    <li><a href="#ref-for-referrer-policy-strict-origin-when-cross-origin⑤">8.3. 
     Determine request’s Referrer </a>
    </ul>
   </aside>
