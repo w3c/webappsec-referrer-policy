@@ -283,8 +283,6 @@ spec: html; type: element; text: a;
     <a><code>Referer</code></a> header.
   </div>
 
-  This is a user agent's default behavior, if no policy is otherwise specified.
-
   <h3 dfn export id="referrer-policy-same-origin">"<code>same-origin</code>"</h3>
 
   The <a>"<code>same-origin</code>"</a> policy specifies that a
@@ -443,6 +441,8 @@ spec: html; type: element; text: a;
     <a><code>Referer</code></a> header.
   </div>
 
+  This is a user agent's default behavior, if no policy is otherwise specified.
+
   <h3 dfn export id="referrer-policy-unsafe-url" oldids="referrer-policy-state-unsafe-url">"<code>unsafe-url</code>"</h3>
 
   The <a>"<code>unsafe-url</code>"</a> policy specifies that a full URL,
@@ -468,8 +468,11 @@ spec: html; type: element; text: a;
   The empty string "" corresponds to no <a for="/">referrer policy</a>, causing a
   fallback to a <a for="/">referrer policy</a> defined elsewhere, or in the case where
   no such higher-level policy is available, defaulting to
-  <a>"<code>no-referrer-when-downgrade</code>"</a>. This defaulting happens in
-  the [[#determine-requests-referrer]] algorithm.
+  <a>"<code>strict-origin-when-cross-origin</code>"</a>. This defaulting happens in
+  Fetch's main fetch algorithm.
+
+  ISSUE: It seems strange that we define the default behavior in Fetch rather than in
+  this document. Should we change that?
 
   <div class="example">
     Given a HTML <{a}> element without any declared <{a/referrerpolicy}>
@@ -1002,8 +1005,7 @@ spec: html; type: element; text: a;
 
   Authors wanting to ensure that they do not leak any more information than
   the default policy should instead use the policy states
-  <a>"<code>same-origin</code>"</a>, <a>"<code>strict-origin</code>"</a>,
-  <a>"<code>strict-origin-when-cross-origin</code>"</a> or
+  <a>"<code>same-origin</code>"</a>, <a>"<code>strict-origin</code>"</a>, or
   <a>"<code>no-referrer</code>"</a>.
 
   <h3 id="downgrade">Downgrade to less strict policies</h3>
