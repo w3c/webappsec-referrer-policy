@@ -445,23 +445,15 @@ spec: html; type: element; text: a;
 
   <h3 dfn export id="referrer-policy-unsafe-url" oldids="referrer-policy-state-unsafe-url">"<code>unsafe-url</code>"</h3>
 
-  The <a>"<code>unsafe-url</code>"</a> policy specifies that a full URL,
-  <a href="#strip-url">stripped for use as a referrer</a>, is sent along with
-  both <a>cross-origin requests</a> and <a>same-origin requests</a> made from
-  a particular <a for=request>client</a>.
-
-  <div class="example">
-    If a document at <code>https://example.com/sekrit.html</code> sets a policy
-    of <a>"<code>unsafe-url</code>"</a>, then navigations to
-    <code>http://not.example.com/</code> (and every other origin) would send a
-    <code><a>Referer</a></code> HTTP header with a value of
-    <code>https://example.com/sekrit.html</code>.
-  </div>
-
-  Note: The policy's name doesn't lie; it is unsafe. This policy will leak
-  origins and paths from secure resources to insecure origins.
-  Carefully consider the impact of setting such a policy for potentially
-  sensitive documents.
+  The <a>"<code>unsafe-url</code>"</a> policy is an alias for the
+  <a>"<code>no-referrer-when-downgrade</code>"</a> policy.
+  
+  Note: In previous versions of this specification, this policy was, in fact,
+  unsafe, as it intentionally leaked origins and paths from secure resources to
+  non-secure origins. The original intent was to allow pages to migrate to HTTPS
+  without losing referrer-based attribution vis a vis non-secure sites. Given
+  our collective progress at that migration, this safety valve is no longer
+  necessary.
 
   <h3 dfn export id="referrer-policy-empty-string">The empty string</h3>
 
@@ -828,9 +820,6 @@ spec: html; type: element; text: a;
         <dt><a>"<code>origin</code>"</a></dt>
         <dd>Return <var>referrerOrigin</var></dd>
 
-        <dt><a>"<code>unsafe-url</code>"</a></dt>
-        <dd>Return <var>referrerURL</var>.</dd>
-
         <dt><a>"<code>strict-origin</code>"</a></dt>
         <dd>
           <ol>
@@ -901,6 +890,7 @@ spec: html; type: element; text: a;
           </ol>
         </dd>
 
+        <dt><a>"<code>unsafe-url</code>"</a></dt>
         <dt><a>"<code>no-referrer-when-downgrade</code>"</a></dt>
         <dd>
           <ol>
@@ -992,12 +982,11 @@ spec: html; type: element; text: a;
 
   <h3 id="information-leakage">Information Leakage</h3>
 
-  The <a for="/">referrer policies</a> <a>"<code>origin</code>"</a>,
-  <a>"<code>origin-when-cross-origin</code>"</a> and
-  <a>"<code>unsafe-url</code>"</a> might leak the origin and the URL of
-  a secure site respectively via insecure transport.
+  The <a for="/">referrer policies</a> <a>"<code>origin</code>"</a> and
+  <a>"<code>origin-when-cross-origin</code>"</a> might leak the origin of
+  a secure site via insecure transport.
 
-  Those three policies are included in the spec nevertheless to lower the friction
+  Those policies are included in the spec nevertheless to lower the friction
   of sites adopting secure transport.
 
   Authors wanting to ensure that they do not leak any more information than
@@ -1009,7 +998,7 @@ spec: html; type: element; text: a;
   <h3 id="downgrade">Downgrade to less strict policies</h3>
 
   The spec does not forbid downgrading to less strict policies, e.g., from
-  <a>"<code>no-referrer</code>"</a> to <a>"<code>unsafe-url</code>"</a>.
+  <a>"<code>no-referrer</code>"</a> to <a>"<code>origin</code>"</a>.
 
   On the one hand, it is not clear which policy is more strict for all possible
   pairs of policies: While <a>"<code>no-referrer-when-downgrade</code>"</a> will
@@ -1034,12 +1023,12 @@ spec: html; type: element; text: a;
 
   <div class="example">
   	Suppose older user agents don't understand
-    the <a>"<code>unsafe-url</code>"</a> policy. A site can specify
+    the "<code>not-yet-defined</code>" policy. A site can specify
     an <a>"<code>origin</code>"</a> policy followed by an
-    <a>"<code>unsafe-url</code>"</a> policy: older user agents will ignore the
-    unknown <a>"<code>unsafe-url</code>"</a> value and use
+    "<code>not-yet-defined</code>" policy: older user agents will ignore the
+    unknown "<code>not-yet-defined</code>" value and use
     <a>"<code>origin</code>"</a>, while newer user agents will use
-    <a>"<code>unsafe-url</code>"</a> because it is the last to be processed.
+    "<code>not-yet-defined</code>" because it is the last to be processed.
   </div>
 
   <div class="example">
@@ -1047,11 +1036,13 @@ spec: html; type: element; text: a;
     send multiple Referrer-Policy headers:
     <pre>
       Referrer-Policy: no-referrer
-      Referrer-Policy: unsafe-url
+      Referrer-Policy: not-yet-defined
     </pre>
+
     or, equivalently, multiple comma-separated header values:
+
     <pre>
-      Referrer-Policy: no-referrer,unsafe-url
+      Referrer-Policy: no-referrer,not-yet-defined
     </pre>
   </div>
 
