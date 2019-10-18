@@ -1214,7 +1214,7 @@ Possible extra rowspan handling
 </style>
   <meta content="Bikeshed version 08c4b0e94d147852f66673459784d3429bb3bda1" name="generator">
   <link href="http://www.w3.org/TR/referrer-policy/" rel="canonical">
-  <meta content="20aad3a785a5ba2ab67c0780c9cded9c45e37735" name="document-revision">
+  <meta content="31577f26f47d81bf390ca4f04f217468d742fcf1" name="document-revision">
 <style>/* style-md-lists */
 
 /* This is a weird hack for me not yet following the commonmark spec
@@ -1963,10 +1963,9 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <li> Let <var>referrerURL</var> be the result of <a href="#strip-url">stripping <var>referrerSource</var> for use as a referrer.</a> 
      <li> Let <var>referrerOrigin</var> be the result of <a href="#strip-url">stripping <var>referrerSource</var> for use as a
       referrer</a>, with the <code><a data-link-type="dfn" href="#origin-only-flag" id="ref-for-origin-only-flag">origin-only flag</a></code> set to <code>true</code>. 
-     <li>
-      <p class="note" role="note">Note: The user agent MAY alter <var>referrerURL</var> or <var>referrerOrigin</var> at this point to enforce arbitrary policy considerations in the
-      interests of minimizing data leakage. For example, the user agent could strip the URL down to
-      an origin, modify its <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-host" id="ref-for-concept-url-host">host</a>, replace it with an empty string, etc.</p>
+     <li> The user agent MAY alter <var>referrerURL</var> or <var>referrerOrigin</var> at this point to
+      enforce arbitrary policy considerations in the interests of minimizing data leakage. For
+      example, the user agent could strip the URL down to an origin, modify its <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-host" id="ref-for-concept-url-host">host</a>, replace it with an empty string, etc. 
      <li>
        Execute the statements corresponding to the value of <var>policy</var>: 
       <dl class="switch">
