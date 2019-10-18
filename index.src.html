@@ -817,6 +817,12 @@ spec: html; type: element; text: a;
       referrer</a>, with the <code><a>origin-only flag</a></code> set to
       <code>true</code>.
     </li>
+    <li>
+      The user agent MAY alter <var>referrerURL</var> or <var>referrerOrigin</var> at this point to
+      enforce arbitrary policy considerations in the interests of minimizing data leakage. For
+      example, the user agent could strip the URL down to an origin, modify its
+      <a for="url">host</a>, replace it with an empty string, etc.
+    </li>
 
     <li>
       Execute the statements corresponding to the value of <var>policy</var>:
