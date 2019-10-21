@@ -818,12 +818,16 @@ spec: html; type: element; text: a;
       <code>true</code>.
     </li>
     <li>
+      If the result of <a lt="url serializer">serializing</a> <var>referrerURL</var> is a string
+      whose <a for="string">length</a> is greater than 4096, set <var>referrerURL</var> to
+      <var>referrerOrigin</var>.
+    </li>
+    <li>
       The user agent MAY alter <var>referrerURL</var> or <var>referrerOrigin</var> at this point to
       enforce arbitrary policy considerations in the interests of minimizing data leakage. For
       example, the user agent could strip the URL down to an origin, modify its
       <a for="url">host</a>, replace it with an empty string, etc.
     </li>
-
     <li>
       Execute the statements corresponding to the value of <var>policy</var>:
 

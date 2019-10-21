@@ -1214,7 +1214,7 @@ Possible extra rowspan handling
 </style>
   <meta content="Bikeshed version 08c4b0e94d147852f66673459784d3429bb3bda1" name="generator">
   <link href="http://www.w3.org/TR/referrer-policy/" rel="canonical">
-  <meta content="31577f26f47d81bf390ca4f04f217468d742fcf1" name="document-revision">
+  <meta content="906e3b868c61056c31d6a4d76bdf8adcd101164f" name="document-revision">
 <style>/* style-md-lists */
 
 /* This is a weird hack for me not yet following the commonmark spec
@@ -1461,7 +1461,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1>Referrer Policy</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2019-10-18">18 October 2019</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2019-10-21">21 October 2019</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1963,6 +1963,8 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <li> Let <var>referrerURL</var> be the result of <a href="#strip-url">stripping <var>referrerSource</var> for use as a referrer.</a> 
      <li> Let <var>referrerOrigin</var> be the result of <a href="#strip-url">stripping <var>referrerSource</var> for use as a
       referrer</a>, with the <code><a data-link-type="dfn" href="#origin-only-flag" id="ref-for-origin-only-flag">origin-only flag</a></code> set to <code>true</code>. 
+     <li> If the result of <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-serializer" id="ref-for-concept-url-serializer">serializing</a> <var>referrerURL</var> is a string
+      whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#string-length" id="ref-for-string-length">length</a> is greater than 4096, set <var>referrerURL</var> to <var>referrerOrigin</var>. 
      <li> The user agent MAY alter <var>referrerURL</var> or <var>referrerOrigin</var> at this point to
       enforce arbitrary policy considerations in the interests of minimizing data leakage. For
       example, the user agent could strip the URL down to an origin, modify its <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-host" id="ref-for-concept-url-host">host</a>, replace it with an empty string, etc. 
@@ -2616,6 +2618,13 @@ Referrer-Policy: unsafe-url
     <li><a href="#ref-for-the-style-attribute">7. Integration with CSS</a>
    </ul>
   </aside>
+  <aside class="dfn-panel" data-for="term-for-string-length">
+   <a href="https://infra.spec.whatwg.org/#string-length">https://infra.spec.whatwg.org/#string-length</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-string-length">8.3. 
+    Determine request’s Referrer </a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="term-for-appendix-B.1">
    <a href="https://tools.ietf.org/html/rfc5234#appendix-B.1">https://tools.ietf.org/html/rfc5234#appendix-B.1</a><b>Referenced in:</b>
    <ul>
@@ -2694,6 +2703,13 @@ Referrer-Policy: unsafe-url
    <a href="https://url.spec.whatwg.org/#concept-url">https://url.spec.whatwg.org/#concept-url</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-concept-url">8.3. 
+    Determine request’s Referrer </a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-concept-url-serializer">
+   <a href="https://url.spec.whatwg.org/#concept-url-serializer">https://url.spec.whatwg.org/#concept-url-serializer</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-concept-url-serializer">8.3. 
     Determine request’s Referrer </a>
    </ul>
   </aside>
@@ -2776,6 +2792,11 @@ Referrer-Policy: unsafe-url
      <li><span class="dfn-paneled" id="term-for-the-style-attribute" style="color:initial">style attribute</span>
     </ul>
    <li>
+    <a data-link-type="biblio">[INFRA]</a> defines the following terms:
+    <ul>
+     <li><span class="dfn-paneled" id="term-for-string-length" style="color:initial">length</span>
+    </ul>
+   <li>
     <a data-link-type="biblio">[RFC5234]</a> defines the following terms:
     <ul>
      <li><span class="dfn-paneled" id="term-for-appendix-B.1" style="color:initial">alpha</span>
@@ -2800,6 +2821,7 @@ Referrer-Policy: unsafe-url
      <li><span class="dfn-paneled" id="term-for-concept-url-query" style="color:initial">query</span>
      <li><span class="dfn-paneled" id="term-for-concept-url-scheme" style="color:initial">scheme</span>
      <li><span class="dfn-paneled" id="term-for-concept-url" style="color:initial">url</span>
+     <li><span class="dfn-paneled" id="term-for-concept-url-serializer" style="color:initial">url serializer</span>
      <li><span class="dfn-paneled" id="term-for-concept-url-username" style="color:initial">username</span>
     </ul>
   </ul>
@@ -2814,6 +2836,8 @@ Referrer-Policy: unsafe-url
    <dd>Anne van Kesteren. <a href="http://fetch.spec.whatwg.org/">Fetch</a>. Living Standard. URL: <a href="http://fetch.spec.whatwg.org/">http://fetch.spec.whatwg.org/</a>
    <dt id="biblio-html">[HTML]
    <dd>Anne van Kesteren; et al. <a href="https://html.spec.whatwg.org/multipage/">HTML Standard</a>. Living Standard. URL: <a href="https://html.spec.whatwg.org/multipage/">https://html.spec.whatwg.org/multipage/</a>
+   <dt id="biblio-infra">[INFRA]
+   <dd>Anne van Kesteren; Domenic Denicola. <a href="https://infra.spec.whatwg.org/">Infra Standard</a>. Living Standard. URL: <a href="https://infra.spec.whatwg.org/">https://infra.spec.whatwg.org/</a>
    <dt id="biblio-rfc2119">[RFC2119]
    <dd>S. Bradner. <a href="https://tools.ietf.org/html/rfc2119">Key words for use in RFCs to Indicate Requirement Levels</a>. March 1997. Best Current Practice. URL: <a href="https://tools.ietf.org/html/rfc2119">https://tools.ietf.org/html/rfc2119</a>
    <dt id="biblio-rfc5234">[RFC5234]
