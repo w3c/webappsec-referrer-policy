@@ -845,16 +845,13 @@ spec: html; type: element; text: a;
         <dd>
           <ol>
             <li>
-              If |environment| is not null:
-              <ol>
-                <li>
-                  If |environment|'s <a for="environment settings object">HTTPS state</a> is "`modern`" <em>and</em>
-                  <var>request</var>'s
-                  <a href="https://fetch.spec.whatwg.org/#concept-request-current-url">current
-                  URL</a> is not a <a>potentially trustworthy
-                  URL</a>, then return <code>no referrer</code>.
-                </li>
-              </ol>
+              If |referrerURL| is <code>no referrer</code>, then return <code>no referrer</code>.
+            </li>
+            <li>
+              If |referrerURL| is a <a>potentially trustworthy URL</a> and <var>request</var>'s
+              <a href="https://fetch.spec.whatwg.org/#concept-request-current-url">current
+                URL</a> is not a <a>potentially trustworthy URL</a>, then return
+              <code>no referrer</code>.
             </li>
             <li>Return |referrerOrigin|.
           </ol>
@@ -864,22 +861,18 @@ spec: html; type: element; text: a;
         <dd>
           <ol>
             <li>
-              If <var>request</var> is a <a>same-origin request</a>, then
-              return <var>referrerURL</var>.
+              If |referrerURL| is <code>no referrer</code>, then return <code>no referrer</code>.
             </li>
             <li>
-              If |environment| is not null:
-              <ol>
-                <li>
-                  If |environment|'s <a for="environment settings object">HTTPS state</a> is "`modern`" <em>and</em>
-                  <var>request</var>'s
-                  <a href="https://fetch.spec.whatwg.org/#concept-request-current-url">current
-                  URL</a> is not a <a>potentially trustworthy URL</a>
-                  <ol>
-                      <li>Return <code>no referrer</code>.
-                  </ol>
-                </li>
-              </ol>
+              If the  <a for=url>origin</a> of |referrerURL| and the <a for=url>origin</a> of
+              <var>request</var>'s <a for=request>current url</a> are <a lt="same origin">the
+              same</a>, then return |referrerURL|.
+            </li>
+            <li>
+              If |referrerURL| is a <a>potentially trustworthy URL</a> and <var>request</var>'s
+              <a href="https://fetch.spec.whatwg.org/#concept-request-current-url">current
+                URL</a> is not a <a>potentially trustworthy URL</a>, then return
+              <code>no referrer</code>.
             </li>
             <li>Return |referrerOrigin|.
           </ol>
@@ -889,11 +882,15 @@ spec: html; type: element; text: a;
         <dd>
           <ol>
             <li>
-              If <var>request</var> is a <a>same-origin request</a>, then
-              return <var>referrerURL</var>.
+              If |referrerURL| is <code>no referrer</code>, then return <code>no referrer</code>.
             </li>
             <li>
-              Otherwise, return <code>no referrer</code>.
+              If the  <a for=url>origin</a> of |referrerURL| and the <a for=url>origin</a> of
+              <var>request</var>'s <a for=request>current url</a> are <a lt="same origin">the
+              same</a>, then return |referrerURL|.
+            </li>
+            <li>
+              Return <code>no referrer</code>.
             </li>
           </ol>
         </dd>
@@ -902,11 +899,15 @@ spec: html; type: element; text: a;
         <dd>
           <ol>
             <li>
-              If <var>request</var> is a <a>cross-origin request</a>, then
-              return <var>referrerOrigin</var>.
+              If |referrerURL| is <code>no referrer</code>, then return <code>no referrer</code>.
             </li>
             <li>
-              Otherwise, return <var>referrerURL</var>.
+              If the  <a for=url>origin</a> of |referrerURL| and the <a for=url>origin</a> of
+              <var>request</var>'s <a for=request>current url</a> are <a lt="same origin">the
+              same</a>, then return |referrerURL|.
+            </li>
+            <li>
+              Return |referrerOrigin|.
             </li>
           </ol>
         </dd>
@@ -915,16 +916,13 @@ spec: html; type: element; text: a;
         <dd>
           <ol>
             <li>
-              If |environment| is not null:
-              <ol>
-                <li>
-                  If |environment|'s <a for="environment settings object">HTTPS state</a> is "`modern`" <em>and</em>
-                  <var>request</var>'s
-                  <a href="https://fetch.spec.whatwg.org/#concept-request-current-url">current
-                  URL</a> is not a <a>potentially trustworthy
-                  URL</a>, then return <code>no referrer</code>.
-                </li>
-              </ol>
+              If |referrerURL| is <code>no referrer</code>, then return <code>no referrer</code>.
+            </li>
+            <li>
+              If |referrerURL| is a <a>potentially trustworthy URL</a> and <var>request</var>'s
+              <a href="https://fetch.spec.whatwg.org/#concept-request-current-url">current
+                URL</a> is not a <a>potentially trustworthy URL</a>, then return
+              <code>no referrer</code>.
             </li>
             <li>Return |referrerURL|.
           </ol>
