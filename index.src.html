@@ -260,11 +260,11 @@ spec: html; type: element; text: a;
 
   <h3 dfn export id="referrer-policy-no-referrer-when-downgrade" oldids="referrer-policy-state-no-referrer-when-downgrade">"<code>no-referrer-when-downgrade</code>"</h3>
 
-  The <a>"<code>no-referrer-when-downgrade</code>"</a> policy sends a full URL
-  along with requests from <a>environment settings objects</a> whose <a for="environment settings object">HTTPS state</a>
-  is "`modern`" to a <a>potentially trustworthy URL</a>, and requests from
-  <a for=request>clients</a> whose <a for="environment settings object">HTTPS state</a> is not "`modern`"
-  to any <a for=/>origin</a>.
+  The <a>"<code>no-referrer-when-downgrade</code>"</a> policy sends a full URL, <a
+  href="#strip-url">stripped for use as a referrer</a>, along with requests from <a>environment
+  settings objects</a> whose <a for="environment settings object">HTTPS state</a> is "`modern`" to
+  a <a>potentially trustworthy URL</a>, and requests from <a for=request>clients</a> whose <a
+  for="environment settings object">HTTPS state</a> is not "`modern`" to any <a for=/>origin</a>.
 
   Requests from <a for=request>clients</a> whose <a for="environment settings object">HTTPS state</a> is "`modern`"
   to non-<a>potentially trustworthy URL</a>s, on the other hand, will contain no

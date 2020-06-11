@@ -1175,7 +1175,7 @@ Possible extra rowspan handling
 		   1. When table < content column, centers table in column.
 		   2. When content < table < available, left-aligns.
 		   3. When table > available, fills available + scroll bar.
-		*/ 
+		*/
 		display: grid;
 		grid-template-columns: minmax(0, 50em);
 	}
@@ -1221,9 +1221,9 @@ Possible extra rowspan handling
 		}
 	}
 </style>
-  <meta content="Bikeshed version c1dbacab, updated Mon Mar 30 18:56:12 2020 -0700" name="generator">
+  <meta content="Bikeshed version 19c1873c, updated Thu Jun 4 14:44:17 2020 -0700" name="generator">
   <link href="http://www.w3.org/TR/referrer-policy/" rel="canonical">
-  <meta content="2b0b92fd52693c36af3ef77f3c6852c5d9fc5289" name="document-revision">
+  <meta content="f8c33aaf451c949b062e1b2205b14901ffa86c0a" name="document-revision">
 <style>/* style-autolinks */
 
 .css.css, .property.property, .descriptor.descriptor {
@@ -1470,7 +1470,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1>Referrer Policy</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2020-04-01">1 April 2020</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2020-06-11">11 June 2020</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1689,9 +1689,9 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   omitted entirely.</p>
     <div class="example" id="example-13e0f89b"><a class="self-link" href="#example-13e0f89b"></a> If a document at <code>https://example.com/page.html</code> sets a policy of <a data-link-type="dfn" href="#referrer-policy-no-referrer" id="ref-for-referrer-policy-no-referrer①">"<code>no-referrer</code>"</a>, then navigations to <code>https://example.com/</code> (or any other URL) would send no <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2" id="ref-for-section-5.5.2③"><code>Referer</code></a> header. </div>
     <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-export data-level="3.2" data-lt="&quot;no-referrer-when-downgrade&quot;" id="referrer-policy-no-referrer-when-downgrade"><span class="secno">3.2. </span><span class="content">"<code>no-referrer-when-downgrade</code>"</span><span id="referrer-policy-state-no-referrer-when-downgrade"></span></h3>
-    <p>The <a data-link-type="dfn" href="#referrer-policy-no-referrer-when-downgrade" id="ref-for-referrer-policy-no-referrer-when-downgrade">"<code>no-referrer-when-downgrade</code>"</a> policy sends a full URL
-  along with requests from <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#environment-settings-object" id="ref-for-environment-settings-object④">environment settings objects</a> whose <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#https-state" id="ref-for-https-state">HTTPS state</a> is "`modern`" to a <a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-url" id="ref-for-potentially-trustworthy-url">potentially trustworthy URL</a>, and requests from <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-client" id="ref-for-concept-request-client③">clients</a> whose <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#https-state" id="ref-for-https-state①">HTTPS state</a> is not "`modern`"
-  to any <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#concept-origin" id="ref-for-concept-origin①">origin</a>.</p>
+    <p>The <a data-link-type="dfn" href="#referrer-policy-no-referrer-when-downgrade" id="ref-for-referrer-policy-no-referrer-when-downgrade">"<code>no-referrer-when-downgrade</code>"</a> policy sends a full URL, <a href="#strip-url">stripped for use as a referrer</a>, along with requests from <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#environment-settings-object" id="ref-for-environment-settings-object④">environment
+  settings objects</a> whose <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#https-state" id="ref-for-https-state">HTTPS state</a> is "`modern`" to
+  a <a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-url" id="ref-for-potentially-trustworthy-url">potentially trustworthy URL</a>, and requests from <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-client" id="ref-for-concept-request-client③">clients</a> whose <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#https-state" id="ref-for-https-state①">HTTPS state</a> is not "`modern`" to any <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#concept-origin" id="ref-for-concept-origin①">origin</a>.</p>
     <p>Requests from <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-client" id="ref-for-concept-request-client④">clients</a> whose <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#https-state" id="ref-for-https-state②">HTTPS state</a> is "`modern`"
   to non-<a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-url" id="ref-for-potentially-trustworthy-url①">potentially trustworthy URL</a>s, on the other hand, will contain no
   referrer information. A <code><a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2" id="ref-for-section-5.5.2④">Referer</a></code> HTTP header will not be
@@ -1800,7 +1800,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <li> Via the <code>Referrer-Policy</code> HTTP header (defined
       in <a href="#referrer-policy-header">§ 4.1 Delivery via Referrer-Policy header</a>). 
      <li> Via a <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/semantics.html#meta" id="ref-for-meta">meta</a></code> element with a <code><a data-link-type="element-sub" href="https://html.spec.whatwg.org/multipage/semantics.html#attr-meta-name" id="ref-for-attr-meta-name">name</a></code> of <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/semantics.html#meta-referrer" id="ref-for-meta-referrer"><code>referrer</code></a>. 
-     <li> Via a <code>referrerpolicy</code> content attribute on an <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-a-element" id="ref-for-the-a-element③">a</a></code>, <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/image-maps.html#the-area-element" id="ref-for-the-area-element">area</a></code>, <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/embedded-content.html#the-img-element" id="ref-for-the-img-element">img</a></code>, <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/iframe-embed-object.html#the-iframe-element" id="ref-for-the-iframe-element">iframe</a></code>, <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/semantics.html#the-link-element" id="ref-for-the-link-element">link</a></code>, or <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/semantics.html#the-script-element" id="ref-for-the-script-element">script</a></code> element. 
+     <li> Via a <code>referrerpolicy</code> content attribute on an <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-a-element" id="ref-for-the-a-element③">a</a></code>, <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/image-maps.html#the-area-element" id="ref-for-the-area-element">area</a></code>, <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/embedded-content.html#the-img-element" id="ref-for-the-img-element">img</a></code>, <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/iframe-embed-object.html#the-iframe-element" id="ref-for-the-iframe-element">iframe</a></code>, <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/semantics.html#the-link-element" id="ref-for-the-link-element">link</a></code>, or <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/scripting.html#script" id="ref-for-script">script</a></code> element. 
      <li> Via the <code><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/semantics.html#link-type-noreferrer" id="ref-for-link-type-noreferrer②">noreferrer</a></code> link relation on an <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-a-element" id="ref-for-the-a-element④">a</a></code>, or <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/image-maps.html#the-area-element" id="ref-for-the-area-element①">area</a></code> element. 
      <li> Implicitly, via inheritance. 
     </ul>
@@ -2616,6 +2616,12 @@ Referrer-Policy: unsafe-url
     <li><a href="#ref-for-same-origin">2. Key Concepts and Terminology</a>
    </ul>
   </aside>
+  <aside class="dfn-panel" data-for="term-for-script">
+   <a href="https://html.spec.whatwg.org/multipage/scripting.html#script">https://html.spec.whatwg.org/multipage/scripting.html#script</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-script">4. Referrer Policy Delivery</a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="term-for-attr-iframe-srcdoc">
    <a href="https://html.spec.whatwg.org/multipage/iframe-embed-object.html#attr-iframe-srcdoc">https://html.spec.whatwg.org/multipage/iframe-embed-object.html#attr-iframe-srcdoc</a><b>Referenced in:</b>
    <ul>
@@ -2798,6 +2804,7 @@ Referrer-Policy: unsafe-url
      <li><span class="dfn-paneled" id="term-for-attr-a-referrerpolicy" style="color:initial">referrerpolicy</span>
      <li><span class="dfn-paneled" id="term-for-run-a-worker" style="color:initial">running a worker</span>
      <li><span class="dfn-paneled" id="term-for-same-origin" style="color:initial">same origin</span>
+     <li><span class="dfn-paneled" id="term-for-script" style="color:initial">script</span>
      <li><span class="dfn-paneled" id="term-for-attr-iframe-srcdoc" style="color:initial">srcdoc</span>
      <li><span class="dfn-paneled" id="term-for-the-style-attribute" style="color:initial">style attribute</span>
     </ul>
