@@ -1175,7 +1175,7 @@ Possible extra rowspan handling
 		   1. When table < content column, centers table in column.
 		   2. When content < table < available, left-aligns.
 		   3. When table > available, fills available + scroll bar.
-		*/
+		*/ 
 		display: grid;
 		grid-template-columns: minmax(0, 50em);
 	}
@@ -1221,9 +1221,9 @@ Possible extra rowspan handling
 		}
 	}
 </style>
-  <meta content="Bikeshed version 19c1873c, updated Thu Jun 4 14:44:17 2020 -0700" name="generator">
+  <meta content="Bikeshed version c1dbacab, updated Mon Mar 30 18:56:12 2020 -0700" name="generator">
   <link href="http://www.w3.org/TR/referrer-policy/" rel="canonical">
-  <meta content="f8c33aaf451c949b062e1b2205b14901ffa86c0a" name="document-revision">
+  <meta content="153ccd369f30ffb7ef0308b1ef11ee624e0a99a3" name="document-revision">
 <style>/* style-autolinks */
 
 .css.css, .property.property, .descriptor.descriptor {
@@ -1470,7 +1470,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1>Referrer Policy</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2020-06-11">11 June 2020</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2020-06-17">17 June 2020</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1650,10 +1650,10 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
       prefetching, or performing navigations. This document defines the various
       behaviors for each <a data-link-type="dfn" href="#referrer-policy" id="ref-for-referrer-policy②">referrer policy</a>. 
       <p>Every <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#environment-settings-object" id="ref-for-environment-settings-object">environment settings object</a> has an algorithm for obtaining a <a data-link-type="dfn" href="#referrer-policy" id="ref-for-referrer-policy③">referrer policy</a>, which is used by default for all <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request" id="ref-for-concept-request">requests</a> with that <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#environment-settings-object" id="ref-for-environment-settings-object①">environment settings object</a> as their <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-client" id="ref-for-concept-request-client">client</a>.</p>
-     <dt><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="same-origin-request">same-origin request</dfn>
-     <dd> A <code class="idl"><a data-link-type="idl" href="https://fetch.spec.whatwg.org/#request" id="ref-for-request">Request</a></code> <var>request</var> is a <strong>same-origin request</strong> if <var>request</var>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-origin" id="ref-for-concept-request-origin">origin</a> and the <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-origin" id="ref-for-concept-url-origin">origin</a> of <var>request</var>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-current-url" id="ref-for-concept-request-current-url">current url</a> are <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#same-origin" id="ref-for-same-origin">the same</a>. 
-     <dt><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="cross-origin-request">cross-origin request</dfn>
-     <dd> A <code class="idl"><a data-link-type="idl" href="https://fetch.spec.whatwg.org/#request" id="ref-for-request①">Request</a></code> is a <strong>cross-origin request</strong> if it is <em>not</em> <a data-link-type="dfn" href="#same-origin-request" id="ref-for-same-origin-request">same-origin</a>. 
+     <dt><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="same-origin-referrer-request">same-origin-referrer request</dfn>
+     <dd> A <code class="idl"><a data-link-type="idl" href="https://fetch.spec.whatwg.org/#request" id="ref-for-request">Request</a></code> <var>request</var> is a <strong>same-origin-referrer request</strong> if the <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-origin" id="ref-for-concept-url-origin">origin</a> of <var>request</var>’s <a data-link-type="dfn" href="#referrerurl" id="ref-for-referrerurl">referrerURL</a> and the <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-origin" id="ref-for-concept-url-origin①">origin</a> of <var>request</var>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-current-url" id="ref-for-concept-request-current-url">current URL</a> are <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#same-origin" id="ref-for-same-origin">the same</a>. 
+     <dt><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="cross-origin-referrer-request">cross-origin-referrer request</dfn>
+     <dd> A <code class="idl"><a data-link-type="idl" href="https://fetch.spec.whatwg.org/#request" id="ref-for-request①">Request</a></code> is a <strong>cross-origin-referrer request</strong> if it is <em>not</em> a <a data-link-type="dfn" href="#same-origin-referrer-request" id="ref-for-same-origin-referrer-request">same-origin-referrer request</a>. 
     </dl>
    </section>
    <section>
@@ -1684,100 +1684,110 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   for specific requests via mechanisms like the <code><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/semantics.html#link-type-noreferrer" id="ref-for-link-type-noreferrer①">noreferrer</a></code> link type.</p>
     <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-export data-level="3.1" data-lt="&quot;no-referrer&quot;" id="referrer-policy-no-referrer"><span class="secno">3.1. </span><span class="content">"<code>no-referrer</code>"</span><span id="referrer-policy-state-no-referrer"></span></h3>
     <p>The simplest policy is <a data-link-type="dfn" href="#referrer-policy-no-referrer" id="ref-for-referrer-policy-no-referrer">"<code>no-referrer</code>"</a>, which specifies
-  that no referrer information is to be sent along with requests made from a
-  particular <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-client" id="ref-for-concept-request-client②">request client</a> to any <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#concept-origin" id="ref-for-concept-origin">origin</a>. The header will be
-  omitted entirely.</p>
-    <div class="example" id="example-13e0f89b"><a class="self-link" href="#example-13e0f89b"></a> If a document at <code>https://example.com/page.html</code> sets a policy of <a data-link-type="dfn" href="#referrer-policy-no-referrer" id="ref-for-referrer-policy-no-referrer①">"<code>no-referrer</code>"</a>, then navigations to <code>https://example.com/</code> (or any other URL) would send no <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2" id="ref-for-section-5.5.2③"><code>Referer</code></a> header. </div>
+  that no referrer information is to be sent along with requests to any <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#concept-origin" id="ref-for-concept-origin">origin</a>. The header <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2" id="ref-for-section-5.5.2③"><code>Referer</code></a> will be omitted entirely.</p>
+    <div class="example" id="example-13e0f89b"><a class="self-link" href="#example-13e0f89b"></a> If a document at <code>https://example.com/page.html</code> sets a policy of <a data-link-type="dfn" href="#referrer-policy-no-referrer" id="ref-for-referrer-policy-no-referrer①">"<code>no-referrer</code>"</a>, then navigations to <code>https://example.com/</code> (or any other URL) would send no <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2" id="ref-for-section-5.5.2④"><code>Referer</code></a> header. </div>
     <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-export data-level="3.2" data-lt="&quot;no-referrer-when-downgrade&quot;" id="referrer-policy-no-referrer-when-downgrade"><span class="secno">3.2. </span><span class="content">"<code>no-referrer-when-downgrade</code>"</span><span id="referrer-policy-state-no-referrer-when-downgrade"></span></h3>
-    <p>The <a data-link-type="dfn" href="#referrer-policy-no-referrer-when-downgrade" id="ref-for-referrer-policy-no-referrer-when-downgrade">"<code>no-referrer-when-downgrade</code>"</a> policy sends a full URL, <a href="#strip-url">stripped for use as a referrer</a>, along with requests from <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#environment-settings-object" id="ref-for-environment-settings-object④">environment
-  settings objects</a> whose <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#https-state" id="ref-for-https-state">HTTPS state</a> is "`modern`" to
-  a <a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-url" id="ref-for-potentially-trustworthy-url">potentially trustworthy URL</a>, and requests from <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-client" id="ref-for-concept-request-client③">clients</a> whose <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#https-state" id="ref-for-https-state①">HTTPS state</a> is not "`modern`" to any <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#concept-origin" id="ref-for-concept-origin①">origin</a>.</p>
-    <p>Requests from <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-client" id="ref-for-concept-request-client④">clients</a> whose <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#https-state" id="ref-for-https-state②">HTTPS state</a> is "`modern`"
-  to non-<a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-url" id="ref-for-potentially-trustworthy-url①">potentially trustworthy URL</a>s, on the other hand, will contain no
-  referrer information. A <code><a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2" id="ref-for-section-5.5.2④">Referer</a></code> HTTP header will not be
-  sent.</p>
+    <p>The <a data-link-type="dfn" href="#referrer-policy-no-referrer-when-downgrade" id="ref-for-referrer-policy-no-referrer-when-downgrade">"<code>no-referrer-when-downgrade</code>"</a> policy sends a request’s full <a data-link-type="dfn" href="#referrerurl" id="ref-for-referrerurl①">referrerURL</a> <a href="#strip-url">stripped for use as a referrer</a> for requests:</p>
+    <ul>
+     <li>whose <a data-link-type="dfn" href="#referrerurl" id="ref-for-referrerurl②">referrerURL</a> and <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-current-url" id="ref-for-concept-request-current-url①">current URL</a> are both <a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-url" id="ref-for-potentially-trustworthy-url">potentially
+      trustworthy URLs</a>, or
+     <li>whose <a data-link-type="dfn" href="#referrerurl" id="ref-for-referrerurl③">referrerURL</a> is a non-<a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-url" id="ref-for-potentially-trustworthy-url①">potentially trustworthy URL</a>.
+    </ul>
+    <p>Requests whose <a data-link-type="dfn" href="#referrerurl" id="ref-for-referrerurl④">referrerURL</a> is a <a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-url" id="ref-for-potentially-trustworthy-url②">potentially trustworthy URL</a> and whose <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-current-url" id="ref-for-concept-request-current-url②">current URL</a> is a non-<a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-url" id="ref-for-potentially-trustworthy-url③">potentially trustworthy URL</a> on the other hand, will
+  contain no referrer information. A <code><a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2" id="ref-for-section-5.5.2⑤">Referer</a></code> HTTP header will not be sent.</p>
     <div class="example" id="example-8ec274c6">
-     <a class="self-link" href="#example-8ec274c6"></a> If a document at <code>https://example.com/page.html</code> sets a policy of <a data-link-type="dfn" href="#referrer-policy-no-referrer-when-downgrade" id="ref-for-referrer-policy-no-referrer-when-downgrade①">"<code>no-referrer-when-downgrade</code>"</a>, then navigations to <code>https://not.example.com/</code> would send a <code><a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2" id="ref-for-section-5.5.2⑤">Referer</a></code> HTTP header with a value of <code>https://example.com/page.html</code>, as neither resource’s origin is a
-    non-<a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-url" id="ref-for-potentially-trustworthy-url②">potentially trustworthy URL</a>. 
-     <p>Navigations from that same page to <code><strong>http</strong>://not.example.com/</code> would send no <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2" id="ref-for-section-5.5.2⑥"><code>Referer</code></a> header.</p>
+     <a class="self-link" href="#example-8ec274c6"></a> If a document at <code>https://example.com/page.html</code> sets a policy of <a data-link-type="dfn" href="#referrer-policy-no-referrer-when-downgrade" id="ref-for-referrer-policy-no-referrer-when-downgrade①">"<code>no-referrer-when-downgrade</code>"</a>, then navigations to <code>https://not.example.com/</code> would send a <code><a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2" id="ref-for-section-5.5.2⑥">Referer</a></code> HTTP header with a value of <code>https://example.com/page.html</code>, as neither resource’s origin is a
+    non-<a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-url" id="ref-for-potentially-trustworthy-url④">potentially trustworthy URL</a>. 
+     <p>Navigations from that same page to <code><strong>http</strong>://not.example.com/</code> would send no <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2" id="ref-for-section-5.5.2⑦"><code>Referer</code></a> header.</p>
     </div>
     <p>This is a user agent’s default behavior, if no policy is otherwise specified.</p>
     <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-export data-level="3.3" data-lt="&quot;same-origin&quot;" id="referrer-policy-same-origin"><span class="secno">3.3. </span><span class="content">"<code>same-origin</code>"</span></h3>
-    <p>The <a data-link-type="dfn" href="#referrer-policy-same-origin" id="ref-for-referrer-policy-same-origin">"<code>same-origin</code>"</a> policy specifies that a
-  full URL, <a href="#strip-url">stripped for use as a referrer</a>, is sent as
-  referrer information when making <a data-link-type="dfn" href="#same-origin-request" id="ref-for-same-origin-request①">same-origin requests</a> from a particular <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-client" id="ref-for-concept-request-client⑤">client</a>.</p>
-    <p><a data-link-type="dfn" href="#cross-origin-request" id="ref-for-cross-origin-request">Cross-origin requests</a>, on the other hand, will contain no
-  referrer information. A <code><a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2" id="ref-for-section-5.5.2⑦">Referer</a></code> HTTP header will not be
+    <p>The <a data-link-type="dfn" href="#referrer-policy-same-origin" id="ref-for-referrer-policy-same-origin">"<code>same-origin</code>"</a> policy specifies that a request’s full <a data-link-type="dfn" href="#referrerurl" id="ref-for-referrerurl⑤">referrerURL</a> is
+  sent as referrer information when making <a data-link-type="dfn" href="#same-origin-referrer-request" id="ref-for-same-origin-referrer-request①">same-origin-referrer requests</a>.</p>
+    <p><a data-link-type="dfn" href="#cross-origin-referrer-request" id="ref-for-cross-origin-referrer-request">Cross-origin-referrer requests</a>, on the other hand, will contain no
+  referrer information. A <code><a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2" id="ref-for-section-5.5.2⑧">Referer</a></code> HTTP header will not be
   sent.</p>
     <div class="example" id="example-44f75544">
-     <a class="self-link" href="#example-44f75544"></a> If a document at <code>https://example.com/page.html</code> sets a policy of <a data-link-type="dfn" href="#referrer-policy-same-origin" id="ref-for-referrer-policy-same-origin①">"<code>same-origin</code>"</a>, then navigations to <code>https://example.com/not-page.html</code> would send a <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2" id="ref-for-section-5.5.2⑧"><code>Referer</code></a> header with a value of <code>https://example.com/page.html</code>. 
-     <p>Navigations from that same page to <code>https://<strong>not</strong>.example.com/</code> would send no <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2" id="ref-for-section-5.5.2⑨"><code>Referer</code></a> header.</p>
+     <a class="self-link" href="#example-44f75544"></a> If a document at <code>https://example.com/page.html</code> sets a policy of <a data-link-type="dfn" href="#referrer-policy-same-origin" id="ref-for-referrer-policy-same-origin①">"<code>same-origin</code>"</a>, then navigations to <code>https://example.com/not-page.html</code> would send a <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2" id="ref-for-section-5.5.2⑨"><code>Referer</code></a> header with a value of <code>https://example.com/page.html</code>. 
+     <p>Navigations from that same page to <code>https://<strong>not</strong>.example.com/</code> would send no <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2" id="ref-for-section-5.5.2①⓪"><code>Referer</code></a> header.</p>
+    </div>
+    <div class="example" id="example-3fe4937f">
+     <a class="self-link" href="#example-3fe4937f"></a> If a document at <code>https://example.com/page.html</code> sets a policy of <a data-link-type="dfn" href="#referrer-policy-same-origin" id="ref-for-referrer-policy-same-origin②">"<code>same-origin</code>"</a>, and fetches a module script at <code>https://script.example.com</code>, which then fetches a descendant script
+    at <code>https://example.com/descendant.js</code>, the request for the descendant
+    script would send no <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2" id="ref-for-section-5.5.2①①"><code>Referer</code></a> header. 
+     <p>This is because the descendant script request’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-current-url" id="ref-for-concept-request-current-url③">current URL</a> is <code>https://example.com/descendant.js</code>, while its <a data-link-type="dfn" href="#referrerurl" id="ref-for-referrerurl⑥">referrerURL</a> is <code>https://script.example.com</code>, making the request <a data-link-type="dfn" href="#cross-origin-referrer-request" id="ref-for-cross-origin-referrer-request①">cross-origin-referrer</a>.</p>
     </div>
     <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-export data-level="3.4" data-lt="&quot;origin&quot;" id="referrer-policy-origin"><span class="secno">3.4. </span><span class="content">"<code>origin</code>"</span><span id="referrer-policy-state-origin"></span></h3>
-    <p>The <a data-link-type="dfn" href="#referrer-policy-origin" id="ref-for-referrer-policy-origin">"<code>origin</code>"</a> policy specifies that only the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#ascii-serialisation-of-an-origin" id="ref-for-ascii-serialisation-of-an-origin">ASCII serialization</a> of the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-settings-object-origin" id="ref-for-concept-settings-object-origin">origin</a> of the <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-client" id="ref-for-concept-request-client⑥">request client</a> is sent as referrer information
-  when making both <a data-link-type="dfn" href="#same-origin-request" id="ref-for-same-origin-request②">same-origin requests</a> and <a data-link-type="dfn" href="#cross-origin-request" id="ref-for-cross-origin-request①">cross-origin requests</a> from a particular <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-client" id="ref-for-concept-request-client⑦">client</a>.</p>
-    <p class="note" role="note"><span>Note:</span> The serialization of an origin looks like <code>https://example.com</code>. To ensure that a valid URL is sent in the
-  `<code>Referer</code>` header, user agents will append a U+002F SOLIDUS
-  ("<code>/</code>") character to the origin (e.g. <code>https://example.com/</code>).</p>
-    <p class="note" role="note"><span>Note:</span> The <a data-link-type="dfn" href="#referrer-policy-origin" id="ref-for-referrer-policy-origin①">"<code>origin</code>"</a> policy causes the origin of HTTPS
+    <p>The <a data-link-type="dfn" href="#referrer-policy-origin" id="ref-for-referrer-policy-origin">"<code>origin</code>"</a> policy specifies that only the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#ascii-serialisation-of-an-origin" id="ref-for-ascii-serialisation-of-an-origin">ASCII serialization</a> of the request’s <a data-link-type="dfn" href="#referrerurl" id="ref-for-referrerurl⑦">referrerURL</a> is sent as referrer information when making both <a data-link-type="dfn" href="#same-origin-referrer-request" id="ref-for-same-origin-referrer-request②">same-origin-referrer
+  requests</a> and <a data-link-type="dfn" href="#cross-origin-referrer-request" id="ref-for-cross-origin-referrer-request②">cross-origin-referrer requests</a>.</p>
+    <p class="note" role="note"><span>Note:</span> The serialization of an origin looks like <code>https://example.com</code>.
+  To ensure that a valid URL is sent in the `<code>Referer</code>` header, user
+  agents will append a U+002F SOLIDUS ("<code>/</code>") character to the origin
+  (e.g. <code>https://example.com/</code>).</p>
+    <p class="note" role="note"><span>Note:</span> The <a data-link-type="dfn" href="#referrer-policy-origin" id="ref-for-referrer-policy-origin①">"<code>origin</code>"</a> policy allows the origin of HTTPS
   referrers to be sent over the network as part of unencrypted HTTP requests.
   The <a data-link-type="dfn" href="#referrer-policy-strict-origin" id="ref-for-referrer-policy-strict-origin">"<code>strict-origin</code>"</a> policy addresses this concern.</p>
-    <div class="example" id="example-5d156f10"><a class="self-link" href="#example-5d156f10"></a> If a document at <code>https://example.com/page.html</code> sets a policy of <a data-link-type="dfn" href="#referrer-policy-origin" id="ref-for-referrer-policy-origin②">"<code>origin</code>"</a>, then navigations to any <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#concept-origin" id="ref-for-concept-origin②">origin</a> would send a <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2" id="ref-for-section-5.5.2①⓪"><code>Referer</code></a> header with a value
-    of <code>https://example.com/</code>, even to URLs that are not <a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-url" id="ref-for-potentially-trustworthy-url③">potentially trustworthy URL</a>. </div>
+    <div class="example" id="example-5d156f10"><a class="self-link" href="#example-5d156f10"></a> If a document at <code>https://example.com/page.html</code> sets a policy of <a data-link-type="dfn" href="#referrer-policy-origin" id="ref-for-referrer-policy-origin②">"<code>origin</code>"</a>, then navigations to any <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#concept-origin" id="ref-for-concept-origin①">origin</a> would send a <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2" id="ref-for-section-5.5.2①②"><code>Referer</code></a> header with a value
+    of <code>https://example.com/</code>, even to URLs that are not <a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-url" id="ref-for-potentially-trustworthy-url⑤">potentially trustworthy URL</a>. </div>
+    <div class="example" id="example-8bfba7ab"><a class="self-link" href="#example-8bfba7ab"></a> If a document at <code>https://example.com/page.html</code> sets a policy of <a data-link-type="dfn" href="#referrer-policy-origin" id="ref-for-referrer-policy-origin③">"<code>origin</code>"</a>, and fetches a module script at <code>https://script.example.com</code>, which fetches a descendant script at <code>https://descendant.example.com</code>, the request for the descendant script
+    will send a <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2" id="ref-for-section-5.5.2①③"><code>Referer</code></a> header with a value of <code>https://script.example.com/</code>. </div>
     <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-export data-level="3.5" data-lt="&quot;strict-origin&quot;" id="referrer-policy-strict-origin"><span class="secno">3.5. </span><span class="content">"<code>strict-origin</code>"</span></h3>
-    <p>The <a data-link-type="dfn" href="#referrer-policy-strict-origin" id="ref-for-referrer-policy-strict-origin①">"<code>strict-origin</code>"</a> policy sends the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#ascii-serialisation-of-an-origin" id="ref-for-ascii-serialisation-of-an-origin①">ASCII serialization</a> of the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-settings-object-origin" id="ref-for-concept-settings-object-origin①">origin</a> of the <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-client" id="ref-for-concept-request-client⑧">request client</a> when making requests:</p>
+    <p>The <a data-link-type="dfn" href="#referrer-policy-strict-origin" id="ref-for-referrer-policy-strict-origin①">"<code>strict-origin</code>"</a> policy sends the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#ascii-serialisation-of-an-origin" id="ref-for-ascii-serialisation-of-an-origin①">ASCII serialization</a> of the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#concept-origin" id="ref-for-concept-origin②">origin</a> of the <a data-link-type="dfn" href="#referrerurl" id="ref-for-referrerurl⑧">referrerURL</a> for requests:</p>
     <ul>
-     <li>from an <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#environment-settings-object" id="ref-for-environment-settings-object⑤">environment settings object</a> whose <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#https-state" id="ref-for-https-state③">HTTPS state</a> is "`modern`" to a <a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-url" id="ref-for-potentially-trustworthy-url④">potentially trustworthy URL</a>, and
-     <li>from <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#environment-settings-object" id="ref-for-environment-settings-object⑥">environment settings objects</a> whose <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#https-state" id="ref-for-https-state④">HTTPS state</a> is not "`modern`" to
-          any <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#concept-origin" id="ref-for-concept-origin③">origin</a>.
+     <li>whose <a data-link-type="dfn" href="#referrerurl" id="ref-for-referrerurl⑨">referrerURL</a> and <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-current-url" id="ref-for-concept-request-current-url④">current URL</a> are both <a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-url" id="ref-for-potentially-trustworthy-url⑥">potentially
+      trustworthy URLs</a>, or
+     <li>whose <a data-link-type="dfn" href="#referrerurl" id="ref-for-referrerurl①⓪">referrerURL</a> is a non-<a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-url" id="ref-for-potentially-trustworthy-url⑦">potentially trustworthy URL</a>.
     </ul>
-    <p>Requests from <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-client" id="ref-for-concept-request-client⑨">request clients</a> whose <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#https-state" id="ref-for-https-state⑤">HTTPS state</a> is "`modern`"
-  to non-<a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-url" id="ref-for-potentially-trustworthy-url⑤">potentially trustworthy URL</a>s, on the other hand, will contain no
-  referrer information. A <code><a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2" id="ref-for-section-5.5.2①①">Referer</a></code> HTTP header will not be
-  sent.</p>
+    <p>Requests whose <a data-link-type="dfn" href="#referrerurl" id="ref-for-referrerurl①①">referrerURL</a> is a <a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-url" id="ref-for-potentially-trustworthy-url⑧">potentially trustworthy URL</a> and whose <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-current-url" id="ref-for-concept-request-current-url⑤">current URL</a> is a non-<a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-url" id="ref-for-potentially-trustworthy-url⑨">potentially trustworthy URL</a> on the other hand, will
+  contain no referrer information. A <code><a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2" id="ref-for-section-5.5.2①④">Referer</a></code> HTTP header will not be sent.</p>
     <div class="example" id="example-108b15a6">
-     <a class="self-link" href="#example-108b15a6"></a> If a document at <code>https://example.com/page.html</code> sets a policy of <a data-link-type="dfn" href="#referrer-policy-strict-origin" id="ref-for-referrer-policy-strict-origin②">"<code>strict-origin</code>"</a>, then navigations to <code>https://<strong>not</strong>.example.com</code> would send a <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2" id="ref-for-section-5.5.2①②"><code>Referer</code></a> header with a value of <code>https://example.com/</code>. 
-     <p>Navigations from that same page to <code><strong>http://</strong>not.example.com</code> would send no <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2" id="ref-for-section-5.5.2①③"><code>Referer</code></a> header.</p>
+     <a class="self-link" href="#example-108b15a6"></a> If a document at <code>https://example.com/page.html</code> sets a policy of <a data-link-type="dfn" href="#referrer-policy-strict-origin" id="ref-for-referrer-policy-strict-origin②">"<code>strict-origin</code>"</a>, then navigations to <code>https://<strong>not</strong>.example.com</code> would send a <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2" id="ref-for-section-5.5.2①⑤"><code>Referer</code></a> header with a value of <code>https://example.com/</code>. 
+     <p>Navigations from that same page to <code><strong>http://</strong>not.example.com</code> would send no <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2" id="ref-for-section-5.5.2①⑥"><code>Referer</code></a> header.</p>
     </div>
-    <div class="example" id="example-d8f9ca3f"><a class="self-link" href="#example-d8f9ca3f"></a> If a document at <code>http://example.com/page.html</code> sets a policy of <a data-link-type="dfn" href="#referrer-policy-strict-origin" id="ref-for-referrer-policy-strict-origin③">"<code>strict-origin</code>"</a>, then navigations to <code>http://<strong>not</strong>.example.com</code> or <code><strong>https</strong>://example.com</code> would send a <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2" id="ref-for-section-5.5.2①④"><code>Referer</code></a> header with a value of <code>http://example.com/</code>. </div>
+    <div class="example" id="example-d8f9ca3f"><a class="self-link" href="#example-d8f9ca3f"></a> If a document at <code>http://example.com/page.html</code> sets a policy of <a data-link-type="dfn" href="#referrer-policy-strict-origin" id="ref-for-referrer-policy-strict-origin③">"<code>strict-origin</code>"</a>, then navigations to <code>http://<strong>not</strong>.example.com</code> or <code><strong>https</strong>://example.com</code> would send a <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2" id="ref-for-section-5.5.2①⑦"><code>Referer</code></a> header with a value of <code>http://example.com/</code>. </div>
+    <div class="example" id="example-fc40d708"><a class="self-link" href="#example-fc40d708"></a> If a document at <code>http://example.com/page.html</code> sets a policy of <a data-link-type="dfn" href="#referrer-policy-strict-origin" id="ref-for-referrer-policy-strict-origin④">"<code>strict-origin</code>"</a>, and fetches a module script at <code><strong>https</strong>://script.example.com</code>, which then fetches a
+    descendant script at <code><strong>http</strong>://descendant.example.com</code>,
+    the request to the descendant script would not send a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/semantics.html#meta-referrer" id="ref-for-meta-referrer"><code>Referrer</code></a> header. </div>
     <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-export data-level="3.6" data-lt="&quot;origin-when-cross-origin&quot;" id="referrer-policy-origin-when-cross-origin"><span class="secno">3.6. </span><span class="content">"<code>origin-when-cross-origin</code>"</span><span id="referrer-policy-state-origin-when-cross-origin"></span></h3>
-    <p>The <a data-link-type="dfn" href="#referrer-policy-origin-when-cross-origin" id="ref-for-referrer-policy-origin-when-cross-origin">"<code>origin-when-cross-origin</code>"</a> policy specifies that a
-  full URL, <a href="#strip-url">stripped for use as a referrer</a>, is sent as
-  referrer information when making <a data-link-type="dfn" href="#same-origin-request" id="ref-for-same-origin-request③">same-origin requests</a> from a particular <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-client" id="ref-for-concept-request-client①⓪">request client</a>, and only the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#ascii-serialisation-of-an-origin" id="ref-for-ascii-serialisation-of-an-origin②">ASCII serialization</a> of the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-settings-object-origin" id="ref-for-concept-settings-object-origin②">origin</a> of the <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-client" id="ref-for-concept-request-client①①">request client</a> is sent as referrer information
-  when making <a data-link-type="dfn" href="#cross-origin-request" id="ref-for-cross-origin-request②">cross-origin requests</a> from a particular <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-client" id="ref-for-concept-request-client①②">client</a>.</p>
+    <p>The <a data-link-type="dfn" href="#referrer-policy-origin-when-cross-origin" id="ref-for-referrer-policy-origin-when-cross-origin">"<code>origin-when-cross-origin</code>"</a> policy specifies that a request’s full <a data-link-type="dfn" href="#referrerurl" id="ref-for-referrerurl①②">referrerURL</a> is sent as referrer information when making <a data-link-type="dfn" href="#same-origin-referrer-request" id="ref-for-same-origin-referrer-request③">same-origin-referrer requests</a>,
+  and only the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#ascii-serialisation-of-an-origin" id="ref-for-ascii-serialisation-of-an-origin②">ASCII serialization</a> of the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#concept-origin" id="ref-for-concept-origin③">origin</a> of the request’s <a data-link-type="dfn" href="#referrerurl" id="ref-for-referrerurl①③">referrerURL</a> is sent as referrer information when making <a data-link-type="dfn" href="#cross-origin-referrer-request" id="ref-for-cross-origin-referrer-request③">cross-origin-referrer requests</a>.</p>
     <p class="note" role="note"><span>Note:</span> For the <a data-link-type="dfn" href="#referrer-policy-origin-when-cross-origin" id="ref-for-referrer-policy-origin-when-cross-origin①">"<code>origin-when-cross-origin</code>"</a> policy, we also
-  consider protocol upgrades, e.g. requests from <code>http://example.com/</code> to <code>https://example.com/</code>, to be <a data-link-type="dfn" href="#cross-origin-request" id="ref-for-cross-origin-request③">cross-origin requests</a>.</p>
-    <p class="note" role="note"><span>Note:</span> The <a data-link-type="dfn" href="#referrer-policy-origin-when-cross-origin" id="ref-for-referrer-policy-origin-when-cross-origin②">"<code>origin-when-cross-origin</code>"</a> policy causes the
+  consider protocol upgrades, e.g. requests from <code>http://example.com/</code> to <code>https://example.com/</code>, to be <a data-link-type="dfn" href="#cross-origin-referrer-request" id="ref-for-cross-origin-referrer-request④">cross-origin-referrer requests</a>.</p>
+    <p class="note" role="note"><span>Note:</span> The <a data-link-type="dfn" href="#referrer-policy-origin-when-cross-origin" id="ref-for-referrer-policy-origin-when-cross-origin②">"<code>origin-when-cross-origin</code>"</a> policy allows the
   origin of HTTPS referrers to be sent over the network as part of unencrypted
   HTTP requests. The <a data-link-type="dfn" href="#referrer-policy-strict-origin-when-cross-origin" id="ref-for-referrer-policy-strict-origin-when-cross-origin">"<code>strict-origin-when-cross-origin</code>"</a> policy
   addresses this concern.</p>
     <div class="example" id="example-f8a49432">
-     <a class="self-link" href="#example-f8a49432"></a> If a document at <code>https://example.com/page.html</code> sets a policy of <a data-link-type="dfn" href="#referrer-policy-origin-when-cross-origin" id="ref-for-referrer-policy-origin-when-cross-origin③">"<code>origin-when-cross-origin</code>"</a>, then navigations to <code>https://example.com/not-page.html</code> would send a <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2" id="ref-for-section-5.5.2①⑤"><code>Referer</code></a> header with a value of <code>https://example.com/page.html</code>. 
-     <p>Navigations from that same page to <code>https://not.example.com/</code> would send a <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2" id="ref-for-section-5.5.2①⑥"><code>Referer</code></a> header with a value of <code>https://example.com/</code>, even to URLs that are not <a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-url" id="ref-for-potentially-trustworthy-url⑥">potentially trustworthy URL</a>s.</p>
+     <a class="self-link" href="#example-f8a49432"></a> If a document at <code>https://example.com/page.html</code> sets a policy of <a data-link-type="dfn" href="#referrer-policy-origin-when-cross-origin" id="ref-for-referrer-policy-origin-when-cross-origin③">"<code>origin-when-cross-origin</code>"</a>, then navigations to <code>https://example.com/not-page.html</code> would send a <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2" id="ref-for-section-5.5.2①⑧"><code>Referer</code></a> header with a value of <code>https://example.com/page.html</code>. 
+     <p>Navigations from that same page to <code>https://not.example.com/</code> would send a <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2" id="ref-for-section-5.5.2①⑨"><code>Referer</code></a> header with a value of <code>https://example.com/</code>, even to URLs that are not <a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-url" id="ref-for-potentially-trustworthy-url①⓪">potentially trustworthy URL</a>s.</p>
     </div>
+    <div class="example" id="example-41a40bff"><a class="self-link" href="#example-41a40bff"></a> If a document at <code>https://example-1.com</code> sets a policy of <a data-link-type="dfn" href="#referrer-policy-origin-when-cross-origin" id="ref-for-referrer-policy-origin-when-cross-origin④">"<code>origin-when-cross-origin</code>"</a>, and fetches a module script at <code>https://example-2.com/module.js</code>, which then fetches a descendant script at <code>https://example-1.com/descendant.js</code>, the request to the descendant script would
+    send a <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2" id="ref-for-section-5.5.2②⓪"><code>Referer</code></a> header with a value of <code>https://example-2.com/</code>. </div>
+    <div class="example" id="example-c7b9549d"><a class="self-link" href="#example-c7b9549d"></a> If a document at <code>https://example-1.com</code> sets a policy of <a data-link-type="dfn" href="#referrer-policy-origin-when-cross-origin" id="ref-for-referrer-policy-origin-when-cross-origin⑤">"<code>origin-when-cross-origin</code>"</a>, and fetches a module script at <code>https://example-2.com/module.js</code>, which then fetches a descendant script at <code>https://example-2.com/descendant.js</code>, the request to the descendant script would
+    send a <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2" id="ref-for-section-5.5.2②①"><code>Referer</code></a> header with a value of <code>https://example-2.com/module.js</code>. </div>
     <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-export data-level="3.7" data-lt="&quot;strict-origin-when-cross-origin&quot;" id="referrer-policy-strict-origin-when-cross-origin"><span class="secno">3.7. </span><span class="content">"<code>strict-origin-when-cross-origin</code>"</span></h3>
-    <p>The <a data-link-type="dfn" href="#referrer-policy-strict-origin-when-cross-origin" id="ref-for-referrer-policy-strict-origin-when-cross-origin①">"<code>strict-origin-when-cross-origin</code>"</a> policy specifies that a
-  full URL, <a href="#strip-url">stripped for use as a referrer</a>, is sent as
-  referrer information when making <a data-link-type="dfn" href="#same-origin-request" id="ref-for-same-origin-request④">same-origin requests</a> from a particular <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-client" id="ref-for-concept-request-client①③">request client</a>, and only the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#ascii-serialisation-of-an-origin" id="ref-for-ascii-serialisation-of-an-origin③">ASCII serialization</a> of the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-settings-object-origin" id="ref-for-concept-settings-object-origin③">origin</a> of the <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-client" id="ref-for-concept-request-client①④">request client</a> when making <a data-link-type="dfn" href="#cross-origin-request" id="ref-for-cross-origin-request④">cross-origin requests</a>:</p>
+    <p>The <a data-link-type="dfn" href="#referrer-policy-strict-origin-when-cross-origin" id="ref-for-referrer-policy-strict-origin-when-cross-origin①">"<code>strict-origin-when-cross-origin</code>"</a> policy specifies that a request’s full <a data-link-type="dfn" href="#referrerurl" id="ref-for-referrerurl①④">referrerURL</a> is sent as referrer information when making <a data-link-type="dfn" href="#same-origin-referrer-request" id="ref-for-same-origin-referrer-request④">same-origin-referrer requests</a>,
+  and only the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#ascii-serialisation-of-an-origin" id="ref-for-ascii-serialisation-of-an-origin③">ASCII serialization</a> of the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#concept-origin" id="ref-for-concept-origin④">origin</a> of the request’s <a data-link-type="dfn" href="#referrerurl" id="ref-for-referrerurl①⑤">referrerURL</a> when making <a data-link-type="dfn" href="#cross-origin-referrer-request" id="ref-for-cross-origin-referrer-request⑤">cross-origin-referrer requests</a>:</p>
     <ul>
-     <li>from a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#environment-settings-object" id="ref-for-environment-settings-object⑦">environment settings object</a> whose <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#https-state" id="ref-for-https-state⑥">HTTPS state</a> is "`modern`" to a <a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-url" id="ref-for-potentially-trustworthy-url⑦">potentially trustworthy URL</a>, and
-     <li>from <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#environment-settings-object" id="ref-for-environment-settings-object⑧">environment settings objects</a> whose <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#https-state" id="ref-for-https-state⑦">HTTPS state</a> is not "`modern`" to
-          any <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#concept-origin" id="ref-for-concept-origin④">origin</a>.
+     <li>whose <a data-link-type="dfn" href="#referrerurl" id="ref-for-referrerurl①⑥">referrerURL</a> and <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-current-url" id="ref-for-concept-request-current-url⑥">current URL</a> are both <a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-url" id="ref-for-potentially-trustworthy-url①①">potentially
+      trustworthy URLs</a>, or
+     <li>whose <a data-link-type="dfn" href="#referrerurl" id="ref-for-referrerurl①⑦">referrerURL</a> is a non-<a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-url" id="ref-for-potentially-trustworthy-url①②">potentially trustworthy URL</a>.
     </ul>
-    <p>Requests from <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-client" id="ref-for-concept-request-client①⑤">clients</a> whose <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#https-state" id="ref-for-https-state⑧">HTTPS state</a> is "`modern`" to non- <a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-url" id="ref-for-potentially-trustworthy-url⑧">potentially trustworthy URL</a>s, on the other hand, will contain no
-  referrer information. A <code><a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2" id="ref-for-section-5.5.2①⑦">Referer</a></code> HTTP header will not be
-  sent.</p>
+    <p>Requests whose <a data-link-type="dfn" href="#referrerurl" id="ref-for-referrerurl①⑧">referrerURL</a> is a <a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-url" id="ref-for-potentially-trustworthy-url①③">potentially trustworthy URL</a> and whose <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-current-url" id="ref-for-concept-request-current-url⑦">current URL</a> is a non-<a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-url" id="ref-for-potentially-trustworthy-url①④">potentially trustworthy URL</a> on the other hand,
+  will contain no referrer information. A <code><a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2" id="ref-for-section-5.5.2②②">Referer</a></code> HTTP header will not be sent.</p>
     <div class="example" id="example-2e47c322">
-     <a class="self-link" href="#example-2e47c322"></a> If a document at <code>https://example.com/page.html</code> sets a policy of <a data-link-type="dfn" href="#referrer-policy-strict-origin-when-cross-origin" id="ref-for-referrer-policy-strict-origin-when-cross-origin②">"<code>strict-origin-when-cross-origin</code>"</a>, then navigations to <code>https://example.com/not-page.html</code> would send a <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2" id="ref-for-section-5.5.2①⑧"><code>Referer</code></a> header with a value of <code>https://example.com/page.html</code>. 
-     <p>Navigations from that same page to <code>https://not.example.com/</code> would send a <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2" id="ref-for-section-5.5.2①⑨"><code>Referer</code></a> header with a value of <code>https://example.com/</code>.</p>
-     <p>Navigations from that same page to <code><strong>http://</strong>not.example.com/</code> would send no <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2" id="ref-for-section-5.5.2②⓪"><code>Referer</code></a> header.</p>
+     <a class="self-link" href="#example-2e47c322"></a> If a document at <code>https://example.com/page.html</code> sets a policy of <a data-link-type="dfn" href="#referrer-policy-strict-origin-when-cross-origin" id="ref-for-referrer-policy-strict-origin-when-cross-origin②">"<code>strict-origin-when-cross-origin</code>"</a>, then navigations to <code>https://example.com/not-page.html</code> would send a <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2" id="ref-for-section-5.5.2②③"><code>Referer</code></a> header with a value of <code>https://example.com/page.html</code>. 
+     <p>Navigations from that same page to <code>https://not.example.com/</code> would send a <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2" id="ref-for-section-5.5.2②④"><code>Referer</code></a> header with a value of <code>https://example.com/</code>.</p>
+     <p>Navigations from that same page to <code><strong>http</strong>://not.example.com/</code> would send no <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2" id="ref-for-section-5.5.2②⑤"><code>Referer</code></a> header.</p>
     </div>
+    <div class="example" id="example-cd3b6758"><a class="self-link" href="#example-cd3b6758"></a> If a document at <code>https://example.com/page.html</code> sets a policy of <a data-link-type="dfn" href="#referrer-policy-strict-origin-when-cross-origin" id="ref-for-referrer-policy-strict-origin-when-cross-origin③">"<code>strict-origin-when-cross-origin</code>"</a>, and fetches a module script
+    at <code>https://script.example.com</code> which then fetches a descendant script at <code><strong>http</strong>://descendant.example.com</code>, the request to the descendant
+    script would send no <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2" id="ref-for-section-5.5.2②⑥"><code>Referer</code></a> header. </div>
     <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-export data-level="3.8" data-lt="&quot;unsafe-url&quot;" id="referrer-policy-unsafe-url"><span class="secno">3.8. </span><span class="content">"<code>unsafe-url</code>"</span><span id="referrer-policy-state-unsafe-url"></span></h3>
-    <p>The <a data-link-type="dfn" href="#referrer-policy-unsafe-url" id="ref-for-referrer-policy-unsafe-url">"<code>unsafe-url</code>"</a> policy specifies that a full URL, <a href="#strip-url">stripped for use as a referrer</a>, is sent along with
-  both <a data-link-type="dfn" href="#cross-origin-request" id="ref-for-cross-origin-request⑤">cross-origin requests</a> and <a data-link-type="dfn" href="#same-origin-request" id="ref-for-same-origin-request⑤">same-origin requests</a> made from
-  a particular <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-client" id="ref-for-concept-request-client①⑥">client</a>.</p>
+    <p>The <a data-link-type="dfn" href="#referrer-policy-unsafe-url" id="ref-for-referrer-policy-unsafe-url">"<code>unsafe-url</code>"</a> policy specifies that a request’s full <a data-link-type="dfn" href="#referrerurl" id="ref-for-referrerurl①⑨">referrerURL</a> is
+  sent along for both <a data-link-type="dfn" href="#same-origin-referrer-request" id="ref-for-same-origin-referrer-request⑤">same-origin-referrer requests</a> and <a data-link-type="dfn" href="#cross-origin-referrer-request" id="ref-for-cross-origin-referrer-request⑥">cross-origin-referrer requests</a>.</p>
     <div class="example" id="example-56375f3a"><a class="self-link" href="#example-56375f3a"></a> If a document at <code>https://example.com/sekrit.html</code> sets a policy
-    of <a data-link-type="dfn" href="#referrer-policy-unsafe-url" id="ref-for-referrer-policy-unsafe-url①">"<code>unsafe-url</code>"</a>, then navigations to <code>http://not.example.com/</code> (and every other origin) would send a <code><a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2" id="ref-for-section-5.5.2②①">Referer</a></code> HTTP header with a value of <code>https://example.com/sekrit.html</code>. </div>
+    of <a data-link-type="dfn" href="#referrer-policy-unsafe-url" id="ref-for-referrer-policy-unsafe-url①">"<code>unsafe-url</code>"</a>, then navigations to <code>http://not.example.com/</code> (and every other origin) would send a <code><a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2" id="ref-for-section-5.5.2②⑦">Referer</a></code> HTTP header with a value of <code>https://example.com/sekrit.html</code>. </div>
     <p class="note" role="note"><span>Note:</span> The policy’s name doesn’t lie; it is unsafe. This policy will leak
   origins and paths from secure resources to insecure origins.
   Carefully consider the impact of setting such a policy for potentially
@@ -1799,7 +1809,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <ul>
      <li> Via the <code>Referrer-Policy</code> HTTP header (defined
       in <a href="#referrer-policy-header">§ 4.1 Delivery via Referrer-Policy header</a>). 
-     <li> Via a <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/semantics.html#meta" id="ref-for-meta">meta</a></code> element with a <code><a data-link-type="element-sub" href="https://html.spec.whatwg.org/multipage/semantics.html#attr-meta-name" id="ref-for-attr-meta-name">name</a></code> of <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/semantics.html#meta-referrer" id="ref-for-meta-referrer"><code>referrer</code></a>. 
+     <li> Via a <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/semantics.html#meta" id="ref-for-meta">meta</a></code> element with a <code><a data-link-type="element-sub" href="https://html.spec.whatwg.org/multipage/semantics.html#attr-meta-name" id="ref-for-attr-meta-name">name</a></code> of <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/semantics.html#meta-referrer" id="ref-for-meta-referrer①"><code>referrer</code></a>. 
      <li> Via a <code>referrerpolicy</code> content attribute on an <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-a-element" id="ref-for-the-a-element③">a</a></code>, <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/image-maps.html#the-area-element" id="ref-for-the-area-element">area</a></code>, <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/embedded-content.html#the-img-element" id="ref-for-the-img-element">img</a></code>, <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/iframe-embed-object.html#the-iframe-element" id="ref-for-the-iframe-element">iframe</a></code>, <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/semantics.html#the-link-element" id="ref-for-the-link-element">link</a></code>, or <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/scripting.html#script" id="ref-for-script">script</a></code> element. 
      <li> Via the <code><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/semantics.html#link-type-noreferrer" id="ref-for-link-type-noreferrer②">noreferrer</a></code> link relation on an <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-a-element" id="ref-for-the-a-element④">a</a></code>, or <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/image-maps.html#the-area-element" id="ref-for-the-area-element①">area</a></code> element. 
      <li> Implicitly, via inheritance. 
@@ -1838,7 +1848,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <section class="informative">
      <h3 class="heading settled" data-level="4.2" id="referrer-policy-delivery-meta"><span class="secno">4.2. </span><span class="content">Delivery via <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/semantics.html#meta" id="ref-for-meta①">meta</a></code></span><a class="self-link" href="#referrer-policy-delivery-meta"></a></h3>
      <p><em>This section is not normative.</em></p>
-     <p>The HTML Standard defines the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/semantics.html#meta-referrer" id="ref-for-meta-referrer①"><code>referrer</code></a> keyword for the <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/semantics.html#meta" id="ref-for-meta②">meta</a></code> element, which allows setting the <a data-link-type="dfn" href="#referrer-policy" id="ref-for-referrer-policy⑦">referrer
+     <p>The HTML Standard defines the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/semantics.html#meta-referrer" id="ref-for-meta-referrer②"><code>referrer</code></a> keyword for the <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/semantics.html#meta" id="ref-for-meta②">meta</a></code> element, which allows setting the <a data-link-type="dfn" href="#referrer-policy" id="ref-for-referrer-policy⑦">referrer
     policy</a> via markup.</p>
     </section>
     <section class="informative">
@@ -1875,10 +1885,10 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <p>The HTML Standard determines the <a data-link-type="dfn" href="#referrer-policy" id="ref-for-referrer-policy⑨">referrer policy</a> of any response
   received during <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#navigate" id="ref-for-navigate">navigation</a> or while <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/workers.html#run-a-worker" id="ref-for-run-a-worker">running a worker</a>, and uses
   the result to set the resulting <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/dom.html#document" id="ref-for-document①">Document</a></code> or <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/workers.html#workerglobalscope" id="ref-for-workerglobalscope">WorkerGlobalScope</a></code>'s
-  referrer policy. This is later used by the corresponding <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#environment-settings-object" id="ref-for-environment-settings-object⑨">environment
-  settings object</a>, which serves as a <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-client" id="ref-for-concept-request-client①⑦">request client</a> for <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-fetch" id="ref-for-concept-fetch①">fetches</a> it initiates.</p>
+  referrer policy. This is later used by the corresponding <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#environment-settings-object" id="ref-for-environment-settings-object④">environment
+  settings object</a>, which serves as a <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-client" id="ref-for-concept-request-client②">request client</a> for <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-fetch" id="ref-for-concept-fetch①">fetches</a> it initiates.</p>
     <p class="note" role="note"><span>Note:</span> W3C HTML5 does not define the <code>referrerpolicy</code> content
-  attributes, or <code>referrerPolicy</code> IDL attributes, or the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/semantics.html#meta-referrer" id="ref-for-meta-referrer②"><code>referrer</code></a> keyword for <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/semantics.html#meta" id="ref-for-meta③">meta</a></code>, or the
+  attributes, or <code>referrerPolicy</code> IDL attributes, or the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/semantics.html#meta-referrer" id="ref-for-meta-referrer③"><code>referrer</code></a> keyword for <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/semantics.html#meta" id="ref-for-meta③">meta</a></code>, or the
   integration with navigation or running a worker. For this spec to make sense
   with W3C HTML5, those would need to be copied from <a data-link-type="biblio" href="#biblio-html">[HTML]</a>.</p>
    </section>
@@ -1943,7 +1953,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   either <code>no referrer</code> or a URL:</p>
     <ol>
      <li> Let <var>policy</var> be <var>request</var>’s associated <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-referrer-policy" id="ref-for-concept-request-referrer-policy⑦">referrer policy</a>. 
-     <li> Let <var>environment</var> be <var>request</var>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-client" id="ref-for-concept-request-client①⑧">client</a>. 
+     <li> Let <var>environment</var> be <var>request</var>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-client" id="ref-for-concept-request-client③">client</a>. 
      <li>
        Switch on <var>request</var>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-referrer" id="ref-for-concept-request-referrer④">referrer</a>: 
       <dl class="switch">
@@ -1970,81 +1980,64 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
       </dl>
       <p class="note" role="note"><span>Note:</span> If <var>request</var>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-referrer" id="ref-for-concept-request-referrer⑥">referrer</a> is
       "<code>no-referrer</code>", Fetch will not call into this algorithm.</p>
-     <li> Let <var>referrerURL</var> be the result of <a href="#strip-url">stripping <var>referrerSource</var> for use as a referrer.</a> 
+     <li> Let request’s <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="referrerurl">referrerURL</dfn> be the result of <a href="#strip-url">stripping <var>referrerSource</var> for use as a referrer.</a> 
      <li> Let <var>referrerOrigin</var> be the result of <a href="#strip-url">stripping <var>referrerSource</var> for use as a
       referrer</a>, with the <code><a data-link-type="dfn" href="#origin-only-flag" id="ref-for-origin-only-flag">origin-only flag</a></code> set to <code>true</code>. 
-     <li> If the result of <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-serializer" id="ref-for-concept-url-serializer">serializing</a> <var>referrerURL</var> is a string
-      whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#string-length" id="ref-for-string-length">length</a> is greater than 4096, set <var>referrerURL</var> to <var>referrerOrigin</var>. 
-     <li> The user agent MAY alter <var>referrerURL</var> or <var>referrerOrigin</var> at this point to
+     <li> If the result of <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-serializer" id="ref-for-concept-url-serializer">serializing</a> <a data-link-type="dfn" href="#referrerurl" id="ref-for-referrerurl②⓪">referrerURL</a> is a string whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#string-length" id="ref-for-string-length">length</a> is greater than 4096, set <span>referrerURL</span> to <var>referrerOrigin</var>. 
+     <li> The user agent MAY alter <a data-link-type="dfn" href="#referrerurl" id="ref-for-referrerurl②①">referrerURL</a> or <var>referrerOrigin</var> at this point to
       enforce arbitrary policy considerations in the interests of minimizing data leakage. For
       example, the user agent could strip the URL down to an origin, modify its <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-host" id="ref-for-concept-url-host">host</a>, replace it with an empty string, etc. 
      <li>
        Execute the statements corresponding to the value of <var>policy</var>: 
       <dl class="switch">
+        Note: If <var>request</var>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-referrer-policy" id="ref-for-concept-request-referrer-policy⑧">referrer policy</a> is
+        the empty string, Fetch will not call into this algorithm. 
        <dt><a data-link-type="dfn" href="#referrer-policy-no-referrer" id="ref-for-referrer-policy-no-referrer②">"<code>no-referrer</code>"</a>
        <dd>Return <code>no referrer</code>
-       <dt><a data-link-type="dfn" href="#referrer-policy-origin" id="ref-for-referrer-policy-origin③">"<code>origin</code>"</a>
+       <dt><a data-link-type="dfn" href="#referrer-policy-origin" id="ref-for-referrer-policy-origin④">"<code>origin</code>"</a>
        <dd>Return <var>referrerOrigin</var>
        <dt><a data-link-type="dfn" href="#referrer-policy-unsafe-url" id="ref-for-referrer-policy-unsafe-url②">"<code>unsafe-url</code>"</a>
-       <dd>Return <var>referrerURL</var>.
-       <dt><a data-link-type="dfn" href="#referrer-policy-strict-origin" id="ref-for-referrer-policy-strict-origin④">"<code>strict-origin</code>"</a>
+       <dd>Return <a data-link-type="dfn" href="#referrerurl" id="ref-for-referrerurl②②">referrerURL</a>.
+       <dt><a data-link-type="dfn" href="#referrer-policy-strict-origin" id="ref-for-referrer-policy-strict-origin⑤">"<code>strict-origin</code>"</a>
+       <dd>
+        <ol>
+         <li> If <a data-link-type="dfn" href="#referrerurl" id="ref-for-referrerurl②③">referrerURL</a> is a <a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-url" id="ref-for-potentially-trustworthy-url①⑤">potentially trustworthy URL</a> and <var>request</var>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-current-url" id="ref-for-concept-request-current-url⑧">current URL</a> is not a <a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-url" id="ref-for-potentially-trustworthy-url①⑥">potentially trustworthy URL</a>, then
+              return <code>no referrer</code>. 
+         <li>Return <var>referrerOrigin</var>. 
+        </ol>
+       <dt><a data-link-type="dfn" href="#referrer-policy-strict-origin-when-cross-origin" id="ref-for-referrer-policy-strict-origin-when-cross-origin④">"<code>strict-origin-when-cross-origin</code>"</a>
+       <dd>
+        <ol>
+         <li> If the <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-origin" id="ref-for-concept-url-origin②">origin</a> of <a data-link-type="dfn" href="#referrerurl" id="ref-for-referrerurl②④">referrerURL</a> and the <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-origin" id="ref-for-concept-url-origin③">origin</a> of <var>request</var>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-current-url" id="ref-for-concept-request-current-url⑨">current URL</a> are <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#same-origin" id="ref-for-same-origin①">the
+              same</a>, then return <a data-link-type="dfn" href="#referrerurl" id="ref-for-referrerurl②⑤">referrerURL</a>. 
+         <li> If <a data-link-type="dfn" href="#referrerurl" id="ref-for-referrerurl②⑥">referrerURL</a> is a <a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-url" id="ref-for-potentially-trustworthy-url①⑦">potentially trustworthy URL</a> and <var>request</var>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-current-url" id="ref-for-concept-request-current-url①⓪">current URL</a> is not a <a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-url" id="ref-for-potentially-trustworthy-url①⑧">potentially trustworthy URL</a>, then
+              return <code>no referrer</code>. 
+         <li>Return <var>referrerOrigin</var>. 
+        </ol>
+       <dt><a data-link-type="dfn" href="#referrer-policy-same-origin" id="ref-for-referrer-policy-same-origin③">"<code>same-origin</code>"</a>
        <dd>
         <ol>
          <li>
-           If <var>environment</var> is not null: 
-          <ol>
-           <li> If <var>environment</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#https-state" id="ref-for-https-state⑨">HTTPS state</a> is "`modern`" <em>and</em> <var>request</var>’s <a href="https://fetch.spec.whatwg.org/#concept-request-current-url" id="termref-for-">current
-                  URL</a> is not a <a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-url" id="ref-for-potentially-trustworthy-url⑨">potentially trustworthy
-                  URL</a>, then return <code>no referrer</code>. 
-          </ol>
-         <li>Return <var>referrerOrigin</var>. 
+           If the <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-origin" id="ref-for-concept-url-origin④">origin</a> of <a data-link-type="dfn" href="#referrerurl" id="ref-for-referrerurl②⑦">referrerURL</a> and the <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-origin" id="ref-for-concept-url-origin⑤">origin</a> of <var>request</var>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-current-url" id="ref-for-concept-request-current-url①①">current URL</a> are <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#same-origin" id="ref-for-same-origin②">the
+              same</a>, then return <a data-link-type="dfn" href="#referrerurl" id="ref-for-referrerurl②⑧">referrerURL</a>. 
+          <p class="note" role="note"><span>Note:</span> This same-origin check determines whether or not the request is <a data-link-type="dfn" href="#same-origin-referrer-request" id="ref-for-same-origin-referrer-request⑥">same-origin-referrer</a>.</p>
+         <li>Return <code>no referrer</code>. 
         </ol>
-       <dt><a data-link-type="dfn" href="#referrer-policy-strict-origin-when-cross-origin" id="ref-for-referrer-policy-strict-origin-when-cross-origin③">"<code>strict-origin-when-cross-origin</code>"</a>
+       <dt><a data-link-type="dfn" href="#referrer-policy-origin-when-cross-origin" id="ref-for-referrer-policy-origin-when-cross-origin⑥">"<code>origin-when-cross-origin</code>"</a>
        <dd>
         <ol>
-         <li> If <var>request</var> is a <a data-link-type="dfn" href="#same-origin-request" id="ref-for-same-origin-request⑥">same-origin request</a>, then
-              return <var>referrerURL</var>. 
-         <li>
-           If <var>environment</var> is not null: 
-          <ol>
-           <li>
-             If <var>environment</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#https-state" id="ref-for-https-state①⓪">HTTPS state</a> is "`modern`" <em>and</em> <var>request</var>’s <a href="https://fetch.spec.whatwg.org/#concept-request-current-url" id="termref-for-①">current
-                  URL</a> is not a <a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-url" id="ref-for-potentially-trustworthy-url①⓪">potentially trustworthy URL</a> 
-            <ol>
-             <li>Return <code>no referrer</code>. 
-            </ol>
-          </ol>
-         <li>Return <var>referrerOrigin</var>. 
-        </ol>
-       <dt><a data-link-type="dfn" href="#referrer-policy-same-origin" id="ref-for-referrer-policy-same-origin②">"<code>same-origin</code>"</a>
-       <dd>
-        <ol>
-         <li> If <var>request</var> is a <a data-link-type="dfn" href="#same-origin-request" id="ref-for-same-origin-request⑦">same-origin request</a>, then
-              return <var>referrerURL</var>. 
-         <li> Otherwise, return <code>no referrer</code>. 
-        </ol>
-       <dt><a data-link-type="dfn" href="#referrer-policy-origin-when-cross-origin" id="ref-for-referrer-policy-origin-when-cross-origin④">"<code>origin-when-cross-origin</code>"</a>
-       <dd>
-        <ol>
-         <li> If <var>request</var> is a <a data-link-type="dfn" href="#cross-origin-request" id="ref-for-cross-origin-request⑥">cross-origin request</a>, then
-              return <var>referrerOrigin</var>. 
-         <li> Otherwise, return <var>referrerURL</var>. 
+         <li> If the <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-origin" id="ref-for-concept-url-origin⑥">origin</a> of <a data-link-type="dfn" href="#referrerurl" id="ref-for-referrerurl②⑨">referrerURL</a> and the <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-origin" id="ref-for-concept-url-origin⑦">origin</a> of <var>request</var>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-current-url" id="ref-for-concept-request-current-url①②">current URL</a> are <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#same-origin" id="ref-for-same-origin③">the
+              same</a>, then return <a data-link-type="dfn" href="#referrerurl" id="ref-for-referrerurl③⓪">referrerURL</a>. 
+         <li> Return <var>referrerOrigin</var>. 
         </ol>
        <dt><a data-link-type="dfn" href="#referrer-policy-no-referrer-when-downgrade" id="ref-for-referrer-policy-no-referrer-when-downgrade④">"<code>no-referrer-when-downgrade</code>"</a>
        <dd>
         <ol>
-         <li>
-           If <var>environment</var> is not null: 
-          <ol>
-           <li> If <var>environment</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#https-state" id="ref-for-https-state①①">HTTPS state</a> is "`modern`" <em>and</em> <var>request</var>’s <a href="https://fetch.spec.whatwg.org/#concept-request-current-url" id="termref-for-②">current
-                  URL</a> is not a <a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-url" id="ref-for-potentially-trustworthy-url①①">potentially trustworthy
-                  URL</a>, then return <code>no referrer</code>. 
-          </ol>
-         <li>Return <var>referrerURL</var>. 
+         <li> If <a data-link-type="dfn" href="#referrerurl" id="ref-for-referrerurl③①">referrerURL</a> is a <a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-url" id="ref-for-potentially-trustworthy-url①⑨">potentially trustworthy URL</a> and <var>request</var>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-current-url" id="ref-for-concept-request-current-url①③">current URL</a> is not a <a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-url" id="ref-for-potentially-trustworthy-url②⓪">potentially trustworthy URL</a>, then
+              return <code>no referrer</code>. 
+         <li>Return <a data-link-type="dfn" href="#referrerurl" id="ref-for-referrerurl③②">referrerURL</a>. 
         </ol>
       </dl>
-      <p class="note" role="note"><span>Note:</span> Fetch will ensure <var>request</var>’s <a data-link-type="dfn" href="#referrer-policy" id="ref-for-referrer-policy①②">referrer policy</a> is not the
-      empty string before calling this algorithm.</p>
     </ol>
     <h3 class="heading settled" data-level="8.4" id="strip-url"><span class="secno">8.4. </span><span class="content"> Strip <var>url</var> for use as a referrer </span><a class="self-link" href="#strip-url"></a></h3>
     <p>Certain portions of URLs must not be included when sending a URL as the value
@@ -2078,22 +2071,22 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   agents from offering options to users which would change the information
   sent out via a `<code>Referer</code>` header. For instance, user agents
   MAY allow users to suppress the referrer header entirely, regardless of the
-  active <a data-link-type="dfn" href="#referrer-policy" id="ref-for-referrer-policy①③">referrer policy</a> on a page.</p>
+  active <a data-link-type="dfn" href="#referrer-policy" id="ref-for-referrer-policy①②">referrer policy</a> on a page.</p>
    </section>
    <section>
     <h2 class="heading settled" data-level="10" id="security"><span class="secno">10. </span><span class="content">Security Considerations</span><a class="self-link" href="#security"></a></h2>
     <h3 class="heading settled" data-level="10.1" id="information-leakage"><span class="secno">10.1. </span><span class="content">Information Leakage</span><a class="self-link" href="#information-leakage"></a></h3>
-    <p>The <a data-link-type="dfn" href="#referrer-policy" id="ref-for-referrer-policy①④">referrer policies</a> <a data-link-type="dfn" href="#referrer-policy-origin" id="ref-for-referrer-policy-origin④">"<code>origin</code>"</a>, <a data-link-type="dfn" href="#referrer-policy-origin-when-cross-origin" id="ref-for-referrer-policy-origin-when-cross-origin⑤">"<code>origin-when-cross-origin</code>"</a> and <a data-link-type="dfn" href="#referrer-policy-unsafe-url" id="ref-for-referrer-policy-unsafe-url③">"<code>unsafe-url</code>"</a> might leak the origin and the URL of
+    <p>The <a data-link-type="dfn" href="#referrer-policy" id="ref-for-referrer-policy①③">referrer policies</a> <a data-link-type="dfn" href="#referrer-policy-origin" id="ref-for-referrer-policy-origin⑤">"<code>origin</code>"</a>, <a data-link-type="dfn" href="#referrer-policy-origin-when-cross-origin" id="ref-for-referrer-policy-origin-when-cross-origin⑦">"<code>origin-when-cross-origin</code>"</a> and <a data-link-type="dfn" href="#referrer-policy-unsafe-url" id="ref-for-referrer-policy-unsafe-url③">"<code>unsafe-url</code>"</a> might leak the origin and the URL of
   a secure site respectively via insecure transport.</p>
     <p>Those three policies are included in the spec nevertheless to lower the friction
   of sites adopting secure transport.</p>
     <p>Authors wanting to ensure that they do not leak any more information than
-  the default policy should instead use the policy states <a data-link-type="dfn" href="#referrer-policy-same-origin" id="ref-for-referrer-policy-same-origin③">"<code>same-origin</code>"</a>, <a data-link-type="dfn" href="#referrer-policy-strict-origin" id="ref-for-referrer-policy-strict-origin⑤">"<code>strict-origin</code>"</a>, <a data-link-type="dfn" href="#referrer-policy-strict-origin-when-cross-origin" id="ref-for-referrer-policy-strict-origin-when-cross-origin④">"<code>strict-origin-when-cross-origin</code>"</a> or <a data-link-type="dfn" href="#referrer-policy-no-referrer" id="ref-for-referrer-policy-no-referrer③">"<code>no-referrer</code>"</a>.</p>
+  the default policy should instead use the policy states <a data-link-type="dfn" href="#referrer-policy-same-origin" id="ref-for-referrer-policy-same-origin④">"<code>same-origin</code>"</a>, <a data-link-type="dfn" href="#referrer-policy-strict-origin" id="ref-for-referrer-policy-strict-origin⑥">"<code>strict-origin</code>"</a>, <a data-link-type="dfn" href="#referrer-policy-strict-origin-when-cross-origin" id="ref-for-referrer-policy-strict-origin-when-cross-origin⑤">"<code>strict-origin-when-cross-origin</code>"</a> or <a data-link-type="dfn" href="#referrer-policy-no-referrer" id="ref-for-referrer-policy-no-referrer③">"<code>no-referrer</code>"</a>.</p>
     <h3 class="heading settled" data-level="10.2" id="downgrade"><span class="secno">10.2. </span><span class="content">Downgrade to less strict policies</span><a class="self-link" href="#downgrade"></a></h3>
     <p>The spec does not forbid downgrading to less strict policies, e.g., from <a data-link-type="dfn" href="#referrer-policy-no-referrer" id="ref-for-referrer-policy-no-referrer④">"<code>no-referrer</code>"</a> to <a data-link-type="dfn" href="#referrer-policy-unsafe-url" id="ref-for-referrer-policy-unsafe-url④">"<code>unsafe-url</code>"</a>.</p>
     <p>On the one hand, it is not clear which policy is more strict for all possible
   pairs of policies: While <a data-link-type="dfn" href="#referrer-policy-no-referrer-when-downgrade" id="ref-for-referrer-policy-no-referrer-when-downgrade⑤">"<code>no-referrer-when-downgrade</code>"</a> will
-  not leak any information over insecure transport, and <a data-link-type="dfn" href="#referrer-policy-origin" id="ref-for-referrer-policy-origin⑤">"<code>origin</code>"</a> will, the latter reveals less information
+  not leak any information over insecure transport, and <a data-link-type="dfn" href="#referrer-policy-origin" id="ref-for-referrer-policy-origin⑥">"<code>origin</code>"</a> will, the latter reveals less information
   across cross-origin navigations.</p>
     <p>On the other hand, allowing for setting less strict policies enables authors
   to define safe fallbacks as described in <a href="#unknown-policy-values">§ 11.1 Unknown Policy Values</a>.</p>
@@ -2101,14 +2094,14 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
    <section>
     <h2 class="heading settled" data-level="11" id="authoring"><span class="secno">11. </span><span class="content">Authoring Considerations</span><a class="self-link" href="#authoring"></a></h2>
     <h3 class="heading settled" data-level="11.1" id="unknown-policy-values"><span class="secno">11.1. </span><span class="content">Unknown Policy Values</span><a class="self-link" href="#unknown-policy-values"></a></h3>
-    <p>As described in <a href="#parse-referrer-policy-from-header">§ 8.1 Parse a referrer policy from a Referrer-Policy header</a> and in the <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/semantics.html#meta" id="ref-for-meta④">meta</a></code> <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/semantics.html#meta-referrer" id="ref-for-meta-referrer③"><code>referrer</code></a> algorithm, unknown
+    <p>As described in <a href="#parse-referrer-policy-from-header">§ 8.1 Parse a referrer policy from a Referrer-Policy header</a> and in the <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/semantics.html#meta" id="ref-for-meta④">meta</a></code> <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/semantics.html#meta-referrer" id="ref-for-meta-referrer④"><code>referrer</code></a> algorithm, unknown
   policy values will be ignored, and when multiple sources specify a
   referrer policy, the value of the latest one will be used. This makes
   it possible to deploy new policy values.</p>
     <div class="example" id="example-1ba8d4a5"><a class="self-link" href="#example-1ba8d4a5"></a> Suppose older user agents don’t understand
     the <a data-link-type="dfn" href="#referrer-policy-unsafe-url" id="ref-for-referrer-policy-unsafe-url⑤">"<code>unsafe-url</code>"</a> policy. A site can specify
-    an <a data-link-type="dfn" href="#referrer-policy-origin" id="ref-for-referrer-policy-origin⑥">"<code>origin</code>"</a> policy followed by an <a data-link-type="dfn" href="#referrer-policy-unsafe-url" id="ref-for-referrer-policy-unsafe-url⑥">"<code>unsafe-url</code>"</a> policy: older user agents will ignore the
-    unknown <a data-link-type="dfn" href="#referrer-policy-unsafe-url" id="ref-for-referrer-policy-unsafe-url⑦">"<code>unsafe-url</code>"</a> value and use <a data-link-type="dfn" href="#referrer-policy-origin" id="ref-for-referrer-policy-origin⑦">"<code>origin</code>"</a>, while newer user agents will use <a data-link-type="dfn" href="#referrer-policy-unsafe-url" id="ref-for-referrer-policy-unsafe-url⑧">"<code>unsafe-url</code>"</a> because it is the last to be processed. </div>
+    an <a data-link-type="dfn" href="#referrer-policy-origin" id="ref-for-referrer-policy-origin⑦">"<code>origin</code>"</a> policy followed by an <a data-link-type="dfn" href="#referrer-policy-unsafe-url" id="ref-for-referrer-policy-unsafe-url⑥">"<code>unsafe-url</code>"</a> policy: older user agents will ignore the
+    unknown <a data-link-type="dfn" href="#referrer-policy-unsafe-url" id="ref-for-referrer-policy-unsafe-url⑦">"<code>unsafe-url</code>"</a> value and use <a data-link-type="dfn" href="#referrer-policy-origin" id="ref-for-referrer-policy-origin⑧">"<code>origin</code>"</a>, while newer user agents will use <a data-link-type="dfn" href="#referrer-policy-unsafe-url" id="ref-for-referrer-policy-unsafe-url⑧">"<code>unsafe-url</code>"</a> because it is the last to be processed. </div>
     <div class="example" id="example-3966e12b">
      <a class="self-link" href="#example-3966e12b"></a> To specify multiple policy values in the Referrer-Policy header, a site can
     send multiple Referrer-Policy headers: 
@@ -2165,7 +2158,7 @@ Referrer-Policy: unsafe-url
   <h3 class="no-num no-ref heading settled" id="index-defined-here"><span class="content">Terms defined by this specification</span><a class="self-link" href="#index-defined-here"></a></h3>
   <ul class="index">
    <li><a href="#dom-referrerpolicy">""</a><span>, in §3</span>
-   <li><a href="#cross-origin-request">cross-origin request</a><span>, in §2</span>
+   <li><a href="#cross-origin-referrer-request">cross-origin-referrer request</a><span>, in §2</span>
    <li><a href="#determine-requests-referrer">Determine request’s Referrer</a><span>, in §8.2</span>
    <li><a href="#grammardef-extension-token">extension-token</a><span>, in §4.1</span>
    <li>
@@ -2203,13 +2196,14 @@ Referrer-Policy: unsafe-url
    <li><a href="#referrer-policy-header-dfn">Referrer-Policy</a><span>, in §4.1</span>
    <li><a href="#enumdef-referrerpolicy">ReferrerPolicy</a><span>, in §3</span>
    <li><a href="#referrer-policy-header-dfn">referrer-policy header</a><span>, in §4.1</span>
+   <li><a href="#referrerurl">referrerURL</a><span>, in §8.3</span>
    <li>
     "same-origin"
     <ul>
      <li><a href="#referrer-policy-same-origin">definition of</a><span>, in §3.2</span>
      <li><a href="#dom-referrerpolicy-same-origin">enum-value for ReferrerPolicy</a><span>, in §3</span>
     </ul>
-   <li><a href="#same-origin-request">same-origin request</a><span>, in §2</span>
+   <li><a href="#same-origin-referrer-request">same-origin-referrer request</a><span>, in §2</span>
    <li><a href="#set-requests-referrer-policy-on-redirect">Set request’s referrer policy on redirect</a><span>, in §8.1</span>
    <li>
     "strict-origin"
@@ -2290,16 +2284,8 @@ Referrer-Policy: unsafe-url
    <ul>
     <li><a href="#ref-for-concept-request-client">2. Key Concepts and Terminology</a>
     <li><a href="#ref-for-concept-request-client①">3. Referrer Policies</a>
-    <li><a href="#ref-for-concept-request-client②">3.1. "no-referrer"</a>
-    <li><a href="#ref-for-concept-request-client③">3.2. "no-referrer-when-downgrade"</a> <a href="#ref-for-concept-request-client④">(2)</a>
-    <li><a href="#ref-for-concept-request-client⑤">3.3. "same-origin"</a>
-    <li><a href="#ref-for-concept-request-client⑥">3.4. "origin"</a> <a href="#ref-for-concept-request-client⑦">(2)</a>
-    <li><a href="#ref-for-concept-request-client⑧">3.5. "strict-origin"</a> <a href="#ref-for-concept-request-client⑨">(2)</a>
-    <li><a href="#ref-for-concept-request-client①⓪">3.6. "origin-when-cross-origin"</a> <a href="#ref-for-concept-request-client①①">(2)</a> <a href="#ref-for-concept-request-client①②">(3)</a>
-    <li><a href="#ref-for-concept-request-client①③">3.7. "strict-origin-when-cross-origin"</a> <a href="#ref-for-concept-request-client①④">(2)</a> <a href="#ref-for-concept-request-client①⑤">(3)</a>
-    <li><a href="#ref-for-concept-request-client①⑥">3.8. "unsafe-url"</a>
-    <li><a href="#ref-for-concept-request-client①⑦">6. Integration with HTML</a>
-    <li><a href="#ref-for-concept-request-client①⑧">8.3. 
+    <li><a href="#ref-for-concept-request-client②">6. Integration with HTML</a>
+    <li><a href="#ref-for-concept-request-client③">8.3. 
     Determine request’s Referrer </a>
    </ul>
   </aside>
@@ -2307,8 +2293,12 @@ Referrer-Policy: unsafe-url
    <a href="https://fetch.spec.whatwg.org/#concept-request-current-url">https://fetch.spec.whatwg.org/#concept-request-current-url</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-concept-request-current-url">2. Key Concepts and Terminology</a>
-    <li><a href="#termref-for-">8.3. 
-    Determine request’s Referrer </a> <a href="#termref-for-">(2)</a> <a href="#termref-for-">(3)</a>
+    <li><a href="#ref-for-concept-request-current-url①">3.2. "no-referrer-when-downgrade"</a> <a href="#ref-for-concept-request-current-url②">(2)</a>
+    <li><a href="#ref-for-concept-request-current-url③">3.3. "same-origin"</a>
+    <li><a href="#ref-for-concept-request-current-url④">3.5. "strict-origin"</a> <a href="#ref-for-concept-request-current-url⑤">(2)</a>
+    <li><a href="#ref-for-concept-request-current-url⑥">3.7. "strict-origin-when-cross-origin"</a> <a href="#ref-for-concept-request-current-url⑦">(2)</a>
+    <li><a href="#ref-for-concept-request-current-url⑧">8.3. 
+    Determine request’s Referrer </a> <a href="#ref-for-concept-request-current-url⑨">(2)</a> <a href="#ref-for-concept-request-current-url①⓪">(3)</a> <a href="#ref-for-concept-request-current-url①①">(4)</a> <a href="#ref-for-concept-request-current-url①②">(5)</a> <a href="#ref-for-concept-request-current-url①③">(6)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-extract-header-list-values">
@@ -2339,12 +2329,6 @@ Referrer-Policy: unsafe-url
     Strip url for use as a referrer </a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="term-for-concept-request-origin">
-   <a href="https://fetch.spec.whatwg.org/#concept-request-origin">https://fetch.spec.whatwg.org/#concept-request-origin</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-concept-request-origin">2. Key Concepts and Terminology</a>
-   </ul>
-  </aside>
   <aside class="dfn-panel" data-for="term-for-concept-request-referrer">
    <a href="https://fetch.spec.whatwg.org/#concept-request-referrer">https://fetch.spec.whatwg.org/#concept-request-referrer</a><b>Referenced in:</b>
    <ul>
@@ -2361,7 +2345,7 @@ Referrer-Policy: unsafe-url
     <li><a href="#ref-for-concept-request-referrer-policy⑤">8.2. 
     Set request’s referrer policy on redirect </a>
     <li><a href="#ref-for-concept-request-referrer-policy⑥">8.3. 
-    Determine request’s Referrer </a> <a href="#ref-for-concept-request-referrer-policy⑦">(2)</a>
+    Determine request’s Referrer </a> <a href="#ref-for-concept-request-referrer-policy⑦">(2)</a> <a href="#ref-for-concept-request-referrer-policy⑧">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-concept-request">
@@ -2475,10 +2459,7 @@ Referrer-Policy: unsafe-url
    <ul>
     <li><a href="#ref-for-environment-settings-object">2. Key Concepts and Terminology</a> <a href="#ref-for-environment-settings-object①">(2)</a>
     <li><a href="#ref-for-environment-settings-object②">3. Referrer Policies</a> <a href="#ref-for-environment-settings-object③">(2)</a>
-    <li><a href="#ref-for-environment-settings-object④">3.2. "no-referrer-when-downgrade"</a>
-    <li><a href="#ref-for-environment-settings-object⑤">3.5. "strict-origin"</a> <a href="#ref-for-environment-settings-object⑥">(2)</a>
-    <li><a href="#ref-for-environment-settings-object⑦">3.7. "strict-origin-when-cross-origin"</a> <a href="#ref-for-environment-settings-object⑧">(2)</a>
-    <li><a href="#ref-for-environment-settings-object⑨">6. Integration with HTML</a>
+    <li><a href="#ref-for-environment-settings-object④">6. Integration with HTML</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-concept-url-fragment">
@@ -2493,16 +2474,6 @@ Referrer-Policy: unsafe-url
    <ul>
     <li><a href="#ref-for-concept-settings-object-global">8.3. 
     Determine request’s Referrer </a> <a href="#ref-for-concept-settings-object-global①">(2)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-https-state">
-   <a href="https://html.spec.whatwg.org/multipage/webappapis.html#https-state">https://html.spec.whatwg.org/multipage/webappapis.html#https-state</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-https-state">3.2. "no-referrer-when-downgrade"</a> <a href="#ref-for-https-state①">(2)</a> <a href="#ref-for-https-state②">(3)</a>
-    <li><a href="#ref-for-https-state③">3.5. "strict-origin"</a> <a href="#ref-for-https-state④">(2)</a> <a href="#ref-for-https-state⑤">(3)</a>
-    <li><a href="#ref-for-https-state⑥">3.7. "strict-origin-when-cross-origin"</a> <a href="#ref-for-https-state⑦">(2)</a> <a href="#ref-for-https-state⑧">(3)</a>
-    <li><a href="#ref-for-https-state⑨">8.3. 
-    Determine request’s Referrer </a> <a href="#ref-for-https-state①⓪">(2)</a> <a href="#ref-for-https-state①①">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-the-iframe-element">
@@ -2560,13 +2531,14 @@ Referrer-Policy: unsafe-url
     Determine request’s Referrer </a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="term-for-concept-settings-object-origin">
-   <a href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-settings-object-origin">https://html.spec.whatwg.org/multipage/webappapis.html#concept-settings-object-origin</a><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="term-for-concept-origin">
+   <a href="https://html.spec.whatwg.org/multipage/origin.html#concept-origin">https://html.spec.whatwg.org/multipage/origin.html#concept-origin</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-concept-settings-object-origin">3.4. "origin"</a>
-    <li><a href="#ref-for-concept-settings-object-origin①">3.5. "strict-origin"</a>
-    <li><a href="#ref-for-concept-settings-object-origin②">3.6. "origin-when-cross-origin"</a>
-    <li><a href="#ref-for-concept-settings-object-origin③">3.7. "strict-origin-when-cross-origin"</a>
+    <li><a href="#ref-for-concept-origin">3.1. "no-referrer"</a>
+    <li><a href="#ref-for-concept-origin①">3.4. "origin"</a>
+    <li><a href="#ref-for-concept-origin②">3.5. "strict-origin"</a>
+    <li><a href="#ref-for-concept-origin③">3.6. "origin-when-cross-origin"</a>
+    <li><a href="#ref-for-concept-origin④">3.7. "strict-origin-when-cross-origin"</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-presentational-hints">
@@ -2578,10 +2550,11 @@ Referrer-Policy: unsafe-url
   <aside class="dfn-panel" data-for="term-for-meta-referrer">
    <a href="https://html.spec.whatwg.org/multipage/semantics.html#meta-referrer">https://html.spec.whatwg.org/multipage/semantics.html#meta-referrer</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-meta-referrer">4. Referrer Policy Delivery</a>
-    <li><a href="#ref-for-meta-referrer①">4.2. Delivery via meta</a>
-    <li><a href="#ref-for-meta-referrer②">6. Integration with HTML</a>
-    <li><a href="#ref-for-meta-referrer③">11.1. Unknown Policy Values</a>
+    <li><a href="#ref-for-meta-referrer">3.5. "strict-origin"</a>
+    <li><a href="#ref-for-meta-referrer①">4. Referrer Policy Delivery</a>
+    <li><a href="#ref-for-meta-referrer②">4.2. Delivery via meta</a>
+    <li><a href="#ref-for-meta-referrer③">6. Integration with HTML</a>
+    <li><a href="#ref-for-meta-referrer④">11.1. Unknown Policy Values</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-concept-document-referrer-policy">
@@ -2614,6 +2587,8 @@ Referrer-Policy: unsafe-url
    <a href="https://html.spec.whatwg.org/multipage/origin.html#same-origin">https://html.spec.whatwg.org/multipage/origin.html#same-origin</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-same-origin">2. Key Concepts and Terminology</a>
+    <li><a href="#ref-for-same-origin①">8.3. 
+    Determine request’s Referrer </a> <a href="#ref-for-same-origin②">(2)</a> <a href="#ref-for-same-origin③">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-script">
@@ -2652,26 +2627,26 @@ Referrer-Policy: unsafe-url
    <ul>
     <li><a href="#ref-for-section-5.5.2">1. Introduction</a> <a href="#ref-for-section-5.5.2①">(2)</a>
     <li><a href="#ref-for-section-5.5.2②">2. Key Concepts and Terminology</a>
-    <li><a href="#ref-for-section-5.5.2③">3.1. "no-referrer"</a>
-    <li><a href="#ref-for-section-5.5.2④">3.2. "no-referrer-when-downgrade"</a> <a href="#ref-for-section-5.5.2⑤">(2)</a> <a href="#ref-for-section-5.5.2⑥">(3)</a>
-    <li><a href="#ref-for-section-5.5.2⑦">3.3. "same-origin"</a> <a href="#ref-for-section-5.5.2⑧">(2)</a> <a href="#ref-for-section-5.5.2⑨">(3)</a>
-    <li><a href="#ref-for-section-5.5.2①⓪">3.4. "origin"</a>
-    <li><a href="#ref-for-section-5.5.2①①">3.5. "strict-origin"</a> <a href="#ref-for-section-5.5.2①②">(2)</a> <a href="#ref-for-section-5.5.2①③">(3)</a> <a href="#ref-for-section-5.5.2①④">(4)</a>
-    <li><a href="#ref-for-section-5.5.2①⑤">3.6. "origin-when-cross-origin"</a> <a href="#ref-for-section-5.5.2①⑥">(2)</a>
-    <li><a href="#ref-for-section-5.5.2①⑦">3.7. "strict-origin-when-cross-origin"</a> <a href="#ref-for-section-5.5.2①⑧">(2)</a> <a href="#ref-for-section-5.5.2①⑨">(3)</a> <a href="#ref-for-section-5.5.2②⓪">(4)</a>
-    <li><a href="#ref-for-section-5.5.2②①">3.8. "unsafe-url"</a>
+    <li><a href="#ref-for-section-5.5.2③">3.1. "no-referrer"</a> <a href="#ref-for-section-5.5.2④">(2)</a>
+    <li><a href="#ref-for-section-5.5.2⑤">3.2. "no-referrer-when-downgrade"</a> <a href="#ref-for-section-5.5.2⑥">(2)</a> <a href="#ref-for-section-5.5.2⑦">(3)</a>
+    <li><a href="#ref-for-section-5.5.2⑧">3.3. "same-origin"</a> <a href="#ref-for-section-5.5.2⑨">(2)</a> <a href="#ref-for-section-5.5.2①⓪">(3)</a> <a href="#ref-for-section-5.5.2①①">(4)</a>
+    <li><a href="#ref-for-section-5.5.2①②">3.4. "origin"</a> <a href="#ref-for-section-5.5.2①③">(2)</a>
+    <li><a href="#ref-for-section-5.5.2①④">3.5. "strict-origin"</a> <a href="#ref-for-section-5.5.2①⑤">(2)</a> <a href="#ref-for-section-5.5.2①⑥">(3)</a> <a href="#ref-for-section-5.5.2①⑦">(4)</a>
+    <li><a href="#ref-for-section-5.5.2①⑧">3.6. "origin-when-cross-origin"</a> <a href="#ref-for-section-5.5.2①⑨">(2)</a> <a href="#ref-for-section-5.5.2②⓪">(3)</a> <a href="#ref-for-section-5.5.2②①">(4)</a>
+    <li><a href="#ref-for-section-5.5.2②②">3.7. "strict-origin-when-cross-origin"</a> <a href="#ref-for-section-5.5.2②③">(2)</a> <a href="#ref-for-section-5.5.2②④">(3)</a> <a href="#ref-for-section-5.5.2②⑤">(4)</a> <a href="#ref-for-section-5.5.2②⑥">(5)</a>
+    <li><a href="#ref-for-section-5.5.2②⑦">3.8. "unsafe-url"</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-potentially-trustworthy-url">
    <a href="https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-url">https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-url</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-potentially-trustworthy-url">3.2. "no-referrer-when-downgrade"</a> <a href="#ref-for-potentially-trustworthy-url①">(2)</a> <a href="#ref-for-potentially-trustworthy-url②">(3)</a>
-    <li><a href="#ref-for-potentially-trustworthy-url③">3.4. "origin"</a>
-    <li><a href="#ref-for-potentially-trustworthy-url④">3.5. "strict-origin"</a> <a href="#ref-for-potentially-trustworthy-url⑤">(2)</a>
-    <li><a href="#ref-for-potentially-trustworthy-url⑥">3.6. "origin-when-cross-origin"</a>
-    <li><a href="#ref-for-potentially-trustworthy-url⑦">3.7. "strict-origin-when-cross-origin"</a> <a href="#ref-for-potentially-trustworthy-url⑧">(2)</a>
-    <li><a href="#ref-for-potentially-trustworthy-url⑨">8.3. 
-    Determine request’s Referrer </a> <a href="#ref-for-potentially-trustworthy-url①⓪">(2)</a> <a href="#ref-for-potentially-trustworthy-url①①">(3)</a>
+    <li><a href="#ref-for-potentially-trustworthy-url">3.2. "no-referrer-when-downgrade"</a> <a href="#ref-for-potentially-trustworthy-url①">(2)</a> <a href="#ref-for-potentially-trustworthy-url②">(3)</a> <a href="#ref-for-potentially-trustworthy-url③">(4)</a> <a href="#ref-for-potentially-trustworthy-url④">(5)</a>
+    <li><a href="#ref-for-potentially-trustworthy-url⑤">3.4. "origin"</a>
+    <li><a href="#ref-for-potentially-trustworthy-url⑥">3.5. "strict-origin"</a> <a href="#ref-for-potentially-trustworthy-url⑦">(2)</a> <a href="#ref-for-potentially-trustworthy-url⑧">(3)</a> <a href="#ref-for-potentially-trustworthy-url⑨">(4)</a>
+    <li><a href="#ref-for-potentially-trustworthy-url①⓪">3.6. "origin-when-cross-origin"</a>
+    <li><a href="#ref-for-potentially-trustworthy-url①①">3.7. "strict-origin-when-cross-origin"</a> <a href="#ref-for-potentially-trustworthy-url①②">(2)</a> <a href="#ref-for-potentially-trustworthy-url①③">(3)</a> <a href="#ref-for-potentially-trustworthy-url①④">(4)</a>
+    <li><a href="#ref-for-potentially-trustworthy-url①⑤">8.3. 
+    Determine request’s Referrer </a> <a href="#ref-for-potentially-trustworthy-url①⑥">(2)</a> <a href="#ref-for-potentially-trustworthy-url①⑦">(3)</a> <a href="#ref-for-potentially-trustworthy-url①⑧">(4)</a> <a href="#ref-for-potentially-trustworthy-url①⑨">(5)</a> <a href="#ref-for-potentially-trustworthy-url②⓪">(6)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-concept-url-host">
@@ -2684,7 +2659,9 @@ Referrer-Policy: unsafe-url
   <aside class="dfn-panel" data-for="term-for-concept-url-origin">
    <a href="https://url.spec.whatwg.org/#concept-url-origin">https://url.spec.whatwg.org/#concept-url-origin</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-concept-url-origin">2. Key Concepts and Terminology</a>
+    <li><a href="#ref-for-concept-url-origin">2. Key Concepts and Terminology</a> <a href="#ref-for-concept-url-origin①">(2)</a>
+    <li><a href="#ref-for-concept-url-origin②">8.3. 
+    Determine request’s Referrer </a> <a href="#ref-for-concept-url-origin③">(2)</a> <a href="#ref-for-concept-url-origin④">(3)</a> <a href="#ref-for-concept-url-origin⑤">(4)</a> <a href="#ref-for-concept-url-origin⑥">(5)</a> <a href="#ref-for-concept-url-origin⑦">(6)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-concept-url-password">
@@ -2763,7 +2740,6 @@ Referrer-Policy: unsafe-url
      <li><span class="dfn-paneled" id="term-for-concept-fetch" style="color:initial">fetch</span>
      <li><span class="dfn-paneled" id="term-for-concept-response-header-list" style="color:initial">header list</span>
      <li><span class="dfn-paneled" id="term-for-local-scheme" style="color:initial">local scheme</span>
-     <li><span class="dfn-paneled" id="term-for-concept-request-origin" style="color:initial">origin</span>
      <li><span class="dfn-paneled" id="term-for-concept-request-referrer" style="color:initial">referrer</span>
      <li><span class="dfn-paneled" id="term-for-concept-request-referrer-policy" style="color:initial">referrer policy</span>
      <li><span class="dfn-paneled" id="term-for-concept-request" style="color:initial">request</span>
@@ -2787,7 +2763,6 @@ Referrer-Policy: unsafe-url
      <li><span class="dfn-paneled" id="term-for-environment-settings-object" style="color:initial">environment settings object</span>
      <li><span class="dfn-paneled" id="term-for-concept-url-fragment" style="color:initial">fragment</span>
      <li><span class="dfn-paneled" id="term-for-concept-settings-object-global" style="color:initial">global object</span>
-     <li><span class="dfn-paneled" id="term-for-https-state" style="color:initial">https state</span>
      <li><span class="dfn-paneled" id="term-for-the-iframe-element" style="color:initial">iframe</span>
      <li><span class="dfn-paneled" id="term-for-the-img-element" style="color:initial">img</span>
      <li><span class="dfn-paneled" id="term-for-the-link-element" style="color:initial">link</span>
@@ -2796,7 +2771,7 @@ Referrer-Policy: unsafe-url
      <li><span class="dfn-paneled" id="term-for-navigate" style="color:initial">navigation</span>
      <li><span class="dfn-paneled" id="term-for-link-type-noreferrer" style="color:initial">noreferrer</span>
      <li><span class="dfn-paneled" id="term-for-concept-origin-opaque" style="color:initial">opaque origin</span>
-     <li><span class="dfn-paneled" id="term-for-concept-settings-object-origin" style="color:initial">origin <small>(for environment settings object)</small></span>
+     <li><span class="dfn-paneled" id="term-for-concept-origin" style="color:initial">origin</span>
      <li><span class="dfn-paneled" id="term-for-presentational-hints" style="color:initial">presentational hints</span>
      <li><span class="dfn-paneled" id="term-for-meta-referrer" style="color:initial">referrer</span>
      <li><span class="dfn-paneled" id="term-for-concept-document-referrer-policy①" style="color:initial">referrer policy</span>
@@ -2893,29 +2868,27 @@ Referrer-Policy: unsafe-url
        headers, and store a <span>referrer policy</span> in the same way that <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/dom.html#concept-document-referrer-policy">Documents
        do</a>.<a href="#issue-a01fbbf2"> ↵ </a></div>
   </div>
-  <aside class="dfn-panel" data-for="same-origin-request">
-   <b><a href="#same-origin-request">#same-origin-request</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="same-origin-referrer-request">
+   <b><a href="#same-origin-referrer-request">#same-origin-referrer-request</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-same-origin-request">2. Key Concepts and Terminology</a>
-    <li><a href="#ref-for-same-origin-request①">3.3. "same-origin"</a>
-    <li><a href="#ref-for-same-origin-request②">3.4. "origin"</a>
-    <li><a href="#ref-for-same-origin-request③">3.6. "origin-when-cross-origin"</a>
-    <li><a href="#ref-for-same-origin-request④">3.7. "strict-origin-when-cross-origin"</a>
-    <li><a href="#ref-for-same-origin-request⑤">3.8. "unsafe-url"</a>
-    <li><a href="#ref-for-same-origin-request⑥">8.3. 
-    Determine request’s Referrer </a> <a href="#ref-for-same-origin-request⑦">(2)</a>
+    <li><a href="#ref-for-same-origin-referrer-request">2. Key Concepts and Terminology</a>
+    <li><a href="#ref-for-same-origin-referrer-request①">3.3. "same-origin"</a>
+    <li><a href="#ref-for-same-origin-referrer-request②">3.4. "origin"</a>
+    <li><a href="#ref-for-same-origin-referrer-request③">3.6. "origin-when-cross-origin"</a>
+    <li><a href="#ref-for-same-origin-referrer-request④">3.7. "strict-origin-when-cross-origin"</a>
+    <li><a href="#ref-for-same-origin-referrer-request⑤">3.8. "unsafe-url"</a>
+    <li><a href="#ref-for-same-origin-referrer-request⑥">8.3. 
+    Determine request’s Referrer </a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="cross-origin-request">
-   <b><a href="#cross-origin-request">#cross-origin-request</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="cross-origin-referrer-request">
+   <b><a href="#cross-origin-referrer-request">#cross-origin-referrer-request</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-cross-origin-request">3.3. "same-origin"</a>
-    <li><a href="#ref-for-cross-origin-request①">3.4. "origin"</a>
-    <li><a href="#ref-for-cross-origin-request②">3.6. "origin-when-cross-origin"</a> <a href="#ref-for-cross-origin-request③">(2)</a>
-    <li><a href="#ref-for-cross-origin-request④">3.7. "strict-origin-when-cross-origin"</a>
-    <li><a href="#ref-for-cross-origin-request⑤">3.8. "unsafe-url"</a>
-    <li><a href="#ref-for-cross-origin-request⑥">8.3. 
-    Determine request’s Referrer </a>
+    <li><a href="#ref-for-cross-origin-referrer-request">3.3. "same-origin"</a> <a href="#ref-for-cross-origin-referrer-request①">(2)</a>
+    <li><a href="#ref-for-cross-origin-referrer-request②">3.4. "origin"</a>
+    <li><a href="#ref-for-cross-origin-referrer-request③">3.6. "origin-when-cross-origin"</a> <a href="#ref-for-cross-origin-referrer-request④">(2)</a>
+    <li><a href="#ref-for-cross-origin-referrer-request⑤">3.7. "strict-origin-when-cross-origin"</a>
+    <li><a href="#ref-for-cross-origin-referrer-request⑥">3.8. "unsafe-url"</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="referrer-policy">
@@ -2929,10 +2902,8 @@ Referrer-Policy: unsafe-url
     <li><a href="#ref-for-referrer-policy⑨">6. Integration with HTML</a>
     <li><a href="#ref-for-referrer-policy①⓪">8.1. 
     Parse a referrer policy from a Referrer-Policy header </a> <a href="#ref-for-referrer-policy①①">(2)</a>
-    <li><a href="#ref-for-referrer-policy①②">8.3. 
-    Determine request’s Referrer </a>
-    <li><a href="#ref-for-referrer-policy①③">9.1. User Controls</a>
-    <li><a href="#ref-for-referrer-policy①④">10.1. Information Leakage</a>
+    <li><a href="#ref-for-referrer-policy①②">9.1. User Controls</a>
+    <li><a href="#ref-for-referrer-policy①③">10.1. Information Leakage</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="referrer-policy-no-referrer">
@@ -2958,50 +2929,50 @@ Referrer-Policy: unsafe-url
   <aside class="dfn-panel" data-for="referrer-policy-same-origin">
    <b><a href="#referrer-policy-same-origin">#referrer-policy-same-origin</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-referrer-policy-same-origin">3.3. "same-origin"</a> <a href="#ref-for-referrer-policy-same-origin①">(2)</a>
-    <li><a href="#ref-for-referrer-policy-same-origin②">8.3. 
+    <li><a href="#ref-for-referrer-policy-same-origin">3.3. "same-origin"</a> <a href="#ref-for-referrer-policy-same-origin①">(2)</a> <a href="#ref-for-referrer-policy-same-origin②">(3)</a>
+    <li><a href="#ref-for-referrer-policy-same-origin③">8.3. 
     Determine request’s Referrer </a>
-    <li><a href="#ref-for-referrer-policy-same-origin③">10.1. Information Leakage</a>
+    <li><a href="#ref-for-referrer-policy-same-origin④">10.1. Information Leakage</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="referrer-policy-origin">
    <b><a href="#referrer-policy-origin">#referrer-policy-origin</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-referrer-policy-origin">3.4. "origin"</a> <a href="#ref-for-referrer-policy-origin①">(2)</a> <a href="#ref-for-referrer-policy-origin②">(3)</a>
-    <li><a href="#ref-for-referrer-policy-origin③">8.3. 
+    <li><a href="#ref-for-referrer-policy-origin">3.4. "origin"</a> <a href="#ref-for-referrer-policy-origin①">(2)</a> <a href="#ref-for-referrer-policy-origin②">(3)</a> <a href="#ref-for-referrer-policy-origin③">(4)</a>
+    <li><a href="#ref-for-referrer-policy-origin④">8.3. 
     Determine request’s Referrer </a>
-    <li><a href="#ref-for-referrer-policy-origin④">10.1. Information Leakage</a>
-    <li><a href="#ref-for-referrer-policy-origin⑤">10.2. Downgrade to less strict policies</a>
-    <li><a href="#ref-for-referrer-policy-origin⑥">11.1. Unknown Policy Values</a> <a href="#ref-for-referrer-policy-origin⑦">(2)</a>
+    <li><a href="#ref-for-referrer-policy-origin⑤">10.1. Information Leakage</a>
+    <li><a href="#ref-for-referrer-policy-origin⑥">10.2. Downgrade to less strict policies</a>
+    <li><a href="#ref-for-referrer-policy-origin⑦">11.1. Unknown Policy Values</a> <a href="#ref-for-referrer-policy-origin⑧">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="referrer-policy-strict-origin">
    <b><a href="#referrer-policy-strict-origin">#referrer-policy-strict-origin</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-referrer-policy-strict-origin">3.4. "origin"</a>
-    <li><a href="#ref-for-referrer-policy-strict-origin①">3.5. "strict-origin"</a> <a href="#ref-for-referrer-policy-strict-origin②">(2)</a> <a href="#ref-for-referrer-policy-strict-origin③">(3)</a>
-    <li><a href="#ref-for-referrer-policy-strict-origin④">8.3. 
+    <li><a href="#ref-for-referrer-policy-strict-origin①">3.5. "strict-origin"</a> <a href="#ref-for-referrer-policy-strict-origin②">(2)</a> <a href="#ref-for-referrer-policy-strict-origin③">(3)</a> <a href="#ref-for-referrer-policy-strict-origin④">(4)</a>
+    <li><a href="#ref-for-referrer-policy-strict-origin⑤">8.3. 
     Determine request’s Referrer </a>
-    <li><a href="#ref-for-referrer-policy-strict-origin⑤">10.1. Information Leakage</a>
+    <li><a href="#ref-for-referrer-policy-strict-origin⑥">10.1. Information Leakage</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="referrer-policy-origin-when-cross-origin">
    <b><a href="#referrer-policy-origin-when-cross-origin">#referrer-policy-origin-when-cross-origin</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-referrer-policy-origin-when-cross-origin">3.6. "origin-when-cross-origin"</a> <a href="#ref-for-referrer-policy-origin-when-cross-origin①">(2)</a> <a href="#ref-for-referrer-policy-origin-when-cross-origin②">(3)</a> <a href="#ref-for-referrer-policy-origin-when-cross-origin③">(4)</a>
-    <li><a href="#ref-for-referrer-policy-origin-when-cross-origin④">8.3. 
+    <li><a href="#ref-for-referrer-policy-origin-when-cross-origin">3.6. "origin-when-cross-origin"</a> <a href="#ref-for-referrer-policy-origin-when-cross-origin①">(2)</a> <a href="#ref-for-referrer-policy-origin-when-cross-origin②">(3)</a> <a href="#ref-for-referrer-policy-origin-when-cross-origin③">(4)</a> <a href="#ref-for-referrer-policy-origin-when-cross-origin④">(5)</a> <a href="#ref-for-referrer-policy-origin-when-cross-origin⑤">(6)</a>
+    <li><a href="#ref-for-referrer-policy-origin-when-cross-origin⑥">8.3. 
     Determine request’s Referrer </a>
-    <li><a href="#ref-for-referrer-policy-origin-when-cross-origin⑤">10.1. Information Leakage</a>
+    <li><a href="#ref-for-referrer-policy-origin-when-cross-origin⑦">10.1. Information Leakage</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="referrer-policy-strict-origin-when-cross-origin">
    <b><a href="#referrer-policy-strict-origin-when-cross-origin">#referrer-policy-strict-origin-when-cross-origin</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-referrer-policy-strict-origin-when-cross-origin">3.6. "origin-when-cross-origin"</a>
-    <li><a href="#ref-for-referrer-policy-strict-origin-when-cross-origin①">3.7. "strict-origin-when-cross-origin"</a> <a href="#ref-for-referrer-policy-strict-origin-when-cross-origin②">(2)</a>
-    <li><a href="#ref-for-referrer-policy-strict-origin-when-cross-origin③">8.3. 
+    <li><a href="#ref-for-referrer-policy-strict-origin-when-cross-origin①">3.7. "strict-origin-when-cross-origin"</a> <a href="#ref-for-referrer-policy-strict-origin-when-cross-origin②">(2)</a> <a href="#ref-for-referrer-policy-strict-origin-when-cross-origin③">(3)</a>
+    <li><a href="#ref-for-referrer-policy-strict-origin-when-cross-origin④">8.3. 
     Determine request’s Referrer </a>
-    <li><a href="#ref-for-referrer-policy-strict-origin-when-cross-origin④">10.1. Information Leakage</a>
+    <li><a href="#ref-for-referrer-policy-strict-origin-when-cross-origin⑤">10.1. Information Leakage</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="referrer-policy-unsafe-url">
@@ -3051,6 +3022,21 @@ Referrer-Policy: unsafe-url
    <ul>
     <li><a href="#ref-for-determine-requests-referrer">3.9. The empty string</a> <a href="#ref-for-determine-requests-referrer">(2)</a>
     <li><a href="#ref-for-determine-requests-referrer">5. Integration with Fetch</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="referrerurl">
+   <b><a href="#referrerurl">#referrerurl</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-referrerurl">2. Key Concepts and Terminology</a>
+    <li><a href="#ref-for-referrerurl①">3.2. "no-referrer-when-downgrade"</a> <a href="#ref-for-referrerurl②">(2)</a> <a href="#ref-for-referrerurl③">(3)</a> <a href="#ref-for-referrerurl④">(4)</a>
+    <li><a href="#ref-for-referrerurl⑤">3.3. "same-origin"</a> <a href="#ref-for-referrerurl⑥">(2)</a>
+    <li><a href="#ref-for-referrerurl⑦">3.4. "origin"</a>
+    <li><a href="#ref-for-referrerurl⑧">3.5. "strict-origin"</a> <a href="#ref-for-referrerurl⑨">(2)</a> <a href="#ref-for-referrerurl①⓪">(3)</a> <a href="#ref-for-referrerurl①①">(4)</a>
+    <li><a href="#ref-for-referrerurl①②">3.6. "origin-when-cross-origin"</a> <a href="#ref-for-referrerurl①③">(2)</a>
+    <li><a href="#ref-for-referrerurl①④">3.7. "strict-origin-when-cross-origin"</a> <a href="#ref-for-referrerurl①⑤">(2)</a> <a href="#ref-for-referrerurl①⑥">(3)</a> <a href="#ref-for-referrerurl①⑦">(4)</a> <a href="#ref-for-referrerurl①⑧">(5)</a>
+    <li><a href="#ref-for-referrerurl①⑨">3.8. "unsafe-url"</a>
+    <li><a href="#ref-for-referrerurl②⓪">8.3. 
+    Determine request’s Referrer </a> <a href="#ref-for-referrerurl②①">(2)</a> <a href="#ref-for-referrerurl②②">(3)</a> <a href="#ref-for-referrerurl②③">(4)</a> <a href="#ref-for-referrerurl②④">(5)</a> <a href="#ref-for-referrerurl②⑤">(6)</a> <a href="#ref-for-referrerurl②⑥">(7)</a> <a href="#ref-for-referrerurl②⑦">(8)</a> <a href="#ref-for-referrerurl②⑧">(9)</a> <a href="#ref-for-referrerurl②⑨">(10)</a> <a href="#ref-for-referrerurl③⓪">(11)</a> <a href="#ref-for-referrerurl③①">(12)</a> <a href="#ref-for-referrerurl③②">(13)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="origin-only-flag">

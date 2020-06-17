@@ -112,6 +112,7 @@ spec: RFC2616; urlPrefix: https://tools.ietf.org/html/rfc7231
 <pre class="link-defaults">
 spec: html; type: element; text: link;
 spec: html; type: element; text: a;
+spec: html; type: element; text:script
 </pre>
 
 <!--
@@ -193,17 +194,17 @@ spec: html; type: element; text: a;
       with that <a>environment settings object</a> as their <a for=request>client</a>.
     </dd>
 
-    <dt><dfn>same-origin request</dfn></dt>
+    <dt><dfn>same-origin-referrer request</dfn></dt>
     <dd>
-      A {{Request}} <var>request</var> is a <strong>same-origin request</strong>
-      if <var>request</var>'s <a for=request>origin</a> and the <a for=url>origin</a> of
-      <var>request</var>'s <a for=request>current url</a> are <a lt="same origin">the same</a>.
+      A {{Request}} <var>request</var> is a <strong>same-origin-referrer request</strong> if the
+      <a for=url>origin</a> of <var>request</var>'s <a>referrerURL</a> and the <a for=url>origin</a>
+      of <var>request</var>'s <a for=request>current URL</a> are <a lt="same origin">the same</a>.
     </dd>
 
-    <dt><dfn>cross-origin request</dfn></dt>
+    <dt><dfn>cross-origin-referrer request</dfn></dt>
     <dd>
-      A {{Request}} is a <strong>cross-origin request</strong> if it is
-      <em>not</em> <a lt="same-origin request">same-origin</a>.
+      A {{Request}} is a <strong>cross-origin-referrer request</strong> if it is
+      <em>not</em> a <a>same-origin-referrer request</a>.
     </dd>
   </dl>
 </section>
@@ -247,9 +248,8 @@ spec: html; type: element; text: a;
   <h3 dfn export id="referrer-policy-no-referrer" oldids="referrer-policy-state-no-referrer">"<code>no-referrer</code>"</h3>
 
   The simplest policy is <a>"<code>no-referrer</code>"</a>, which specifies
-  that no referrer information is to be sent along with requests made from a
-  particular <a for=request lt=client>request client</a> to any <a for=/>origin</a>. The header will be
-  omitted entirely.
+  that no referrer information is to be sent along with requests to any
+  <a for=/>origin</a>. The header <a><code>Referer</code></a> will be omitted entirely.
 
   <div class="example">
     If a document at <code>https://example.com/page.html</code> sets a policy of
@@ -260,16 +260,18 @@ spec: html; type: element; text: a;
 
   <h3 dfn export id="referrer-policy-no-referrer-when-downgrade" oldids="referrer-policy-state-no-referrer-when-downgrade">"<code>no-referrer-when-downgrade</code>"</h3>
 
-  The <a>"<code>no-referrer-when-downgrade</code>"</a> policy sends a full URL, <a
-  href="#strip-url">stripped for use as a referrer</a>, along with requests from <a>environment
-  settings objects</a> whose <a for="environment settings object">HTTPS state</a> is "`modern`" to
-  a <a>potentially trustworthy URL</a>, and requests from <a for=request>clients</a> whose <a
-  for="environment settings object">HTTPS state</a> is not "`modern`" to any <a for=/>origin</a>.
+  The <a>"<code>no-referrer-when-downgrade</code>"</a> policy sends a request's full
+  <a>referrerURL</a> <a href="#strip-url">stripped for use as a referrer</a> for requests:
 
-  Requests from <a for=request>clients</a> whose <a for="environment settings object">HTTPS state</a> is "`modern`"
-  to non-<a>potentially trustworthy URL</a>s, on the other hand, will contain no
-  referrer information. A <code><a>Referer</a></code> HTTP header will not be
-  sent.
+  <ul>
+      <li>whose <a>referrerURL</a> and <a for=request>current URL</a> are both <a>potentially
+      trustworthy URLs</a>, or</li>
+      <li>whose <a>referrerURL</a> is a non-<a>potentially trustworthy URL</a>.</li>
+  </ul>
+
+  Requests whose <a>referrerURL</a> is a <a>potentially trustworthy URL</a> and whose
+  <a for=request>current URL</a> is a non-<a>potentially trustworthy URL</a> on the other hand, will
+  contain no referrer information. A <code><a>Referer</a></code> HTTP header will not be sent.
 
   <div class="example">
     If a document at <code>https://example.com/page.html</code> sets a policy of
@@ -288,12 +290,10 @@ spec: html; type: element; text: a;
 
   <h3 dfn export id="referrer-policy-same-origin">"<code>same-origin</code>"</h3>
 
-  The <a>"<code>same-origin</code>"</a> policy specifies that a
-  full URL, <a href="#strip-url">stripped for use as a referrer</a>, is sent as
-  referrer information when making <a>same-origin requests</a> from a particular
-  <a for=request>client</a>.
+  The <a>"<code>same-origin</code>"</a> policy specifies that a request's full <a>referrerURL</a> is
+  sent as referrer information when making <a>same-origin-referrer requests</a>.
 
-  <a>Cross-origin requests</a>, on the other hand, will contain no
+  <a>Cross-origin-referrer requests</a>, on the other hand, will contain no
   referrer information. A <code><a>Referer</a></code> HTTP header will not be
   sent.
 
@@ -309,21 +309,32 @@ spec: html; type: element; text: a;
     <a><code>Referer</code></a> header.
   </div>
 
+  <div class="example">
+    If a document at <code>https://example.com/page.html</code> sets a policy of
+    <a>"<code>same-origin</code>"</a>, and fetches a module script at
+    <code>https://script.example.com</code>, which then fetches a descendant script
+    at <code>https://example.com/descendant.js</code>, the request for the descendant
+    script would send no <a><code>Referer</code></a> header.
+
+    This is because the descendant script request's <a for=request>current URL</a> is
+    <code>https://example.com/descendant.js</code>, while its <a>referrerURL</a> is
+    <code>https://script.example.com</code>, making the request
+    <a lt="cross-origin-referrer request">cross-origin-referrer</a>.
+  </div>
+
   <h3 dfn export id="referrer-policy-origin" oldids="referrer-policy-state-origin">"<code>origin</code>"</h3>
 
   The <a>"<code>origin</code>"</a> policy specifies that only the
-  <a lt="ASCII serialization of an origin">ASCII serialization</a> of the
-  <a for="environment settings object">origin</a> of the <a for=request lt=client>request client</a> is sent as referrer information
-  when making both <a>same-origin requests</a> and <a>cross-origin requests</a>
-  from a particular <a for=request>client</a>.
+  <a lt="ASCII serialization of an origin">ASCII serialization</a> of the request's
+  <a>referrerURL</a> is sent as referrer information when making both <a>same-origin-referrer
+  requests</a> and <a>cross-origin-referrer requests</a>.
 
-  Note: The serialization of an origin looks like
-  <code>https://example.com</code>. To ensure that a valid URL is sent in the
-  `<code>Referer</code>` header, user agents will append a U+002F SOLIDUS
-  ("<code>/</code>") character to the origin (e.g.
-  <code>https://example.com/</code>).
+  Note: The serialization of an origin looks like <code>https://example.com</code>.
+  To ensure that a valid URL is sent in the `<code>Referer</code>` header, user
+  agents will append a U+002F SOLIDUS ("<code>/</code>") character to the origin
+  (e.g. <code>https://example.com/</code>).
 
-  Note: The <a>"<code>origin</code>"</a> policy causes the origin of HTTPS
+  Note: The <a>"<code>origin</code>"</a> policy allows the origin of HTTPS
   referrers to be sent over the network as part of unencrypted HTTP requests.
   The <a>"<code>strict-origin</code>"</a> policy addresses this concern.
 
@@ -335,23 +346,30 @@ spec: html; type: element; text: a;
     <a>potentially trustworthy URL</a>.
   </div>
 
+  <div class="example">
+    If a document at <code>https://example.com/page.html</code> sets a policy of
+    <a>"<code>origin</code>"</a>, and fetches a module script at
+    <code>https://script.example.com</code>, which fetches a descendant script at
+    <code>https://descendant.example.com</code>, the request for the descendant script
+    will send a <a><code>Referer</code></a> header with a value of
+    <code>https://script.example.com/</code>.
+  </div>
+
   <h3 dfn export id="referrer-policy-strict-origin">"<code>strict-origin</code>"</h3>
 
   The <a>"<code>strict-origin</code>"</a> policy sends the
-  <a lt="ASCII serialization of an origin">ASCII serialization</a> of the
-  <a for="environment settings object">origin</a> of the <a for=request lt=client>request client</a> when making requests:
+  <a lt="ASCII serialization of an origin">ASCII serialization</a> of the <a for=/>origin</a> of the
+  <a>referrerURL</a> for requests:
 
   <ul>
-      <li>from an <a>environment settings object</a> whose <a for="environment settings object">HTTPS state</a> is "`modern`" to a
-          <a>potentially trustworthy URL</a>, and</li>
-      <li>from <a>environment settings objects</a> whose <a for="environment settings object">HTTPS state</a> is not "`modern`" to
-          any <a for=/>origin</a>.</li>
+      <li>whose <a>referrerURL</a> and <a for=request>current URL</a> are both <a>potentially
+      trustworthy URLs</a>, or</li>
+      <li>whose <a>referrerURL</a> is a non-<a>potentially trustworthy URL</a>.</li>
   </ul>
 
-  Requests from <a for=request lt=client>request clients</a> whose <a for="environment settings object">HTTPS state</a> is "`modern`"
-  to non-<a>potentially trustworthy URL</a>s, on the other hand, will contain no
-  referrer information. A <code><a>Referer</a></code> HTTP header will not be
-  sent.
+  Requests whose <a>referrerURL</a> is a <a>potentially trustworthy URL</a> and whose
+  <a for=request>current URL</a> is a non-<a>potentially trustworthy URL</a> on the other hand, will
+  contain no referrer information. A <code><a>Referer</a></code> HTTP header will not be sent.
 
   <div class="example">
     If a document at <code>https://example.com/page.html</code> sets a policy of
@@ -374,22 +392,29 @@ spec: html; type: element; text: a;
     <code>http://example.com/</code>.
   </div>
 
+  <div class="example">
+    If a document at <code>http://example.com/page.html</code> sets a policy of
+    <a>"<code>strict-origin</code>"</a>, and fetches a module script at
+    <code><strong>https</strong>://script.example.com</code>, which then fetches a
+    descendant script at <code><strong>http</strong>://descendant.example.com</code>,
+    the request to the descendant script would not send a <a><code>Referrer</code></a>
+    header.
+  </div>
+
   <h3 dfn export id="referrer-policy-origin-when-cross-origin" oldids="referrer-policy-state-origin-when-cross-origin">"<code>origin-when-cross-origin</code>"</h3>
 
-  The <a>"<code>origin-when-cross-origin</code>"</a> policy specifies that a
-  full URL, <a href="#strip-url">stripped for use as a referrer</a>, is sent as
-  referrer information when making <a>same-origin requests</a> from a particular
-  <a for=request lt=client>request client</a>, and only the
-  <a lt="ASCII serialization of an origin">ASCII serialization</a> of the
-  <a for="environment settings object">origin</a> of the <a for=request lt=client>request client</a> is sent as referrer information
-  when making <a>cross-origin requests</a> from a particular <a for=request>client</a>.
+  The <a>"<code>origin-when-cross-origin</code>"</a> policy specifies that a request's full
+  <a>referrerURL</a> is sent as referrer information when making <a>same-origin-referrer requests</a>,
+  and only the <a lt="ASCII serialization of an origin">ASCII serialization</a> of the
+  <a for=/>origin</a> of the request's <a>referrerURL</a> is sent as referrer information when making
+  <a>cross-origin-referrer requests</a>.
 
   Note: For the <a>"<code>origin-when-cross-origin</code>"</a> policy, we also
   consider protocol upgrades, e.g. requests from
   <code>http://example.com/</code> to <code>https://example.com/</code>, to be
-  <a>cross-origin requests</a>.
+  <a>cross-origin-referrer requests</a>.
 
-  Note: The <a>"<code>origin-when-cross-origin</code>"</a> policy causes the
+  Note: The <a>"<code>origin-when-cross-origin</code>"</a> policy allows the
   origin of HTTPS referrers to be sent over the network as part of unencrypted
   HTTP requests. The <a>"<code>strict-origin-when-cross-origin</code>"</a> policy
   addresses this concern.
@@ -407,26 +432,40 @@ spec: html; type: element; text: a;
     <a>potentially trustworthy URL</a>s.
   </div>
 
+  <div class="example">
+    If a document at <code>https://example-1.com</code> sets a policy of
+    <a>"<code>origin-when-cross-origin</code>"</a>, and fetches a module script at
+    <code>https://example-2.com/module.js</code>, which then fetches a descendant script at
+    <code>https://example-1.com/descendant.js</code>, the request to the descendant script would
+    send a <a><code>Referer</code></a> header with a value of <code>https://example-2.com/</code>.
+  </div>
+
+  <div class="example">
+    If a document at <code>https://example-1.com</code> sets a policy of
+    <a>"<code>origin-when-cross-origin</code>"</a>, and fetches a module script at
+    <code>https://example-2.com/module.js</code>, which then fetches a descendant script at
+    <code>https://example-2.com/descendant.js</code>, the request to the descendant script would
+    send a <a><code>Referer</code></a> header with a value of <code>https://example-2.com/module.js</code>.
+  </div>
+
+
   <h3 dfn export id="referrer-policy-strict-origin-when-cross-origin">"<code>strict-origin-when-cross-origin</code>"</h3>
 
-  The <a>"<code>strict-origin-when-cross-origin</code>"</a> policy specifies that a
-  full URL, <a href="#strip-url">stripped for use as a referrer</a>, is sent as
-  referrer information when making <a>same-origin requests</a> from a particular
-  <a for=request lt=client>request client</a>, and only the
-  <a lt="ASCII serialization of an origin">ASCII serialization</a> of the
-  <a for="environment settings object">origin</a> of the <a for=request lt=client>request client</a> when making <a>cross-origin requests</a>:
+  The <a>"<code>strict-origin-when-cross-origin</code>"</a> policy specifies that a request's full
+  <a>referrerURL</a> is sent as referrer information when making <a>same-origin-referrer requests</a>,
+  and only the <a lt="ASCII serialization of an origin">ASCII serialization</a> of the
+  <a for=/>origin</a> of the request's <a>referrerURL</a> when making
+  <a>cross-origin-referrer requests</a>:
 
   <ul>
-      <li>from a <a>environment settings object</a> whose <a for="environment settings object">HTTPS state</a> is "`modern`" to a
-          <a>potentially trustworthy URL</a>, and</li>
-      <li>from <a>environment settings objects</a> whose <a for="environment settings object">HTTPS state</a> is not "`modern`" to
-          any <a for=/>origin</a>.</li>
+      <li>whose <a>referrerURL</a> and <a for=request>current URL</a> are both <a>potentially
+      trustworthy URLs</a>, or</li>
+      <li>whose <a>referrerURL</a> is a non-<a>potentially trustworthy URL</a>.</li>
   </ul>
 
-  Requests from <a for=request>clients</a> whose <a for="environment settings object">HTTPS state</a> is "`modern`" to non-
-	<a>potentially trustworthy URL</a>s, on the other hand, will contain no
-  referrer information. A <code><a>Referer</a></code> HTTP header will not be
-  sent.
+  Requests whose <a>referrerURL</a> is a <a>potentially trustworthy URL</a> and whose
+  <a for=request>current URL</a> is a non-<a>potentially trustworthy URL</a> on the other hand,
+  will contain no referrer information. A <code><a>Referer</a></code> HTTP header will not be sent.
 
   <div class="example">
     If a document at <code>https://example.com/page.html</code> sets a policy of
@@ -440,16 +479,22 @@ spec: html; type: element; text: a;
     <code>https://example.com/</code>.
 
     Navigations from that same page to
-    <code><strong>http://</strong>not.example.com/</code> would send no
+    <code><strong>http</strong>://not.example.com/</code> would send no
     <a><code>Referer</code></a> header.
+  </div>
+
+  <div class="example">
+    If a document at <code>https://example.com/page.html</code> sets a policy of
+    <a>"<code>strict-origin-when-cross-origin</code>"</a>, and fetches a module script
+    at <code>https://script.example.com</code> which then fetches a descendant script at
+    <code><strong>http</strong>://descendant.example.com</code>, the request to the descendant
+    script would send no <a><code>Referer</code></a> header.
   </div>
 
   <h3 dfn export id="referrer-policy-unsafe-url" oldids="referrer-policy-state-unsafe-url">"<code>unsafe-url</code>"</h3>
 
-  The <a>"<code>unsafe-url</code>"</a> policy specifies that a full URL,
-  <a href="#strip-url">stripped for use as a referrer</a>, is sent along with
-  both <a>cross-origin requests</a> and <a>same-origin requests</a> made from
-  a particular <a for=request>client</a>.
+  The <a>"<code>unsafe-url</code>"</a> policy specifies that a request's full <a>referrerURL</a> is
+  sent along for both <a>same-origin-referrer requests</a> and <a>cross-origin-referrer requests</a>.
 
   <div class="example">
     If a document at <code>https://example.com/sekrit.html</code> sets a policy
@@ -806,10 +851,10 @@ spec: html; type: element; text: a;
 
       Note: If <var>request</var>'s <a for=request>referrer</a> is
       "<code>no-referrer</code>", Fetch will not call into this algorithm.
-    </li>
+      </li>
 
     <li>
-      Let <var>referrerURL</var> be the result of <a href="#strip-url">stripping
+      Let request's <dfn>referrerURL</dfn> be the result of <a href="#strip-url">stripping
       <var>referrerSource</var> for use as a referrer.</a>
     </li>
     <li>
@@ -819,12 +864,12 @@ spec: html; type: element; text: a;
       <code>true</code>.
     </li>
     <li>
-      If the result of <a lt="url serializer">serializing</a> <var>referrerURL</var> is a string
-      whose <a for="string">length</a> is greater than 4096, set <var>referrerURL</var> to
+      If the result of <a lt="url serializer">serializing</a> <a>referrerURL</a> is a string whose
+      <a for="string">length</a> is greater than 4096, set <span>referrerURL</span> to
       <var>referrerOrigin</var>.
     </li>
     <li>
-      The user agent MAY alter <var>referrerURL</var> or <var>referrerOrigin</var> at this point to
+      The user agent MAY alter <a>referrerURL</a> or <var>referrerOrigin</var> at this point to
       enforce arbitrary policy considerations in the interests of minimizing data leakage. For
       example, the user agent could strip the URL down to an origin, modify its
       <a for="url">host</a>, replace it with an empty string, etc.
@@ -833,6 +878,9 @@ spec: html; type: element; text: a;
       Execute the statements corresponding to the value of <var>policy</var>:
 
       <dl class="switch">
+        Note: If <var>request</var>'s <a for=request>referrer policy</a> is
+        the empty string, Fetch will not call into this algorithm.
+
         <dt><a>"<code>no-referrer</code>"</a></dt>
         <dd>Return <code>no referrer</code></dd>
 
@@ -840,22 +888,15 @@ spec: html; type: element; text: a;
         <dd>Return <var>referrerOrigin</var></dd>
 
         <dt><a>"<code>unsafe-url</code>"</a></dt>
-        <dd>Return <var>referrerURL</var>.</dd>
+        <dd>Return <a>referrerURL</a>.</dd>
 
         <dt><a>"<code>strict-origin</code>"</a></dt>
         <dd>
           <ol>
             <li>
-              If |environment| is not null:
-              <ol>
-                <li>
-                  If |environment|'s <a for="environment settings object">HTTPS state</a> is "`modern`" <em>and</em>
-                  <var>request</var>'s
-                  <a href="https://fetch.spec.whatwg.org/#concept-request-current-url">current
-                  URL</a> is not a <a>potentially trustworthy
-                  URL</a>, then return <code>no referrer</code>.
-                </li>
-              </ol>
+              If <a>referrerURL</a> is a <a>potentially trustworthy URL</a> and <var>request</var>'s
+              <a for=request>current URL</a> is not a <a>potentially trustworthy URL</a>, then
+              return <code>no referrer</code>.
             </li>
             <li>Return |referrerOrigin|.
           </ol>
@@ -865,22 +906,14 @@ spec: html; type: element; text: a;
         <dd>
           <ol>
             <li>
-              If <var>request</var> is a <a>same-origin request</a>, then
-              return <var>referrerURL</var>.
+              If the <a for=url>origin</a> of <a>referrerURL</a> and the <a for=url>origin</a> of
+              <var>request</var>'s <a for=request>current URL</a> are <a lt="same origin">the
+              same</a>, then return <a>referrerURL</a>.
             </li>
             <li>
-              If |environment| is not null:
-              <ol>
-                <li>
-                  If |environment|'s <a for="environment settings object">HTTPS state</a> is "`modern`" <em>and</em>
-                  <var>request</var>'s
-                  <a href="https://fetch.spec.whatwg.org/#concept-request-current-url">current
-                  URL</a> is not a <a>potentially trustworthy URL</a>
-                  <ol>
-                      <li>Return <code>no referrer</code>.
-                  </ol>
-                </li>
-              </ol>
+              If <a>referrerURL</a> is a <a>potentially trustworthy URL</a> and <var>request</var>'s
+              <a for=request>current URL</a> is not a <a>potentially trustworthy URL</a>, then
+              return <code>no referrer</code>.
             </li>
             <li>Return |referrerOrigin|.
           </ol>
@@ -890,12 +923,14 @@ spec: html; type: element; text: a;
         <dd>
           <ol>
             <li>
-              If <var>request</var> is a <a>same-origin request</a>, then
-              return <var>referrerURL</var>.
+              If the <a for=url>origin</a> of <a>referrerURL</a> and the <a for=url>origin</a> of
+              <var>request</var>'s <a for=request>current URL</a> are <a lt="same origin">the
+              same</a>, then return <a>referrerURL</a>.
+
+              Note: This same-origin check determines whether or not the request is
+              <a lt="same-origin-referrer request">same-origin-referrer</a>.
             </li>
-            <li>
-              Otherwise, return <code>no referrer</code>.
-            </li>
+            <li>Return <code>no referrer</code>.
           </ol>
         </dd>
 
@@ -903,12 +938,11 @@ spec: html; type: element; text: a;
         <dd>
           <ol>
             <li>
-              If <var>request</var> is a <a>cross-origin request</a>, then
-              return <var>referrerOrigin</var>.
+              If the <a for=url>origin</a> of <a>referrerURL</a> and the <a for=url>origin</a> of
+              <var>request</var>'s <a for=request>current URL</a> are <a lt="same origin">the
+              same</a>, then return <a>referrerURL</a>.
             </li>
-            <li>
-              Otherwise, return <var>referrerURL</var>.
-            </li>
+            <li> Return |referrerOrigin|.
           </ol>
         </dd>
 
@@ -916,24 +950,14 @@ spec: html; type: element; text: a;
         <dd>
           <ol>
             <li>
-              If |environment| is not null:
-              <ol>
-                <li>
-                  If |environment|'s <a for="environment settings object">HTTPS state</a> is "`modern`" <em>and</em>
-                  <var>request</var>'s
-                  <a href="https://fetch.spec.whatwg.org/#concept-request-current-url">current
-                  URL</a> is not a <a>potentially trustworthy
-                  URL</a>, then return <code>no referrer</code>.
-                </li>
-              </ol>
+              If <a>referrerURL</a> is a <a>potentially trustworthy URL</a> and <var>request</var>'s
+              <a for=request>current URL</a> is not a <a>potentially trustworthy URL</a>, then
+              return <code>no referrer</code>.
             </li>
-            <li>Return |referrerURL|.
+            <li>Return <a>referrerURL</a>.
           </ol>
         </dd>
       </dl>
-
-      Note: Fetch will ensure |request|'s <a for="/">referrer policy</a> is not the
-      empty string before calling this algorithm.
     </li>
   </ol>
 
