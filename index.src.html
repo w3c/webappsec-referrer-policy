@@ -244,6 +244,8 @@ spec: html; type: element; text:script
   object</a> is used as a <a for=request lt=client>request client</a>. This policy may be tightened
   for specific requests via mechanisms like the <code><a>noreferrer</a></code>
   link type.
+  
+  The <dfn export>default referrer policy</dfn> is <a>"<code>strict-origin-when-cross-origin</code>"</a>.
 
   <h3 dfn export id="referrer-policy-no-referrer" oldids="referrer-policy-state-no-referrer">"<code>no-referrer</code>"</h3>
 
@@ -285,8 +287,6 @@ spec: html; type: element; text:script
     <code><strong>http</strong>://not.example.com/</code> would send no
     <a><code>Referer</code></a> header.
   </div>
-
-  This is a user agent's default behavior, if no policy is otherwise specified.
 
   <h3 dfn export id="referrer-policy-same-origin">"<code>same-origin</code>"</h3>
 
@@ -491,6 +491,9 @@ spec: html; type: element; text:script
     script would send no <a><code>Referer</code></a> header.
   </div>
 
+  This policy is the user agent's <a lt="default referrer policy">default</a>, and will be applied
+  if no policy is otherwise specified.
+
   <h3 dfn export id="referrer-policy-unsafe-url" oldids="referrer-policy-state-unsafe-url">"<code>unsafe-url</code>"</h3>
 
   The <a>"<code>unsafe-url</code>"</a> policy specifies that a request's full <a>referrerURL</a> is
@@ -513,9 +516,8 @@ spec: html; type: element; text:script
 
   The empty string "" corresponds to no <a for="/">referrer policy</a>, causing a
   fallback to a <a for="/">referrer policy</a> defined elsewhere, or in the case where
-  no such higher-level policy is available, defaulting to
-  <a>"<code>no-referrer-when-downgrade</code>"</a>. This defaulting happens in
-  the [[#determine-requests-referrer]] algorithm.
+  no such higher-level policy is available, falling back to the <a>default referrer
+  policy</a>. This happens in Fetch's main fetch algorithm, for example.
 
   <div class="example">
     Given a HTML <{a}> element without any declared <{a/referrerpolicy}>
@@ -1031,8 +1033,7 @@ spec: html; type: element; text:script
 
   Authors wanting to ensure that they do not leak any more information than
   the default policy should instead use the policy states
-  <a>"<code>same-origin</code>"</a>, <a>"<code>strict-origin</code>"</a>,
-  <a>"<code>strict-origin-when-cross-origin</code>"</a> or
+  <a>"<code>same-origin</code>"</a>, <a>"<code>strict-origin</code>"</a>, or
   <a>"<code>no-referrer</code>"</a>.
 
   <h3 id="downgrade">Downgrade to less strict policies</h3>
