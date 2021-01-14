@@ -777,8 +777,7 @@ spec: html; type: element; text:script
   </h3>
 
   Given a <a for=/>request</a> |request| and a <a for=/>response</a> |actualResponse|,
-  this algorithm updates |request|'s associated
-  <a for=request>referrer policy</a>
+  this algorithm updates |request|'s <a for=request>referrer policy</a>
   according to the Referrer-Policy header (if any) in |actualResponse|.
 
   <ol>
@@ -786,8 +785,8 @@ spec: html; type: element; text:script
       Let |policy| be the result of executing
       [[#parse-referrer-policy-from-header]] on |actualResponse|.
     </li>
-    <li>If |policy| is not the empty string, then set |request|'s
-    associated referrer policy to |policy|.</li>
+    <li>If |policy| is not the empty string, then set |request|'s referrer policy
+    to |policy|.</li>
   </ol>
 
   <h3 id="determine-requests-referrer" dfn export>
@@ -795,14 +794,12 @@ spec: html; type: element; text:script
   </h3>
 
   Given a <a for=/>request</a> |request|, we can determine the correct
-  referrer information to send by examining the
-  <a for=request>referrer policy</a>
-  associated with it, as detailed in the following steps, which return
-  either <code>no referrer</code> or a URL:
+  referrer information to send by examining its <a for=request>referrer policy</a>
+  as detailed in the following steps, which return either <code>no referrer</code> or a URL:
 
   <ol>
     <li>
-      Let <var>policy</var> be |request|'s associated <a for=request>referrer policy</a>.
+      Let <var>policy</var> be |request|'s <a for=request>referrer policy</a>.
     </li>
     <li>
       Let <var>environment</var> be <var>request</var>'s <a for=request>client</a>.
