@@ -1486,7 +1486,7 @@ Possible extra rowspan handling
 </style>
   <meta content="Bikeshed version c5172e83, updated Fri Nov 20 15:35:20 2020 -0800" name="generator">
   <link href="http://www.w3.org/TR/referrer-policy/" rel="canonical">
-  <meta content="6e207776af06a04e42105a84ac4ab71f11a41a10" name="document-revision">
+  <meta content="3ee21371ac913830b572d67d2687e76a699f4c8d" name="document-revision">
 <style>/* style-autolinks */
 
 .css.css, .property.property, .descriptor.descriptor {
@@ -2740,14 +2740,13 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   this algorithm updates <var>request</var>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-referrer-policy" id="ref-for-concept-request-referrer-policy⑤">referrer policy</a> according to the Referrer-Policy header (if any) in <var>actualResponse</var>.</p>
     <ol>
      <li> Let <var>policy</var> be the result of executing <a href="#parse-referrer-policy-from-header">§ 8.1 Parse a referrer policy from a Referrer-Policy header</a> on <var>actualResponse</var>. 
-     <li>If <var>policy</var> is not the empty string, then set <var>request</var>’s referrer policy
-    to <var>policy</var>.
+     <li>If <var>policy</var> is not the empty string, then set <var>request</var>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-referrer-policy" id="ref-for-concept-request-referrer-policy⑥">referrer policy</a> to <var>policy</var>.
     </ol>
     <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-export data-level="8.3" data-lt="Determine request’s Referrer" id="determine-requests-referrer"><span class="secno">8.3. </span><span class="content"> Determine <var>request</var>’s Referrer </span><a class="self-link" href="#determine-requests-referrer" id="ref-for-determine-requests-referrer②"></a></h3>
     <p>Given a <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request" id="ref-for-concept-request⑥">request</a> <var>request</var>, we can determine the correct
-  referrer information to send by examining its <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-referrer-policy" id="ref-for-concept-request-referrer-policy⑥">referrer policy</a> as detailed in the following steps, which return either <code>no referrer</code> or a URL:</p>
+  referrer information to send by examining its <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-referrer-policy" id="ref-for-concept-request-referrer-policy⑦">referrer policy</a> as detailed in the following steps, which return either <code>no referrer</code> or a URL:</p>
     <ol>
-     <li> Let <var>policy</var> be <var>request</var>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-referrer-policy" id="ref-for-concept-request-referrer-policy⑦">referrer policy</a>. 
+     <li> Let <var>policy</var> be <var>request</var>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-referrer-policy" id="ref-for-concept-request-referrer-policy⑧">referrer policy</a>. 
      <li> Let <var>environment</var> be <var>request</var>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-client" id="ref-for-concept-request-client③">client</a>. 
      <li>
        Switch on <var>request</var>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-referrer" id="ref-for-concept-request-referrer④">referrer</a>: 
@@ -2785,7 +2784,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <li>
        Execute the statements corresponding to the value of <var>policy</var>: 
       <dl class="switch">
-        Note: If <var>request</var>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-referrer-policy" id="ref-for-concept-request-referrer-policy⑧">referrer policy</a> is
+        Note: If <var>request</var>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-referrer-policy" id="ref-for-concept-request-referrer-policy⑨">referrer policy</a> is
         the empty string, Fetch will not call into this algorithm. 
        <dt><a data-link-type="dfn" href="#referrer-policy-no-referrer" id="ref-for-referrer-policy-no-referrer②">"<code>no-referrer</code>"</a>
        <dd>Return <code>no referrer</code>
@@ -3142,9 +3141,9 @@ Referrer-Policy: unsafe-url
     <li><a href="#ref-for-concept-request-referrer-policy">4. Referrer Policy Delivery</a>
     <li><a href="#ref-for-concept-request-referrer-policy①">7. Integration with CSS</a> <a href="#ref-for-concept-request-referrer-policy②">(2)</a> <a href="#ref-for-concept-request-referrer-policy③">(3)</a> <a href="#ref-for-concept-request-referrer-policy④">(4)</a>
     <li><a href="#ref-for-concept-request-referrer-policy⑤">8.2. 
-    Set request’s referrer policy on redirect </a>
-    <li><a href="#ref-for-concept-request-referrer-policy⑥">8.3. 
-    Determine request’s Referrer </a> <a href="#ref-for-concept-request-referrer-policy⑦">(2)</a> <a href="#ref-for-concept-request-referrer-policy⑧">(3)</a>
+    Set request’s referrer policy on redirect </a> <a href="#ref-for-concept-request-referrer-policy⑥">(2)</a>
+    <li><a href="#ref-for-concept-request-referrer-policy⑦">8.3. 
+    Determine request’s Referrer </a> <a href="#ref-for-concept-request-referrer-policy⑧">(2)</a> <a href="#ref-for-concept-request-referrer-policy⑨">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-concept-request">
