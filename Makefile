@@ -19,7 +19,7 @@ index.html: index.bs
 	                       --output index.html \
 	                       --write-out "%{http_code}" \
 	                       --header "Accept: text/plain, text/html" \
-												 -F die-on=warning \
+			       -F die-on=warning \
 	                       -F file=@index.bs) && \
 	[[ "$$HTTP_STATUS" -eq "200" ]]) || ( \
 		echo ""; cat index.html; echo ""; \
