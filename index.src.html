@@ -53,6 +53,7 @@ spec: HTML; urlPrefix: https://html.spec.whatwg.org/multipage/
       text: sandboxed origin browsing context flag
       text: sandboxing flag set
       text: top-level browsing context
+      text: browsing context
     urlPrefix: infrastructure.html
       text: ascii case-insensitive match; url: ascii-case-insensitive
       text: fragment; url: concept-url-fragment
@@ -641,15 +642,35 @@ spec: html; type: element; text:script
   </section>
 
   <section class="informative">
-    <h3 id="referrer-policy-delivery-nested"
-    oldids="referrer-policy-delivery-implicit">Nested browsing contexts</h3>
+    <h3 id="referrer-policy-inheritance"
+    oldids="referrer-policy-delivery-nested, referrer-policy-delivery-implicit"><a for="/">Referrer policy</a> Inheritance</h3>
 
     <em>This section is not normative.</em>
 
-    The HTML Standard and Fetch Standard define how nested browsing contexts
-    that are not created from <a for="/">responses</a>, such as <{iframe}> elements with
-    their <{iframe/srcdoc}> attribute set, or created from a blob URL, inherit
-    their <a for="/">referrer policy</a> from the creator browsing context or blob URL.
+    {{Document}}s don't typically inherit their <a for="Document">referrer policy</a> from other
+    {{Document}}s, however there are two exceptions:
+    - Requests that do not provide their own <a for="request">referrer policy</a> and are initiated
+      from <a>an <code>iframe</code> <code>srcdoc</code> document</a> that does not set its own
+      <a for="Document">referrer policy</a> (via a <{meta}> tag) will use the
+      <a for="Document">referrer policy</a> of its first ancestor <a spec=html>container document</a>
+      that is not <a>an <code>iframe</code> <code>srcdoc</code> document</a>. This is specified per
+      the definition of an <a for="environment settings object" lt="referrer policy">environment
+      settings object referrer policy</a>, thus effectively creating a form of <a for="/">referrer
+      policy</a> inheritance.
+    - If when a "<code>javascript:</code>" URL is <a spec=html
+      lt="execute a javascript: URL request">executed</a>, the result of its evaluation is a string,
+      then we populate a locally-created <a for="/">response</a> whose <code><a>Referrer-Policy</a></code>
+      header is the navigating <a>browsing context</a>'s <span>active document</span>'s <span>relevant
+      settings object</span>'s <a for="environment settings object">referrer policy</a>. The {{Document}}
+      that gets created later as a result of the "<code>javascript:</code>" navigation is <a spec=html
+      lt="create and initialize a Document object">initialized</a> with this <a for="/">referrer policy</a>.
+      This means:
+        - For <a>nested browsing contexts</a> whose <a>active document</a> is a <a>an <code>iframe</code>
+          <code>srcdoc</code> document</a> that experiences a "<code>javascript:</code>" navigation, the
+          resulting {{Document}} inherits its <a for="Document">referrer policy</a> in the way described by
+          the first point above in this section.
+        - For all other <a>browsing contexts</a>, the new {{Document}}'s <a for="Document">referrer
+          policy</a> is inherited from the {{Document}} preceding the "<code>javascript:</code>" navigation.
   </section>
 </section>
 
