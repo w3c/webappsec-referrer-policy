@@ -648,7 +648,7 @@ spec: html; type: element; text:script
     <em>This section is not normative.</em>
 
     {{Document}}s don't typically inherit their <a for="Document">referrer policy</a> from other
-    {{Document}}s. However, there are two exceptions:
+    {{Document}}s. However, there are currently three cases where this happens:
     - Requests that do not provide their own <a for="request">referrer policy</a> and are initiated
       from <a>an <code>iframe</code> <code>srcdoc</code> document</a> that does not set its own
       <a for="Document">referrer policy</a> (via a <{meta}> tag) will use the
@@ -671,6 +671,9 @@ spec: html; type: element; text:script
           the first point above in this section.
         - For all other <a>browsing contexts</a>, the new {{Document}}'s <a for="Document">referrer
           policy</a> is inherited from the {{Document}} preceding the "<code>javascript:</code>" navigation.
+    - Upon <a spec=html lt="create a new browsing context">creation</a> of a new <a>browsing context</a>,
+      the initial <code><a spec=html>about:blank</a></code> {{Document}} will inherit its
+      <a for="Document">referrer policy</a> from its creator {{Document}} if the creator is non-null.
 
     Note: When a Policy Container is fully defined, the inheritance of <a for="/">referrer policies</a> or
     lack thereof will be more consistent and clear, as opposed to relying on subtle edge cases described above.
