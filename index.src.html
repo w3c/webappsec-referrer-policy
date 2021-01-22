@@ -671,6 +671,11 @@ spec: html; type: element; text:script
           the first point above in this section.
         - For all other <a>browsing contexts</a>, the new {{Document}}'s <a for="Document">referrer
           policy</a> is inherited from the {{Document}} preceding the "<code>javascript:</code>" navigation.
+
+    Note: When a Policy Container is fully defined, the inheritance of <a for="/">referrer policies</a> or
+    lack thereof will be more consistent and clear, as opposed to relying on subtle edge cases described above.
+    See <a href="https://github.com/whatwg/html/issues/4926">whatwg/html#4926</a> and the
+    <a href="https://github.com/antosart/policy-container-explained">Policy Container explainer</a>.
   </section>
 </section>
 
