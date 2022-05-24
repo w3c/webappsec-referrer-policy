@@ -634,7 +634,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1>Referrer Policy</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-05-18">18 May 2022</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-05-23">23 May 2022</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -1243,13 +1243,13 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <li> If <var>url</var>’s <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-scheme" id="ref-for-concept-url-scheme">scheme</a> is a <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#local-scheme" id="ref-for-local-scheme">local scheme</a>, then
       return <code>no referrer</code>. 
      <li> Set <var>url</var>’s <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-username" id="ref-for-concept-url-username">username</a> to the empty string. 
-     <li> Set <var>url</var>’s <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-password" id="ref-for-concept-url-password">password</a> to <code>null</code>. 
-     <li> Set <var>url</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#concept-url-fragment" id="ref-for-concept-url-fragment">fragment</a> to <code>null</code>. 
+     <li> Set <var>url</var>’s <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-password" id="ref-for-concept-url-password">password</a> to the empty string. 
+     <li> Set <var>url</var>’s <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-fragment" id="ref-for-concept-url-fragment">fragment</a> to <code>null</code>. 
      <li>
        If the <code><a data-link-type="dfn" href="#origin-only-flag" id="ref-for-origin-only-flag①">origin-only flag</a></code> is <code>true</code>,
       then: 
       <ol>
-       <li> Set <var>url</var>’s <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-path" id="ref-for-concept-url-path">path</a> to <code>null</code>. 
+       <li> Set <var>url</var>’s <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-path" id="ref-for-concept-url-path">path</a> to « ». 
        <li> Set <var>url</var>’s <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-query" id="ref-for-concept-url-query">query</a> to <code>null</code>. 
       </ol>
      <li> Return <var>url</var>. 
@@ -1662,13 +1662,6 @@ Referrer-Policy: unsafe-url
     <li><a href="#ref-for-environment-settings-object②">3. Referrer Policies</a> <a href="#ref-for-environment-settings-object③">(2)</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="term-for-concept-url-fragment">
-   <a href="https://html.spec.whatwg.org/multipage/infrastructure.html#concept-url-fragment">https://html.spec.whatwg.org/multipage/infrastructure.html#concept-url-fragment</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-concept-url-fragment">8.4. 
-    Strip url for use as a referrer </a>
-   </ul>
-  </aside>
   <aside class="dfn-panel" data-for="term-for-concept-settings-object-global">
    <a href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-settings-object-global">https://html.spec.whatwg.org/multipage/webappapis.html#concept-settings-object-global</a><b>Referenced in:</b>
    <ul>
@@ -1846,6 +1839,13 @@ Referrer-Policy: unsafe-url
     Determine request’s Referrer </a> <a href="#ref-for-potentially-trustworthy-url①⑥">(2)</a> <a href="#ref-for-potentially-trustworthy-url①⑦">(3)</a> <a href="#ref-for-potentially-trustworthy-url①⑧">(4)</a> <a href="#ref-for-potentially-trustworthy-url①⑨">(5)</a> <a href="#ref-for-potentially-trustworthy-url②⓪">(6)</a>
    </ul>
   </aside>
+  <aside class="dfn-panel" data-for="term-for-concept-url-fragment">
+   <a href="https://url.spec.whatwg.org/#concept-url-fragment">https://url.spec.whatwg.org/#concept-url-fragment</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-concept-url-fragment">8.4. 
+    Strip url for use as a referrer </a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="term-for-concept-url-host">
    <a href="https://url.spec.whatwg.org/#concept-url-host">https://url.spec.whatwg.org/#concept-url-host</a><b>Referenced in:</b>
    <ul>
@@ -1958,7 +1958,6 @@ Referrer-Policy: unsafe-url
      <li><span class="dfn-paneled" id="term-for-concept-environment-creation-url">creation url</span>
      <li><span class="dfn-paneled" id="term-for-concept-document-referrer-policy">document referrer policy</span>
      <li><span class="dfn-paneled" id="term-for-environment-settings-object">environment settings object</span>
-     <li><span class="dfn-paneled" id="term-for-concept-url-fragment">fragment</span>
      <li><span class="dfn-paneled" id="term-for-concept-settings-object-global">global object</span>
      <li><span class="dfn-paneled" id="term-for-the-iframe-element">iframe</span>
      <li><span class="dfn-paneled" id="term-for-the-img-element">img</span>
@@ -2003,6 +2002,7 @@ Referrer-Policy: unsafe-url
    <li>
     <a data-link-type="biblio">[URL]</a> defines the following terms:
     <ul>
+     <li><span class="dfn-paneled" id="term-for-concept-url-fragment">fragment</span>
      <li><span class="dfn-paneled" id="term-for-concept-url-host">host</span>
      <li><span class="dfn-paneled" id="term-for-concept-url-origin">origin</span>
      <li><span class="dfn-paneled" id="term-for-concept-url-password">password</span>
