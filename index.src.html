@@ -56,7 +56,6 @@ spec: HTML; urlPrefix: https://html.spec.whatwg.org/multipage/
       text: browsing context
     urlPrefix: infrastructure.html
       text: ascii case-insensitive match; url: ascii-case-insensitive
-      text: fragment; url: concept-url-fragment
       text: document base url
       text: plugin
       text: reflect
@@ -974,13 +973,13 @@ spec: html; type: element; text:script
       return <code>no referrer</code>.
     </li>
     <li>
-      Set <var>url</var>'s <a>username</a> to the empty string.
+      Set <var>url</var>'s <a for=url>username</a> to the empty string.
     </li>
     <li>
-      Set <var>url</var>'s <a>password</a> to <code>null</code>.
+      Set <var>url</var>'s <a for=url>password</a> to the empty string.
     </li>
     <li>
-      Set <var>url</var>'s <a>fragment</a> to <code>null</code>.
+      Set <var>url</var>'s <a for=url>fragment</a> to <code>null</code>.
     </li>
     <li>
       If the <code><a>origin-only flag</a></code> is <code>true</code>,
@@ -988,7 +987,7 @@ spec: html; type: element; text:script
 
       <ol>
         <li>
-          Set <var>url</var>'s <a for=url>path</a> to <code>null</code>.
+          Set <var>url</var>'s <a for=url>path</a> to « ».
         </li>
         <li>
           Set <var>url</var>'s <a for=url>query</a> to <code>null</code>.
