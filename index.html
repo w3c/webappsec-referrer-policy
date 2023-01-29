@@ -1145,7 +1145,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   fallback to a <a data-link-type="dfn" href="#referrer-policy" id="ref-for-referrer-policy⑥">referrer policy</a> defined elsewhere, or in the case where
   no such higher-level policy is available, falling back to the <a data-link-type="dfn" href="#default-referrer-policy" id="ref-for-default-referrer-policy①">default referrer
   policy</a>. This happens in Fetch’s main fetch algorithm, for example.</p>
-    <div class="example" id="example-b879d41d"><a class="self-link" href="#example-b879d41d"></a> Given a HTML <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-a-element" id="ref-for-the-a-element">a</a></code> element without any declared <code><a data-link-type="element-sub" href="https://html.spec.whatwg.org/multipage/semantics.html#attr-a-referrerpolicy" id="ref-for-attr-a-referrerpolicy">referrerpolicy</a></code> attribute, its referrer policy is the empty string. Thus, navigation
+    <div class="example" id="example-b879d41d"><a class="self-link" href="#example-b879d41d"></a> Given a HTML <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-a-element" id="ref-for-the-a-element">a</a></code> element without any declared <code><a data-link-type="element-sub" href="https://html.spec.whatwg.org/multipage/semantics.html#attr-hyperlink-referrerpolicy" id="ref-for-attr-hyperlink-referrerpolicy">referrerpolicy</a></code> attribute, its referrer policy is the empty string. Thus, navigation
     requests initiated by clicking on that <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-a-element" id="ref-for-the-a-element①">a</a></code> element will be sent
     with the <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-a-element" id="ref-for-the-a-element②">a</a></code> element’s <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-node-document" id="ref-for-concept-node-document">node document</a>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/dom.html#concept-document-policy-container" id="ref-for-concept-document-policy-container">policy container</a>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#policy-container-referrer-policy" id="ref-for-policy-container-referrer-policy">referrer policy</a>. If that <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/dom.html#document" id="ref-for-document">Document</a></code> has the
     empty string as its referrer policy, the <a href="#determine-requests-referrer" id="ref-for-determine-requests-referrer">§ 8.3 Determine request’s Referrer</a> algorithm will treat
@@ -1967,10 +1967,10 @@ Referrer-Policy: unsafe-url
     via a referrerpolicy content attribute</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="term-for-attr-a-referrerpolicy">
-   <a href="https://html.spec.whatwg.org/multipage/semantics.html#attr-a-referrerpolicy">https://html.spec.whatwg.org/multipage/semantics.html#attr-a-referrerpolicy</a><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="term-for-attr-hyperlink-referrerpolicy">
+   <a href="https://html.spec.whatwg.org/multipage/semantics.html#attr-hyperlink-referrerpolicy">https://html.spec.whatwg.org/multipage/semantics.html#attr-hyperlink-referrerpolicy</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-attr-a-referrerpolicy">3.9. The empty string</a>
+    <li><a href="#ref-for-attr-hyperlink-referrerpolicy">3.9. The empty string</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-run-a-worker">
@@ -2176,7 +2176,7 @@ Referrer-Policy: unsafe-url
      <li><span class="dfn-paneled" id="term-for-meta-referrer">referrer</span>
      <li><span class="dfn-paneled" id="term-for-policy-container-referrer-policy">referrer policy</span>
      <li><span class="dfn-paneled" id="term-for-referrer-policy-attribute">referrer policy attribute</span>
-     <li><span class="dfn-paneled" id="term-for-attr-a-referrerpolicy">referrerpolicy</span>
+     <li><span class="dfn-paneled" id="term-for-attr-hyperlink-referrerpolicy">referrerpolicy</span>
      <li><span class="dfn-paneled" id="term-for-run-a-worker">running a worker</span>
      <li><span class="dfn-paneled" id="term-for-same-origin">same origin</span>
      <li><span class="dfn-paneled" id="term-for-script">script</span>
