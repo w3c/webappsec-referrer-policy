@@ -6,7 +6,7 @@
   <meta content="ED" name="w3c-status">
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
   <link href="https://www.w3.org/2008/site/images/favicon.ico" rel="icon">
-  <meta content="Bikeshed version fb1e763a4, updated Tue Mar 1 13:13:50 2022 -0800" name="generator">
+  <meta content="Bikeshed version 859efb4bd, updated Fri Jan 27 16:04:01 2023 -0800" name="generator">
   <link href="http://www.w3.org/TR/referrer-policy/" rel="canonical">
 <style>/* style-autolinks */
 
@@ -270,61 +270,226 @@ a[href].issue-return {
     margin-bottom: 0;
 }</style>
 <style>/* style-mdn-anno */
-
-            @media (max-width: 767px) { .mdn-anno { opacity: .1 } }
-            .mdn-anno { font: 1em sans-serif; padding: 0.3em; position: absolute; z-index: 8; right: 0.3em; background: #EEE; color: black; box-shadow: 0 0 3px #999; overflow: hidden; border-collapse: initial; border-spacing: initial; min-width: 9em; max-width: min-content; white-space: nowrap; word-wrap: normal; hyphens: none}
-            .mdn-anno:not(.wrapped) { opacity: 1}
-            .mdn-anno:hover { z-index: 9 }
-            .mdn-anno.wrapped { min-width: 0 }
-            .mdn-anno.wrapped > :not(button) { display: none; }
-            .mdn-anno > .mdn-anno-btn { cursor: pointer; border: none; color: #000; background: transparent; margin: -8px; float: right; padding: 10px 8px 8px 8px; outline: none; }
-            .mdn-anno > .mdn-anno-btn > .less-than-two-engines-flag { color: red; padding-right: 2px; }
-            .mdn-anno > .mdn-anno-btn > .all-engines-flag { color: green; padding-right: 2px; }
-            .mdn-anno > .mdn-anno-btn > span { color: #fff; background-color: #000; font-weight: normal; font-family: zillaslab, Palatino, "Palatino Linotype", serif; padding: 2px 3px 0px 3px; line-height: 1.3em; vertical-align: top; }
-            .mdn-anno > .feature { margin-top: 20px; }
-            .mdn-anno > .feature:not(:first-of-type) { border-top: 1px solid #999; margin-top: 6px; padding-top: 2px; }
-            .mdn-anno > .feature > .less-than-two-engines-text { color: red }
-            .mdn-anno > .feature > .all-engines-text { color: green }
-            .mdn-anno > .feature > p { font-size: .75em; margin-top: 6px; margin-bottom: 0; }
-            .mdn-anno > .feature > p + p { margin-top: 3px; }
-            .mdn-anno > .feature > .support { display: block; font-size: 0.6em; margin: 0; padding: 0; margin-top: 2px }
-            .mdn-anno > .feature > .support + div { padding-top: 0.5em; }
-            .mdn-anno > .feature > .support > hr { display: block; border: none; border-top: 1px dotted #999; padding: 3px 0px 0px 0px; margin: 2px 3px 0px 3px; }
-            .mdn-anno > .feature > .support > hr::before { content: ""; }
-            .mdn-anno > .feature > .support > span { padding: 0.2em 0; display: block; display: table; }
-            .mdn-anno > .feature > .support > span.no { color: #CCCCCC; filter: grayscale(100%); }
-            .mdn-anno > .feature > .support > span.no::before { opacity: 0.5; }
-            .mdn-anno > .feature > .support > span:first-of-type { padding-top: 0.5em; }
-            .mdn-anno > .feature > .support > span > span { padding: 0 0.5em; display: table-cell; }
-            .mdn-anno > .feature > .support > span > span:first-child { width: 100%; }
-            .mdn-anno > .feature > .support > span > span:last-child { width: 100%; white-space: pre; padding: 0; }
-            .mdn-anno > .feature > .support > span::before { content: ' '; display: table-cell; min-width: 1.5em; height: 1.5em; background: no-repeat center center; background-size: contain; text-align: right; font-size: 0.75em; font-weight: bold; }
-            .mdn-anno > .feature > .support > .chrome_android::before { background-image: url(https://resources.whatwg.org/browser-logos/chrome.svg); }
-            .mdn-anno > .feature > .support > .firefox_android::before { background-image: url(https://resources.whatwg.org/browser-logos/firefox.png); }
-            .mdn-anno > .feature > .support > .chrome::before { background-image: url(https://resources.whatwg.org/browser-logos/chrome.svg); }
-            .mdn-anno > .feature > .support > .edge_blink::before { background-image: url(https://resources.whatwg.org/browser-logos/edge.svg); }
-            .mdn-anno > .feature > .support > .edge::before { background-image: url(https://resources.whatwg.org/browser-logos/edge_legacy.svg); }
-            .mdn-anno > .feature > .support > .firefox::before { background-image: url(https://resources.whatwg.org/browser-logos/firefox.png); }
-            .mdn-anno > .feature > .support > .ie::before { background-image: url(https://resources.whatwg.org/browser-logos/ie.png); }
-            .mdn-anno > .feature > .support > .safari_ios::before { background-image: url(https://resources.whatwg.org/browser-logos/safari-ios.svg); }
-            .mdn-anno > .feature > .support > .nodejs::before { background-image: url(https://nodejs.org/static/images/favicons/favicon.ico); }
-            .mdn-anno > .feature > .support > .opera_android::before { background-image: url(https://resources.whatwg.org/browser-logos/opera.svg); }
-            .mdn-anno > .feature > .support > .opera::before { background-image: url(https://resources.whatwg.org/browser-logos/opera.svg); }
-            .mdn-anno > .feature > .support > .safari::before { background-image: url(https://resources.whatwg.org/browser-logos/safari.png); }
-            .mdn-anno > .feature > .support > .samsunginternet_android::before { background-image: url(https://resources.whatwg.org/browser-logos/samsung.svg); }
-            .mdn-anno > .feature > .support > .webview_android::before { background-image: url(https://resources.whatwg.org/browser-logos/android-webview.png); }
-            .name-slug-mismatch { color: red }
-            .caniuse-status:hover { z-index: 9; }
-
-            /* dt, li, .issue, .note, and .example are "position: relative", so to put annotation at right margin, must move to right of containing block */
-            .h-entry:not(.status-LS) dt > .mdn-anno, .h-entry:not(.status-LS) li > .mdn-anno, .h-entry:not(.status-LS) .issue > .mdn-anno, .h-entry:not(.status-LS) .note > .mdn-anno, .h-entry:not(.status-LS) .example > .mdn-anno { right: -6.7em; }
-            .h-entry p + .mdn-anno { margin-top: 0; }
-            h2 + .mdn-anno.after { margin: -48px 0 0 0; }
-            h3 + .mdn-anno.after { margin: -46px 0 0 0; }
-            h4 + .mdn-anno.after { margin: -42px 0 0 0; }
-            h5 + .mdn-anno.after { margin: -40px 0 0 0; }
-            h6 + .mdn-anno.after { margin: -40px 0 0 0; }
-            </style>
+@media (max-width: 767px) {
+	.mdn-anno {
+		opacity: .1;
+	}
+}
+:root {
+	--mdn-bg: #EEE;
+	--mdn-shadow: #999;
+	--mdn-nosupport-text: #ccc;
+}
+.mdn-anno {
+	font: 1em sans-serif;
+	padding: 0.3em;
+	position: absolute;
+	z-index: 8;
+	right: 0.3em;
+	background: var(--mdn-bg, #EEE);
+	color: var(--text, black);
+	box-shadow: 0 0 3px var(--mdn-shadow, #999);
+	overflow: hidden;
+	border-collapse: initial;
+	border-spacing: initial;
+	min-width: 9em;
+	max-width: min-content;
+	white-space: nowrap;
+	word-wrap: normal;
+	hyphens: none;
+	border-radius: .25em;
+}
+.mdn-anno:not(.wrapped) {
+	opacity: 1;
+	z-index: 9;
+}
+.mdn-anno.wrapped {
+	min-width: 0;
+}
+.mdn-anno.wrapped > :not(button) {
+	display: none;
+}
+.mdn-anno:hover {
+	outline: var(--text, black) 1px solid;
+}
+.mdn-anno > .mdn-anno-btn {
+	cursor: pointer;
+	border: none;
+	color: #000;
+	background: transparent;
+	margin: -8px;
+	float: right;
+	padding: 10px 8px 8px 8px;
+	outline: none;
+}
+.mdn-anno > .mdn-anno-btn > .less-than-two-engines-flag {
+	color: red;
+	padding-right: 2px;
+}
+.mdn-anno > .mdn-anno-btn > .all-engines-flag {
+	color: green;
+	padding-right: 2px;
+}
+.mdn-anno > .mdn-anno-btn > span {
+	color: #fff;
+	background-color: #000;
+	font-weight: normal;
+	font-family: zillaslab, Palatino, "Palatino Linotype", serif;
+	padding: 2px 3px 0px 3px;
+	line-height: 1.3em;
+	vertical-align: top;
+}
+.mdn-anno > .feature {
+	margin-top: 20px;
+}
+.mdn-anno > .feature:not(:first-of-type) {
+	border-top: 1px solid #999;
+	margin-top: 6px;
+	padding-top: 2px;
+}
+.mdn-anno > .feature > .less-than-two-engines-text {
+	color: red;
+}
+.mdn-anno > .feature > .all-engines-text {
+	color: green;
+}
+.mdn-anno > .feature > p {
+	font-size: .75em;
+	margin-top: 6px;
+	margin-bottom: 0;
+}
+.mdn-anno > .feature > p + p {
+	margin-top: 3px;
+}
+.mdn-anno > .feature > .support {
+	display: block;
+	font-size: 0.6em;
+	margin: 0;
+	padding: 0;
+	margin-top: 2px;
+}
+.mdn-anno > .feature > .support + div {
+	padding-top: 0.5em;
+}
+.mdn-anno > .feature > .support > hr {
+	display: block;
+	border: none;
+	border-top: 1px dotted #999;
+	padding: 3px 0px 0px 0px;
+	margin: 2px 3px 0px 3px;
+}
+.mdn-anno > .feature > .support > hr::before {
+	content: "";
+}
+.mdn-anno > .feature > .support > span {
+	padding: 0.2em 0;
+	display: block;
+	display: table;
+}
+.mdn-anno > .feature > .support > span.no {
+	color: var(--mdn-nosupport-text);
+	filter: grayscale(100%);
+}
+.mdn-anno > .feature > .support > span.no::before {
+	opacity: 0.5;
+}
+.mdn-anno > .feature > .support > span:first-of-type {
+	padding-top: 0.5em;
+}
+.mdn-anno > .feature > .support > span > span {
+	padding: 0 0.5em;
+	display: table-cell;
+}
+.mdn-anno > .feature > .support > span > span:first-child {
+	width: 100%;
+}
+.mdn-anno > .feature > .support > span > span:last-child {
+	width: 100%;
+	white-space: pre;
+	padding: 0;
+}
+.mdn-anno > .feature > .support > span::before {
+	content: ' ';
+	display: table-cell;
+	min-width: 1.5em;
+	height: 1.5em;
+	background: no-repeat center center;
+	background-size: contain;
+	text-align: right;
+	font-size: 0.75em;
+	font-weight: bold;
+}
+.mdn-anno > .feature > .support > .chrome_android::before {
+	background-image: url(https://resources.whatwg.org/browser-logos/chrome.svg);
+}
+.mdn-anno > .feature > .support > .firefox_android::before {
+	background-image: url(https://resources.whatwg.org/browser-logos/firefox.png);
+}
+.mdn-anno > .feature > .support > .chrome::before {
+	background-image: url(https://resources.whatwg.org/browser-logos/chrome.svg);
+}
+.mdn-anno > .feature > .support > .edge_blink::before {
+	background-image: url(https://resources.whatwg.org/browser-logos/edge.svg);
+}
+.mdn-anno > .feature > .support > .edge::before {
+	background-image: url(https://resources.whatwg.org/browser-logos/edge_legacy.svg);
+}
+.mdn-anno > .feature > .support > .firefox::before {
+	background-image: url(https://resources.whatwg.org/browser-logos/firefox.png);
+}
+.mdn-anno > .feature > .support > .ie::before {
+	background-image: url(https://resources.whatwg.org/browser-logos/ie.png);
+}
+.mdn-anno > .feature > .support > .safari_ios::before {
+	background-image: url(https://resources.whatwg.org/browser-logos/safari-ios.svg);
+}
+.mdn-anno > .feature > .support > .nodejs::before {
+	background-image: url(https://nodejs.org/static/images/favicons/favicon.ico);
+}
+.mdn-anno > .feature > .support > .opera_android::before {
+	background-image: url(https://resources.whatwg.org/browser-logos/opera.svg);
+}
+.mdn-anno > .feature > .support > .opera::before {
+	background-image: url(https://resources.whatwg.org/browser-logos/opera.svg);
+}
+.mdn-anno > .feature > .support > .safari::before {
+	background-image: url(https://resources.whatwg.org/browser-logos/safari.png);
+}
+.mdn-anno > .feature > .support > .samsunginternet_android::before {
+	background-image: url(https://resources.whatwg.org/browser-logos/samsung.svg);
+}
+.mdn-anno > .feature > .support > .webview_android::before {
+	background-image: url(https://resources.whatwg.org/browser-logos/android-webview.png);
+}
+.name-slug-mismatch {
+	color: red;
+}
+.caniuse-status:hover {
+	z-index: 9;
+}
+/* dt, li, .issue, .note, and .example are "position: relative", so to put annotation at right margin, must move to right of containing block */;
+.h-entry:not(.status-LS) dt > .mdn-anno, .h-entry:not(.status-LS) li > .mdn-anno, .h-entry:not(.status-LS) .issue > .mdn-anno, .h-entry:not(.status-LS) .note > .mdn-anno, .h-entry:not(.status-LS) .example > .mdn-anno {
+	right: -6.7em;
+}
+.h-entry p + .mdn-anno {
+	margin-top: 0;
+}
+ h2 + .mdn-anno.after {
+	margin: -48px 0 0 0;
+}
+ h3 + .mdn-anno.after {
+	margin: -46px 0 0 0;
+}
+ h4 + .mdn-anno.after {
+	margin: -42px 0 0 0;
+}
+ h5 + .mdn-anno.after {
+	margin: -40px 0 0 0;
+}
+ h6 + .mdn-anno.after {
+	margin: -40px 0 0 0;
+}
+</style>
 <style>/* style-selflinks */
 
 :root {
@@ -351,6 +516,14 @@ a.self-link:hover {
 }
 .heading > a.self-link {
     font-size: 83%;
+}
+.example > a.self-link,
+.note > a.self-link,
+.issue > a.self-link {
+    /* These blocks are overflow:auto, so positioning outside
+       doesn't work. */
+    left: auto;
+    right: 0;
 }
 li > a.self-link {
     left: calc(-1 * (3.5rem - 26px) - 2em);
@@ -566,6 +739,12 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
         --dfnpanel-bg: #222;
         --dfnpanel-text: var(--text);
     }
+}@media (prefers-color-scheme: dark) {
+	:root {
+		--mdn-bg: #222;
+		--mdn-shadow: #444;
+		--mdn-nosupport-text: #666;
+	}
 }
 @media (prefers-color-scheme: dark) {
     .highlight:not(.idl) { background: rgba(255, 255, 255, .05); }
@@ -634,7 +813,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1>Referrer Policy</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-05-24">24 May 2022</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2023-01-29">29 January 2023</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -660,7 +839,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     </div>
    </details>
    <div data-fill-with="warning"></div>
-   <p class="copyright" data-fill-with="copyright"><a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2022 <a href="https://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup> (<a href="https://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>, <a href="https://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="https://www.keio.ac.jp/">Keio</a>, <a href="https://ev.buaa.edu.cn/">Beihang</a>). W3C <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document" rel="license">permissive document license</a> rules apply. </p>
+   <p class="copyright" data-fill-with="copyright"><a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2023 <a href="https://www.w3.org/">World Wide Web Consortium</a>. <abbr title="World Wide Web Consortium">W3C</abbr><sup>®</sup> <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document" rel="license">permissive document license</a> rules apply. </p>
    <hr title="Separator for header">
   </div>
   <div class="p-summary" data-fill-with="abstract">
@@ -801,7 +980,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   leaking the user’s session identifier in the URL.</p>
     <p>Alternatively, a web application may use URLs which themselves grant some
   capability. Controlling the referrer can help prevent these capability URLs
-  from leaking via referrer headers. <a data-link-type="biblio" href="#biblio-capability-urls">[CAPABILITY-URLS]</a></p>
+  from leaking via referrer headers. <a data-link-type="biblio" href="#biblio-capability-urls" title="Good Practices for Capability URLs">[CAPABILITY-URLS]</a></p>
     <p>Note that there are other ways for capability URLs to leak, and controlling
   the referrer is not enough to control all those potential leaks.</p>
     <h3 class="heading settled" data-level="1.3" id="intro-trackback"><span class="secno">1.3. </span><span class="content">Trackback</span><a class="self-link" href="#intro-trackback"></a></h3>
@@ -818,7 +997,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
       behaviors for each <a data-link-type="dfn" href="#referrer-policy" id="ref-for-referrer-policy②">referrer policy</a>. 
       <p>Every <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#environment-settings-object" id="ref-for-environment-settings-object">environment settings object</a> has an algorithm for obtaining a <a data-link-type="dfn" href="#referrer-policy" id="ref-for-referrer-policy③">referrer policy</a>, which is used by default for all <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request" id="ref-for-concept-request">requests</a> with that <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#environment-settings-object" id="ref-for-environment-settings-object①">environment settings object</a> as their <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-client" id="ref-for-concept-request-client">client</a>.</p>
      <dt><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="same-origin-referrer-request">same-origin-referrer request</dfn>
-     <dd> A <code class="idl"><a data-link-type="idl" href="https://fetch.spec.whatwg.org/#request" id="ref-for-request">Request</a></code> <var>request</var> is a <strong>same-origin-referrer request</strong> if the <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-origin" id="ref-for-concept-url-origin">origin</a> of <var>request</var>’s <a data-link-type="dfn" href="#referrerurl" id="ref-for-referrerurl">referrerURL</a> and the <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-origin" id="ref-for-concept-url-origin①">origin</a> of <var>request</var>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-current-url" id="ref-for-concept-request-current-url">current URL</a> are <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#same-origin" id="ref-for-same-origin">the same</a>. 
+     <dd> A <code class="idl"><a data-link-type="idl" href="https://fetch.spec.whatwg.org/#request" id="ref-for-request">Request</a></code> <var>request</var> is a <strong>same-origin-referrer request</strong> if the <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-origin" id="ref-for-concept-url-origin">origin</a> of <var>request</var>’s <a data-link-type="dfn" href="#referrerurl" id="ref-for-referrerurl">referrerURL</a> and the <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-origin" id="ref-for-concept-url-origin①">origin</a> of <var>request</var>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-current-url" id="ref-for-concept-request-current-url">current URL</a> are <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#same-origin" id="ref-for-same-origin">the same</a>. 
      <dt><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="cross-origin-referrer-request">cross-origin-referrer request</dfn>
      <dd> A <code class="idl"><a data-link-type="idl" href="https://fetch.spec.whatwg.org/#request" id="ref-for-request①">Request</a></code> is a <strong>cross-origin-referrer request</strong> if it is <em>not</em> a <a data-link-type="dfn" href="#same-origin-referrer-request" id="ref-for-same-origin-referrer-request">same-origin-referrer request</a>. 
     </dl>
@@ -845,14 +1024,14 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
 </pre>
     <p>Each possible <a data-link-type="dfn" href="#referrer-policy" id="ref-for-referrer-policy④">referrer policy</a> is explained below. A detailed
   algorithm for evaluating their effect is given in the <a href="#integration-with-fetch">§ 5 Integration with Fetch</a> and <a href="#algorithms">§ 8 Algorithms</a> sections.</p>
-    <p class="note" role="note"><span>Note:</span> The referrer policy for an <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#environment-settings-object" id="ref-for-environment-settings-object②">environment settings object</a> provides a
+    <p class="note" role="note"><span class="marker">Note:</span> The referrer policy for an <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#environment-settings-object" id="ref-for-environment-settings-object②">environment settings object</a> provides a
   default baseline policy for requests when that <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#environment-settings-object" id="ref-for-environment-settings-object③">environment settings
   object</a> is used as a <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-client" id="ref-for-concept-request-client①">request client</a>. This policy may be tightened
   for specific requests via mechanisms like the <code><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/semantics.html#link-type-noreferrer" id="ref-for-link-type-noreferrer①">noreferrer</a></code> link type.</p>
     <p>The <dfn class="dfn-paneled" data-dfn-type="dfn" data-export id="default-referrer-policy">default referrer policy</dfn> is <a data-link-type="dfn" href="#referrer-policy-strict-origin-when-cross-origin" id="ref-for-referrer-policy-strict-origin-when-cross-origin">"<code>strict-origin-when-cross-origin</code>"</a>.</p>
     <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-export data-level="3.1" data-lt="&quot;no-referrer&quot;" id="referrer-policy-no-referrer"><span class="secno">3.1. </span><span class="content">"<code>no-referrer</code>"</span><span id="referrer-policy-state-no-referrer"></span><a class="self-link" href="#referrer-policy-no-referrer" id="ref-for-referrer-policy-no-referrer"></a></h3>
     <p>The simplest policy is <a data-link-type="dfn" href="#referrer-policy-no-referrer" id="ref-for-referrer-policy-no-referrer⑤">"<code>no-referrer</code>"</a>, which specifies
-  that no referrer information is to be sent along with requests to any <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#concept-origin" id="ref-for-concept-origin">origin</a>. The header <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2" id="ref-for-section-5.5.2③"><code>Referer</code></a> will be omitted entirely.</p>
+  that no referrer information is to be sent along with requests to any <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#concept-origin" id="ref-for-concept-origin">origin</a>. The header <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2" id="ref-for-section-5.5.2③"><code>Referer</code></a> will be omitted entirely.</p>
     <div class="example" id="example-13e0f89b"><a class="self-link" href="#example-13e0f89b"></a> If a document at <code>https://example.com/page.html</code> sets a policy of <a data-link-type="dfn" href="#referrer-policy-no-referrer" id="ref-for-referrer-policy-no-referrer①">"<code>no-referrer</code>"</a>, then navigations to <code>https://example.com/</code> (or any other URL) would send no <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2" id="ref-for-section-5.5.2④"><code>Referer</code></a> header. </div>
     <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-export data-level="3.2" data-lt="&quot;no-referrer-when-downgrade&quot;" id="referrer-policy-no-referrer-when-downgrade"><span class="secno">3.2. </span><span class="content">"<code>no-referrer-when-downgrade</code>"</span><span id="referrer-policy-state-no-referrer-when-downgrade"></span><a class="self-link" href="#referrer-policy-no-referrer-when-downgrade" id="ref-for-referrer-policy-no-referrer-when-downgrade"></a></h3>
     <p>The <a data-link-type="dfn" href="#referrer-policy-no-referrer-when-downgrade" id="ref-for-referrer-policy-no-referrer-when-downgrade④">"<code>no-referrer-when-downgrade</code>"</a> policy sends a request’s full <a data-link-type="dfn" href="#referrerurl" id="ref-for-referrerurl①">referrerURL</a> <a href="#strip-url">stripped for use as a referrer</a> for requests:</p>
@@ -885,21 +1064,21 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <p>This is because the descendant script request’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-current-url" id="ref-for-concept-request-current-url③">current URL</a> is <code>https://example.com/descendant.js</code>, while its <a data-link-type="dfn" href="#referrerurl" id="ref-for-referrerurl⑥">referrerURL</a> is <code>https://script.example.com</code>, making the request <a data-link-type="dfn" href="#cross-origin-referrer-request" id="ref-for-cross-origin-referrer-request①">cross-origin-referrer</a>.</p>
     </div>
     <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-export data-level="3.4" data-lt="&quot;origin&quot;" id="referrer-policy-origin"><span class="secno">3.4. </span><span class="content">"<code>origin</code>"</span><span id="referrer-policy-state-origin"></span><a class="self-link" href="#referrer-policy-origin" id="ref-for-referrer-policy-origin"></a></h3>
-    <p>The <a data-link-type="dfn" href="#referrer-policy-origin" id="ref-for-referrer-policy-origin⑨">"<code>origin</code>"</a> policy specifies that only the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#ascii-serialisation-of-an-origin" id="ref-for-ascii-serialisation-of-an-origin">ASCII serialization</a> of the request’s <a data-link-type="dfn" href="#referrerurl" id="ref-for-referrerurl⑦">referrerURL</a> is sent as referrer information when making both <a data-link-type="dfn" href="#same-origin-referrer-request" id="ref-for-same-origin-referrer-request②">same-origin-referrer
+    <p>The <a data-link-type="dfn" href="#referrer-policy-origin" id="ref-for-referrer-policy-origin⑨">"<code>origin</code>"</a> policy specifies that only the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#ascii-serialisation-of-an-origin" id="ref-for-ascii-serialisation-of-an-origin">ASCII serialization</a> of the request’s <a data-link-type="dfn" href="#referrerurl" id="ref-for-referrerurl⑦">referrerURL</a> is sent as referrer information when making both <a data-link-type="dfn" href="#same-origin-referrer-request" id="ref-for-same-origin-referrer-request②">same-origin-referrer
   requests</a> and <a data-link-type="dfn" href="#cross-origin-referrer-request" id="ref-for-cross-origin-referrer-request②">cross-origin-referrer requests</a>.</p>
-    <p class="note" role="note"><span>Note:</span> The serialization of an origin looks like <code>https://example.com</code>.
+    <p class="note" role="note"><span class="marker">Note:</span> The serialization of an origin looks like <code>https://example.com</code>.
   To ensure that a valid URL is sent in the `<code>Referer</code>` header, user
   agents will append a U+002F SOLIDUS ("<code>/</code>") character to the origin
   (e.g. <code>https://example.com/</code>).</p>
-    <p class="note" role="note"><span>Note:</span> The <a data-link-type="dfn" href="#referrer-policy-origin" id="ref-for-referrer-policy-origin①">"<code>origin</code>"</a> policy allows the origin of HTTPS
+    <p class="note" role="note"><span class="marker">Note:</span> The <a data-link-type="dfn" href="#referrer-policy-origin" id="ref-for-referrer-policy-origin①">"<code>origin</code>"</a> policy allows the origin of HTTPS
   referrers to be sent over the network as part of unencrypted HTTP requests.
   The <a data-link-type="dfn" href="#referrer-policy-strict-origin" id="ref-for-referrer-policy-strict-origin">"<code>strict-origin</code>"</a> policy addresses this concern.</p>
-    <div class="example" id="example-5d156f10"><a class="self-link" href="#example-5d156f10"></a> If a document at <code>https://example.com/page.html</code> sets a policy of <a data-link-type="dfn" href="#referrer-policy-origin" id="ref-for-referrer-policy-origin②">"<code>origin</code>"</a>, then navigations to any <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#concept-origin" id="ref-for-concept-origin①">origin</a> would send a <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2" id="ref-for-section-5.5.2①②"><code>Referer</code></a> header with a value
+    <div class="example" id="example-5d156f10"><a class="self-link" href="#example-5d156f10"></a> If a document at <code>https://example.com/page.html</code> sets a policy of <a data-link-type="dfn" href="#referrer-policy-origin" id="ref-for-referrer-policy-origin②">"<code>origin</code>"</a>, then navigations to any <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#concept-origin" id="ref-for-concept-origin①">origin</a> would send a <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2" id="ref-for-section-5.5.2①②"><code>Referer</code></a> header with a value
     of <code>https://example.com/</code>, even to URLs that are not <a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-url" id="ref-for-potentially-trustworthy-url⑤">potentially trustworthy URL</a>. </div>
     <div class="example" id="example-8bfba7ab"><a class="self-link" href="#example-8bfba7ab"></a> If a document at <code>https://example.com/page.html</code> sets a policy of <a data-link-type="dfn" href="#referrer-policy-origin" id="ref-for-referrer-policy-origin③">"<code>origin</code>"</a>, and fetches a module script at <code>https://script.example.com</code>, which fetches a descendant script at <code>https://descendant.example.com</code>, the request for the descendant script
     will send a <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2" id="ref-for-section-5.5.2①③"><code>Referer</code></a> header with a value of <code>https://script.example.com/</code>. </div>
     <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-export data-level="3.5" data-lt="&quot;strict-origin&quot;" id="referrer-policy-strict-origin"><span class="secno">3.5. </span><span class="content">"<code>strict-origin</code>"</span><a class="self-link" href="#referrer-policy-strict-origin" id="ref-for-referrer-policy-strict-origin⑦"></a></h3>
-    <p>The <a data-link-type="dfn" href="#referrer-policy-strict-origin" id="ref-for-referrer-policy-strict-origin①">"<code>strict-origin</code>"</a> policy sends the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#ascii-serialisation-of-an-origin" id="ref-for-ascii-serialisation-of-an-origin①">ASCII serialization</a> of the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#concept-origin" id="ref-for-concept-origin②">origin</a> of the <a data-link-type="dfn" href="#referrerurl" id="ref-for-referrerurl⑧">referrerURL</a> for requests:</p>
+    <p>The <a data-link-type="dfn" href="#referrer-policy-strict-origin" id="ref-for-referrer-policy-strict-origin①">"<code>strict-origin</code>"</a> policy sends the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#ascii-serialisation-of-an-origin" id="ref-for-ascii-serialisation-of-an-origin①">ASCII serialization</a> of the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#concept-origin" id="ref-for-concept-origin②">origin</a> of the <a data-link-type="dfn" href="#referrerurl" id="ref-for-referrerurl⑧">referrerURL</a> for requests:</p>
     <ul>
      <li>whose <a data-link-type="dfn" href="#referrerurl" id="ref-for-referrerurl⑨">referrerURL</a> and <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-current-url" id="ref-for-concept-request-current-url④">current URL</a> are both <a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-url" id="ref-for-potentially-trustworthy-url⑥">potentially
       trustworthy URLs</a>, or
@@ -917,10 +1096,10 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     the request to the descendant script would not send a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/semantics.html#meta-referrer" id="ref-for-meta-referrer"><code>Referrer</code></a> header. </div>
     <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-export data-level="3.6" data-lt="&quot;origin-when-cross-origin&quot;" id="referrer-policy-origin-when-cross-origin"><span class="secno">3.6. </span><span class="content">"<code>origin-when-cross-origin</code>"</span><span id="referrer-policy-state-origin-when-cross-origin"></span><a class="self-link" href="#referrer-policy-origin-when-cross-origin" id="ref-for-referrer-policy-origin-when-cross-origin"></a></h3>
     <p>The <a data-link-type="dfn" href="#referrer-policy-origin-when-cross-origin" id="ref-for-referrer-policy-origin-when-cross-origin⑧">"<code>origin-when-cross-origin</code>"</a> policy specifies that a request’s full <a data-link-type="dfn" href="#referrerurl" id="ref-for-referrerurl①②">referrerURL</a> is sent as referrer information when making <a data-link-type="dfn" href="#same-origin-referrer-request" id="ref-for-same-origin-referrer-request③">same-origin-referrer requests</a>,
-  and only the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#ascii-serialisation-of-an-origin" id="ref-for-ascii-serialisation-of-an-origin②">ASCII serialization</a> of the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#concept-origin" id="ref-for-concept-origin③">origin</a> of the request’s <a data-link-type="dfn" href="#referrerurl" id="ref-for-referrerurl①③">referrerURL</a> is sent as referrer information when making <a data-link-type="dfn" href="#cross-origin-referrer-request" id="ref-for-cross-origin-referrer-request③">cross-origin-referrer requests</a>.</p>
-    <p class="note" role="note"><span>Note:</span> For the <a data-link-type="dfn" href="#referrer-policy-origin-when-cross-origin" id="ref-for-referrer-policy-origin-when-cross-origin①">"<code>origin-when-cross-origin</code>"</a> policy, we also
+  and only the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#ascii-serialisation-of-an-origin" id="ref-for-ascii-serialisation-of-an-origin②">ASCII serialization</a> of the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#concept-origin" id="ref-for-concept-origin③">origin</a> of the request’s <a data-link-type="dfn" href="#referrerurl" id="ref-for-referrerurl①③">referrerURL</a> is sent as referrer information when making <a data-link-type="dfn" href="#cross-origin-referrer-request" id="ref-for-cross-origin-referrer-request③">cross-origin-referrer requests</a>.</p>
+    <p class="note" role="note"><span class="marker">Note:</span> For the <a data-link-type="dfn" href="#referrer-policy-origin-when-cross-origin" id="ref-for-referrer-policy-origin-when-cross-origin①">"<code>origin-when-cross-origin</code>"</a> policy, we also
   consider protocol upgrades, e.g. requests from <code>http://example.com/</code> to <code>https://example.com/</code>, to be <a data-link-type="dfn" href="#cross-origin-referrer-request" id="ref-for-cross-origin-referrer-request④">cross-origin-referrer requests</a>.</p>
-    <p class="note" role="note"><span>Note:</span> The <a data-link-type="dfn" href="#referrer-policy-origin-when-cross-origin" id="ref-for-referrer-policy-origin-when-cross-origin②">"<code>origin-when-cross-origin</code>"</a> policy allows the
+    <p class="note" role="note"><span class="marker">Note:</span> The <a data-link-type="dfn" href="#referrer-policy-origin-when-cross-origin" id="ref-for-referrer-policy-origin-when-cross-origin②">"<code>origin-when-cross-origin</code>"</a> policy allows the
   origin of HTTPS referrers to be sent over the network as part of unencrypted
   HTTP requests. The <a data-link-type="dfn" href="#referrer-policy-strict-origin-when-cross-origin" id="ref-for-referrer-policy-strict-origin-when-cross-origin①">"<code>strict-origin-when-cross-origin</code>"</a> policy
   addresses this concern.</p>
@@ -934,7 +1113,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     send a <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2" id="ref-for-section-5.5.2②①"><code>Referer</code></a> header with a value of <code>https://example-2.com/module.js</code>. </div>
     <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-export data-level="3.7" data-lt="&quot;strict-origin-when-cross-origin&quot;" id="referrer-policy-strict-origin-when-cross-origin"><span class="secno">3.7. </span><span class="content">"<code>strict-origin-when-cross-origin</code>"</span><a class="self-link" href="#referrer-policy-strict-origin-when-cross-origin" id="ref-for-referrer-policy-strict-origin-when-cross-origin⑦"></a></h3>
     <p>The <a data-link-type="dfn" href="#referrer-policy-strict-origin-when-cross-origin" id="ref-for-referrer-policy-strict-origin-when-cross-origin②">"<code>strict-origin-when-cross-origin</code>"</a> policy specifies that a request’s full <a data-link-type="dfn" href="#referrerurl" id="ref-for-referrerurl①④">referrerURL</a> is sent as referrer information when making <a data-link-type="dfn" href="#same-origin-referrer-request" id="ref-for-same-origin-referrer-request④">same-origin-referrer requests</a>,
-  and only the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#ascii-serialisation-of-an-origin" id="ref-for-ascii-serialisation-of-an-origin③">ASCII serialization</a> of the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#concept-origin" id="ref-for-concept-origin④">origin</a> of the request’s <a data-link-type="dfn" href="#referrerurl" id="ref-for-referrerurl①⑤">referrerURL</a> when making <a data-link-type="dfn" href="#cross-origin-referrer-request" id="ref-for-cross-origin-referrer-request⑤">cross-origin-referrer requests</a>:</p>
+  and only the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#ascii-serialisation-of-an-origin" id="ref-for-ascii-serialisation-of-an-origin③">ASCII serialization</a> of the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#concept-origin" id="ref-for-concept-origin④">origin</a> of the request’s <a data-link-type="dfn" href="#referrerurl" id="ref-for-referrerurl①⑤">referrerURL</a> when making <a data-link-type="dfn" href="#cross-origin-referrer-request" id="ref-for-cross-origin-referrer-request⑤">cross-origin-referrer requests</a>:</p>
     <ul>
      <li>whose <a data-link-type="dfn" href="#referrerurl" id="ref-for-referrerurl①⑥">referrerURL</a> and <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-current-url" id="ref-for-concept-request-current-url⑥">current URL</a> are both <a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-url" id="ref-for-potentially-trustworthy-url①①">potentially
       trustworthy URLs</a>, or
@@ -957,7 +1136,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   sent along for both <a data-link-type="dfn" href="#same-origin-referrer-request" id="ref-for-same-origin-referrer-request⑤">same-origin-referrer requests</a> and <a data-link-type="dfn" href="#cross-origin-referrer-request" id="ref-for-cross-origin-referrer-request⑥">cross-origin-referrer requests</a>.</p>
     <div class="example" id="example-56375f3a"><a class="self-link" href="#example-56375f3a"></a> If a document at <code>https://example.com/sekrit.html</code> sets a policy
     of <a data-link-type="dfn" href="#referrer-policy-unsafe-url" id="ref-for-referrer-policy-unsafe-url①">"<code>unsafe-url</code>"</a>, then navigations to <code>http://not.example.com/</code> (and every other origin) would send a <code><a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7231#section-5.5.2" id="ref-for-section-5.5.2②⑦">Referer</a></code> HTTP header with a value of <code>https://example.com/sekrit.html</code>. </div>
-    <p class="note" role="note"><span>Note:</span> The policy’s name doesn’t lie; it is unsafe. This policy will leak
+    <p class="note" role="note"><span class="marker">Note:</span> The policy’s name doesn’t lie; it is unsafe. This policy will leak
   origins and paths from secure resources to insecure origins.
   Carefully consider the impact of setting such a policy for potentially
   sensitive documents.</p>
@@ -966,11 +1145,11 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   fallback to a <a data-link-type="dfn" href="#referrer-policy" id="ref-for-referrer-policy⑥">referrer policy</a> defined elsewhere, or in the case where
   no such higher-level policy is available, falling back to the <a data-link-type="dfn" href="#default-referrer-policy" id="ref-for-default-referrer-policy①">default referrer
   policy</a>. This happens in Fetch’s main fetch algorithm, for example.</p>
-    <div class="example" id="example-9815953a"><a class="self-link" href="#example-9815953a"></a> Given a HTML <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-a-element" id="ref-for-the-a-element">a</a></code> element without any declared <code><a data-link-type="element-sub" href="https://html.spec.whatwg.org/multipage/semantics.html#attr-a-referrerpolicy" id="ref-for-attr-a-referrerpolicy">referrerpolicy</a></code> attribute, its referrer policy is the empty string. Thus, navigation
+    <div class="example" id="example-b879d41d"><a class="self-link" href="#example-b879d41d"></a> Given a HTML <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-a-element" id="ref-for-the-a-element">a</a></code> element without any declared <code><a data-link-type="element-sub" href="https://html.spec.whatwg.org/multipage/semantics.html#attr-a-referrerpolicy" id="ref-for-attr-a-referrerpolicy">referrerpolicy</a></code> attribute, its referrer policy is the empty string. Thus, navigation
     requests initiated by clicking on that <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-a-element" id="ref-for-the-a-element①">a</a></code> element will be sent
-    with the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/dom.html#concept-document-referrer-policy" id="ref-for-concept-document-referrer-policy">referrer
-    policy</a> of the <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-a-element" id="ref-for-the-a-element②">a</a></code> element’s <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-node-document" id="ref-for-concept-node-document">node document</a>. If that <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/dom.html#document" id="ref-for-document">Document</a></code> has the empty string as its referrer policy, the <a href="#determine-requests-referrer" id="ref-for-determine-requests-referrer">§ 8.3 Determine request’s Referrer</a> algorithm will treat the empty
-    string the same as <a data-link-type="dfn" href="#referrer-policy-strict-origin-when-cross-origin" id="ref-for-referrer-policy-strict-origin-when-cross-origin⑤">"<code>strict-origin-when-cross-origin</code>"</a>. </div>
+    with the <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-a-element" id="ref-for-the-a-element②">a</a></code> element’s <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-node-document" id="ref-for-concept-node-document">node document</a>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/dom.html#concept-document-policy-container" id="ref-for-concept-document-policy-container">policy container</a>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#policy-container-referrer-policy" id="ref-for-policy-container-referrer-policy">referrer policy</a>. If that <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/dom.html#document" id="ref-for-document">Document</a></code> has the
+    empty string as its referrer policy, the <a href="#determine-requests-referrer" id="ref-for-determine-requests-referrer">§ 8.3 Determine request’s Referrer</a> algorithm will treat
+    the empty string the same as <a data-link-type="dfn" href="#referrer-policy-strict-origin-when-cross-origin" id="ref-for-referrer-policy-strict-origin-when-cross-origin⑤">"<code>strict-origin-when-cross-origin</code>"</a>. </div>
    </section>
    <section>
     <h2 class="heading settled" data-level="4" id="referrer-policy-delivery"><span class="secno">4. </span><span class="content">Referrer Policy Delivery</span><a class="self-link" href="#referrer-policy-delivery"></a></h2>
@@ -992,11 +1171,11 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
       <div class="support">
        <span class="firefox yes"><span>Firefox</span><span>50+</span></span><span class="safari yes"><span>Safari</span><span>11.1+</span></span><span class="chrome yes"><span>Chrome</span><span>56+</span></span>
        <hr>
-       <span class="opera yes"><span>Opera</span><span>43+</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
+       <span class="opera no"><span>Opera</span><span>?</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
        <hr>
-       <span class="edge no"><span>Edge (Legacy)</span><span>None</span></span><span class="ie no"><span>IE</span><span>None</span></span>
+       <span class="edge no"><span>Edge (Legacy)</span><span>?</span></span><span class="ie no"><span>IE</span><span>None</span></span>
        <hr>
-       <span class="firefox_android yes"><span>Firefox for Android</span><span>50+</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>12+</span></span><span class="chrome_android yes"><span>Chrome for Android</span><span>56+</span></span><span class="webview_android yes"><span>Android WebView</span><span>56+</span></span><span class="samsunginternet_android yes"><span>Samsung Internet</span><span>7.2+</span></span><span class="opera_android yes"><span>Opera Mobile</span><span>43+</span></span>
+       <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>12+</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="webview_android no"><span>Android WebView</span><span>?</span></span><span class="samsunginternet_android yes"><span>Samsung Internet</span><span>7.2+</span></span><span class="opera_android no"><span>Opera Mobile</span><span>?</span></span>
       </div>
      </div>
     </div>
@@ -1005,19 +1184,19 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   what referrer information should be included with requests made, and with <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="ref-for-browsing-context">browsing contexts</a> created from the context of the protected
   resource.</p>
     <p>The syntax for the name and value of the header are described by the following
-  ABNF grammar. ABNF is defined in <a data-link-type="biblio" href="#biblio-rfc5234">[RFC5234]</a>, and the <code>#rule</code> ABNF
-  extension used below is defined in <a href="https://tools.ietf.org/html/rfc7230#section-7">Section 7</a> of <a data-link-type="biblio" href="#biblio-rfc7230">[RFC7230]</a>.</p>
+  ABNF grammar. ABNF is defined in <a data-link-type="biblio" href="#biblio-rfc5234" title="Augmented BNF for Syntax Specifications: ABNF">[RFC5234]</a>, and the <code>#rule</code> ABNF
+  extension used below is defined in <a href="https://www.rfc-editor.org/rfc/rfc9110#section-5.6.1">Section 5.6.1</a> of <a data-link-type="biblio" href="#biblio-rfc9110" title="HTTP Semantics">[RFC9110]</a>.</p>
 <pre>"Referrer-Policy:" 1#(<a data-link-type="grammar" href="#grammardef-policy-token" id="ref-for-grammardef-policy-token">policy-token</a> / <a data-link-type="grammar" href="#grammardef-extension-token" id="ref-for-grammardef-extension-token">extension-token</a>)
 </pre>
 <pre><dfn class="dfn-paneled" data-dfn-type="grammar" data-export id="grammardef-policy-token">policy-token</dfn> = "no-referrer" / "no-referrer-when-downgrade" / "strict-origin" / "strict-origin-when-cross-origin" / "same-origin" / "origin" / "origin-when-cross-origin" / "unsafe-url"
 <dfn class="dfn-paneled" data-dfn-type="grammar" data-export id="grammardef-extension-token">extension-token</dfn> = 1*( <a data-link-type="grammar" href="https://tools.ietf.org/html/rfc5234#appendix-B.1" id="ref-for-appendix-B.1">ALPHA</a> / "-" )
 </pre>
-    <p class="note" role="note"><span>Note:</span> The header name does not share the HTTP Referer header’s misspelling.</p>
-    <p class="note" role="note"><span>Note:</span> The purpose of <a data-link-type="grammar" href="#grammardef-extension-token" id="ref-for-grammardef-extension-token①">extension-token</a> is so that
+    <p class="note" role="note"><span class="marker">Note:</span> The header name does not share the HTTP Referer header’s misspelling.</p>
+    <p class="note" role="note"><span class="marker">Note:</span> The purpose of <a data-link-type="grammar" href="#grammardef-extension-token" id="ref-for-grammardef-extension-token①">extension-token</a> is so that
   browsers do not fail to parse the entire header field if it includes an
   unknown policy value. <a href="#unknown-policy-values">§ 11.1 Unknown Policy Values</a> describes in greater detail
   how new policy values can be deployed.</p>
-    <p class="note" role="note"><span>Note:</span> The quotes in the ABNF above are used to indicate literal strings.
+    <p class="note" role="note"><span class="marker">Note:</span> The quotes in the ABNF above are used to indicate literal strings.
   Referrer-Policy header values should not be quoted.</p>
     <p><a href="#integration-with-fetch">§ 5 Integration with Fetch</a> and <a href="#integration-with-html">§ 6 Integration with HTML</a> describe
   how the <code>Referrer-Policy</code> header is processed.</p>
@@ -1044,7 +1223,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
         <hr>
         <span class="edge yes"><span>Edge (Legacy)</span><span>12+</span></span><span class="ie yes"><span>IE</span><span>6+</span></span>
         <hr>
-        <span class="firefox_android yes"><span>Firefox for Android</span><span>4+</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>3+</span></span><span class="chrome_android yes"><span>Chrome for Android</span><span>18+</span></span><span class="webview_android yes"><span>Android WebView</span><span>1+</span></span><span class="samsunginternet_android yes"><span>Samsung Internet</span><span>1.0+</span></span><span class="opera_android yes"><span>Opera Mobile</span><span>12.1+</span></span>
+        <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="safari_ios no"><span>iOS Safari</span><span>?</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="webview_android no"><span>Android WebView</span><span>?</span></span><span class="samsunginternet_android no"><span>Samsung Internet</span><span>?</span></span><span class="opera_android yes"><span>Opera Mobile</span><span>12.1+</span></span>
        </div>
       </div>
      </div>
@@ -1064,7 +1243,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <section class="informative">
      <h3 class="heading settled" data-level="4.4" id="referrer-policy-inheritance"><span class="secno">4.4. </span><span class="content"><a data-link-type="dfn" href="#referrer-policy" id="ref-for-referrer-policy⑧">Referrer Policy</a> Inheritance</span><span id="referrer-policy-delivery-nested"></span><span id="referrer-policy-delivery-implicit"></span><a class="self-link" href="#referrer-policy-inheritance"></a></h3>
      <p><em>This section is not normative.</em></p>
-     <p>Referrer policy is inherited following the inheritance mechanism of <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#policy-container" id="ref-for-policy-container">policy containers</a>, as defined by HTML.</p>
+     <p>Referrer policy is inherited following the inheritance mechanism of <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#policy-container" id="ref-for-policy-container">policy containers</a>, as defined by HTML.</p>
     </section>
    </section>
    <section class="informative">
@@ -1082,9 +1261,9 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <p><em>This section is not normative.</em></p>
     <p>The HTML Standard determines the <a data-link-type="dfn" href="#referrer-policy" id="ref-for-referrer-policy⑨">referrer policy</a> of any response
   received during <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#navigate" id="ref-for-navigate">navigation</a> or while <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/workers.html#run-a-worker" id="ref-for-run-a-worker">running a worker</a>, and uses
-  the result to set the resulting <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/dom.html#document" id="ref-for-document①">Document</a></code>'s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/dom.html#concept-document-policy-container" id="ref-for-concept-document-policy-container">policy
+  the result to set the resulting <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/dom.html#document" id="ref-for-document①">Document</a></code>'s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/dom.html#concept-document-policy-container" id="ref-for-concept-document-policy-container①">policy
   container</a>’s or <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/workers.html#workerglobalscope" id="ref-for-workerglobalscope">WorkerGlobalScope</a></code>'s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/workers.html#concept-workerglobalscope-policy-container" id="ref-for-concept-workerglobalscope-policy-container">policy
-  container</a>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#policy-container-referrer-policy" id="ref-for-policy-container-referrer-policy">referrer policy</a>.</p>
+  container</a>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#policy-container-referrer-policy" id="ref-for-policy-container-referrer-policy①">referrer policy</a>.</p>
    </section>
    <section>
     <h2 class="heading settled" data-level="7" id="integration-with-css"><span class="secno">7. </span><span class="content">Integration with CSS</span><a class="self-link" href="#integration-with-css"></a></h2>
@@ -1099,19 +1278,19 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
        set the <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-referrer" id="ref-for-concept-request-referrer">referrer</a> to its <a data-link-type="dfn" href="https://drafts.csswg.org/cssom-1/#concept-css-style-sheet-location" id="ref-for-concept-css-style-sheet-location①">location</a>, and the <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-referrer-policy" id="ref-for-concept-request-referrer-policy①">referrer
        policy</a> to its <a data-link-type="dfn" href="#cssstylesheet-referrer-policy" id="ref-for-cssstylesheet-referrer-policy">referrer policy</a>. 
       <p class="issue" id="issue-a01fbbf2"><a class="self-link" href="#issue-a01fbbf2"></a> This requires that CSS style sheets process `Referrer-Policy`
-       headers, and store a <dfn class="dfn-paneled" data-dfn-for="CSSStyleSheet" data-dfn-type="dfn" data-noexport id="cssstylesheet-referrer-policy">referrer policy</dfn> in the same way that <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#policy-container-referrer-policy" id="ref-for-policy-container-referrer-policy①">Documents
+       headers, and store a <dfn class="dfn-paneled" data-dfn-for="CSSStyleSheet" data-dfn-type="dfn" data-noexport id="cssstylesheet-referrer-policy">referrer policy</dfn> in the same way that <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#policy-container-referrer-policy" id="ref-for-policy-container-referrer-policy②">Documents
        do</a>.</p>
      <li> If a <a data-link-type="dfn" href="https://drafts.csswg.org/cssom-1/#css-style-sheet" id="ref-for-css-style-sheet①">CSS style sheet</a> with a null <a data-link-type="dfn" href="https://drafts.csswg.org/cssom-1/#concept-css-style-sheet-location" id="ref-for-concept-css-style-sheet-location②">location</a> is responsible
-      for the request, set the <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-referrer" id="ref-for-concept-request-referrer①">referrer</a> to its <a data-link-type="dfn" href="https://drafts.csswg.org/cssom-1/#concept-css-style-sheet-owner-node" id="ref-for-concept-css-style-sheet-owner-node">owner node</a>’s <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-node-document" id="ref-for-concept-node-document①">node document</a>’s <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-document-url" id="ref-for-concept-document-url">URL</a>, and the <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-referrer-policy" id="ref-for-concept-request-referrer-policy②">referrer policy</a> to its <a data-link-type="dfn" href="https://drafts.csswg.org/cssom-1/#concept-css-style-sheet-owner-node" id="ref-for-concept-css-style-sheet-owner-node①">owner node</a>’s <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-node-document" id="ref-for-concept-node-document②">node document</a>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/dom.html#concept-document-policy-container" id="ref-for-concept-document-policy-container①">policy container</a>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#policy-container-referrer-policy" id="ref-for-policy-container-referrer-policy②">referrer policy</a>. 
+      for the request, set the <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-referrer" id="ref-for-concept-request-referrer①">referrer</a> to its <a data-link-type="dfn" href="https://drafts.csswg.org/cssom-1/#concept-css-style-sheet-owner-node" id="ref-for-concept-css-style-sheet-owner-node">owner node</a>’s <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-node-document" id="ref-for-concept-node-document①">node document</a>’s <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-document-url" id="ref-for-concept-document-url">URL</a>, and the <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-referrer-policy" id="ref-for-concept-request-referrer-policy②">referrer policy</a> to its <a data-link-type="dfn" href="https://drafts.csswg.org/cssom-1/#concept-css-style-sheet-owner-node" id="ref-for-concept-css-style-sheet-owner-node①">owner node</a>’s <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-node-document" id="ref-for-concept-node-document②">node document</a>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/dom.html#concept-document-policy-container" id="ref-for-concept-document-policy-container②">policy container</a>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#policy-container-referrer-policy" id="ref-for-policy-container-referrer-policy③">referrer policy</a>. 
      <li> Otherwise, a <a data-link-type="dfn" href="https://drafts.csswg.org/cssom-1/#css-declaration-block" id="ref-for-css-declaration-block">CSS declaration block</a> that was created by the
        embedder is responsible for the request - either from parsing of an
        element’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/dom.html#the-style-attribute" id="ref-for-the-style-attribute">style attribute</a>, or to implement an <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/rendering.html#presentational-hints" id="ref-for-presentational-hints">presentational
        hint</a> for an element. We assume that in this case the <a data-link-type="dfn" href="https://drafts.csswg.org/cssom-1/#css-declaration-block" id="ref-for-css-declaration-block①">CSS
        declaration block</a>’s <a data-link-type="dfn" href="https://drafts.csswg.org/cssom-1/#cssstyledeclaration-owner-node" id="ref-for-cssstyledeclaration-owner-node">owner node</a> points to that element, and set the <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-referrer" id="ref-for-concept-request-referrer②">referrer</a> to the
        block’s <a data-link-type="dfn" href="https://drafts.csswg.org/cssom-1/#cssstyledeclaration-owner-node" id="ref-for-cssstyledeclaration-owner-node①">owner node</a>’s <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-node-document" id="ref-for-concept-node-document③">node
-       document</a>’s <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-document-url" id="ref-for-concept-document-url①">URL</a>, and the <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-referrer-policy" id="ref-for-concept-request-referrer-policy③">referrer policy</a> to the block’s <a data-link-type="dfn" href="https://drafts.csswg.org/cssom-1/#cssstyledeclaration-owner-node" id="ref-for-cssstyledeclaration-owner-node②">owner node</a>’s <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-node-document" id="ref-for-concept-node-document④">node document</a>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/dom.html#concept-document-policy-container" id="ref-for-concept-document-policy-container②">policy container</a>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#policy-container-referrer-policy" id="ref-for-policy-container-referrer-policy③">referrer policy</a>. 
+       document</a>’s <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-document-url" id="ref-for-concept-document-url①">URL</a>, and the <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-referrer-policy" id="ref-for-concept-request-referrer-policy③">referrer policy</a> to the block’s <a data-link-type="dfn" href="https://drafts.csswg.org/cssom-1/#cssstyledeclaration-owner-node" id="ref-for-cssstyledeclaration-owner-node②">owner node</a>’s <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-node-document" id="ref-for-concept-node-document④">node document</a>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/dom.html#concept-document-policy-container" id="ref-for-concept-document-policy-container③">policy container</a>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#policy-container-referrer-policy" id="ref-for-policy-container-referrer-policy④">referrer policy</a>. 
     </ol>
-    <p class="note" role="note"><span>Note:</span> Both the value of the <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request" id="ref-for-concept-request③">request</a>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-referrer" id="ref-for-concept-request-referrer③">referrer</a> and <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-referrer-policy" id="ref-for-concept-request-referrer-policy④">referrer policy</a> are set based on the values at the
+    <p class="note" role="note"><span class="marker">Note:</span> Both the value of the <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request" id="ref-for-concept-request③">request</a>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-referrer" id="ref-for-concept-request-referrer③">referrer</a> and <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-referrer-policy" id="ref-for-concept-request-referrer-policy④">referrer policy</a> are set based on the values at the
   time a given <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request" id="ref-for-concept-request④">request</a> is created. If a document’s referrer policy
   changes during its lifetime, the policy associated with inline stylesheet
   requests will also change.</p>
@@ -1128,7 +1307,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <li>
        For each <var>token</var> in <var>policy-tokens</var>, if <var>token</var> is a <a data-link-type="dfn" href="#referrer-policy" id="ref-for-referrer-policy①①">referrer
       policy</a> and <var>token</var> is not the empty string, then set <var>policy</var> to <var>token</var>. 
-      <p class="note" role="note"><span>Note:</span> This algorithm loops over multiple policy values to allow
+      <p class="note" role="note"><span class="marker">Note:</span> This algorithm loops over multiple policy values to allow
 	  deployment of new policy values with fallbacks for older user
 	  agents, as described in <a href="#unknown-policy-values">§ 11.1 Unknown Policy Values</a>.</p>
      <li> Return <var>policy</var>. 
@@ -1154,13 +1333,13 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
         <ol>
          <li>
            If <var>environment</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-settings-object-global" id="ref-for-concept-settings-object-global">global
-              object</a> is a <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/window-object.html#window" id="ref-for-window">Window</a></code> object, then 
+              object</a> is a <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/nav-history-apis.html#window" id="ref-for-window">Window</a></code> object, then 
           <ol>
            <li>Let <var>document</var> be
                 the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#concept-document-window" id="ref-for-concept-document-window">associated <code>Document</code></a> of <var>environment</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-settings-object-global" id="ref-for-concept-settings-object-global①">global object</a>.
            <li>If <var>document</var>’s <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-document-origin" id="ref-for-concept-document-origin">origin</a> is an <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#concept-origin-opaque" id="ref-for-concept-origin-opaque">opaque origin</a>,
                 return <code>no referrer</code>.
-           <li>While <var>document</var> is <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/embedded-content.html#an-iframe-srcdoc-document" id="ref-for-an-iframe-srcdoc-document">an <code>iframe srcdoc</code> document</a>, let <var>document</var> be <var>document</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#concept-document-bc" id="ref-for-concept-document-bc">browsing context</a>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context-container" id="ref-for-browsing-context-container">browsing context
+           <li>While <var>document</var> is <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/embedded-content.html#an-iframe-srcdoc-document" id="ref-for-an-iframe-srcdoc-document">an <code>iframe srcdoc</code> document</a>, let <var>document</var> be <var>document</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#concept-document-bc" id="ref-for-concept-document-bc">browsing context</a>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context-container" id="ref-for-browsing-context-container">browsing context
                 container</a>’s <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-node-document" id="ref-for-concept-node-document⑤">node document</a>.
            <li>Let <var>referrerSource</var> be <var>document</var>’s <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-document-url" id="ref-for-concept-document-url②">URL</a>.
           </ol>
@@ -1170,7 +1349,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
        <dt>a <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url" id="ref-for-concept-url">URL</a>
        <dd>Let <var>referrerSource</var> be <var>request</var>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-referrer" id="ref-for-concept-request-referrer⑤">referrer</a>.
       </dl>
-      <p class="note" role="note"><span>Note:</span> If <var>request</var>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-referrer" id="ref-for-concept-request-referrer⑥">referrer</a> is
+      <p class="note" role="note"><span class="marker">Note:</span> If <var>request</var>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-referrer" id="ref-for-concept-request-referrer⑥">referrer</a> is
       "<code>no-referrer</code>", Fetch will not call into this algorithm.</p>
      <li> Let request’s <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="referrerurl">referrerURL</dfn> be the result of <a href="#strip-url">stripping <var>referrerSource</var> for use as a referrer.</a> 
      <li> Let <var>referrerOrigin</var> be the result of <a href="#strip-url">stripping <var>referrerSource</var> for use as a
@@ -1199,7 +1378,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
        <dt><a data-link-type="dfn" href="#referrer-policy-strict-origin-when-cross-origin" id="ref-for-referrer-policy-strict-origin-when-cross-origin⑥">"<code>strict-origin-when-cross-origin</code>"</a>
        <dd>
         <ol>
-         <li> If the <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-origin" id="ref-for-concept-url-origin②">origin</a> of <a data-link-type="dfn" href="#referrerurl" id="ref-for-referrerurl②④">referrerURL</a> and the <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-origin" id="ref-for-concept-url-origin③">origin</a> of <var>request</var>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-current-url" id="ref-for-concept-request-current-url⑨">current URL</a> are <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#same-origin" id="ref-for-same-origin①">the
+         <li> If the <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-origin" id="ref-for-concept-url-origin②">origin</a> of <a data-link-type="dfn" href="#referrerurl" id="ref-for-referrerurl②④">referrerURL</a> and the <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-origin" id="ref-for-concept-url-origin③">origin</a> of <var>request</var>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-current-url" id="ref-for-concept-request-current-url⑨">current URL</a> are <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#same-origin" id="ref-for-same-origin①">the
               same</a>, then return <a data-link-type="dfn" href="#referrerurl" id="ref-for-referrerurl②⑤">referrerURL</a>. 
          <li> If <a data-link-type="dfn" href="#referrerurl" id="ref-for-referrerurl②⑥">referrerURL</a> is a <a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-url" id="ref-for-potentially-trustworthy-url①⑦">potentially trustworthy URL</a> and <var>request</var>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-current-url" id="ref-for-concept-request-current-url①⓪">current URL</a> is not a <a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-url" id="ref-for-potentially-trustworthy-url①⑧">potentially trustworthy URL</a>, then
               return <code>no referrer</code>. 
@@ -1209,15 +1388,15 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
        <dd>
         <ol>
          <li>
-           If the <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-origin" id="ref-for-concept-url-origin④">origin</a> of <a data-link-type="dfn" href="#referrerurl" id="ref-for-referrerurl②⑦">referrerURL</a> and the <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-origin" id="ref-for-concept-url-origin⑤">origin</a> of <var>request</var>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-current-url" id="ref-for-concept-request-current-url①①">current URL</a> are <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#same-origin" id="ref-for-same-origin②">the
+           If the <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-origin" id="ref-for-concept-url-origin④">origin</a> of <a data-link-type="dfn" href="#referrerurl" id="ref-for-referrerurl②⑦">referrerURL</a> and the <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-origin" id="ref-for-concept-url-origin⑤">origin</a> of <var>request</var>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-current-url" id="ref-for-concept-request-current-url①①">current URL</a> are <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#same-origin" id="ref-for-same-origin②">the
               same</a>, then return <a data-link-type="dfn" href="#referrerurl" id="ref-for-referrerurl②⑧">referrerURL</a>. 
-          <p class="note" role="note"><span>Note:</span> This same-origin check determines whether or not the request is <a data-link-type="dfn" href="#same-origin-referrer-request" id="ref-for-same-origin-referrer-request⑥">same-origin-referrer</a>.</p>
+          <p class="note" role="note"><span class="marker">Note:</span> This same-origin check determines whether or not the request is <a data-link-type="dfn" href="#same-origin-referrer-request" id="ref-for-same-origin-referrer-request⑥">same-origin-referrer</a>.</p>
          <li>Return <code>no referrer</code>. 
         </ol>
        <dt><a data-link-type="dfn" href="#referrer-policy-origin-when-cross-origin" id="ref-for-referrer-policy-origin-when-cross-origin⑥">"<code>origin-when-cross-origin</code>"</a>
        <dd>
         <ol>
-         <li> If the <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-origin" id="ref-for-concept-url-origin⑥">origin</a> of <a data-link-type="dfn" href="#referrerurl" id="ref-for-referrerurl②⑨">referrerURL</a> and the <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-origin" id="ref-for-concept-url-origin⑦">origin</a> of <var>request</var>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-current-url" id="ref-for-concept-request-current-url①②">current URL</a> are <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#same-origin" id="ref-for-same-origin③">the
+         <li> If the <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-origin" id="ref-for-concept-url-origin⑥">origin</a> of <a data-link-type="dfn" href="#referrerurl" id="ref-for-referrerurl②⑨">referrerURL</a> and the <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-origin" id="ref-for-concept-url-origin⑦">origin</a> of <var>request</var>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-current-url" id="ref-for-concept-request-current-url①②">current URL</a> are <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#same-origin" id="ref-for-same-origin③">the
               same</a>, then return <a data-link-type="dfn" href="#referrerurl" id="ref-for-referrerurl③⓪">referrerURL</a>. 
          <li> Return <var>referrerOrigin</var>. 
         </ol>
@@ -1328,7 +1507,7 @@ Referrer-Policy: unsafe-url
     However, for readability,
     these words do not appear in all uppercase letters in this specification. </p>
    <p>All of the text of this specification is normative
-    except sections explicitly marked as non-normative, examples, and notes. <a data-link-type="biblio" href="#biblio-rfc2119">[RFC2119]</a> </p>
+    except sections explicitly marked as non-normative, examples, and notes. <a data-link-type="biblio" href="#biblio-rfc2119" title="Key words for use in RFCs to Indicate Requirement Levels">[RFC2119]</a> </p>
    <p>Examples in this specification are introduced with the words “for example”
     or are set apart from the normative text
     with <code>class="example"</code>,
@@ -1341,7 +1520,7 @@ Referrer-Policy: unsafe-url
     and are set apart from the normative text
     with <code>class="note"</code>,
     like this: </p>
-   <p class="note" role="note">Note, this is an informative note. </p>
+   <p class="note" role="note">Note, this is an informative note.</p>
    <h3 class="no-ref no-num heading settled" id="w3c-conformant-algorithms"><span class="content">Conformant Algorithms</span><a class="self-link" href="#w3c-conformant-algorithms"></a></h3>
    <p>Requirements phrased in the imperative as part of algorithms
     (such as "strip any leading space characters"
@@ -1446,6 +1625,12 @@ Referrer-Policy: unsafe-url
    <a href="https://drafts.csswg.org/cssom-1/#concept-css-style-sheet-location">https://drafts.csswg.org/cssom-1/#concept-css-style-sheet-location</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-concept-css-style-sheet-location">7. Integration with CSS</a> <a href="#ref-for-concept-css-style-sheet-location①">(2)</a> <a href="#ref-for-concept-css-style-sheet-location②">(3)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-cssstyledeclaration-owner-node">
+   <a href="https://drafts.csswg.org/cssom-1/#cssstyledeclaration-owner-node">https://drafts.csswg.org/cssom-1/#cssstyledeclaration-owner-node</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-cssstyledeclaration-owner-node">7. Integration with CSS</a> <a href="#ref-for-cssstyledeclaration-owner-node①">(2)</a> <a href="#ref-for-cssstyledeclaration-owner-node②">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-concept-css-style-sheet-owner-node">
@@ -1580,7 +1765,7 @@ Referrer-Policy: unsafe-url
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-window">
-   <a href="https://html.spec.whatwg.org/multipage/window-object.html#window">https://html.spec.whatwg.org/multipage/window-object.html#window</a><b>Referenced in:</b>
+   <a href="https://html.spec.whatwg.org/multipage/nav-history-apis.html#window">https://html.spec.whatwg.org/multipage/nav-history-apis.html#window</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-window">8.3. 
     Determine request’s Referrer </a>
@@ -1613,7 +1798,7 @@ Referrer-Policy: unsafe-url
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-ascii-serialisation-of-an-origin">
-   <a href="https://html.spec.whatwg.org/multipage/origin.html#ascii-serialisation-of-an-origin">https://html.spec.whatwg.org/multipage/origin.html#ascii-serialisation-of-an-origin</a><b>Referenced in:</b>
+   <a href="https://html.spec.whatwg.org/multipage/browsers.html#ascii-serialisation-of-an-origin">https://html.spec.whatwg.org/multipage/browsers.html#ascii-serialisation-of-an-origin</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-ascii-serialisation-of-an-origin">3.4. "origin"</a>
     <li><a href="#ref-for-ascii-serialisation-of-an-origin①">3.5. "strict-origin"</a>
@@ -1628,8 +1813,14 @@ Referrer-Policy: unsafe-url
     Determine request’s Referrer </a>
    </ul>
   </aside>
+  <aside class="dfn-panel" data-for="term-for-browsing-context">
+   <a href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context">https://html.spec.whatwg.org/multipage/browsers.html#browsing-context</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-browsing-context">4.1. Delivery via Referrer-Policy header</a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="term-for-concept-document-bc">
-   <a href="https://html.spec.whatwg.org/multipage/browsers.html#concept-document-bc">https://html.spec.whatwg.org/multipage/browsers.html#concept-document-bc</a><b>Referenced in:</b>
+   <a href="https://html.spec.whatwg.org/multipage/document-sequences.html#concept-document-bc">https://html.spec.whatwg.org/multipage/document-sequences.html#concept-document-bc</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-concept-document-bc">8.3. 
     Determine request’s Referrer </a>
@@ -1647,12 +1838,6 @@ Referrer-Policy: unsafe-url
    <ul>
     <li><a href="#ref-for-concept-environment-creation-url">8.3. 
     Determine request’s Referrer </a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-concept-document-referrer-policy">
-   <a href="https://html.spec.whatwg.org/multipage/dom.html#concept-document-referrer-policy">https://html.spec.whatwg.org/multipage/dom.html#concept-document-referrer-policy</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-concept-document-referrer-policy">3.9. The empty string</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-environment-settings-object">
@@ -1723,13 +1908,27 @@ Referrer-Policy: unsafe-url
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-concept-origin">
-   <a href="https://html.spec.whatwg.org/multipage/origin.html#concept-origin">https://html.spec.whatwg.org/multipage/origin.html#concept-origin</a><b>Referenced in:</b>
+   <a href="https://html.spec.whatwg.org/multipage/browsers.html#concept-origin">https://html.spec.whatwg.org/multipage/browsers.html#concept-origin</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-concept-origin">3.1. "no-referrer"</a>
     <li><a href="#ref-for-concept-origin①">3.4. "origin"</a>
     <li><a href="#ref-for-concept-origin②">3.5. "strict-origin"</a>
     <li><a href="#ref-for-concept-origin③">3.6. "origin-when-cross-origin"</a>
     <li><a href="#ref-for-concept-origin④">3.7. "strict-origin-when-cross-origin"</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-policy-container">
+   <a href="https://html.spec.whatwg.org/multipage/browsers.html#policy-container">https://html.spec.whatwg.org/multipage/browsers.html#policy-container</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-policy-container">4.4. Referrer Policy Inheritance</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-concept-document-policy-container">
+   <a href="https://html.spec.whatwg.org/multipage/dom.html#concept-document-policy-container">https://html.spec.whatwg.org/multipage/dom.html#concept-document-policy-container</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-concept-document-policy-container">3.9. The empty string</a>
+    <li><a href="#ref-for-concept-document-policy-container①">6. Integration with HTML</a>
+    <li><a href="#ref-for-concept-document-policy-container②">7. Integration with CSS</a> <a href="#ref-for-concept-document-policy-container③">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-concept-workerglobalscope-policy-container">
@@ -1754,10 +1953,11 @@ Referrer-Policy: unsafe-url
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-policy-container-referrer-policy">
-   <a href="https://html.spec.whatwg.org/multipage/origin.html#policy-container-referrer-policy">https://html.spec.whatwg.org/multipage/origin.html#policy-container-referrer-policy</a><b>Referenced in:</b>
+   <a href="https://html.spec.whatwg.org/multipage/browsers.html#policy-container-referrer-policy">https://html.spec.whatwg.org/multipage/browsers.html#policy-container-referrer-policy</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-policy-container-referrer-policy">6. Integration with HTML</a>
-    <li><a href="#ref-for-policy-container-referrer-policy①">7. Integration with CSS</a> <a href="#ref-for-policy-container-referrer-policy②">(2)</a> <a href="#ref-for-policy-container-referrer-policy③">(3)</a>
+    <li><a href="#ref-for-policy-container-referrer-policy">3.9. The empty string</a>
+    <li><a href="#ref-for-policy-container-referrer-policy①">6. Integration with HTML</a>
+    <li><a href="#ref-for-policy-container-referrer-policy②">7. Integration with CSS</a> <a href="#ref-for-policy-container-referrer-policy③">(2)</a> <a href="#ref-for-policy-container-referrer-policy④">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-referrer-policy-attribute">
@@ -1780,7 +1980,7 @@ Referrer-Policy: unsafe-url
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-same-origin">
-   <a href="https://html.spec.whatwg.org/multipage/origin.html#same-origin">https://html.spec.whatwg.org/multipage/origin.html#same-origin</a><b>Referenced in:</b>
+   <a href="https://html.spec.whatwg.org/multipage/browsers.html#same-origin">https://html.spec.whatwg.org/multipage/browsers.html#same-origin</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-same-origin">2. Key Concepts and Terminology</a>
     <li><a href="#ref-for-same-origin①">8.3. 
@@ -1913,11 +2113,12 @@ Referrer-Policy: unsafe-url
   <h3 class="no-num no-ref heading settled" id="index-defined-elsewhere"><span class="content">Terms defined by reference</span><a class="self-link" href="#index-defined-elsewhere"></a></h3>
   <ul class="index">
    <li>
-    <a data-link-type="biblio">[cssom-1]</a> defines the following terms:
+    <a data-link-type="biblio">[CSSOM-1]</a> defines the following terms:
     <ul>
      <li><span class="dfn-paneled" id="term-for-css-declaration-block">css declaration block</span>
      <li><span class="dfn-paneled" id="term-for-css-style-sheet">css style sheet</span>
      <li><span class="dfn-paneled" id="term-for-concept-css-style-sheet-location">location</span>
+     <li><span class="dfn-paneled" id="term-for-cssstyledeclaration-owner-node">owner node <small>(for CSSStyleDeclaration)</small></span>
      <li><span class="dfn-paneled" id="term-for-concept-css-style-sheet-owner-node">owner node <small>(for CSSStyleSheet)</small></span>
     </ul>
    <li>
@@ -1953,10 +2154,10 @@ Referrer-Policy: unsafe-url
      <li><span class="dfn-paneled" id="term-for-the-area-element">area</span>
      <li><span class="dfn-paneled" id="term-for-ascii-serialisation-of-an-origin">ascii serialization of an origin</span>
      <li><span class="dfn-paneled" id="term-for-concept-document-window">associated document</span>
+     <li><span class="dfn-paneled" id="term-for-browsing-context">browsing context</span>
      <li><span class="dfn-paneled" id="term-for-concept-document-bc">browsing context <small>(for Document)</small></span>
      <li><span class="dfn-paneled" id="term-for-browsing-context-container">browsing context container</span>
      <li><span class="dfn-paneled" id="term-for-concept-environment-creation-url">creation url</span>
-     <li><span class="dfn-paneled" id="term-for-concept-document-referrer-policy">document referrer policy</span>
      <li><span class="dfn-paneled" id="term-for-environment-settings-object">environment settings object</span>
      <li><span class="dfn-paneled" id="term-for-concept-settings-object-global">global object</span>
      <li><span class="dfn-paneled" id="term-for-the-iframe-element">iframe</span>
@@ -1968,6 +2169,8 @@ Referrer-Policy: unsafe-url
      <li><span class="dfn-paneled" id="term-for-link-type-noreferrer">noreferrer</span>
      <li><span class="dfn-paneled" id="term-for-concept-origin-opaque">opaque origin</span>
      <li><span class="dfn-paneled" id="term-for-concept-origin">origin</span>
+     <li><span class="dfn-paneled" id="term-for-policy-container">policy container</span>
+     <li><span class="dfn-paneled" id="term-for-concept-document-policy-container">policy container <small>(for Document)</small></span>
      <li><span class="dfn-paneled" id="term-for-concept-workerglobalscope-policy-container">policy container <small>(for WorkerGlobalScope)</small></span>
      <li><span class="dfn-paneled" id="term-for-presentational-hints">presentational hints</span>
      <li><span class="dfn-paneled" id="term-for-meta-referrer">referrer</span>
@@ -1990,12 +2193,12 @@ Referrer-Policy: unsafe-url
      <li><span class="dfn-paneled" id="term-for-appendix-B.1">alpha</span>
     </ul>
    <li>
-    <a data-link-type="biblio">[rfc7231]</a> defines the following terms:
+    <a data-link-type="biblio">[RFC7231]</a> defines the following terms:
     <ul>
      <li><span class="dfn-paneled" id="term-for-section-5.5.2">referer</span>
     </ul>
    <li>
-    <a data-link-type="biblio">[secure-contexts]</a> defines the following terms:
+    <a data-link-type="biblio">[SECURE-CONTEXTS]</a> defines the following terms:
     <ul>
      <li><span class="dfn-paneled" id="term-for-potentially-trustworthy-url">potentially trustworthy url</span>
     </ul>
@@ -2018,7 +2221,7 @@ Referrer-Policy: unsafe-url
   <h3 class="no-num no-ref heading settled" id="normative"><span class="content">Normative References</span><a class="self-link" href="#normative"></a></h3>
   <dl>
    <dt id="biblio-cssom-1">[CSSOM-1]
-   <dd>Daniel Glazman; Emilio Cobos Álvarez. <a href="https://www.w3.org/TR/cssom-1/"><cite>CSS Object Model (CSSOM)</cite></a>. 26 August 2021. WD. URL: <a href="https://www.w3.org/TR/cssom-1/">https://www.w3.org/TR/cssom-1/</a>
+   <dd>Daniel Glazman; Emilio Cobos Álvarez. <a href="https://drafts.csswg.org/cssom/"><cite>CSS Object Model (CSSOM)</cite></a>. URL: <a href="https://drafts.csswg.org/cssom/">https://drafts.csswg.org/cssom/</a>
    <dt id="biblio-dom">[DOM]
    <dd>Anne van Kesteren. <a href="https://dom.spec.whatwg.org/"><cite>DOM Standard</cite></a>. Living Standard. URL: <a href="https://dom.spec.whatwg.org/">https://dom.spec.whatwg.org/</a>
    <dt id="biblio-fetch">[FETCH]
@@ -2031,19 +2234,19 @@ Referrer-Policy: unsafe-url
    <dd>S. Bradner. <a href="https://datatracker.ietf.org/doc/html/rfc2119"><cite>Key words for use in RFCs to Indicate Requirement Levels</cite></a>. March 1997. Best Current Practice. URL: <a href="https://datatracker.ietf.org/doc/html/rfc2119">https://datatracker.ietf.org/doc/html/rfc2119</a>
    <dt id="biblio-rfc5234">[RFC5234]
    <dd>D. Crocker, Ed.; P. Overell. <a href="https://www.rfc-editor.org/rfc/rfc5234"><cite>Augmented BNF for Syntax Specifications: ABNF</cite></a>. January 2008. Internet Standard. URL: <a href="https://www.rfc-editor.org/rfc/rfc5234">https://www.rfc-editor.org/rfc/rfc5234</a>
-   <dt id="biblio-rfc7230">[RFC7230]
-   <dd>R. Fielding, Ed.; J. Reschke, Ed.. <a href="https://httpwg.org/specs/rfc7230.html"><cite>Hypertext Transfer Protocol (HTTP/1.1): Message Syntax and Routing</cite></a>. June 2014. Proposed Standard. URL: <a href="https://httpwg.org/specs/rfc7230.html">https://httpwg.org/specs/rfc7230.html</a>
    <dt id="biblio-rfc7231">[RFC7231]
    <dd>R. Fielding, Ed.; J. Reschke, Ed.. <a href="https://httpwg.org/specs/rfc7231.html"><cite>Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content</cite></a>. June 2014. Proposed Standard. URL: <a href="https://httpwg.org/specs/rfc7231.html">https://httpwg.org/specs/rfc7231.html</a>
+   <dt id="biblio-rfc9110">[RFC9110]
+   <dd>R. Fielding, Ed.; M. Nottingham, Ed.; J. Reschke, Ed.. <a href="https://www.rfc-editor.org/rfc/rfc9110"><cite>HTTP Semantics</cite></a>. June 2022. Internet Standard. URL: <a href="https://www.rfc-editor.org/rfc/rfc9110">https://www.rfc-editor.org/rfc/rfc9110</a>
    <dt id="biblio-secure-contexts">[SECURE-CONTEXTS]
-   <dd>Mike West. <a href="https://www.w3.org/TR/secure-contexts/"><cite>Secure Contexts</cite></a>. 18 September 2021. CR. URL: <a href="https://www.w3.org/TR/secure-contexts/">https://www.w3.org/TR/secure-contexts/</a>
+   <dd>Mike West. <a href="https://w3c.github.io/webappsec-secure-contexts/"><cite>Secure Contexts</cite></a>. URL: <a href="https://w3c.github.io/webappsec-secure-contexts/">https://w3c.github.io/webappsec-secure-contexts/</a>
    <dt id="biblio-url">[URL]
    <dd>Anne van Kesteren. <a href="https://url.spec.whatwg.org/"><cite>URL Standard</cite></a>. Living Standard. URL: <a href="https://url.spec.whatwg.org/">https://url.spec.whatwg.org/</a>
   </dl>
   <h3 class="no-num no-ref heading settled" id="informative"><span class="content">Informative References</span><a class="self-link" href="#informative"></a></h3>
   <dl>
    <dt id="biblio-capability-urls">[CAPABILITY-URLS]
-   <dd>Jeni Tennison. <a href="https://www.w3.org/TR/capability-urls/"><cite>Good Practices for Capability URLs</cite></a>. 18 February 2014. WD. URL: <a href="https://www.w3.org/TR/capability-urls/">https://www.w3.org/TR/capability-urls/</a>
+   <dd>Jeni Tennison. <a href="https://w3ctag.github.io/capability-urls/"><cite>Good Practices for Capability URLs</cite></a>. URL: <a href="https://w3ctag.github.io/capability-urls/">https://w3ctag.github.io/capability-urls/</a>
   </dl>
   <h2 class="no-num no-ref heading settled" id="idl-index"><span class="content">IDL Index</span><a class="self-link" href="#idl-index"></a></h2>
 <pre class="idl highlight def"><c- b>enum</c-> <a href="#enumdef-referrerpolicy"><code><c- g>ReferrerPolicy</c-></code></a> {
@@ -2062,7 +2265,7 @@ Referrer-Policy: unsafe-url
   <h2 class="no-num no-ref heading settled" id="issues-index"><span class="content">Issues Index</span><a class="self-link" href="#issues-index"></a></h2>
   <div style="counter-reset:issue">
    <div class="issue"> This requires that CSS style sheets process `Referrer-Policy`
-       headers, and store a <span>referrer policy</span> in the same way that <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#policy-container-referrer-policy">Documents
+       headers, and store a <span>referrer policy</span> in the same way that <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#policy-container-referrer-policy">Documents
        do</a>. <a class="issue-return" href="#issue-a01fbbf2" title="Jump to section">↵</a></div>
   </div>
   <aside class="dfn-panel" data-for="same-origin-referrer-request">
@@ -2319,10 +2522,8 @@ document.body.addEventListener("click", function(e) {
 });
 </script>
 <script>/* script-mdn-anno */
-
-            document.body.addEventListener("click", (e) => {
-                if(e.target.closest(".mdn-anno-btn")) {
-                    e.target.closest(".mdn-anno").classList.toggle("wrapped");
-                }
-            });
-            </script>
+document.body.addEventListener("click", (e) => {
+    if(e.target.closest(".mdn-anno-btn")) {
+        e.target.closest(".mdn-anno").classList.toggle("wrapped");
+    }
+});</script>
