@@ -520,14 +520,12 @@ spec: html; type: element; text:script
 
   <div class="example">
     Given a HTML <{a}> element without any declared <{a/referrerpolicy}>
-    attribute, its referrer policy is the empty string. Thus, navigation
-    requests initiated by clicking on that <{a}> element will be sent
-    <!-- The 'lt' below is a workaround for
-    https://github.com/tabatkins/bikeshed/issues/786-->
-    with the <{a}> element's <a>node document</a>'s <a for="Document">policy container</a>'s <a
-    lt="referrer policy" for="policy container">referrer policy</a>. If that {{Document}} has the
-    empty string as its referrer policy, the [[#determine-requests-referrer]] algorithm will treat
-    the empty string the same as <a>"<code>strict-origin-when-cross-origin</code>"</a>.
+    attribute, its referrer policy is the empty string. Thus, navigation requests initiated by
+    clicking on that <{a}> element will be sent with the <{a}> element's <a>node document</a>'s <a
+    for="Document">policy container</a>'s <a for="policy container">referrer policy</a>. If that
+    {{Document}} has the empty string as its referrer policy, the [[#determine-requests-referrer]]
+    algorithm will treat the empty string the same as
+    <a>"<code>strict-origin-when-cross-origin</code>"</a>.
   </div>
 
 </section>
