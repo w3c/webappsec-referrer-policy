@@ -959,9 +959,7 @@ spec: html; type: element; text:script
   scheme, host, and port.
 
   <ol>
-    <li>
-      If <var>url</var> is <code>null</code>, return <code>no referrer</code>.
-    </li>
+    <li><a>Assert</a>: <var>url</var> is a <a for=/>URL</a>.</li>
     <li>
       If <var>url</var>'s <a for=url>scheme</a> is a <a>local scheme</a>, then
       return <code>no referrer</code>.
