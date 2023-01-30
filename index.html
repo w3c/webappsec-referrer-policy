@@ -1415,7 +1415,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   additionally remove the URL’s path and query components, leaving only the
   scheme, host, and port.</p>
     <ol>
-     <li> If <var>url</var> is <code>null</code>, return <code>no referrer</code>. 
+     <li><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#assert" id="ref-for-assert">Assert</a>: <var>url</var> is a <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url" id="ref-for-concept-url①">URL</a>.
      <li> If <var>url</var>’s <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-scheme" id="ref-for-concept-url-scheme">scheme</a> is a <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#local-scheme" id="ref-for-local-scheme">local scheme</a>, then
       return <code>no referrer</code>. 
      <li> Set <var>url</var>’s <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-username" id="ref-for-concept-url-username">username</a> to the empty string. 
@@ -1996,6 +1996,13 @@ Referrer-Policy: unsafe-url
     <li><a href="#ref-for-the-style-attribute">7. Integration with CSS</a>
    </ul>
   </aside>
+  <aside class="dfn-panel" data-for="term-for-assert">
+   <a href="https://infra.spec.whatwg.org/#assert">https://infra.spec.whatwg.org/#assert</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-assert">8.4. 
+    Strip url for use as a referrer </a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="term-for-string-length">
    <a href="https://infra.spec.whatwg.org/#string-length">https://infra.spec.whatwg.org/#string-length</a><b>Referenced in:</b>
    <ul>
@@ -2091,6 +2098,8 @@ Referrer-Policy: unsafe-url
    <ul>
     <li><a href="#ref-for-concept-url">8.3. 
     Determine request’s Referrer </a>
+    <li><a href="#ref-for-concept-url①">8.4. 
+    Strip url for use as a referrer </a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-concept-url-serializer">
@@ -2182,6 +2191,7 @@ Referrer-Policy: unsafe-url
    <li>
     <a data-link-type="biblio">[INFRA]</a> defines the following terms:
     <ul>
+     <li><span class="dfn-paneled" id="term-for-assert">assert</span>
      <li><span class="dfn-paneled" id="term-for-string-length">length</span>
     </ul>
    <li>
