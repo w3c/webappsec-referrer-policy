@@ -112,6 +112,7 @@ spec: RFC2616; urlPrefix: https://tools.ietf.org/html/rfc7231
 spec: html; type: element; text: link;
 spec: html; type: element; text: a;
 spec: html; type: element; text:script
+spec: html; type: interface; text:Window
 </pre>
 
 <!--
@@ -756,9 +757,9 @@ spec: html; type: element; text:script
       policy</a> and |token| is not the empty string, then set |policy|
       to |token|.
 
-	  Note: This algorithm loops over multiple policy values to allow
-	  deployment of new policy values with fallbacks for older user
-	  agents, as described in [[#unknown-policy-values]].
+          Note: This algorithm loops over multiple policy values to allow
+          deployment of new policy values with fallbacks for older user
+          agents, as described in [[#unknown-policy-values]].
     </li>
     <li>
       Return |policy|.
@@ -1050,7 +1051,7 @@ spec: html; type: element; text:script
   it possible to deploy new policy values.
 
   <div class="example">
-  	Suppose older user agents don't understand
+    Suppose older user agents don't understand
     the <a>"<code>unsafe-url</code>"</a> policy. A site can specify
     an <a>"<code>origin</code>"</a> policy followed by an
     <a>"<code>unsafe-url</code>"</a> policy: older user agents will ignore the
