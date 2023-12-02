@@ -5,11 +5,9 @@
   <title>Referrer Policy</title>
   <meta content="ED" name="w3c-status">
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
-  <link href="https://www.w3.org/2008/site/images/favicon.ico" rel="icon">
-  <meta content="Bikeshed version 859efb4bd, updated Fri Jan 27 16:04:01 2023 -0800" name="generator">
+  <meta content="Bikeshed version 82ce88815, updated Thu Sep 7 16:33:55 2023 -0700" name="generator">
   <link href="http://www.w3.org/TR/referrer-policy/" rel="canonical">
-<style>/* style-autolinks */
-
+<style>/* Boilerplate: style-autolinks */
 .css.css, .property.property, .descriptor.descriptor {
     color: var(--a-normal-text);
     font-size: inherit;
@@ -69,8 +67,17 @@ pre .property::before, pre .property::after {
 
 [data-link-type=biblio] {
     white-space: pre;
-}</style>
-<style>/* style-colors */
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --selflink-text: black;
+        --selflink-bg: silver;
+        --selflink-hover-text: white;
+    }
+}
+</style>
+<style>/* Boilerplate: style-colors */
 
 /* Any --*-text not paired with a --*-bg is assumed to have a transparent bg */
 :root {
@@ -178,9 +185,121 @@ pre .property::before, pre .property::after {
     --outdated-shadow: red;
 
     --editedrec-bg: darkorange;
-}</style>
-<style>/* style-counters */
+}
 
+@media (prefers-color-scheme: dark) {
+    :root {
+        --text: #ddd;
+        --bg: black;
+
+        --unofficial-watermark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cg fill='%23100808' transform='translate(200 200) rotate(-45) translate(-200 -200)' stroke='%23100808' stroke-width='3'%3E%3Ctext x='50%25' y='220' style='font: bold 70px sans-serif; text-anchor: middle; letter-spacing: 6px;'%3EUNOFFICIAL%3C/text%3E%3Ctext x='50%25' y='305' style='font: bold 70px sans-serif; text-anchor: middle; letter-spacing: 6px;'%3EDRAFT%3C/text%3E%3C/g%3E%3C/svg%3E");
+
+        --logo-bg: #1a5e9a;
+        --logo-active-bg: #c00;
+        --logo-text: white;
+
+        --tocnav-normal-text: #999;
+        --tocnav-normal-bg: var(--bg);
+        --tocnav-hover-text: var(--tocnav-normal-text);
+        --tocnav-hover-bg: #080808;
+        --tocnav-active-text: #f44;
+        --tocnav-active-bg: var(--tocnav-normal-bg);
+
+        --tocsidebar-text: var(--text);
+        --tocsidebar-bg: #080808;
+        --tocsidebar-shadow: rgba(255,255,255,.1);
+        --tocsidebar-heading-text: hsla(203,20%,40%,.7);
+
+        --toclink-text: var(--text);
+        --toclink-underline: #6af;
+        --toclink-visited-text: var(--toclink-text);
+        --toclink-visited-underline: #054572;
+
+        --heading-text: #8af;
+
+        --hr-text: var(--text);
+
+        --algo-border: #456;
+
+        --del-text: #f44;
+        --del-bg: transparent;
+        --ins-text: #4a4;
+        --ins-bg: transparent;
+
+        --a-normal-text: #6af;
+        --a-normal-underline: #555;
+        --a-visited-text: var(--a-normal-text);
+        --a-visited-underline: var(--a-normal-underline);
+        --a-hover-bg: rgba(25%, 25%, 25%, .2);
+        --a-active-text: #f44;
+        --a-active-underline: var(--a-active-text);
+
+        --borderedblock-bg: rgba(255, 255, 255, .05);
+
+        --blockquote-border: silver;
+        --blockquote-bg: var(--borderedblock-bg);
+        --blockquote-text: currentcolor;
+
+        --issue-border: #e05252;
+        --issue-bg: var(--borderedblock-bg);
+        --issue-text: var(--text);
+        --issueheading-text: hsl(0deg, 70%, 70%);
+
+        --example-border: hsl(50deg, 90%, 60%);
+        --example-bg: var(--borderedblock-bg);
+        --example-text: var(--text);
+        --exampleheading-text: hsl(50deg, 70%, 70%);
+
+        --note-border: hsl(120deg, 100%, 35%);
+        --note-bg: var(--borderedblock-bg);
+        --note-text: var(--text);
+        --noteheading-text: hsl(120, 70%, 70%);
+        --notesummary-underline: silver;
+
+        --assertion-border: #444;
+        --assertion-bg: var(--borderedblock-bg);
+        --assertion-text: var(--text);
+
+        --advisement-border: orange;
+        --advisement-bg: #222218;
+        --advisement-text: var(--text);
+        --advisementheading-text: #f84;
+
+        --warning-border: red;
+        --warning-bg: hsla(40,100%,20%,0.95);
+        --warning-text: var(--text);
+
+        --amendment-border: #330099;
+        --amendment-bg: #080010;
+        --amendment-text: var(--text);
+        --amendmentheading-text: #cc00ff;
+
+        --def-border: #8ccbf2;
+        --def-bg: #080818;
+        --def-text: var(--text);
+        --defrow-border: #136;
+
+        --datacell-border: silver;
+
+        --indexinfo-text: #aaa;
+
+        --indextable-hover-text: var(--text);
+        --indextable-hover-bg: #181818;
+
+        --outdatedspec-bg: rgba(255, 255, 255, .5);
+        --outdatedspec-text: black;
+        --outdated-bg: maroon;
+        --outdated-text: white;
+        --outdated-shadow: red;
+
+        --editedrec-bg: darkorange;
+    }
+    /* In case a transparent-bg image doesn't expect to be on a dark bg,
+       which is quite common in practice... */
+    img { background: white; }
+}
+</style>
+<style>/* Boilerplate: style-counters */
 body {
     counter-reset: example figure issue;
 }
@@ -207,20 +326,25 @@ figcaption {
 }
 figcaption:not(.no-marker)::before {
     content: "Figure " counter(figure) " ";
-}</style>
-<style>/* style-dfn-panel */
-
+}
+</style>
+<style>/* Boilerplate: style-dfn-panel */
 :root {
     --dfnpanel-bg: #ddd;
     --dfnpanel-text: var(--text);
 }
+@media (prefers-color-scheme: dark) {
+    :root {
+        --dfnpanel-bg: #222;
+        --dfnpanel-text: var(--text);
+    }
+}
 .dfn-panel {
     position: absolute;
     z-index: 35;
+    width: 20em;
+    width: 300px;
     height: auto;
-    width: -webkit-fit-content;
-    width: fit-content;
-    max-width: 300px;
     max-height: 500px;
     overflow: auto;
     padding: 0.5em 0.75em;
@@ -228,6 +352,7 @@ figcaption:not(.no-marker)::before {
     background: var(--dfnpanel-bg);
     color: var(--dfnpanel-text);
     border: outset 0.2em;
+    white-space: normal; /* in case it's moved into a pre */
 }
 .dfn-panel:not(.on) { display: none; }
 .dfn-panel * { margin: 0; padding: 0; text-indent: 0; }
@@ -235,8 +360,15 @@ figcaption:not(.no-marker)::before {
 .dfn-panel a { color: var(--dfnpanel-text); }
 .dfn-panel a:not(:hover) { text-decoration: none !important; border-bottom: none !important; }
 .dfn-panel > b + b { margin-top: 0.25em; }
-.dfn-panel ul { padding: 0; }
-.dfn-panel li { list-style: inside; }
+.dfn-panel ul { padding: 0 0 0 1em; list-style: none; }
+.dfn-panel li a {
+    white-space: pre;
+    display: inline-block;
+    max-width: calc(300px - 1.5em - 1em);
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .dfn-panel.activated {
     display: inline-block;
     position: fixed;
@@ -247,10 +379,62 @@ figcaption:not(.no-marker)::before {
     max-height: 30vh;
 }
 
-.dfn-paneled { cursor: pointer; }
+.dfn-paneled[role="button"] { cursor: pointer; }
 </style>
-<style>/* style-issues */
+<style>/* Boilerplate: style-dfn-panel */
+:root {
+    --dfnpanel-bg: #ddd;
+    --dfnpanel-text: var(--text);
+}
+@media (prefers-color-scheme: dark) {
+    :root {
+        --dfnpanel-bg: #222;
+        --dfnpanel-text: var(--text);
+    }
+}
+.dfn-panel {
+    position: absolute;
+    z-index: 35;
+    width: 20em;
+    width: 300px;
+    height: auto;
+    max-height: 500px;
+    overflow: auto;
+    padding: 0.5em 0.75em;
+    font: small Helvetica Neue, sans-serif, Droid Sans Fallback;
+    background: var(--dfnpanel-bg);
+    color: var(--dfnpanel-text);
+    border: outset 0.2em;
+    white-space: normal; /* in case it's moved into a pre */
+}
+.dfn-panel:not(.on) { display: none; }
+.dfn-panel * { margin: 0; padding: 0; text-indent: 0; }
+.dfn-panel > b { display: block; }
+.dfn-panel a { color: var(--dfnpanel-text); }
+.dfn-panel a:not(:hover) { text-decoration: none !important; border-bottom: none !important; }
+.dfn-panel > b + b { margin-top: 0.25em; }
+.dfn-panel ul { padding: 0 0 0 1em; list-style: none; }
+.dfn-panel li a {
+    white-space: pre;
+    display: inline-block;
+    max-width: calc(300px - 1.5em - 1em);
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
+.dfn-panel.activated {
+    display: inline-block;
+    position: fixed;
+    left: .5em;
+    bottom: 2em;
+    margin: 0 auto;
+    max-width: calc(100vw - 1.5em - .4em - .5em);
+    max-height: 30vh;
+}
+
+.dfn-paneled[role="button"] { cursor: pointer; }
+</style>
+<style>/* Boilerplate: style-issues */
 a[href].issue-return {
     float: right;
     float: inline-end;
@@ -259,8 +443,7 @@ a[href].issue-return {
     text-decoration: none;
 }
 </style>
-<style>/* style-md-lists */
-
+<style>/* Boilerplate: style-md-lists */
 /* This is a weird hack for me not yet following the commonmark spec
    regarding paragraph and lists. */
 [data-md] > :first-child {
@@ -268,69 +451,69 @@ a[href].issue-return {
 }
 [data-md] > :last-child {
     margin-bottom: 0;
-}</style>
-<style>/* style-mdn-anno */
-@media (max-width: 767px) {
-	.mdn-anno {
-		opacity: .1;
-	}
 }
+</style>
+<style>/* Boilerplate: style-mdn-anno */
 :root {
 	--mdn-bg: #EEE;
 	--mdn-shadow: #999;
 	--mdn-nosupport-text: #ccc;
 }
+@media (prefers-color-scheme: dark) {
+	:root {
+		--mdn-bg: #222;
+		--mdn-shadow: #444;
+		--mdn-nosupport-text: #666;
+	}
+}
 .mdn-anno {
-	font: 1em sans-serif;
-	padding: 0.3em;
-	position: absolute;
-	z-index: 8;
-	right: 0.3em;
 	background: var(--mdn-bg, #EEE);
-	color: var(--text, black);
+	border-radius: .25em;
 	box-shadow: 0 0 3px var(--mdn-shadow, #999);
-	overflow: hidden;
-	border-collapse: initial;
-	border-spacing: initial;
-	min-width: 9em;
+	color: var(--text, black);
+	font: 1em sans-serif;
+	hyphens: none;
 	max-width: min-content;
+	overflow: hidden;
+	padding: 0.2em;
+	position: absolute;
+	right: 0.3em;
+	top: auto;
 	white-space: nowrap;
 	word-wrap: normal;
-	hyphens: none;
-	border-radius: .25em;
+	z-index: 8;
 }
-.mdn-anno:not(.wrapped) {
-	opacity: 1;
-	z-index: 9;
-}
-.mdn-anno.wrapped {
-	min-width: 0;
-}
-.mdn-anno.wrapped > :not(button) {
+.mdn-anno.unpositioned {
 	display: none;
 }
+.mdn-anno.overlapping-main {
+	opacity: .2;
+	transition: opacity .1s;
+}
+.mdn-anno[open] {
+	opacity: 1;
+	z-index: 9;
+	min-width: 9em;
+}
 .mdn-anno:hover {
+	opacity: 1;
 	outline: var(--text, black) 1px solid;
 }
-.mdn-anno > .mdn-anno-btn {
+.mdn-anno > summary {
+	font-weight: normal;
+	text-align: right;
 	cursor: pointer;
-	border: none;
-	color: #000;
-	background: transparent;
-	margin: -8px;
-	float: right;
-	padding: 10px 8px 8px 8px;
-	outline: none;
+	display: block;
 }
-.mdn-anno > .mdn-anno-btn > .less-than-two-engines-flag {
+.mdn-anno > summary > .less-than-two-engines-flag {
 	color: red;
 	padding-right: 2px;
 }
-.mdn-anno > .mdn-anno-btn > .all-engines-flag {
+.mdn-anno > summary > .all-engines-flag {
 	color: green;
 	padding-right: 2px;
 }
-.mdn-anno > .mdn-anno-btn > span {
+.mdn-anno > summary > span {
 	color: #fff;
 	background-color: #000;
 	font-weight: normal;
@@ -490,7 +673,7 @@ a[href].issue-return {
 	margin: -40px 0 0 0;
 }
 </style>
-<style>/* style-selflinks */
+<style>/* Boilerplate: style-selflinks */
 
 :root {
     --selflink-text: white;
@@ -550,12 +733,15 @@ a.self-link::before            { content: "¶"; }
 .heading > a.self-link::before { content: "§"; }
 dfn > a.self-link::before      { content: "#"; }
 </style>
-<style>/* style-syntax-highlighting */
+<style>/* Boilerplate: style-syntax-highlighting */
 
             pre.idl.highlight {
                 background: var(--borderedblock-bg, var(--def-bg));
             }
             
+</style>
+<style>/* Boilerplate: style-syntax-highlighting */
+
 code.highlight { padding: .1em; border-radius: .3em; }
 pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em 0; overflow: auto; border-radius: 0; }
 
@@ -612,140 +798,8 @@ c-[vc] { color: #0077aa } /* Name.Variable.Class */
 c-[vg] { color: #0077aa } /* Name.Variable.Global */
 c-[vi] { color: #0077aa } /* Name.Variable.Instance */
 c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
-</style>
-<style>/* style-darkmode */
 
-@media (prefers-color-scheme: dark) {
-    :root {
-        --text: #ddd;
-        --bg: black;
 
-        --unofficial-watermark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cg fill='%23100808' transform='translate(200 200) rotate(-45) translate(-200 -200)' stroke='%23100808' stroke-width='3'%3E%3Ctext x='50%25' y='220' style='font: bold 70px sans-serif; text-anchor: middle; letter-spacing: 6px;'%3EUNOFFICIAL%3C/text%3E%3Ctext x='50%25' y='305' style='font: bold 70px sans-serif; text-anchor: middle; letter-spacing: 6px;'%3EDRAFT%3C/text%3E%3C/g%3E%3C/svg%3E");
-
-        --logo-bg: #1a5e9a;
-        --logo-active-bg: #c00;
-        --logo-text: white;
-
-        --tocnav-normal-text: #999;
-        --tocnav-normal-bg: var(--bg);
-        --tocnav-hover-text: var(--tocnav-normal-text);
-        --tocnav-hover-bg: #080808;
-        --tocnav-active-text: #f44;
-        --tocnav-active-bg: var(--tocnav-normal-bg);
-
-        --tocsidebar-text: var(--text);
-        --tocsidebar-bg: #080808;
-        --tocsidebar-shadow: rgba(255,255,255,.1);
-        --tocsidebar-heading-text: hsla(203,20%,40%,.7);
-
-        --toclink-text: var(--text);
-        --toclink-underline: #6af;
-        --toclink-visited-text: var(--toclink-text);
-        --toclink-visited-underline: #054572;
-
-        --heading-text: #8af;
-
-        --hr-text: var(--text);
-
-        --algo-border: #456;
-
-        --del-text: #f44;
-        --del-bg: transparent;
-        --ins-text: #4a4;
-        --ins-bg: transparent;
-
-        --a-normal-text: #6af;
-        --a-normal-underline: #555;
-        --a-visited-text: var(--a-normal-text);
-        --a-visited-underline: var(--a-normal-underline);
-        --a-hover-bg: rgba(25%, 25%, 25%, .2);
-        --a-active-text: #f44;
-        --a-active-underline: var(--a-active-text);
-
-        --borderedblock-bg: rgba(255, 255, 255, .05);
-
-        --blockquote-border: silver;
-        --blockquote-bg: var(--borderedblock-bg);
-        --blockquote-text: currentcolor;
-
-        --issue-border: #e05252;
-        --issue-bg: var(--borderedblock-bg);
-        --issue-text: var(--text);
-        --issueheading-text: hsl(0deg, 70%, 70%);
-
-        --example-border: hsl(50deg, 90%, 60%);
-        --example-bg: var(--borderedblock-bg);
-        --example-text: var(--text);
-        --exampleheading-text: hsl(50deg, 70%, 70%);
-
-        --note-border: hsl(120deg, 100%, 35%);
-        --note-bg: var(--borderedblock-bg);
-        --note-text: var(--text);
-        --noteheading-text: hsl(120, 70%, 70%);
-        --notesummary-underline: silver;
-
-        --assertion-border: #444;
-        --assertion-bg: var(--borderedblock-bg);
-        --assertion-text: var(--text);
-
-        --advisement-border: orange;
-        --advisement-bg: #222218;
-        --advisement-text: var(--text);
-        --advisementheading-text: #f84;
-
-        --warning-border: red;
-        --warning-bg: hsla(40,100%,20%,0.95);
-        --warning-text: var(--text);
-
-        --amendment-border: #330099;
-        --amendment-bg: #080010;
-        --amendment-text: var(--text);
-        --amendmentheading-text: #cc00ff;
-
-        --def-border: #8ccbf2;
-        --def-bg: #080818;
-        --def-text: var(--text);
-        --defrow-border: #136;
-
-        --datacell-border: silver;
-
-        --indexinfo-text: #aaa;
-
-        --indextable-hover-text: var(--text);
-        --indextable-hover-bg: #181818;
-
-        --outdatedspec-bg: rgba(255, 255, 255, .5);
-        --outdatedspec-text: black;
-        --outdated-bg: maroon;
-        --outdated-text: white;
-        --outdated-shadow: red;
-
-        --editedrec-bg: darkorange;
-    }
-    /* In case a transparent-bg image doesn't expect to be on a dark bg,
-       which is quite common in practice... */
-    img { background: white; }
-}
-@media (prefers-color-scheme: dark) {
-    :root {
-        --selflink-text: black;
-        --selflink-bg: silver;
-        --selflink-hover-text: white;
-    }
-}
-
-@media (prefers-color-scheme: dark) {
-    :root {
-        --dfnpanel-bg: #222;
-        --dfnpanel-text: var(--text);
-    }
-}@media (prefers-color-scheme: dark) {
-	:root {
-		--mdn-bg: #222;
-		--mdn-shadow: #444;
-		--mdn-nosupport-text: #666;
-	}
-}
 @media (prefers-color-scheme: dark) {
     .highlight:not(.idl) { background: rgba(255, 255, 255, .05); }
 
@@ -813,7 +867,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1>Referrer Policy</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2023-01-29">29 January 2023</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2023-12-02">2 December 2023</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -839,7 +893,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     </div>
    </details>
    <div data-fill-with="warning"></div>
-   <p class="copyright" data-fill-with="copyright"><a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2023 <a href="https://www.w3.org/">World Wide Web Consortium</a>. <abbr title="World Wide Web Consortium">W3C</abbr><sup>®</sup> <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document" rel="license">permissive document license</a> rules apply. </p>
+   <p class="copyright" data-fill-with="copyright"><a href="https://www.w3.org/policies/#copyright">Copyright</a> © 2023 <a href="https://www.w3.org/">World Wide Web Consortium</a>. <abbr title="World Wide Web Consortium">W3C</abbr><sup>®</sup> <a href="https://www.w3.org/policies/#Legal_Disclaimer">liability</a>, <a href="https://www.w3.org/policies/#W3C_Trademarks">trademark</a> and <a href="https://www.w3.org/copyright/software-license/" rel="license" title="W3C Software and Document License">permissive document license</a> rules apply. </p>
    <hr title="Separator for header">
   </div>
   <div class="p-summary" data-fill-with="abstract">
@@ -865,7 +919,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
 	W3C maintains a <a href="https://www.w3.org/groups/wg/webappsec/ipr" rel="disclosure">public list of any patent disclosures</a> made in connection with the deliverables of the group;
 	that page also includes instructions for disclosing a patent.
 	An individual who has actual knowledge of a patent which the individual believes contains <a href="https://www.w3.org/Consortium/Patent-Policy/#def-essential">Essential Claim(s)</a> must disclose the information in accordance with <a href="https://www.w3.org/Consortium/Patent-Policy/#sec-Disclosure">section 6 of the W3C Patent Policy</a>. </p>
-   <p> This document is governed by the <a href="https://www.w3.org/2021/Process-20211102/" id="w3c_process_revision">2 November 2021 W3C Process Document</a>. </p>
+   <p> This document is governed by the <a href="https://www.w3.org/2023/Process-20231103/" id="w3c_process_revision">03 November 2023 W3C Process Document</a>. </p>
    <p></p>
   </div>
   <div data-fill-with="at-risk"></div>
@@ -1160,22 +1214,6 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <li> Implicitly, via inheritance. 
     </ul>
     <h3 class="heading settled" data-level="4.1" id="referrer-policy-header"><span class="secno">4.1. </span><span class="content">Delivery via Referrer-Policy header</span><a class="self-link" href="#referrer-policy-header"></a></h3>
-    <div class="mdn-anno wrapped after">
-     <button class="mdn-anno-btn"><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></button>
-     <div class="feature">
-      <p><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy" title="The Referrer-Policy HTTP header controls how much referrer information (sent with the Referer header) should be included with requests. Aside from the HTTP header, you can set this policy in HTML.">Headers/Referrer-Policy</a></p>
-      <p class="all-engines-text">In all current engines.</p>
-      <div class="support">
-       <span class="firefox yes"><span>Firefox</span><span>50+</span></span><span class="safari yes"><span>Safari</span><span>11.1+</span></span><span class="chrome yes"><span>Chrome</span><span>56+</span></span>
-       <hr>
-       <span class="opera no"><span>Opera</span><span>?</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
-       <hr>
-       <span class="edge no"><span>Edge (Legacy)</span><span>?</span></span><span class="ie no"><span>IE</span><span>None</span></span>
-       <hr>
-       <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>12+</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="webview_android no"><span>Android WebView</span><span>?</span></span><span class="samsunginternet_android yes"><span>Samsung Internet</span><span>7.2+</span></span><span class="opera_android no"><span>Opera Mobile</span><span>?</span></span>
-      </div>
-     </div>
-    </div>
     <p>The <code><dfn class="dfn-paneled" data-dfn-type="dfn" data-local-lt="referrer-policy header" data-noexport id="referrer-policy-header-dfn">Referrer-Policy</dfn></code> HTTP header
   specifies the referrer policy that the user agent applies when determining
   what referrer information should be included with requests made, and with <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="ref-for-browsing-context">browsing contexts</a> created from the context of the protected
@@ -1208,22 +1246,6 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     </section>
     <section class="informative">
      <h3 class="heading settled" data-level="4.2" id="referrer-policy-delivery-meta"><span class="secno">4.2. </span><span class="content">Delivery via <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/semantics.html#meta" id="ref-for-meta①">meta</a></code></span><a class="self-link" href="#referrer-policy-delivery-meta"></a></h3>
-     <div class="mdn-anno wrapped after">
-      <button class="mdn-anno-btn"><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></button>
-      <div class="feature">
-       <p><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta/name" title="The <meta> element can be used to provide document metadata in terms of name-value pairs, with the name attribute giving the metadata name, and the content attribute giving the value.">Element/meta/name</a></p>
-       <p class="all-engines-text">In all current engines.</p>
-       <div class="support">
-        <span class="firefox yes"><span>Firefox</span><span>1+</span></span><span class="safari yes"><span>Safari</span><span>4+</span></span><span class="chrome yes"><span>Chrome</span><span>1+</span></span>
-        <hr>
-        <span class="opera yes"><span>Opera</span><span>12.1+</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
-        <hr>
-        <span class="edge yes"><span>Edge (Legacy)</span><span>12+</span></span><span class="ie yes"><span>IE</span><span>6+</span></span>
-        <hr>
-        <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="safari_ios no"><span>iOS Safari</span><span>?</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="webview_android no"><span>Android WebView</span><span>?</span></span><span class="samsunginternet_android no"><span>Samsung Internet</span><span>?</span></span><span class="opera_android yes"><span>Opera Mobile</span><span>12.1+</span></span>
-       </div>
-      </div>
-     </div>
      <p><em>This section is not normative.</em></p>
      <p>The HTML Standard defines the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/semantics.html#meta-referrer" id="ref-for-meta-referrer②"><code>referrer</code></a> keyword for the <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/semantics.html#meta" id="ref-for-meta②">meta</a></code> element, which allows setting the <a data-link-type="dfn" href="#referrer-policy" id="ref-for-referrer-policy⑦">referrer
     policy</a> via markup.</p>
@@ -1305,8 +1327,8 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
        For each <var>token</var> in <var>policy-tokens</var>, if <var>token</var> is a <a data-link-type="dfn" href="#referrer-policy" id="ref-for-referrer-policy①①">referrer
       policy</a> and <var>token</var> is not the empty string, then set <var>policy</var> to <var>token</var>. 
       <p class="note" role="note"><span class="marker">Note:</span> This algorithm loops over multiple policy values to allow
-	  deployment of new policy values with fallbacks for older user
-	  agents, as described in <a href="#unknown-policy-values">§ 11.1 Unknown Policy Values</a>.</p>
+          deployment of new policy values with fallbacks for older user
+          agents, as described in <a href="#unknown-policy-values">§ 11.1 Unknown Policy Values</a>.</p>
      <li> Return <var>policy</var>. 
     </ol>
     <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-export data-level="8.2" data-lt="Set request’s referrer policy on redirect" id="set-requests-referrer-policy-on-redirect"><span class="secno">8.2. </span><span class="content"> Set <var>request</var>’s referrer policy on redirect </span><a class="self-link" href="#set-requests-referrer-policy-on-redirect" id="ref-for-set-requests-referrer-policy-on-redirect①"></a></h3>
@@ -1518,20 +1540,22 @@ Referrer-Policy: unsafe-url
     with <code>class="note"</code>,
     like this: </p>
    <p class="note" role="note">Note, this is an informative note.</p>
-   <h3 class="no-ref no-num heading settled" id="w3c-conformant-algorithms"><span class="content">Conformant Algorithms</span><a class="self-link" href="#w3c-conformant-algorithms"></a></h3>
-   <p>Requirements phrased in the imperative as part of algorithms
+   <section>
+    <h3 class="no-ref no-num heading settled" id="w3c-conformant-algorithms"><span class="content">Conformant Algorithms</span><a class="self-link" href="#w3c-conformant-algorithms"></a></h3>
+    <p>Requirements phrased in the imperative as part of algorithms
     (such as "strip any leading space characters"
     or "return false and abort these steps")
     are to be interpreted with the meaning of the key word
     ("must", "should", "may", etc)
     used in introducing the algorithm. </p>
-   <p>Conformance requirements phrased as algorithms or specific steps
+    <p>Conformance requirements phrased as algorithms or specific steps
     can be implemented in any manner,
     so long as the end result is equivalent.
     In particular, the algorithms defined in this specification
     are intended to be easy to understand
     and are not intended to be performant.
     Implementers are encouraged to optimize. </p>
+   </section>
   </div>
 <script src="https://www.w3.org/scripts/TR/2021/fixup.js"></script>
   <h2 class="no-num no-ref heading settled" id="index"><span class="content">Index</span><a class="self-link" href="#index"></a></h2>
@@ -1606,622 +1630,112 @@ Referrer-Policy: unsafe-url
      <li><a href="#dom-referrerpolicy-unsafe-url">enum-value for ReferrerPolicy</a><span>, in § 3</span>
     </ul>
   </ul>
-  <aside class="dfn-panel" data-for="term-for-css-declaration-block">
-   <a href="https://drafts.csswg.org/cssom-1/#css-declaration-block">https://drafts.csswg.org/cssom-1/#css-declaration-block</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-css-declaration-block">7. Integration with CSS</a> <a href="#ref-for-css-declaration-block①">(2)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-css-style-sheet">
-   <a href="https://drafts.csswg.org/cssom-1/#css-style-sheet">https://drafts.csswg.org/cssom-1/#css-style-sheet</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-css-style-sheet">7. Integration with CSS</a> <a href="#ref-for-css-style-sheet①">(2)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-concept-css-style-sheet-location">
-   <a href="https://drafts.csswg.org/cssom-1/#concept-css-style-sheet-location">https://drafts.csswg.org/cssom-1/#concept-css-style-sheet-location</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-concept-css-style-sheet-location">7. Integration with CSS</a> <a href="#ref-for-concept-css-style-sheet-location①">(2)</a> <a href="#ref-for-concept-css-style-sheet-location②">(3)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-cssstyledeclaration-owner-node">
-   <a href="https://drafts.csswg.org/cssom-1/#cssstyledeclaration-owner-node">https://drafts.csswg.org/cssom-1/#cssstyledeclaration-owner-node</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-cssstyledeclaration-owner-node">7. Integration with CSS</a> <a href="#ref-for-cssstyledeclaration-owner-node①">(2)</a> <a href="#ref-for-cssstyledeclaration-owner-node②">(3)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-concept-css-style-sheet-owner-node">
-   <a href="https://drafts.csswg.org/cssom-1/#concept-css-style-sheet-owner-node">https://drafts.csswg.org/cssom-1/#concept-css-style-sheet-owner-node</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-concept-css-style-sheet-owner-node">7. Integration with CSS</a> <a href="#ref-for-concept-css-style-sheet-owner-node①">(2)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-concept-node-document">
-   <a href="https://dom.spec.whatwg.org/#concept-node-document">https://dom.spec.whatwg.org/#concept-node-document</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-concept-node-document">3.9. The empty string</a>
-    <li><a href="#ref-for-concept-node-document①">7. Integration with CSS</a> <a href="#ref-for-concept-node-document②">(2)</a> <a href="#ref-for-concept-node-document③">(3)</a> <a href="#ref-for-concept-node-document④">(4)</a>
-    <li><a href="#ref-for-concept-node-document⑤">8.3. 
-    Determine request’s Referrer </a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-concept-document-origin">
-   <a href="https://dom.spec.whatwg.org/#concept-document-origin">https://dom.spec.whatwg.org/#concept-document-origin</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-concept-document-origin">8.3. 
-    Determine request’s Referrer </a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-concept-document-url">
-   <a href="https://dom.spec.whatwg.org/#concept-document-url">https://dom.spec.whatwg.org/#concept-document-url</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-concept-document-url">7. Integration with CSS</a> <a href="#ref-for-concept-document-url①">(2)</a>
-    <li><a href="#ref-for-concept-document-url②">8.3. 
-    Determine request’s Referrer </a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-request">
-   <a href="https://fetch.spec.whatwg.org/#request">https://fetch.spec.whatwg.org/#request</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-request">2. Key Concepts and Terminology</a> <a href="#ref-for-request①">(2)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-concept-request-client">
-   <a href="https://fetch.spec.whatwg.org/#concept-request-client">https://fetch.spec.whatwg.org/#concept-request-client</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-concept-request-client">2. Key Concepts and Terminology</a>
-    <li><a href="#ref-for-concept-request-client①">3. Referrer Policies</a>
-    <li><a href="#ref-for-concept-request-client②">8.3. 
-    Determine request’s Referrer </a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-concept-request-current-url">
-   <a href="https://fetch.spec.whatwg.org/#concept-request-current-url">https://fetch.spec.whatwg.org/#concept-request-current-url</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-concept-request-current-url">2. Key Concepts and Terminology</a>
-    <li><a href="#ref-for-concept-request-current-url①">3.2. "no-referrer-when-downgrade"</a> <a href="#ref-for-concept-request-current-url②">(2)</a>
-    <li><a href="#ref-for-concept-request-current-url③">3.3. "same-origin"</a>
-    <li><a href="#ref-for-concept-request-current-url④">3.5. "strict-origin"</a> <a href="#ref-for-concept-request-current-url⑤">(2)</a>
-    <li><a href="#ref-for-concept-request-current-url⑥">3.7. "strict-origin-when-cross-origin"</a> <a href="#ref-for-concept-request-current-url⑦">(2)</a>
-    <li><a href="#ref-for-concept-request-current-url⑧">8.3. 
-    Determine request’s Referrer </a> <a href="#ref-for-concept-request-current-url⑨">(2)</a> <a href="#ref-for-concept-request-current-url①⓪">(3)</a> <a href="#ref-for-concept-request-current-url①①">(4)</a> <a href="#ref-for-concept-request-current-url①②">(5)</a> <a href="#ref-for-concept-request-current-url①③">(6)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-extract-header-list-values">
-   <a href="https://fetch.spec.whatwg.org/#extract-header-list-values">https://fetch.spec.whatwg.org/#extract-header-list-values</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-extract-header-list-values">8.1. 
-    Parse a referrer policy from a Referrer-Policy header </a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-concept-fetch">
-   <a href="https://fetch.spec.whatwg.org/#concept-fetch">https://fetch.spec.whatwg.org/#concept-fetch</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-concept-fetch">2. Key Concepts and Terminology</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-concept-response-header-list">
-   <a href="https://fetch.spec.whatwg.org/#concept-response-header-list">https://fetch.spec.whatwg.org/#concept-response-header-list</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-concept-response-header-list">8.1. 
-    Parse a referrer policy from a Referrer-Policy header </a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-local-scheme">
-   <a href="https://fetch.spec.whatwg.org/#local-scheme">https://fetch.spec.whatwg.org/#local-scheme</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-local-scheme">8.4. 
-    Strip url for use as a referrer </a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-concept-request-referrer">
-   <a href="https://fetch.spec.whatwg.org/#concept-request-referrer">https://fetch.spec.whatwg.org/#concept-request-referrer</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-concept-request-referrer">7. Integration with CSS</a> <a href="#ref-for-concept-request-referrer①">(2)</a> <a href="#ref-for-concept-request-referrer②">(3)</a> <a href="#ref-for-concept-request-referrer③">(4)</a>
-    <li><a href="#ref-for-concept-request-referrer④">8.3. 
-    Determine request’s Referrer </a> <a href="#ref-for-concept-request-referrer⑤">(2)</a> <a href="#ref-for-concept-request-referrer⑥">(3)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-concept-request-referrer-policy">
-   <a href="https://fetch.spec.whatwg.org/#concept-request-referrer-policy">https://fetch.spec.whatwg.org/#concept-request-referrer-policy</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-concept-request-referrer-policy">4. Referrer Policy Delivery</a>
-    <li><a href="#ref-for-concept-request-referrer-policy①">7. Integration with CSS</a> <a href="#ref-for-concept-request-referrer-policy②">(2)</a> <a href="#ref-for-concept-request-referrer-policy③">(3)</a> <a href="#ref-for-concept-request-referrer-policy④">(4)</a>
-    <li><a href="#ref-for-concept-request-referrer-policy⑤">8.2. 
-    Set request’s referrer policy on redirect </a> <a href="#ref-for-concept-request-referrer-policy⑥">(2)</a>
-    <li><a href="#ref-for-concept-request-referrer-policy⑦">8.3. 
-    Determine request’s Referrer </a> <a href="#ref-for-concept-request-referrer-policy⑧">(2)</a> <a href="#ref-for-concept-request-referrer-policy⑨">(3)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-concept-request">
-   <a href="https://fetch.spec.whatwg.org/#concept-request">https://fetch.spec.whatwg.org/#concept-request</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-concept-request">2. Key Concepts and Terminology</a>
-    <li><a href="#ref-for-concept-request①">4. Referrer Policy Delivery</a>
-    <li><a href="#ref-for-concept-request②">7. Integration with CSS</a> <a href="#ref-for-concept-request③">(2)</a> <a href="#ref-for-concept-request④">(3)</a>
-    <li><a href="#ref-for-concept-request⑤">8.2. 
-    Set request’s referrer policy on redirect </a>
-    <li><a href="#ref-for-concept-request⑥">8.3. 
-    Determine request’s Referrer </a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-concept-response">
-   <a href="https://fetch.spec.whatwg.org/#concept-response">https://fetch.spec.whatwg.org/#concept-response</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-concept-response">8.1. 
-    Parse a referrer policy from a Referrer-Policy header </a>
-    <li><a href="#ref-for-concept-response①">8.2. 
-    Set request’s referrer policy on redirect </a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-document">
-   <a href="https://html.spec.whatwg.org/multipage/dom.html#document">https://html.spec.whatwg.org/multipage/dom.html#document</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-document">3.9. The empty string</a>
-    <li><a href="#ref-for-document①">6. Integration with HTML</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-window">
-   <a href="https://html.spec.whatwg.org/multipage/nav-history-apis.html#window">https://html.spec.whatwg.org/multipage/nav-history-apis.html#window</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-window">8.3. 
-    Determine request’s Referrer </a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-workerglobalscope">
-   <a href="https://html.spec.whatwg.org/multipage/workers.html#workerglobalscope">https://html.spec.whatwg.org/multipage/workers.html#workerglobalscope</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-workerglobalscope">6. Integration with HTML</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-the-a-element">
-   <a href="https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-a-element">https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-a-element</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-the-a-element">3.9. The empty string</a> <a href="#ref-for-the-a-element①">(2)</a> <a href="#ref-for-the-a-element②">(3)</a>
-    <li><a href="#ref-for-the-a-element③">4. Referrer Policy Delivery</a> <a href="#ref-for-the-a-element④">(2)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-an-iframe-srcdoc-document">
-   <a href="https://html.spec.whatwg.org/multipage/embedded-content.html#an-iframe-srcdoc-document">https://html.spec.whatwg.org/multipage/embedded-content.html#an-iframe-srcdoc-document</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-an-iframe-srcdoc-document">8.3. 
-    Determine request’s Referrer </a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-the-area-element">
-   <a href="https://html.spec.whatwg.org/multipage/image-maps.html#the-area-element">https://html.spec.whatwg.org/multipage/image-maps.html#the-area-element</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-the-area-element">4. Referrer Policy Delivery</a> <a href="#ref-for-the-area-element①">(2)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-ascii-serialisation-of-an-origin">
-   <a href="https://html.spec.whatwg.org/multipage/browsers.html#ascii-serialisation-of-an-origin">https://html.spec.whatwg.org/multipage/browsers.html#ascii-serialisation-of-an-origin</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-ascii-serialisation-of-an-origin">3.4. "origin"</a>
-    <li><a href="#ref-for-ascii-serialisation-of-an-origin①">3.5. "strict-origin"</a>
-    <li><a href="#ref-for-ascii-serialisation-of-an-origin②">3.6. "origin-when-cross-origin"</a>
-    <li><a href="#ref-for-ascii-serialisation-of-an-origin③">3.7. "strict-origin-when-cross-origin"</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-concept-document-window">
-   <a href="https://html.spec.whatwg.org/multipage/browsers.html#concept-document-window">https://html.spec.whatwg.org/multipage/browsers.html#concept-document-window</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-concept-document-window">8.3. 
-    Determine request’s Referrer </a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-browsing-context">
-   <a href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context">https://html.spec.whatwg.org/multipage/browsers.html#browsing-context</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-browsing-context">4.1. Delivery via Referrer-Policy header</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-concept-document-bc">
-   <a href="https://html.spec.whatwg.org/multipage/document-sequences.html#concept-document-bc">https://html.spec.whatwg.org/multipage/document-sequences.html#concept-document-bc</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-concept-document-bc">8.3. 
-    Determine request’s Referrer </a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-browsing-context-container">
-   <a href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context-container">https://html.spec.whatwg.org/multipage/browsers.html#browsing-context-container</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-browsing-context-container">8.3. 
-    Determine request’s Referrer </a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-concept-environment-creation-url">
-   <a href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-environment-creation-url">https://html.spec.whatwg.org/multipage/webappapis.html#concept-environment-creation-url</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-concept-environment-creation-url">8.3. 
-    Determine request’s Referrer </a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-environment-settings-object">
-   <a href="https://html.spec.whatwg.org/multipage/webappapis.html#environment-settings-object">https://html.spec.whatwg.org/multipage/webappapis.html#environment-settings-object</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-environment-settings-object">2. Key Concepts and Terminology</a> <a href="#ref-for-environment-settings-object①">(2)</a>
-    <li><a href="#ref-for-environment-settings-object②">3. Referrer Policies</a> <a href="#ref-for-environment-settings-object③">(2)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-concept-settings-object-global">
-   <a href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-settings-object-global">https://html.spec.whatwg.org/multipage/webappapis.html#concept-settings-object-global</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-concept-settings-object-global">8.3. 
-    Determine request’s Referrer </a> <a href="#ref-for-concept-settings-object-global①">(2)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-the-iframe-element">
-   <a href="https://html.spec.whatwg.org/multipage/iframe-embed-object.html#the-iframe-element">https://html.spec.whatwg.org/multipage/iframe-embed-object.html#the-iframe-element</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-the-iframe-element">4. Referrer Policy Delivery</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-the-img-element">
-   <a href="https://html.spec.whatwg.org/multipage/embedded-content.html#the-img-element">https://html.spec.whatwg.org/multipage/embedded-content.html#the-img-element</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-the-img-element">4. Referrer Policy Delivery</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-the-link-element">
-   <a href="https://html.spec.whatwg.org/multipage/semantics.html#the-link-element">https://html.spec.whatwg.org/multipage/semantics.html#the-link-element</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-the-link-element">4. Referrer Policy Delivery</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-meta">
-   <a href="https://html.spec.whatwg.org/multipage/semantics.html#meta">https://html.spec.whatwg.org/multipage/semantics.html#meta</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-meta">4. Referrer Policy Delivery</a>
-    <li><a href="#ref-for-meta①">4.2. Delivery via meta</a> <a href="#ref-for-meta②">(2)</a>
-    <li><a href="#ref-for-meta③">11.1. Unknown Policy Values</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-attr-meta-name">
-   <a href="https://html.spec.whatwg.org/multipage/semantics.html#attr-meta-name">https://html.spec.whatwg.org/multipage/semantics.html#attr-meta-name</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-attr-meta-name">4. Referrer Policy Delivery</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-navigate">
-   <a href="https://html.spec.whatwg.org/multipage/browsers.html#navigate">https://html.spec.whatwg.org/multipage/browsers.html#navigate</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-navigate">6. Integration with HTML</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-link-type-noreferrer">
-   <a href="https://html.spec.whatwg.org/multipage/semantics.html#link-type-noreferrer">https://html.spec.whatwg.org/multipage/semantics.html#link-type-noreferrer</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-link-type-noreferrer">1. Introduction</a>
-    <li><a href="#ref-for-link-type-noreferrer①">3. Referrer Policies</a>
-    <li><a href="#ref-for-link-type-noreferrer②">4. Referrer Policy Delivery</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-concept-origin-opaque">
-   <a href="https://html.spec.whatwg.org/multipage/browsers.html#concept-origin-opaque">https://html.spec.whatwg.org/multipage/browsers.html#concept-origin-opaque</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-concept-origin-opaque">8.3. 
-    Determine request’s Referrer </a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-concept-origin">
-   <a href="https://html.spec.whatwg.org/multipage/browsers.html#concept-origin">https://html.spec.whatwg.org/multipage/browsers.html#concept-origin</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-concept-origin">3.1. "no-referrer"</a>
-    <li><a href="#ref-for-concept-origin①">3.4. "origin"</a>
-    <li><a href="#ref-for-concept-origin②">3.5. "strict-origin"</a>
-    <li><a href="#ref-for-concept-origin③">3.6. "origin-when-cross-origin"</a>
-    <li><a href="#ref-for-concept-origin④">3.7. "strict-origin-when-cross-origin"</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-policy-container">
-   <a href="https://html.spec.whatwg.org/multipage/browsers.html#policy-container">https://html.spec.whatwg.org/multipage/browsers.html#policy-container</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-policy-container">4.4. Referrer Policy Inheritance</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-concept-document-policy-container">
-   <a href="https://html.spec.whatwg.org/multipage/dom.html#concept-document-policy-container">https://html.spec.whatwg.org/multipage/dom.html#concept-document-policy-container</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-concept-document-policy-container">3.9. The empty string</a>
-    <li><a href="#ref-for-concept-document-policy-container①">6. Integration with HTML</a>
-    <li><a href="#ref-for-concept-document-policy-container②">7. Integration with CSS</a> <a href="#ref-for-concept-document-policy-container③">(2)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-concept-workerglobalscope-policy-container">
-   <a href="https://html.spec.whatwg.org/multipage/workers.html#concept-workerglobalscope-policy-container">https://html.spec.whatwg.org/multipage/workers.html#concept-workerglobalscope-policy-container</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-concept-workerglobalscope-policy-container">6. Integration with HTML</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-presentational-hints">
-   <a href="https://html.spec.whatwg.org/multipage/rendering.html#presentational-hints">https://html.spec.whatwg.org/multipage/rendering.html#presentational-hints</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-presentational-hints">7. Integration with CSS</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-meta-referrer">
-   <a href="https://html.spec.whatwg.org/multipage/semantics.html#meta-referrer">https://html.spec.whatwg.org/multipage/semantics.html#meta-referrer</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-meta-referrer">3.5. "strict-origin"</a>
-    <li><a href="#ref-for-meta-referrer①">4. Referrer Policy Delivery</a>
-    <li><a href="#ref-for-meta-referrer②">4.2. Delivery via meta</a>
-    <li><a href="#ref-for-meta-referrer③">11.1. Unknown Policy Values</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-policy-container-referrer-policy">
-   <a href="https://html.spec.whatwg.org/multipage/browsers.html#policy-container-referrer-policy">https://html.spec.whatwg.org/multipage/browsers.html#policy-container-referrer-policy</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-policy-container-referrer-policy">3.9. The empty string</a>
-    <li><a href="#ref-for-policy-container-referrer-policy①">6. Integration with HTML</a>
-    <li><a href="#ref-for-policy-container-referrer-policy②">7. Integration with CSS</a> <a href="#ref-for-policy-container-referrer-policy③">(2)</a> <a href="#ref-for-policy-container-referrer-policy④">(3)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-referrer-policy-attribute">
-   <a href="https://html.spec.whatwg.org/multipage/infrastructure.html#referrer-policy-attribute">https://html.spec.whatwg.org/multipage/infrastructure.html#referrer-policy-attribute</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-referrer-policy-attribute">4.3. Delivery
-    via a referrerpolicy content attribute</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-attr-hyperlink-referrerpolicy">
-   <a href="https://html.spec.whatwg.org/multipage/semantics.html#attr-hyperlink-referrerpolicy">https://html.spec.whatwg.org/multipage/semantics.html#attr-hyperlink-referrerpolicy</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-attr-hyperlink-referrerpolicy">3.9. The empty string</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-run-a-worker">
-   <a href="https://html.spec.whatwg.org/multipage/workers.html#run-a-worker">https://html.spec.whatwg.org/multipage/workers.html#run-a-worker</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-run-a-worker">6. Integration with HTML</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-same-origin">
-   <a href="https://html.spec.whatwg.org/multipage/browsers.html#same-origin">https://html.spec.whatwg.org/multipage/browsers.html#same-origin</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-same-origin">2. Key Concepts and Terminology</a>
-    <li><a href="#ref-for-same-origin①">8.3. 
-    Determine request’s Referrer </a> <a href="#ref-for-same-origin②">(2)</a> <a href="#ref-for-same-origin③">(3)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-script">
-   <a href="https://html.spec.whatwg.org/multipage/scripting.html#script">https://html.spec.whatwg.org/multipage/scripting.html#script</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-script">4. Referrer Policy Delivery</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-the-style-attribute">
-   <a href="https://html.spec.whatwg.org/multipage/dom.html#the-style-attribute">https://html.spec.whatwg.org/multipage/dom.html#the-style-attribute</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-the-style-attribute">7. Integration with CSS</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-assert">
-   <a href="https://infra.spec.whatwg.org/#assert">https://infra.spec.whatwg.org/#assert</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-assert">8.4. 
-    Strip url for use as a referrer </a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-string-length">
-   <a href="https://infra.spec.whatwg.org/#string-length">https://infra.spec.whatwg.org/#string-length</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-string-length">8.3. 
-    Determine request’s Referrer </a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-appendix-B.1">
-   <a href="https://tools.ietf.org/html/rfc5234#appendix-B.1">https://tools.ietf.org/html/rfc5234#appendix-B.1</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-appendix-B.1">4.1. Delivery via Referrer-Policy header</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-section-5.5.2">
-   <a href="https://tools.ietf.org/html/rfc7231#section-5.5.2">https://tools.ietf.org/html/rfc7231#section-5.5.2</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-section-5.5.2">1. Introduction</a> <a href="#ref-for-section-5.5.2①">(2)</a>
-    <li><a href="#ref-for-section-5.5.2②">2. Key Concepts and Terminology</a>
-    <li><a href="#ref-for-section-5.5.2③">3.1. "no-referrer"</a> <a href="#ref-for-section-5.5.2④">(2)</a>
-    <li><a href="#ref-for-section-5.5.2⑤">3.2. "no-referrer-when-downgrade"</a> <a href="#ref-for-section-5.5.2⑥">(2)</a> <a href="#ref-for-section-5.5.2⑦">(3)</a>
-    <li><a href="#ref-for-section-5.5.2⑧">3.3. "same-origin"</a> <a href="#ref-for-section-5.5.2⑨">(2)</a> <a href="#ref-for-section-5.5.2①⓪">(3)</a> <a href="#ref-for-section-5.5.2①①">(4)</a>
-    <li><a href="#ref-for-section-5.5.2①②">3.4. "origin"</a> <a href="#ref-for-section-5.5.2①③">(2)</a>
-    <li><a href="#ref-for-section-5.5.2①④">3.5. "strict-origin"</a> <a href="#ref-for-section-5.5.2①⑤">(2)</a> <a href="#ref-for-section-5.5.2①⑥">(3)</a> <a href="#ref-for-section-5.5.2①⑦">(4)</a>
-    <li><a href="#ref-for-section-5.5.2①⑧">3.6. "origin-when-cross-origin"</a> <a href="#ref-for-section-5.5.2①⑨">(2)</a> <a href="#ref-for-section-5.5.2②⓪">(3)</a> <a href="#ref-for-section-5.5.2②①">(4)</a>
-    <li><a href="#ref-for-section-5.5.2②②">3.7. "strict-origin-when-cross-origin"</a> <a href="#ref-for-section-5.5.2②③">(2)</a> <a href="#ref-for-section-5.5.2②④">(3)</a> <a href="#ref-for-section-5.5.2②⑤">(4)</a> <a href="#ref-for-section-5.5.2②⑥">(5)</a>
-    <li><a href="#ref-for-section-5.5.2②⑦">3.8. "unsafe-url"</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-potentially-trustworthy-url">
-   <a href="https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-url">https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-url</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-potentially-trustworthy-url">3.2. "no-referrer-when-downgrade"</a> <a href="#ref-for-potentially-trustworthy-url①">(2)</a> <a href="#ref-for-potentially-trustworthy-url②">(3)</a> <a href="#ref-for-potentially-trustworthy-url③">(4)</a> <a href="#ref-for-potentially-trustworthy-url④">(5)</a>
-    <li><a href="#ref-for-potentially-trustworthy-url⑤">3.4. "origin"</a>
-    <li><a href="#ref-for-potentially-trustworthy-url⑥">3.5. "strict-origin"</a> <a href="#ref-for-potentially-trustworthy-url⑦">(2)</a> <a href="#ref-for-potentially-trustworthy-url⑧">(3)</a> <a href="#ref-for-potentially-trustworthy-url⑨">(4)</a>
-    <li><a href="#ref-for-potentially-trustworthy-url①⓪">3.6. "origin-when-cross-origin"</a>
-    <li><a href="#ref-for-potentially-trustworthy-url①①">3.7. "strict-origin-when-cross-origin"</a> <a href="#ref-for-potentially-trustworthy-url①②">(2)</a> <a href="#ref-for-potentially-trustworthy-url①③">(3)</a> <a href="#ref-for-potentially-trustworthy-url①④">(4)</a>
-    <li><a href="#ref-for-potentially-trustworthy-url①⑤">8.3. 
-    Determine request’s Referrer </a> <a href="#ref-for-potentially-trustworthy-url①⑥">(2)</a> <a href="#ref-for-potentially-trustworthy-url①⑦">(3)</a> <a href="#ref-for-potentially-trustworthy-url①⑧">(4)</a> <a href="#ref-for-potentially-trustworthy-url①⑨">(5)</a> <a href="#ref-for-potentially-trustworthy-url②⓪">(6)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-concept-url-fragment">
-   <a href="https://url.spec.whatwg.org/#concept-url-fragment">https://url.spec.whatwg.org/#concept-url-fragment</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-concept-url-fragment">8.4. 
-    Strip url for use as a referrer </a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-concept-url-host">
-   <a href="https://url.spec.whatwg.org/#concept-url-host">https://url.spec.whatwg.org/#concept-url-host</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-concept-url-host">8.3. 
-    Determine request’s Referrer </a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-concept-url-origin">
-   <a href="https://url.spec.whatwg.org/#concept-url-origin">https://url.spec.whatwg.org/#concept-url-origin</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-concept-url-origin">2. Key Concepts and Terminology</a> <a href="#ref-for-concept-url-origin①">(2)</a>
-    <li><a href="#ref-for-concept-url-origin②">8.3. 
-    Determine request’s Referrer </a> <a href="#ref-for-concept-url-origin③">(2)</a> <a href="#ref-for-concept-url-origin④">(3)</a> <a href="#ref-for-concept-url-origin⑤">(4)</a> <a href="#ref-for-concept-url-origin⑥">(5)</a> <a href="#ref-for-concept-url-origin⑦">(6)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-concept-url-password">
-   <a href="https://url.spec.whatwg.org/#concept-url-password">https://url.spec.whatwg.org/#concept-url-password</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-concept-url-password">8.4. 
-    Strip url for use as a referrer </a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-concept-url-path">
-   <a href="https://url.spec.whatwg.org/#concept-url-path">https://url.spec.whatwg.org/#concept-url-path</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-concept-url-path">8.4. 
-    Strip url for use as a referrer </a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-concept-url-query">
-   <a href="https://url.spec.whatwg.org/#concept-url-query">https://url.spec.whatwg.org/#concept-url-query</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-concept-url-query">8.4. 
-    Strip url for use as a referrer </a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-concept-url-scheme">
-   <a href="https://url.spec.whatwg.org/#concept-url-scheme">https://url.spec.whatwg.org/#concept-url-scheme</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-concept-url-scheme">8.4. 
-    Strip url for use as a referrer </a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-concept-url">
-   <a href="https://url.spec.whatwg.org/#concept-url">https://url.spec.whatwg.org/#concept-url</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-concept-url">8.3. 
-    Determine request’s Referrer </a>
-    <li><a href="#ref-for-concept-url①">8.4. 
-    Strip url for use as a referrer </a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-concept-url-serializer">
-   <a href="https://url.spec.whatwg.org/#concept-url-serializer">https://url.spec.whatwg.org/#concept-url-serializer</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-concept-url-serializer">8.3. 
-    Determine request’s Referrer </a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-concept-url-username">
-   <a href="https://url.spec.whatwg.org/#concept-url-username">https://url.spec.whatwg.org/#concept-url-username</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-concept-url-username">8.4. 
-    Strip url for use as a referrer </a>
-   </ul>
-  </aside>
   <h3 class="no-num no-ref heading settled" id="index-defined-elsewhere"><span class="content">Terms defined by reference</span><a class="self-link" href="#index-defined-elsewhere"></a></h3>
   <ul class="index">
    <li>
     <a data-link-type="biblio">[CSSOM-1]</a> defines the following terms:
     <ul>
-     <li><span class="dfn-paneled" id="term-for-css-declaration-block">css declaration block</span>
-     <li><span class="dfn-paneled" id="term-for-css-style-sheet">css style sheet</span>
-     <li><span class="dfn-paneled" id="term-for-concept-css-style-sheet-location">location</span>
-     <li><span class="dfn-paneled" id="term-for-cssstyledeclaration-owner-node">owner node <small>(for CSSStyleDeclaration)</small></span>
-     <li><span class="dfn-paneled" id="term-for-concept-css-style-sheet-owner-node">owner node <small>(for CSSStyleSheet)</small></span>
+     <li><span class="dfn-paneled" id="a06e5a78">css declaration block</span>
+     <li><span class="dfn-paneled" id="9ca506a8">css style sheet</span>
+     <li><span class="dfn-paneled" id="bbc31c9d">location</span>
+     <li><span class="dfn-paneled" id="eab73120">owner node <small>(for CSSStyleDeclaration)</small></span>
+     <li><span class="dfn-paneled" id="06f8d393">owner node <small>(for CSSStyleSheet)</small></span>
     </ul>
    <li>
     <a data-link-type="biblio">[DOM]</a> defines the following terms:
     <ul>
-     <li><span class="dfn-paneled" id="term-for-concept-node-document">node document</span>
-     <li><span class="dfn-paneled" id="term-for-concept-document-origin">origin</span>
-     <li><span class="dfn-paneled" id="term-for-concept-document-url">url</span>
+     <li><span class="dfn-paneled" id="5216e1a0">node document</span>
+     <li><span class="dfn-paneled" id="c62cd7cf">origin</span>
+     <li><span class="dfn-paneled" id="347e8fe9">url</span>
     </ul>
    <li>
     <a data-link-type="biblio">[FETCH]</a> defines the following terms:
     <ul>
-     <li><span class="dfn-paneled" id="term-for-request">Request</span>
-     <li><span class="dfn-paneled" id="term-for-concept-request-client">client</span>
-     <li><span class="dfn-paneled" id="term-for-concept-request-current-url">current url</span>
-     <li><span class="dfn-paneled" id="term-for-extract-header-list-values">extracting header list values</span>
-     <li><span class="dfn-paneled" id="term-for-concept-fetch">fetch</span>
-     <li><span class="dfn-paneled" id="term-for-concept-response-header-list">header list</span>
-     <li><span class="dfn-paneled" id="term-for-local-scheme">local scheme</span>
-     <li><span class="dfn-paneled" id="term-for-concept-request-referrer">referrer</span>
-     <li><span class="dfn-paneled" id="term-for-concept-request-referrer-policy">referrer policy</span>
-     <li><span class="dfn-paneled" id="term-for-concept-request">request</span>
-     <li><span class="dfn-paneled" id="term-for-concept-response">response</span>
+     <li><span class="dfn-paneled" id="f9da6f1f">Request</span>
+     <li><span class="dfn-paneled" id="857d5516">client</span>
+     <li><span class="dfn-paneled" id="3f2ca4de">current url</span>
+     <li><span class="dfn-paneled" id="3be1d4ac">extracting header list values</span>
+     <li><span class="dfn-paneled" id="a33db89a">fetch</span>
+     <li><span class="dfn-paneled" id="f7b00a8b">header list</span>
+     <li><span class="dfn-paneled" id="63340982">local scheme</span>
+     <li><span class="dfn-paneled" id="358f1dbd">referrer</span>
+     <li><span class="dfn-paneled" id="07582c28">referrer policy</span>
+     <li><span class="dfn-paneled" id="55213b5b">request</span>
+     <li><span class="dfn-paneled" id="ee7bba09">response</span>
     </ul>
    <li>
     <a data-link-type="biblio">[HTML]</a> defines the following terms:
     <ul>
-     <li><span class="dfn-paneled" id="term-for-document">Document</span>
-     <li><span class="dfn-paneled" id="term-for-window">Window</span>
-     <li><span class="dfn-paneled" id="term-for-workerglobalscope">WorkerGlobalScope</span>
-     <li><span class="dfn-paneled" id="term-for-the-a-element">a</span>
-     <li><span class="dfn-paneled" id="term-for-an-iframe-srcdoc-document">an iframe srcdoc document</span>
-     <li><span class="dfn-paneled" id="term-for-the-area-element">area</span>
-     <li><span class="dfn-paneled" id="term-for-ascii-serialisation-of-an-origin">ascii serialization of an origin</span>
-     <li><span class="dfn-paneled" id="term-for-concept-document-window">associated document</span>
-     <li><span class="dfn-paneled" id="term-for-browsing-context">browsing context</span>
-     <li><span class="dfn-paneled" id="term-for-concept-document-bc">browsing context <small>(for Document)</small></span>
-     <li><span class="dfn-paneled" id="term-for-browsing-context-container">browsing context container</span>
-     <li><span class="dfn-paneled" id="term-for-concept-environment-creation-url">creation url</span>
-     <li><span class="dfn-paneled" id="term-for-environment-settings-object">environment settings object</span>
-     <li><span class="dfn-paneled" id="term-for-concept-settings-object-global">global object</span>
-     <li><span class="dfn-paneled" id="term-for-the-iframe-element">iframe</span>
-     <li><span class="dfn-paneled" id="term-for-the-img-element">img</span>
-     <li><span class="dfn-paneled" id="term-for-the-link-element">link</span>
-     <li><span class="dfn-paneled" id="term-for-meta">meta</span>
-     <li><span class="dfn-paneled" id="term-for-attr-meta-name">name</span>
-     <li><span class="dfn-paneled" id="term-for-navigate">navigation</span>
-     <li><span class="dfn-paneled" id="term-for-link-type-noreferrer">noreferrer</span>
-     <li><span class="dfn-paneled" id="term-for-concept-origin-opaque">opaque origin</span>
-     <li><span class="dfn-paneled" id="term-for-concept-origin">origin</span>
-     <li><span class="dfn-paneled" id="term-for-policy-container">policy container</span>
-     <li><span class="dfn-paneled" id="term-for-concept-document-policy-container">policy container <small>(for Document)</small></span>
-     <li><span class="dfn-paneled" id="term-for-concept-workerglobalscope-policy-container">policy container <small>(for WorkerGlobalScope)</small></span>
-     <li><span class="dfn-paneled" id="term-for-presentational-hints">presentational hints</span>
-     <li><span class="dfn-paneled" id="term-for-meta-referrer">referrer</span>
-     <li><span class="dfn-paneled" id="term-for-policy-container-referrer-policy">referrer policy</span>
-     <li><span class="dfn-paneled" id="term-for-referrer-policy-attribute">referrer policy attribute</span>
-     <li><span class="dfn-paneled" id="term-for-attr-hyperlink-referrerpolicy">referrerpolicy</span>
-     <li><span class="dfn-paneled" id="term-for-run-a-worker">running a worker</span>
-     <li><span class="dfn-paneled" id="term-for-same-origin">same origin</span>
-     <li><span class="dfn-paneled" id="term-for-script">script</span>
-     <li><span class="dfn-paneled" id="term-for-the-style-attribute">style attribute</span>
+     <li><span class="dfn-paneled" id="60e326a9">Document</span>
+     <li><span class="dfn-paneled" id="5d7209e9">Window</span>
+     <li><span class="dfn-paneled" id="83c59a3a">WorkerGlobalScope</span>
+     <li><span class="dfn-paneled" id="68bf3d31">a</span>
+     <li><span class="dfn-paneled" id="9c5b5827">an iframe srcdoc document</span>
+     <li><span class="dfn-paneled" id="a1a807e5">area</span>
+     <li><span class="dfn-paneled" id="b410a6ef">ascii serialization of an origin</span>
+     <li><span class="dfn-paneled" id="12e9e1d0">associated document</span>
+     <li><span class="dfn-paneled" id="faf954d6">browsing context</span>
+     <li><span class="dfn-paneled" id="3b2ff63e">browsing context <small>(for Document)</small></span>
+     <li><span class="dfn-paneled" id="7939ecaf">browsing context container</span>
+     <li><span class="dfn-paneled" id="fa5ee9c5">creation url</span>
+     <li><span class="dfn-paneled" id="3e12e042">environment settings object</span>
+     <li><span class="dfn-paneled" id="8a30477b">global object</span>
+     <li><span class="dfn-paneled" id="87fcd40c">iframe</span>
+     <li><span class="dfn-paneled" id="f0811ff8">img</span>
+     <li><span class="dfn-paneled" id="6cfa013d">link</span>
+     <li><span class="dfn-paneled" id="64b89595">meta</span>
+     <li><span class="dfn-paneled" id="a23d5e9f">name</span>
+     <li><span class="dfn-paneled" id="5abc471e">navigation</span>
+     <li><span class="dfn-paneled" id="09289012">noreferrer</span>
+     <li><span class="dfn-paneled" id="b01b1359">opaque origin</span>
+     <li><span class="dfn-paneled" id="086e3aff">origin</span>
+     <li><span class="dfn-paneled" id="b33787b2">policy container</span>
+     <li><span class="dfn-paneled" id="08639fbc">policy container <small>(for Document)</small></span>
+     <li><span class="dfn-paneled" id="432147ee">policy container <small>(for WorkerGlobalScope)</small></span>
+     <li><span class="dfn-paneled" id="fefe9144">presentational hints</span>
+     <li><span class="dfn-paneled" id="f588bce5">referrer</span>
+     <li><span class="dfn-paneled" id="cd03669e">referrer policy</span>
+     <li><span class="dfn-paneled" id="ea4eef27">referrer policy attribute</span>
+     <li><span class="dfn-paneled" id="50093b9d">referrerpolicy</span>
+     <li><span class="dfn-paneled" id="8d526929">running a worker</span>
+     <li><span class="dfn-paneled" id="7393da89">same origin</span>
+     <li><span class="dfn-paneled" id="0cf3964f">script</span>
+     <li><span class="dfn-paneled" id="3114a761">style attribute</span>
     </ul>
    <li>
     <a data-link-type="biblio">[INFRA]</a> defines the following terms:
     <ul>
-     <li><span class="dfn-paneled" id="term-for-assert">assert</span>
-     <li><span class="dfn-paneled" id="term-for-string-length">length</span>
+     <li><span class="dfn-paneled" id="77b4c09a">assert</span>
+     <li><span class="dfn-paneled" id="0fa357c3">length</span>
     </ul>
    <li>
     <a data-link-type="biblio">[RFC5234]</a> defines the following terms:
     <ul>
-     <li><span class="dfn-paneled" id="term-for-appendix-B.1">alpha</span>
+     <li><span class="dfn-paneled" id="41a7917e">alpha</span>
     </ul>
    <li>
     <a data-link-type="biblio">[RFC7231]</a> defines the following terms:
     <ul>
-     <li><span class="dfn-paneled" id="term-for-section-5.5.2">referer</span>
+     <li><span class="dfn-paneled" id="147e4528">referer</span>
     </ul>
    <li>
     <a data-link-type="biblio">[SECURE-CONTEXTS]</a> defines the following terms:
     <ul>
-     <li><span class="dfn-paneled" id="term-for-potentially-trustworthy-url">potentially trustworthy url</span>
+     <li><span class="dfn-paneled" id="9c5d9c4d">potentially trustworthy url</span>
     </ul>
    <li>
     <a data-link-type="biblio">[URL]</a> defines the following terms:
     <ul>
-     <li><span class="dfn-paneled" id="term-for-concept-url-fragment">fragment</span>
-     <li><span class="dfn-paneled" id="term-for-concept-url-host">host</span>
-     <li><span class="dfn-paneled" id="term-for-concept-url-origin">origin</span>
-     <li><span class="dfn-paneled" id="term-for-concept-url-password">password</span>
-     <li><span class="dfn-paneled" id="term-for-concept-url-path">path</span>
-     <li><span class="dfn-paneled" id="term-for-concept-url-query">query</span>
-     <li><span class="dfn-paneled" id="term-for-concept-url-scheme">scheme</span>
-     <li><span class="dfn-paneled" id="term-for-concept-url">url</span>
-     <li><span class="dfn-paneled" id="term-for-concept-url-serializer">url serializer</span>
-     <li><span class="dfn-paneled" id="term-for-concept-url-username">username</span>
+     <li><span class="dfn-paneled" id="ed948033">fragment</span>
+     <li><span class="dfn-paneled" id="b85ee3be">host</span>
+     <li><span class="dfn-paneled" id="959ad97b">origin</span>
+     <li><span class="dfn-paneled" id="a1288f2a">password</span>
+     <li><span class="dfn-paneled" id="c0868016">path</span>
+     <li><span class="dfn-paneled" id="3ab2ec8b">query</span>
+     <li><span class="dfn-paneled" id="3a711be7">scheme</span>
+     <li><span class="dfn-paneled" id="dcffbccd">url</span>
+     <li><span class="dfn-paneled" id="5442ea33">url serializer</span>
+     <li><span class="dfn-paneled" id="218c9455">username</span>
     </ul>
   </ul>
   <h2 class="no-num no-ref heading settled" id="references"><span class="content">References</span><a class="self-link" href="#references"></a></h2>
@@ -2244,7 +1758,7 @@ Referrer-Policy: unsafe-url
    <dt id="biblio-rfc7231">[RFC7231]
    <dd>R. Fielding, Ed.; J. Reschke, Ed.. <a href="https://httpwg.org/specs/rfc7231.html"><cite>Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content</cite></a>. June 2014. Proposed Standard. URL: <a href="https://httpwg.org/specs/rfc7231.html">https://httpwg.org/specs/rfc7231.html</a>
    <dt id="biblio-rfc9110">[RFC9110]
-   <dd>R. Fielding, Ed.; M. Nottingham, Ed.; J. Reschke, Ed.. <a href="https://www.rfc-editor.org/rfc/rfc9110"><cite>HTTP Semantics</cite></a>. June 2022. Internet Standard. URL: <a href="https://www.rfc-editor.org/rfc/rfc9110">https://www.rfc-editor.org/rfc/rfc9110</a>
+   <dd>R. Fielding, Ed.; M. Nottingham, Ed.; J. Reschke, Ed.. <a href="https://httpwg.org/specs/rfc9110.html"><cite>HTTP Semantics</cite></a>. June 2022. Internet Standard. URL: <a href="https://httpwg.org/specs/rfc9110.html">https://httpwg.org/specs/rfc9110.html</a>
    <dt id="biblio-secure-contexts">[SECURE-CONTEXTS]
    <dd>Mike West. <a href="https://w3c.github.io/webappsec-secure-contexts/"><cite>Secure Contexts</cite></a>. URL: <a href="https://w3c.github.io/webappsec-secure-contexts/">https://w3c.github.io/webappsec-secure-contexts/</a>
    <dt id="biblio-url">[URL]
@@ -2275,262 +1789,674 @@ Referrer-Policy: unsafe-url
        headers, and store a <span>referrer policy</span> in the same way that <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#policy-container-referrer-policy">Documents
        do</a>. <a class="issue-return" href="#issue-a01fbbf2" title="Jump to section">↵</a></div>
   </div>
-  <aside class="dfn-panel" data-for="same-origin-referrer-request">
-   <b><a href="#same-origin-referrer-request">#same-origin-referrer-request</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-same-origin-referrer-request">2. Key Concepts and Terminology</a>
-    <li><a href="#ref-for-same-origin-referrer-request①">3.3. "same-origin"</a>
-    <li><a href="#ref-for-same-origin-referrer-request②">3.4. "origin"</a>
-    <li><a href="#ref-for-same-origin-referrer-request③">3.6. "origin-when-cross-origin"</a>
-    <li><a href="#ref-for-same-origin-referrer-request④">3.7. "strict-origin-when-cross-origin"</a>
-    <li><a href="#ref-for-same-origin-referrer-request⑤">3.8. "unsafe-url"</a>
-    <li><a href="#ref-for-same-origin-referrer-request⑥">8.3. 
-    Determine request’s Referrer </a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="cross-origin-referrer-request">
-   <b><a href="#cross-origin-referrer-request">#cross-origin-referrer-request</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-cross-origin-referrer-request">3.3. "same-origin"</a> <a href="#ref-for-cross-origin-referrer-request①">(2)</a>
-    <li><a href="#ref-for-cross-origin-referrer-request②">3.4. "origin"</a>
-    <li><a href="#ref-for-cross-origin-referrer-request③">3.6. "origin-when-cross-origin"</a> <a href="#ref-for-cross-origin-referrer-request④">(2)</a>
-    <li><a href="#ref-for-cross-origin-referrer-request⑤">3.7. "strict-origin-when-cross-origin"</a>
-    <li><a href="#ref-for-cross-origin-referrer-request⑥">3.8. "unsafe-url"</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="referrer-policy">
-   <b><a href="#referrer-policy">#referrer-policy</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-referrer-policy">2. Key Concepts and Terminology</a> <a href="#ref-for-referrer-policy①">(2)</a> <a href="#ref-for-referrer-policy②">(3)</a> <a href="#ref-for-referrer-policy③">(4)</a>
-    <li><a href="#ref-for-referrer-policy④">3. Referrer Policies</a>
-    <li><a href="#ref-for-referrer-policy⑤">3.9. The empty string</a> <a href="#ref-for-referrer-policy⑥">(2)</a>
-    <li><a href="#ref-for-referrer-policy⑦">4.2. Delivery via meta</a>
-    <li><a href="#ref-for-referrer-policy⑧">4.4. Referrer Policy Inheritance</a>
-    <li><a href="#ref-for-referrer-policy⑨">6. Integration with HTML</a>
-    <li><a href="#ref-for-referrer-policy①⓪">8.1. 
-    Parse a referrer policy from a Referrer-Policy header </a> <a href="#ref-for-referrer-policy①①">(2)</a>
-    <li><a href="#ref-for-referrer-policy①②">9.1. User Controls</a>
-    <li><a href="#ref-for-referrer-policy①③">10.1. Information Leakage</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="default-referrer-policy">
-   <b><a href="#default-referrer-policy">#default-referrer-policy</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-default-referrer-policy">3.7. "strict-origin-when-cross-origin"</a>
-    <li><a href="#ref-for-default-referrer-policy①">3.9. The empty string</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="referrer-policy-no-referrer">
-   <b><a href="#referrer-policy-no-referrer">#referrer-policy-no-referrer</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-referrer-policy-no-referrer">3.1. "no-referrer"</a> <a href="#ref-for-referrer-policy-no-referrer">(2)</a> <a href="#ref-for-referrer-policy-no-referrer①">(3)</a>
-    <li><a href="#ref-for-referrer-policy-no-referrer②">8.3. 
-    Determine request’s Referrer </a>
-    <li><a href="#ref-for-referrer-policy-no-referrer③">10.1. Information Leakage</a>
-    <li><a href="#ref-for-referrer-policy-no-referrer④">10.2. Downgrade to less strict policies</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="referrer-policy-no-referrer-when-downgrade">
-   <b><a href="#referrer-policy-no-referrer-when-downgrade">#referrer-policy-no-referrer-when-downgrade</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-referrer-policy-no-referrer-when-downgrade">3.2. "no-referrer-when-downgrade"</a> <a href="#ref-for-referrer-policy-no-referrer-when-downgrade">(2)</a> <a href="#ref-for-referrer-policy-no-referrer-when-downgrade①">(3)</a>
-    <li><a href="#ref-for-referrer-policy-no-referrer-when-downgrade②">8.3. 
-    Determine request’s Referrer </a>
-    <li><a href="#ref-for-referrer-policy-no-referrer-when-downgrade③">10.2. Downgrade to less strict policies</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="referrer-policy-same-origin">
-   <b><a href="#referrer-policy-same-origin">#referrer-policy-same-origin</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-referrer-policy-same-origin">3.3. "same-origin"</a> <a href="#ref-for-referrer-policy-same-origin">(2)</a> <a href="#ref-for-referrer-policy-same-origin①">(3)</a> <a href="#ref-for-referrer-policy-same-origin②">(4)</a>
-    <li><a href="#ref-for-referrer-policy-same-origin③">8.3. 
-    Determine request’s Referrer </a>
-    <li><a href="#ref-for-referrer-policy-same-origin④">10.1. Information Leakage</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="referrer-policy-origin">
-   <b><a href="#referrer-policy-origin">#referrer-policy-origin</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-referrer-policy-origin">3.4. "origin"</a> <a href="#ref-for-referrer-policy-origin">(2)</a> <a href="#ref-for-referrer-policy-origin①">(3)</a> <a href="#ref-for-referrer-policy-origin②">(4)</a> <a href="#ref-for-referrer-policy-origin③">(5)</a>
-    <li><a href="#ref-for-referrer-policy-origin④">8.3. 
-    Determine request’s Referrer </a>
-    <li><a href="#ref-for-referrer-policy-origin⑤">10.1. Information Leakage</a>
-    <li><a href="#ref-for-referrer-policy-origin⑥">10.2. Downgrade to less strict policies</a>
-    <li><a href="#ref-for-referrer-policy-origin⑦">11.1. Unknown Policy Values</a> <a href="#ref-for-referrer-policy-origin⑧">(2)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="referrer-policy-strict-origin">
-   <b><a href="#referrer-policy-strict-origin">#referrer-policy-strict-origin</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-referrer-policy-strict-origin">3.4. "origin"</a>
-    <li><a href="#ref-for-referrer-policy-strict-origin">3.5. "strict-origin"</a> <a href="#ref-for-referrer-policy-strict-origin①">(2)</a> <a href="#ref-for-referrer-policy-strict-origin②">(3)</a> <a href="#ref-for-referrer-policy-strict-origin③">(4)</a> <a href="#ref-for-referrer-policy-strict-origin④">(5)</a>
-    <li><a href="#ref-for-referrer-policy-strict-origin⑤">8.3. 
-    Determine request’s Referrer </a>
-    <li><a href="#ref-for-referrer-policy-strict-origin⑥">10.1. Information Leakage</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="referrer-policy-origin-when-cross-origin">
-   <b><a href="#referrer-policy-origin-when-cross-origin">#referrer-policy-origin-when-cross-origin</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-referrer-policy-origin-when-cross-origin">3.6. "origin-when-cross-origin"</a> <a href="#ref-for-referrer-policy-origin-when-cross-origin">(2)</a> <a href="#ref-for-referrer-policy-origin-when-cross-origin①">(3)</a> <a href="#ref-for-referrer-policy-origin-when-cross-origin②">(4)</a> <a href="#ref-for-referrer-policy-origin-when-cross-origin③">(5)</a> <a href="#ref-for-referrer-policy-origin-when-cross-origin④">(6)</a> <a href="#ref-for-referrer-policy-origin-when-cross-origin⑤">(7)</a>
-    <li><a href="#ref-for-referrer-policy-origin-when-cross-origin⑥">8.3. 
-    Determine request’s Referrer </a>
-    <li><a href="#ref-for-referrer-policy-origin-when-cross-origin⑦">10.1. Information Leakage</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="referrer-policy-strict-origin-when-cross-origin">
-   <b><a href="#referrer-policy-strict-origin-when-cross-origin">#referrer-policy-strict-origin-when-cross-origin</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-referrer-policy-strict-origin-when-cross-origin">3. Referrer Policies</a>
-    <li><a href="#ref-for-referrer-policy-strict-origin-when-cross-origin①">3.6. "origin-when-cross-origin"</a>
-    <li><a href="#ref-for-referrer-policy-strict-origin-when-cross-origin">3.7. "strict-origin-when-cross-origin"</a> <a href="#ref-for-referrer-policy-strict-origin-when-cross-origin②">(2)</a> <a href="#ref-for-referrer-policy-strict-origin-when-cross-origin③">(3)</a> <a href="#ref-for-referrer-policy-strict-origin-when-cross-origin④">(4)</a>
-    <li><a href="#ref-for-referrer-policy-strict-origin-when-cross-origin⑤">3.9. The empty string</a>
-    <li><a href="#ref-for-referrer-policy-strict-origin-when-cross-origin⑥">8.3. 
-    Determine request’s Referrer </a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="referrer-policy-unsafe-url">
-   <b><a href="#referrer-policy-unsafe-url">#referrer-policy-unsafe-url</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-referrer-policy-unsafe-url">3.8. "unsafe-url"</a> <a href="#ref-for-referrer-policy-unsafe-url">(2)</a> <a href="#ref-for-referrer-policy-unsafe-url①">(3)</a>
-    <li><a href="#ref-for-referrer-policy-unsafe-url②">8.3. 
-    Determine request’s Referrer </a>
-    <li><a href="#ref-for-referrer-policy-unsafe-url③">10.1. Information Leakage</a>
-    <li><a href="#ref-for-referrer-policy-unsafe-url④">10.2. Downgrade to less strict policies</a>
-    <li><a href="#ref-for-referrer-policy-unsafe-url⑤">11.1. Unknown Policy Values</a> <a href="#ref-for-referrer-policy-unsafe-url⑥">(2)</a> <a href="#ref-for-referrer-policy-unsafe-url⑦">(3)</a> <a href="#ref-for-referrer-policy-unsafe-url⑧">(4)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="referrer-policy-empty-string">
-   <b><a href="#referrer-policy-empty-string">#referrer-policy-empty-string</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-referrer-policy-empty-string">3.9. The empty string</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="referrer-policy-header-dfn">
-   <b><a href="#referrer-policy-header-dfn">#referrer-policy-header-dfn</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-referrer-policy-header-dfn">8.1. 
-    Parse a referrer policy from a Referrer-Policy header </a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="grammardef-policy-token">
-   <b><a href="#grammardef-policy-token">#grammardef-policy-token</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-grammardef-policy-token">4.1. Delivery via Referrer-Policy header</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="grammardef-extension-token">
-   <b><a href="#grammardef-extension-token">#grammardef-extension-token</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-grammardef-extension-token">4.1. Delivery via Referrer-Policy header</a> <a href="#ref-for-grammardef-extension-token①">(2)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="cssstylesheet-referrer-policy">
-   <b><a href="#cssstylesheet-referrer-policy">#cssstylesheet-referrer-policy</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-cssstylesheet-referrer-policy">7. Integration with CSS</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="set-requests-referrer-policy-on-redirect">
-   <b><a href="#set-requests-referrer-policy-on-redirect">#set-requests-referrer-policy-on-redirect</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-set-requests-referrer-policy-on-redirect">5. Integration with Fetch</a>
-    <li><a href="#ref-for-set-requests-referrer-policy-on-redirect">8.2. 
-    Set request’s referrer policy on redirect </a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="determine-requests-referrer">
-   <b><a href="#determine-requests-referrer">#determine-requests-referrer</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-determine-requests-referrer">3.9. The empty string</a>
-    <li><a href="#ref-for-determine-requests-referrer">5. Integration with Fetch</a>
-    <li><a href="#ref-for-determine-requests-referrer">8.3. 
-    Determine request’s Referrer </a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="referrerurl">
-   <b><a href="#referrerurl">#referrerurl</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-referrerurl">2. Key Concepts and Terminology</a>
-    <li><a href="#ref-for-referrerurl①">3.2. "no-referrer-when-downgrade"</a> <a href="#ref-for-referrerurl②">(2)</a> <a href="#ref-for-referrerurl③">(3)</a> <a href="#ref-for-referrerurl④">(4)</a>
-    <li><a href="#ref-for-referrerurl⑤">3.3. "same-origin"</a> <a href="#ref-for-referrerurl⑥">(2)</a>
-    <li><a href="#ref-for-referrerurl⑦">3.4. "origin"</a>
-    <li><a href="#ref-for-referrerurl⑧">3.5. "strict-origin"</a> <a href="#ref-for-referrerurl⑨">(2)</a> <a href="#ref-for-referrerurl①⓪">(3)</a> <a href="#ref-for-referrerurl①①">(4)</a>
-    <li><a href="#ref-for-referrerurl①②">3.6. "origin-when-cross-origin"</a> <a href="#ref-for-referrerurl①③">(2)</a>
-    <li><a href="#ref-for-referrerurl①④">3.7. "strict-origin-when-cross-origin"</a> <a href="#ref-for-referrerurl①⑤">(2)</a> <a href="#ref-for-referrerurl①⑥">(3)</a> <a href="#ref-for-referrerurl①⑦">(4)</a> <a href="#ref-for-referrerurl①⑧">(5)</a>
-    <li><a href="#ref-for-referrerurl①⑨">3.8. "unsafe-url"</a>
-    <li><a href="#ref-for-referrerurl②⓪">8.3. 
-    Determine request’s Referrer </a> <a href="#ref-for-referrerurl②①">(2)</a> <a href="#ref-for-referrerurl②②">(3)</a> <a href="#ref-for-referrerurl②③">(4)</a> <a href="#ref-for-referrerurl②④">(5)</a> <a href="#ref-for-referrerurl②⑤">(6)</a> <a href="#ref-for-referrerurl②⑥">(7)</a> <a href="#ref-for-referrerurl②⑦">(8)</a> <a href="#ref-for-referrerurl②⑧">(9)</a> <a href="#ref-for-referrerurl②⑨">(10)</a> <a href="#ref-for-referrerurl③⓪">(11)</a> <a href="#ref-for-referrerurl③①">(12)</a> <a href="#ref-for-referrerurl③②">(13)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="origin-only-flag">
-   <b><a href="#origin-only-flag">#origin-only-flag</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-origin-only-flag">8.3. 
-    Determine request’s Referrer </a>
-    <li><a href="#ref-for-origin-only-flag①">8.4. 
-    Strip url for use as a referrer </a>
-   </ul>
-  </aside>
-<script>/* script-dfn-panel */
+  <details class="mdn-anno unpositioned" data-anno-for="referrer-policy-delivery-meta">
+   <summary><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></summary>
+   <div class="feature">
+    <p><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta/name" title="The <meta> element can be used to provide document metadata in terms of name-value pairs, with the name attribute giving the metadata name, and the content attribute giving the value.">Element/meta/name</a></p>
+    <p class="all-engines-text">In all current engines.</p>
+    <div class="support">
+     <span class="firefox yes"><span>Firefox</span><span>1+</span></span><span class="safari yes"><span>Safari</span><span>4+</span></span><span class="chrome yes"><span>Chrome</span><span>1+</span></span>
+     <hr>
+     <span class="opera yes"><span>Opera</span><span>12.1+</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
+     <hr>
+     <span class="edge yes"><span>Edge (Legacy)</span><span>12+</span></span><span class="ie yes"><span>IE</span><span>6+</span></span>
+     <hr>
+     <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="safari_ios no"><span>iOS Safari</span><span>?</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="webview_android no"><span>Android WebView</span><span>?</span></span><span class="samsunginternet_android no"><span>Samsung Internet</span><span>?</span></span><span class="opera_android yes"><span>Opera Mobile</span><span>12.1+</span></span>
+    </div>
+   </div>
+  </details>
+  <details class="mdn-anno unpositioned" data-anno-for="referrer-policy-header">
+   <summary><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></summary>
+   <div class="feature">
+    <p><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy" title="The Referrer-Policy HTTP header controls how much referrer information (sent with the Referer header) should be included with requests. Aside from the HTTP header, you can set this policy in HTML.">Headers/Referrer-Policy</a></p>
+    <p class="all-engines-text">In all current engines.</p>
+    <div class="support">
+     <span class="firefox yes"><span>Firefox</span><span>50+</span></span><span class="safari yes"><span>Safari</span><span>11.1+</span></span><span class="chrome yes"><span>Chrome</span><span>56+</span></span>
+     <hr>
+     <span class="opera no"><span>Opera</span><span>?</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
+     <hr>
+     <span class="edge no"><span>Edge (Legacy)</span><span>?</span></span><span class="ie no"><span>IE</span><span>None</span></span>
+     <hr>
+     <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>12+</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="webview_android no"><span>Android WebView</span><span>?</span></span><span class="samsunginternet_android yes"><span>Samsung Internet</span><span>7.2+</span></span><span class="opera_android no"><span>Opera Mobile</span><span>?</span></span>
+    </div>
+   </div>
+  </details>
+<script>/* Boilerplate: script-dfn-panel */
+"use strict";
+{
+    const dfnsJson = window.dfnsJson || {};
 
-document.body.addEventListener("click", function(e) {
-    var queryAll = function(sel) { return [].slice.call(document.querySelectorAll(sel)); }
-    // Find the dfn element or panel, if any, that was clicked on.
-    var el = e.target;
-    var target;
-    var hitALink = false;
-    while(el.parentElement) {
-        if(el.tagName == "A") {
-            // Clicking on a link in a <dfn> shouldn't summon the panel
-            hitALink = true;
-        }
-        if(el.classList.contains("dfn-paneled")) {
-            target = "dfn";
-            break;
-        }
-        if(el.classList.contains("dfn-panel")) {
-            target = "dfn-panel";
-            break;
-        }
-        el = el.parentElement;
+    function genDfnPanel({dfnID, url, dfnText, refSections, external}) {
+        return mk.aside({
+            class: "dfn-panel",
+            id: `infopanel-for-${dfnID}`,
+            "data-for": dfnID,
+            "aria-labelled-by":`infopaneltitle-for-${dfnID}`,
+            },
+            mk.span({id:`infopaneltitle-for-${dfnID}`, style:"display:none"},
+                `Info about the '${dfnText}' ${external?"external":""} reference.`),
+            mk.a({href:url}, url),
+            mk.b({}, "Referenced in:"),
+            mk.ul({},
+                ...refSections.map(section=>
+                    mk.li({},
+                        ...section.refs.map((ref, refI)=>
+                            [
+                                mk.a({
+                                    href: `#${ref.id}`
+                                    },
+                                    (refI == 0) ? section.title : `(${refI + 1})`
+                                ),
+                                " ",
+                            ]
+                        ),
+                    ),
+                ),
+            ),
+        );
     }
-    if(target != "dfn-panel") {
-        // Turn off any currently "on" or "activated" panels.
-        queryAll(".dfn-panel.on, .dfn-panel.activated").forEach(function(el){
-            el.classList.remove("on");
-            el.classList.remove("activated");
-        });
-    }
-    if(target == "dfn" && !hitALink) {
-        // open the panel
-        var dfnPanel = document.querySelector(".dfn-panel[data-for='" + el.id + "']");
-        if(dfnPanel) {
-            dfnPanel.classList.add("on");
-            var rect = el.getBoundingClientRect();
-            dfnPanel.style.left = window.scrollX + rect.right + 5 + "px";
-            dfnPanel.style.top = window.scrollY + rect.top + "px";
-            var panelRect = dfnPanel.getBoundingClientRect();
-            var panelWidth = panelRect.right - panelRect.left;
-            if(panelRect.right > document.body.scrollWidth && (rect.left - (panelWidth + 5)) > 0) {
-                // Reposition, because the panel is overflowing
-                dfnPanel.style.left = window.scrollX + rect.left - (panelWidth + 5) + "px";
+
+    function genAllDfnPanels() {
+        for(const panelData of Object.values(window.dfnpanelData)) {
+            const dfnID = panelData.dfnID;
+            const dfn = document.getElementById(dfnID);
+            if(!dfn) {
+                console.log(`Can't find dfn#${dfnID}.`, panelData);
+            } else {
+                const panel = genDfnPanel(panelData);
+                append(document.body, panel);
+                insertDfnPopupAction(dfn, panel)
             }
-        } else {
-            console.log("Couldn't find .dfn-panel[data-for='" + el.id + "']");
         }
-    } else if(target == "dfn-panel") {
-        // Switch it to "activated" state, which pins it.
-        el.classList.add("activated");
-        el.style.left = null;
-        el.style.top = null;
     }
 
-});
-</script>
-<script>/* script-mdn-anno */
-document.body.addEventListener("click", (e) => {
-    if(e.target.closest(".mdn-anno-btn")) {
-        e.target.closest(".mdn-anno").classList.toggle("wrapped");
+    document.addEventListener("DOMContentLoaded", ()=>{
+        genAllDfnPanels();
+
+        // Add popup behavior to all dfns to show the corresponding dfn-panel.
+        var dfns = queryAll('.dfn-paneled');
+        for(let dfn of dfns) { ; }
+
+        document.body.addEventListener("click", (e) => {
+            // If not handled already, just hide all dfn panels.
+            hideAllDfnPanels();
+        });
+    })
+
+
+    function hideAllDfnPanels() {
+        // Turn off any currently "on" or "activated" panels.
+        queryAll(".dfn-panel.on, .dfn-panel.activated").forEach(el=>hideDfnPanel(el));
     }
-});</script>
+
+    function showDfnPanel(dfnPanel, dfn) {
+        hideAllDfnPanels(); // Only display one at this time.
+        dfn.setAttribute("aria-expanded", "true");
+        dfnPanel.classList.add("on");
+        dfnPanel.style.left = "5px";
+        dfnPanel.style.top = "0px";
+        const panelRect = dfnPanel.getBoundingClientRect();
+        const panelWidth = panelRect.right - panelRect.left;
+        if (panelRect.right > document.body.scrollWidth) {
+            // Panel's overflowing the screen.
+            // Just drop it below the dfn and flip it rightward instead.
+            // This still wont' fix things if the screen is *really* wide,
+            // but fixing that's a lot harder without 'anchor()'.
+            dfnPanel.style.top = "1.5em";
+            dfnPanel.style.left = "auto";
+            dfnPanel.style.right = "0px";
+        }
+    }
+
+    function pinDfnPanel(dfnPanel) {
+        // Switch it to "activated" state, which pins it.
+        dfnPanel.classList.add("activated");
+        dfnPanel.style.left = null;
+        dfnPanel.style.top = null;
+    }
+
+    function hideDfnPanel(dfnPanel, dfn) {
+        if(!dfn) {
+            dfn = document.getElementById(dfnPanel.getAttribute("data-for"));
+        }
+        dfn.setAttribute("aria-expanded", "false")
+        dfnPanel.classList.remove("on");
+        dfnPanel.classList.remove("activated");
+    }
+
+    function toggleDfnPanel(dfnPanel, dfn) {
+        if(dfnPanel.classList.contains("on")) {
+            hideDfnPanel(dfnPanel, dfn);
+        } else {
+            showDfnPanel(dfnPanel, dfn);
+        }
+    }
+
+    function insertDfnPopupAction(dfn, dfnPanel) {
+        // Find dfn panel
+        const panelWrapper = document.createElement('span');
+        panelWrapper.appendChild(dfnPanel);
+        panelWrapper.style.position = "relative";
+        panelWrapper.style.height = "0px";
+        dfn.insertAdjacentElement("afterend", panelWrapper);
+        dfn.setAttribute('role', 'button');
+        dfn.setAttribute('aria-expanded', 'false')
+        dfn.tabIndex = 0;
+        dfn.classList.add('has-dfn-panel');
+        dfn.addEventListener('click', (event) => {
+            showDfnPanel(dfnPanel, dfn);
+            event.stopPropagation();
+        });
+        dfn.addEventListener('keypress', (event) => {
+            const kc = event.keyCode;
+            // 32->Space, 13->Enter
+            if(kc == 32 || kc == 13) {
+                toggleDfnPanel(dfnPanel, dfn);
+                event.stopPropagation();
+                event.preventDefault();
+            }
+        });
+
+        dfnPanel.addEventListener('click', (event) => {
+            if (event.target.nodeName == 'A') {
+                pinDfnPanel(dfnPanel);
+            }
+            event.stopPropagation();
+        });
+
+        dfnPanel.addEventListener('keydown', (event) => {
+            if(event.keyCode == 27) { // Escape key
+                hideDfnPanel(dfnPanel, dfn);
+                event.stopPropagation();
+                event.preventDefault();
+            }
+        })
+    }
+}
+</script>
+<script>/* Boilerplate: script-dfn-panel */
+"use strict";
+{
+    const dfnsJson = window.dfnsJson || {};
+
+    function genDfnPanel({dfnID, url, dfnText, refSections, external}) {
+        return mk.aside({
+            class: "dfn-panel",
+            id: `infopanel-for-${dfnID}`,
+            "data-for": dfnID,
+            "aria-labelled-by":`infopaneltitle-for-${dfnID}`,
+            },
+            mk.span({id:`infopaneltitle-for-${dfnID}`, style:"display:none"},
+                `Info about the '${dfnText}' ${external?"external":""} reference.`),
+            mk.a({href:url}, url),
+            mk.b({}, "Referenced in:"),
+            mk.ul({},
+                ...refSections.map(section=>
+                    mk.li({},
+                        ...section.refs.map((ref, refI)=>
+                            [
+                                mk.a({
+                                    href: `#${ref.id}`
+                                    },
+                                    (refI == 0) ? section.title : `(${refI + 1})`
+                                ),
+                                " ",
+                            ]
+                        ),
+                    ),
+                ),
+            ),
+        );
+    }
+
+    function genAllDfnPanels() {
+        for(const panelData of Object.values(window.dfnpanelData)) {
+            const dfnID = panelData.dfnID;
+            const dfn = document.getElementById(dfnID);
+            if(!dfn) {
+                console.log(`Can't find dfn#${dfnID}.`, panelData);
+            } else {
+                const panel = genDfnPanel(panelData);
+                append(document.body, panel);
+                insertDfnPopupAction(dfn, panel)
+            }
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", ()=>{
+        genAllDfnPanels();
+
+        // Add popup behavior to all dfns to show the corresponding dfn-panel.
+        var dfns = queryAll('.dfn-paneled');
+        for(let dfn of dfns) { ; }
+
+        document.body.addEventListener("click", (e) => {
+            // If not handled already, just hide all dfn panels.
+            hideAllDfnPanels();
+        });
+    })
+
+
+    function hideAllDfnPanels() {
+        // Turn off any currently "on" or "activated" panels.
+        queryAll(".dfn-panel.on, .dfn-panel.activated").forEach(el=>hideDfnPanel(el));
+    }
+
+    function showDfnPanel(dfnPanel, dfn) {
+        hideAllDfnPanels(); // Only display one at this time.
+        dfn.setAttribute("aria-expanded", "true");
+        dfnPanel.classList.add("on");
+        dfnPanel.style.left = "5px";
+        dfnPanel.style.top = "0px";
+        const panelRect = dfnPanel.getBoundingClientRect();
+        const panelWidth = panelRect.right - panelRect.left;
+        if (panelRect.right > document.body.scrollWidth) {
+            // Panel's overflowing the screen.
+            // Just drop it below the dfn and flip it rightward instead.
+            // This still wont' fix things if the screen is *really* wide,
+            // but fixing that's a lot harder without 'anchor()'.
+            dfnPanel.style.top = "1.5em";
+            dfnPanel.style.left = "auto";
+            dfnPanel.style.right = "0px";
+        }
+    }
+
+    function pinDfnPanel(dfnPanel) {
+        // Switch it to "activated" state, which pins it.
+        dfnPanel.classList.add("activated");
+        dfnPanel.style.left = null;
+        dfnPanel.style.top = null;
+    }
+
+    function hideDfnPanel(dfnPanel, dfn) {
+        if(!dfn) {
+            dfn = document.getElementById(dfnPanel.getAttribute("data-for"));
+        }
+        dfn.setAttribute("aria-expanded", "false")
+        dfnPanel.classList.remove("on");
+        dfnPanel.classList.remove("activated");
+    }
+
+    function toggleDfnPanel(dfnPanel, dfn) {
+        if(dfnPanel.classList.contains("on")) {
+            hideDfnPanel(dfnPanel, dfn);
+        } else {
+            showDfnPanel(dfnPanel, dfn);
+        }
+    }
+
+    function insertDfnPopupAction(dfn, dfnPanel) {
+        // Find dfn panel
+        const panelWrapper = document.createElement('span');
+        panelWrapper.appendChild(dfnPanel);
+        panelWrapper.style.position = "relative";
+        panelWrapper.style.height = "0px";
+        dfn.insertAdjacentElement("afterend", panelWrapper);
+        dfn.setAttribute('role', 'button');
+        dfn.setAttribute('aria-expanded', 'false')
+        dfn.tabIndex = 0;
+        dfn.classList.add('has-dfn-panel');
+        dfn.addEventListener('click', (event) => {
+            showDfnPanel(dfnPanel, dfn);
+            event.stopPropagation();
+        });
+        dfn.addEventListener('keypress', (event) => {
+            const kc = event.keyCode;
+            // 32->Space, 13->Enter
+            if(kc == 32 || kc == 13) {
+                toggleDfnPanel(dfnPanel, dfn);
+                event.stopPropagation();
+                event.preventDefault();
+            }
+        });
+
+        dfnPanel.addEventListener('click', (event) => {
+            if (event.target.nodeName == 'A') {
+                pinDfnPanel(dfnPanel);
+            }
+            event.stopPropagation();
+        });
+
+        dfnPanel.addEventListener('keydown', (event) => {
+            if(event.keyCode == 27) { // Escape key
+                hideDfnPanel(dfnPanel, dfn);
+                event.stopPropagation();
+                event.preventDefault();
+            }
+        })
+    }
+}
+</script>
+<script>/* Boilerplate: script-dfn-panel-json */
+window.dfnpanelData = {};
+window.dfnpanelData['a06e5a78'] = {"dfnID": "a06e5a78", "url": "https://drafts.csswg.org/cssom-1/#css-declaration-block", "dfnText": "css declaration block", "refSections": [{"refs": [{"id": "ref-for-css-declaration-block"}, {"id": "ref-for-css-declaration-block\u2460"}], "title": "7. Integration with CSS"}], "external": true};
+window.dfnpanelData['9ca506a8'] = {"dfnID": "9ca506a8", "url": "https://drafts.csswg.org/cssom-1/#css-style-sheet", "dfnText": "css style sheet", "refSections": [{"refs": [{"id": "ref-for-css-style-sheet"}, {"id": "ref-for-css-style-sheet\u2460"}], "title": "7. Integration with CSS"}], "external": true};
+window.dfnpanelData['bbc31c9d'] = {"dfnID": "bbc31c9d", "url": "https://drafts.csswg.org/cssom-1/#concept-css-style-sheet-location", "dfnText": "location", "refSections": [{"refs": [{"id": "ref-for-concept-css-style-sheet-location"}, {"id": "ref-for-concept-css-style-sheet-location\u2460"}, {"id": "ref-for-concept-css-style-sheet-location\u2461"}], "title": "7. Integration with CSS"}], "external": true};
+window.dfnpanelData['eab73120'] = {"dfnID": "eab73120", "url": "https://drafts.csswg.org/cssom-1/#cssstyledeclaration-owner-node", "dfnText": "owner node (for CSSStyleDeclaration)", "refSections": [{"refs": [{"id": "ref-for-cssstyledeclaration-owner-node"}, {"id": "ref-for-cssstyledeclaration-owner-node\u2460"}, {"id": "ref-for-cssstyledeclaration-owner-node\u2461"}], "title": "7. Integration with CSS"}], "external": true};
+window.dfnpanelData['06f8d393'] = {"dfnID": "06f8d393", "url": "https://drafts.csswg.org/cssom-1/#concept-css-style-sheet-owner-node", "dfnText": "owner node (for CSSStyleSheet)", "refSections": [{"refs": [{"id": "ref-for-concept-css-style-sheet-owner-node"}, {"id": "ref-for-concept-css-style-sheet-owner-node\u2460"}], "title": "7. Integration with CSS"}], "external": true};
+window.dfnpanelData['5216e1a0'] = {"dfnID": "5216e1a0", "url": "https://dom.spec.whatwg.org/#concept-node-document", "dfnText": "node document", "refSections": [{"refs": [{"id": "ref-for-concept-node-document"}], "title": "3.9. The empty string"}, {"refs": [{"id": "ref-for-concept-node-document\u2460"}, {"id": "ref-for-concept-node-document\u2461"}, {"id": "ref-for-concept-node-document\u2462"}, {"id": "ref-for-concept-node-document\u2463"}], "title": "7. Integration with CSS"}, {"refs": [{"id": "ref-for-concept-node-document\u2464"}], "title": "8.3. \n    Determine request\u2019s Referrer\n  "}], "external": true};
+window.dfnpanelData['c62cd7cf'] = {"dfnID": "c62cd7cf", "url": "https://dom.spec.whatwg.org/#concept-document-origin", "dfnText": "origin", "refSections": [{"refs": [{"id": "ref-for-concept-document-origin"}], "title": "8.3. \n    Determine request\u2019s Referrer\n  "}], "external": true};
+window.dfnpanelData['347e8fe9'] = {"dfnID": "347e8fe9", "url": "https://dom.spec.whatwg.org/#concept-document-url", "dfnText": "url", "refSections": [{"refs": [{"id": "ref-for-concept-document-url"}, {"id": "ref-for-concept-document-url\u2460"}], "title": "7. Integration with CSS"}, {"refs": [{"id": "ref-for-concept-document-url\u2461"}], "title": "8.3. \n    Determine request\u2019s Referrer\n  "}], "external": true};
+window.dfnpanelData['f9da6f1f'] = {"dfnID": "f9da6f1f", "url": "https://fetch.spec.whatwg.org/#request", "dfnText": "Request", "refSections": [{"refs": [{"id": "ref-for-request"}, {"id": "ref-for-request\u2460"}], "title": "2. Key Concepts and Terminology"}], "external": true};
+window.dfnpanelData['857d5516'] = {"dfnID": "857d5516", "url": "https://fetch.spec.whatwg.org/#concept-request-client", "dfnText": "client", "refSections": [{"refs": [{"id": "ref-for-concept-request-client"}], "title": "2. Key Concepts and Terminology"}, {"refs": [{"id": "ref-for-concept-request-client\u2460"}], "title": "3. Referrer Policies"}, {"refs": [{"id": "ref-for-concept-request-client\u2461"}], "title": "8.3. \n    Determine request\u2019s Referrer\n  "}], "external": true};
+window.dfnpanelData['3f2ca4de'] = {"dfnID": "3f2ca4de", "url": "https://fetch.spec.whatwg.org/#concept-request-current-url", "dfnText": "current url", "refSections": [{"refs": [{"id": "ref-for-concept-request-current-url"}], "title": "2. Key Concepts and Terminology"}, {"refs": [{"id": "ref-for-concept-request-current-url\u2460"}, {"id": "ref-for-concept-request-current-url\u2461"}], "title": "3.2. \"no-referrer-when-downgrade\""}, {"refs": [{"id": "ref-for-concept-request-current-url\u2462"}], "title": "3.3. \"same-origin\""}, {"refs": [{"id": "ref-for-concept-request-current-url\u2463"}, {"id": "ref-for-concept-request-current-url\u2464"}], "title": "3.5. \"strict-origin\""}, {"refs": [{"id": "ref-for-concept-request-current-url\u2465"}, {"id": "ref-for-concept-request-current-url\u2466"}], "title": "3.7. \"strict-origin-when-cross-origin\""}, {"refs": [{"id": "ref-for-concept-request-current-url\u2467"}, {"id": "ref-for-concept-request-current-url\u2468"}, {"id": "ref-for-concept-request-current-url\u2460\u24ea"}, {"id": "ref-for-concept-request-current-url\u2460\u2460"}, {"id": "ref-for-concept-request-current-url\u2460\u2461"}, {"id": "ref-for-concept-request-current-url\u2460\u2462"}], "title": "8.3. \n    Determine request\u2019s Referrer\n  "}], "external": true};
+window.dfnpanelData['3be1d4ac'] = {"dfnID": "3be1d4ac", "url": "https://fetch.spec.whatwg.org/#extract-header-list-values", "dfnText": "extracting header list values", "refSections": [{"refs": [{"id": "ref-for-extract-header-list-values"}], "title": "8.1. \n    Parse a referrer policy from a Referrer-Policy header\n  "}], "external": true};
+window.dfnpanelData['a33db89a'] = {"dfnID": "a33db89a", "url": "https://fetch.spec.whatwg.org/#concept-fetch", "dfnText": "fetch", "refSections": [{"refs": [{"id": "ref-for-concept-fetch"}], "title": "2. Key Concepts and Terminology"}], "external": true};
+window.dfnpanelData['f7b00a8b'] = {"dfnID": "f7b00a8b", "url": "https://fetch.spec.whatwg.org/#concept-response-header-list", "dfnText": "header list", "refSections": [{"refs": [{"id": "ref-for-concept-response-header-list"}], "title": "8.1. \n    Parse a referrer policy from a Referrer-Policy header\n  "}], "external": true};
+window.dfnpanelData['63340982'] = {"dfnID": "63340982", "url": "https://fetch.spec.whatwg.org/#local-scheme", "dfnText": "local scheme", "refSections": [{"refs": [{"id": "ref-for-local-scheme"}], "title": "8.4. \n    Strip url for use as a referrer\n  "}], "external": true};
+window.dfnpanelData['358f1dbd'] = {"dfnID": "358f1dbd", "url": "https://fetch.spec.whatwg.org/#concept-request-referrer", "dfnText": "referrer", "refSections": [{"refs": [{"id": "ref-for-concept-request-referrer"}, {"id": "ref-for-concept-request-referrer\u2460"}, {"id": "ref-for-concept-request-referrer\u2461"}, {"id": "ref-for-concept-request-referrer\u2462"}], "title": "7. Integration with CSS"}, {"refs": [{"id": "ref-for-concept-request-referrer\u2463"}, {"id": "ref-for-concept-request-referrer\u2464"}, {"id": "ref-for-concept-request-referrer\u2465"}], "title": "8.3. \n    Determine request\u2019s Referrer\n  "}], "external": true};
+window.dfnpanelData['07582c28'] = {"dfnID": "07582c28", "url": "https://fetch.spec.whatwg.org/#concept-request-referrer-policy", "dfnText": "referrer policy", "refSections": [{"refs": [{"id": "ref-for-concept-request-referrer-policy"}], "title": "4. Referrer Policy Delivery"}, {"refs": [{"id": "ref-for-concept-request-referrer-policy\u2460"}, {"id": "ref-for-concept-request-referrer-policy\u2461"}, {"id": "ref-for-concept-request-referrer-policy\u2462"}, {"id": "ref-for-concept-request-referrer-policy\u2463"}], "title": "7. Integration with CSS"}, {"refs": [{"id": "ref-for-concept-request-referrer-policy\u2464"}, {"id": "ref-for-concept-request-referrer-policy\u2465"}], "title": "8.2. \n    Set request\u2019s referrer policy on redirect\n  "}, {"refs": [{"id": "ref-for-concept-request-referrer-policy\u2466"}, {"id": "ref-for-concept-request-referrer-policy\u2467"}, {"id": "ref-for-concept-request-referrer-policy\u2468"}], "title": "8.3. \n    Determine request\u2019s Referrer\n  "}], "external": true};
+window.dfnpanelData['55213b5b'] = {"dfnID": "55213b5b", "url": "https://fetch.spec.whatwg.org/#concept-request", "dfnText": "request", "refSections": [{"refs": [{"id": "ref-for-concept-request"}], "title": "2. Key Concepts and Terminology"}, {"refs": [{"id": "ref-for-concept-request\u2460"}], "title": "4. Referrer Policy Delivery"}, {"refs": [{"id": "ref-for-concept-request\u2461"}, {"id": "ref-for-concept-request\u2462"}, {"id": "ref-for-concept-request\u2463"}], "title": "7. Integration with CSS"}, {"refs": [{"id": "ref-for-concept-request\u2464"}], "title": "8.2. \n    Set request\u2019s referrer policy on redirect\n  "}, {"refs": [{"id": "ref-for-concept-request\u2465"}], "title": "8.3. \n    Determine request\u2019s Referrer\n  "}], "external": true};
+window.dfnpanelData['ee7bba09'] = {"dfnID": "ee7bba09", "url": "https://fetch.spec.whatwg.org/#concept-response", "dfnText": "response", "refSections": [{"refs": [{"id": "ref-for-concept-response"}], "title": "8.1. \n    Parse a referrer policy from a Referrer-Policy header\n  "}, {"refs": [{"id": "ref-for-concept-response\u2460"}], "title": "8.2. \n    Set request\u2019s referrer policy on redirect\n  "}], "external": true};
+window.dfnpanelData['60e326a9'] = {"dfnID": "60e326a9", "url": "https://html.spec.whatwg.org/multipage/dom.html#document", "dfnText": "Document", "refSections": [{"refs": [{"id": "ref-for-document"}], "title": "3.9. The empty string"}, {"refs": [{"id": "ref-for-document\u2460"}], "title": "6. Integration with HTML"}], "external": true};
+window.dfnpanelData['5d7209e9'] = {"dfnID": "5d7209e9", "url": "https://html.spec.whatwg.org/multipage/nav-history-apis.html#window", "dfnText": "Window", "refSections": [{"refs": [{"id": "ref-for-window"}], "title": "8.3. \n    Determine request\u2019s Referrer\n  "}], "external": true};
+window.dfnpanelData['83c59a3a'] = {"dfnID": "83c59a3a", "url": "https://html.spec.whatwg.org/multipage/workers.html#workerglobalscope", "dfnText": "WorkerGlobalScope", "refSections": [{"refs": [{"id": "ref-for-workerglobalscope"}], "title": "6. Integration with HTML"}], "external": true};
+window.dfnpanelData['68bf3d31'] = {"dfnID": "68bf3d31", "url": "https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-a-element", "dfnText": "a", "refSections": [{"refs": [{"id": "ref-for-the-a-element"}, {"id": "ref-for-the-a-element\u2460"}, {"id": "ref-for-the-a-element\u2461"}], "title": "3.9. The empty string"}, {"refs": [{"id": "ref-for-the-a-element\u2462"}, {"id": "ref-for-the-a-element\u2463"}], "title": "4. Referrer Policy Delivery"}], "external": true};
+window.dfnpanelData['9c5b5827'] = {"dfnID": "9c5b5827", "url": "https://html.spec.whatwg.org/multipage/embedded-content.html#an-iframe-srcdoc-document", "dfnText": "an iframe srcdoc document", "refSections": [{"refs": [{"id": "ref-for-an-iframe-srcdoc-document"}], "title": "8.3. \n    Determine request\u2019s Referrer\n  "}], "external": true};
+window.dfnpanelData['a1a807e5'] = {"dfnID": "a1a807e5", "url": "https://html.spec.whatwg.org/multipage/image-maps.html#the-area-element", "dfnText": "area", "refSections": [{"refs": [{"id": "ref-for-the-area-element"}, {"id": "ref-for-the-area-element\u2460"}], "title": "4. Referrer Policy Delivery"}], "external": true};
+window.dfnpanelData['b410a6ef'] = {"dfnID": "b410a6ef", "url": "https://html.spec.whatwg.org/multipage/browsers.html#ascii-serialisation-of-an-origin", "dfnText": "ascii serialization of an origin", "refSections": [{"refs": [{"id": "ref-for-ascii-serialisation-of-an-origin"}], "title": "3.4. \"origin\""}, {"refs": [{"id": "ref-for-ascii-serialisation-of-an-origin\u2460"}], "title": "3.5. \"strict-origin\""}, {"refs": [{"id": "ref-for-ascii-serialisation-of-an-origin\u2461"}], "title": "3.6. \"origin-when-cross-origin\""}, {"refs": [{"id": "ref-for-ascii-serialisation-of-an-origin\u2462"}], "title": "3.7. \"strict-origin-when-cross-origin\""}], "external": true};
+window.dfnpanelData['12e9e1d0'] = {"dfnID": "12e9e1d0", "url": "https://html.spec.whatwg.org/multipage/browsers.html#concept-document-window", "dfnText": "associated document", "refSections": [{"refs": [{"id": "ref-for-concept-document-window"}], "title": "8.3. \n    Determine request\u2019s Referrer\n  "}], "external": true};
+window.dfnpanelData['faf954d6'] = {"dfnID": "faf954d6", "url": "https://html.spec.whatwg.org/multipage/browsers.html#browsing-context", "dfnText": "browsing context", "refSections": [{"refs": [{"id": "ref-for-browsing-context"}], "title": "4.1. Delivery via Referrer-Policy header"}], "external": true};
+window.dfnpanelData['3b2ff63e'] = {"dfnID": "3b2ff63e", "url": "https://html.spec.whatwg.org/multipage/document-sequences.html#concept-document-bc", "dfnText": "browsing context (for Document)", "refSections": [{"refs": [{"id": "ref-for-concept-document-bc"}], "title": "8.3. \n    Determine request\u2019s Referrer\n  "}], "external": true};
+window.dfnpanelData['7939ecaf'] = {"dfnID": "7939ecaf", "url": "https://html.spec.whatwg.org/multipage/browsers.html#browsing-context-container", "dfnText": "browsing context container", "refSections": [{"refs": [{"id": "ref-for-browsing-context-container"}], "title": "8.3. \n    Determine request\u2019s Referrer\n  "}], "external": true};
+window.dfnpanelData['fa5ee9c5'] = {"dfnID": "fa5ee9c5", "url": "https://html.spec.whatwg.org/multipage/webappapis.html#concept-environment-creation-url", "dfnText": "creation url", "refSections": [{"refs": [{"id": "ref-for-concept-environment-creation-url"}], "title": "8.3. \n    Determine request\u2019s Referrer\n  "}], "external": true};
+window.dfnpanelData['3e12e042'] = {"dfnID": "3e12e042", "url": "https://html.spec.whatwg.org/multipage/webappapis.html#environment-settings-object", "dfnText": "environment settings object", "refSections": [{"refs": [{"id": "ref-for-environment-settings-object"}, {"id": "ref-for-environment-settings-object\u2460"}], "title": "2. Key Concepts and Terminology"}, {"refs": [{"id": "ref-for-environment-settings-object\u2461"}, {"id": "ref-for-environment-settings-object\u2462"}], "title": "3. Referrer Policies"}], "external": true};
+window.dfnpanelData['8a30477b'] = {"dfnID": "8a30477b", "url": "https://html.spec.whatwg.org/multipage/webappapis.html#concept-settings-object-global", "dfnText": "global object", "refSections": [{"refs": [{"id": "ref-for-concept-settings-object-global"}, {"id": "ref-for-concept-settings-object-global\u2460"}], "title": "8.3. \n    Determine request\u2019s Referrer\n  "}], "external": true};
+window.dfnpanelData['87fcd40c'] = {"dfnID": "87fcd40c", "url": "https://html.spec.whatwg.org/multipage/iframe-embed-object.html#the-iframe-element", "dfnText": "iframe", "refSections": [{"refs": [{"id": "ref-for-the-iframe-element"}], "title": "4. Referrer Policy Delivery"}], "external": true};
+window.dfnpanelData['f0811ff8'] = {"dfnID": "f0811ff8", "url": "https://html.spec.whatwg.org/multipage/embedded-content.html#the-img-element", "dfnText": "img", "refSections": [{"refs": [{"id": "ref-for-the-img-element"}], "title": "4. Referrer Policy Delivery"}], "external": true};
+window.dfnpanelData['6cfa013d'] = {"dfnID": "6cfa013d", "url": "https://html.spec.whatwg.org/multipage/semantics.html#the-link-element", "dfnText": "link", "refSections": [{"refs": [{"id": "ref-for-the-link-element"}], "title": "4. Referrer Policy Delivery"}], "external": true};
+window.dfnpanelData['64b89595'] = {"dfnID": "64b89595", "url": "https://html.spec.whatwg.org/multipage/semantics.html#meta", "dfnText": "meta", "refSections": [{"refs": [{"id": "ref-for-meta"}], "title": "4. Referrer Policy Delivery"}, {"refs": [{"id": "ref-for-meta\u2460"}, {"id": "ref-for-meta\u2461"}], "title": "4.2. Delivery via meta"}, {"refs": [{"id": "ref-for-meta\u2462"}], "title": "11.1. Unknown Policy Values"}], "external": true};
+window.dfnpanelData['a23d5e9f'] = {"dfnID": "a23d5e9f", "url": "https://html.spec.whatwg.org/multipage/semantics.html#attr-meta-name", "dfnText": "name", "refSections": [{"refs": [{"id": "ref-for-attr-meta-name"}], "title": "4. Referrer Policy Delivery"}], "external": true};
+window.dfnpanelData['5abc471e'] = {"dfnID": "5abc471e", "url": "https://html.spec.whatwg.org/multipage/browsers.html#navigate", "dfnText": "navigation", "refSections": [{"refs": [{"id": "ref-for-navigate"}], "title": "6. Integration with HTML"}], "external": true};
+window.dfnpanelData['09289012'] = {"dfnID": "09289012", "url": "https://html.spec.whatwg.org/multipage/semantics.html#link-type-noreferrer", "dfnText": "noreferrer", "refSections": [{"refs": [{"id": "ref-for-link-type-noreferrer"}], "title": "1. Introduction"}, {"refs": [{"id": "ref-for-link-type-noreferrer\u2460"}], "title": "3. Referrer Policies"}, {"refs": [{"id": "ref-for-link-type-noreferrer\u2461"}], "title": "4. Referrer Policy Delivery"}], "external": true};
+window.dfnpanelData['b01b1359'] = {"dfnID": "b01b1359", "url": "https://html.spec.whatwg.org/multipage/browsers.html#concept-origin-opaque", "dfnText": "opaque origin", "refSections": [{"refs": [{"id": "ref-for-concept-origin-opaque"}], "title": "8.3. \n    Determine request\u2019s Referrer\n  "}], "external": true};
+window.dfnpanelData['086e3aff'] = {"dfnID": "086e3aff", "url": "https://html.spec.whatwg.org/multipage/browsers.html#concept-origin", "dfnText": "origin", "refSections": [{"refs": [{"id": "ref-for-concept-origin"}], "title": "3.1. \"no-referrer\""}, {"refs": [{"id": "ref-for-concept-origin\u2460"}], "title": "3.4. \"origin\""}, {"refs": [{"id": "ref-for-concept-origin\u2461"}], "title": "3.5. \"strict-origin\""}, {"refs": [{"id": "ref-for-concept-origin\u2462"}], "title": "3.6. \"origin-when-cross-origin\""}, {"refs": [{"id": "ref-for-concept-origin\u2463"}], "title": "3.7. \"strict-origin-when-cross-origin\""}], "external": true};
+window.dfnpanelData['b33787b2'] = {"dfnID": "b33787b2", "url": "https://html.spec.whatwg.org/multipage/browsers.html#policy-container", "dfnText": "policy container", "refSections": [{"refs": [{"id": "ref-for-policy-container"}], "title": "4.4. Referrer Policy Inheritance"}], "external": true};
+window.dfnpanelData['08639fbc'] = {"dfnID": "08639fbc", "url": "https://html.spec.whatwg.org/multipage/dom.html#concept-document-policy-container", "dfnText": "policy container (for Document)", "refSections": [{"refs": [{"id": "ref-for-concept-document-policy-container"}], "title": "3.9. The empty string"}, {"refs": [{"id": "ref-for-concept-document-policy-container\u2460"}], "title": "6. Integration with HTML"}, {"refs": [{"id": "ref-for-concept-document-policy-container\u2461"}, {"id": "ref-for-concept-document-policy-container\u2462"}], "title": "7. Integration with CSS"}], "external": true};
+window.dfnpanelData['432147ee'] = {"dfnID": "432147ee", "url": "https://html.spec.whatwg.org/multipage/workers.html#concept-workerglobalscope-policy-container", "dfnText": "policy container (for WorkerGlobalScope)", "refSections": [{"refs": [{"id": "ref-for-concept-workerglobalscope-policy-container"}], "title": "6. Integration with HTML"}], "external": true};
+window.dfnpanelData['fefe9144'] = {"dfnID": "fefe9144", "url": "https://html.spec.whatwg.org/multipage/rendering.html#presentational-hints", "dfnText": "presentational hints", "refSections": [{"refs": [{"id": "ref-for-presentational-hints"}], "title": "7. Integration with CSS"}], "external": true};
+window.dfnpanelData['f588bce5'] = {"dfnID": "f588bce5", "url": "https://html.spec.whatwg.org/multipage/semantics.html#meta-referrer", "dfnText": "referrer", "refSections": [{"refs": [{"id": "ref-for-meta-referrer"}], "title": "3.5. \"strict-origin\""}, {"refs": [{"id": "ref-for-meta-referrer\u2460"}], "title": "4. Referrer Policy Delivery"}, {"refs": [{"id": "ref-for-meta-referrer\u2461"}], "title": "4.2. Delivery via meta"}, {"refs": [{"id": "ref-for-meta-referrer\u2462"}], "title": "11.1. Unknown Policy Values"}], "external": true};
+window.dfnpanelData['cd03669e'] = {"dfnID": "cd03669e", "url": "https://html.spec.whatwg.org/multipage/browsers.html#policy-container-referrer-policy", "dfnText": "referrer policy", "refSections": [{"refs": [{"id": "ref-for-policy-container-referrer-policy"}], "title": "3.9. The empty string"}, {"refs": [{"id": "ref-for-policy-container-referrer-policy\u2460"}], "title": "6. Integration with HTML"}, {"refs": [{"id": "ref-for-policy-container-referrer-policy\u2461"}, {"id": "ref-for-policy-container-referrer-policy\u2462"}, {"id": "ref-for-policy-container-referrer-policy\u2463"}], "title": "7. Integration with CSS"}], "external": true};
+window.dfnpanelData['ea4eef27'] = {"dfnID": "ea4eef27", "url": "https://html.spec.whatwg.org/multipage/infrastructure.html#referrer-policy-attribute", "dfnText": "referrer policy attribute", "refSections": [{"refs": [{"id": "ref-for-referrer-policy-attribute"}], "title": "4.3. Delivery\n    via a referrerpolicy content attribute"}], "external": true};
+window.dfnpanelData['50093b9d'] = {"dfnID": "50093b9d", "url": "https://html.spec.whatwg.org/multipage/semantics.html#attr-hyperlink-referrerpolicy", "dfnText": "referrerpolicy", "refSections": [{"refs": [{"id": "ref-for-attr-hyperlink-referrerpolicy"}], "title": "3.9. The empty string"}], "external": true};
+window.dfnpanelData['8d526929'] = {"dfnID": "8d526929", "url": "https://html.spec.whatwg.org/multipage/workers.html#run-a-worker", "dfnText": "running a worker", "refSections": [{"refs": [{"id": "ref-for-run-a-worker"}], "title": "6. Integration with HTML"}], "external": true};
+window.dfnpanelData['7393da89'] = {"dfnID": "7393da89", "url": "https://html.spec.whatwg.org/multipage/browsers.html#same-origin", "dfnText": "same origin", "refSections": [{"refs": [{"id": "ref-for-same-origin"}], "title": "2. Key Concepts and Terminology"}, {"refs": [{"id": "ref-for-same-origin\u2460"}, {"id": "ref-for-same-origin\u2461"}, {"id": "ref-for-same-origin\u2462"}], "title": "8.3. \n    Determine request\u2019s Referrer\n  "}], "external": true};
+window.dfnpanelData['0cf3964f'] = {"dfnID": "0cf3964f", "url": "https://html.spec.whatwg.org/multipage/scripting.html#script", "dfnText": "script", "refSections": [{"refs": [{"id": "ref-for-script"}], "title": "4. Referrer Policy Delivery"}], "external": true};
+window.dfnpanelData['3114a761'] = {"dfnID": "3114a761", "url": "https://html.spec.whatwg.org/multipage/dom.html#the-style-attribute", "dfnText": "style attribute", "refSections": [{"refs": [{"id": "ref-for-the-style-attribute"}], "title": "7. Integration with CSS"}], "external": true};
+window.dfnpanelData['77b4c09a'] = {"dfnID": "77b4c09a", "url": "https://infra.spec.whatwg.org/#assert", "dfnText": "assert", "refSections": [{"refs": [{"id": "ref-for-assert"}], "title": "8.4. \n    Strip url for use as a referrer\n  "}], "external": true};
+window.dfnpanelData['0fa357c3'] = {"dfnID": "0fa357c3", "url": "https://infra.spec.whatwg.org/#string-length", "dfnText": "length", "refSections": [{"refs": [{"id": "ref-for-string-length"}], "title": "8.3. \n    Determine request\u2019s Referrer\n  "}], "external": true};
+window.dfnpanelData['41a7917e'] = {"dfnID": "41a7917e", "url": "https://tools.ietf.org/html/rfc5234#appendix-B.1", "dfnText": "alpha", "refSections": [{"refs": [{"id": "ref-for-appendix-B.1"}], "title": "4.1. Delivery via Referrer-Policy header"}], "external": true};
+window.dfnpanelData['147e4528'] = {"dfnID": "147e4528", "url": "https://tools.ietf.org/html/rfc7231#section-5.5.2", "dfnText": "referer", "refSections": [{"refs": [{"id": "ref-for-section-5.5.2"}, {"id": "ref-for-section-5.5.2\u2460"}], "title": "1. Introduction"}, {"refs": [{"id": "ref-for-section-5.5.2\u2461"}], "title": "2. Key Concepts and Terminology"}, {"refs": [{"id": "ref-for-section-5.5.2\u2462"}, {"id": "ref-for-section-5.5.2\u2463"}], "title": "3.1. \"no-referrer\""}, {"refs": [{"id": "ref-for-section-5.5.2\u2464"}, {"id": "ref-for-section-5.5.2\u2465"}, {"id": "ref-for-section-5.5.2\u2466"}], "title": "3.2. \"no-referrer-when-downgrade\""}, {"refs": [{"id": "ref-for-section-5.5.2\u2467"}, {"id": "ref-for-section-5.5.2\u2468"}, {"id": "ref-for-section-5.5.2\u2460\u24ea"}, {"id": "ref-for-section-5.5.2\u2460\u2460"}], "title": "3.3. \"same-origin\""}, {"refs": [{"id": "ref-for-section-5.5.2\u2460\u2461"}, {"id": "ref-for-section-5.5.2\u2460\u2462"}], "title": "3.4. \"origin\""}, {"refs": [{"id": "ref-for-section-5.5.2\u2460\u2463"}, {"id": "ref-for-section-5.5.2\u2460\u2464"}, {"id": "ref-for-section-5.5.2\u2460\u2465"}, {"id": "ref-for-section-5.5.2\u2460\u2466"}], "title": "3.5. \"strict-origin\""}, {"refs": [{"id": "ref-for-section-5.5.2\u2460\u2467"}, {"id": "ref-for-section-5.5.2\u2460\u2468"}, {"id": "ref-for-section-5.5.2\u2461\u24ea"}, {"id": "ref-for-section-5.5.2\u2461\u2460"}], "title": "3.6. \"origin-when-cross-origin\""}, {"refs": [{"id": "ref-for-section-5.5.2\u2461\u2461"}, {"id": "ref-for-section-5.5.2\u2461\u2462"}, {"id": "ref-for-section-5.5.2\u2461\u2463"}, {"id": "ref-for-section-5.5.2\u2461\u2464"}, {"id": "ref-for-section-5.5.2\u2461\u2465"}], "title": "3.7. \"strict-origin-when-cross-origin\""}, {"refs": [{"id": "ref-for-section-5.5.2\u2461\u2466"}], "title": "3.8. \"unsafe-url\""}], "external": true};
+window.dfnpanelData['9c5d9c4d'] = {"dfnID": "9c5d9c4d", "url": "https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-url", "dfnText": "potentially trustworthy url", "refSections": [{"refs": [{"id": "ref-for-potentially-trustworthy-url"}, {"id": "ref-for-potentially-trustworthy-url\u2460"}, {"id": "ref-for-potentially-trustworthy-url\u2461"}, {"id": "ref-for-potentially-trustworthy-url\u2462"}, {"id": "ref-for-potentially-trustworthy-url\u2463"}], "title": "3.2. \"no-referrer-when-downgrade\""}, {"refs": [{"id": "ref-for-potentially-trustworthy-url\u2464"}], "title": "3.4. \"origin\""}, {"refs": [{"id": "ref-for-potentially-trustworthy-url\u2465"}, {"id": "ref-for-potentially-trustworthy-url\u2466"}, {"id": "ref-for-potentially-trustworthy-url\u2467"}, {"id": "ref-for-potentially-trustworthy-url\u2468"}], "title": "3.5. \"strict-origin\""}, {"refs": [{"id": "ref-for-potentially-trustworthy-url\u2460\u24ea"}], "title": "3.6. \"origin-when-cross-origin\""}, {"refs": [{"id": "ref-for-potentially-trustworthy-url\u2460\u2460"}, {"id": "ref-for-potentially-trustworthy-url\u2460\u2461"}, {"id": "ref-for-potentially-trustworthy-url\u2460\u2462"}, {"id": "ref-for-potentially-trustworthy-url\u2460\u2463"}], "title": "3.7. \"strict-origin-when-cross-origin\""}, {"refs": [{"id": "ref-for-potentially-trustworthy-url\u2460\u2464"}, {"id": "ref-for-potentially-trustworthy-url\u2460\u2465"}, {"id": "ref-for-potentially-trustworthy-url\u2460\u2466"}, {"id": "ref-for-potentially-trustworthy-url\u2460\u2467"}, {"id": "ref-for-potentially-trustworthy-url\u2460\u2468"}, {"id": "ref-for-potentially-trustworthy-url\u2461\u24ea"}], "title": "8.3. \n    Determine request\u2019s Referrer\n  "}], "external": true};
+window.dfnpanelData['ed948033'] = {"dfnID": "ed948033", "url": "https://url.spec.whatwg.org/#concept-url-fragment", "dfnText": "fragment", "refSections": [{"refs": [{"id": "ref-for-concept-url-fragment"}], "title": "8.4. \n    Strip url for use as a referrer\n  "}], "external": true};
+window.dfnpanelData['b85ee3be'] = {"dfnID": "b85ee3be", "url": "https://url.spec.whatwg.org/#concept-url-host", "dfnText": "host", "refSections": [{"refs": [{"id": "ref-for-concept-url-host"}], "title": "8.3. \n    Determine request\u2019s Referrer\n  "}], "external": true};
+window.dfnpanelData['959ad97b'] = {"dfnID": "959ad97b", "url": "https://url.spec.whatwg.org/#concept-url-origin", "dfnText": "origin", "refSections": [{"refs": [{"id": "ref-for-concept-url-origin"}, {"id": "ref-for-concept-url-origin\u2460"}], "title": "2. Key Concepts and Terminology"}, {"refs": [{"id": "ref-for-concept-url-origin\u2461"}, {"id": "ref-for-concept-url-origin\u2462"}, {"id": "ref-for-concept-url-origin\u2463"}, {"id": "ref-for-concept-url-origin\u2464"}, {"id": "ref-for-concept-url-origin\u2465"}, {"id": "ref-for-concept-url-origin\u2466"}], "title": "8.3. \n    Determine request\u2019s Referrer\n  "}], "external": true};
+window.dfnpanelData['a1288f2a'] = {"dfnID": "a1288f2a", "url": "https://url.spec.whatwg.org/#concept-url-password", "dfnText": "password", "refSections": [{"refs": [{"id": "ref-for-concept-url-password"}], "title": "8.4. \n    Strip url for use as a referrer\n  "}], "external": true};
+window.dfnpanelData['c0868016'] = {"dfnID": "c0868016", "url": "https://url.spec.whatwg.org/#concept-url-path", "dfnText": "path", "refSections": [{"refs": [{"id": "ref-for-concept-url-path"}], "title": "8.4. \n    Strip url for use as a referrer\n  "}], "external": true};
+window.dfnpanelData['3ab2ec8b'] = {"dfnID": "3ab2ec8b", "url": "https://url.spec.whatwg.org/#concept-url-query", "dfnText": "query", "refSections": [{"refs": [{"id": "ref-for-concept-url-query"}], "title": "8.4. \n    Strip url for use as a referrer\n  "}], "external": true};
+window.dfnpanelData['3a711be7'] = {"dfnID": "3a711be7", "url": "https://url.spec.whatwg.org/#concept-url-scheme", "dfnText": "scheme", "refSections": [{"refs": [{"id": "ref-for-concept-url-scheme"}], "title": "8.4. \n    Strip url for use as a referrer\n  "}], "external": true};
+window.dfnpanelData['dcffbccd'] = {"dfnID": "dcffbccd", "url": "https://url.spec.whatwg.org/#concept-url", "dfnText": "url", "refSections": [{"refs": [{"id": "ref-for-concept-url"}], "title": "8.3. \n    Determine request\u2019s Referrer\n  "}, {"refs": [{"id": "ref-for-concept-url\u2460"}], "title": "8.4. \n    Strip url for use as a referrer\n  "}], "external": true};
+window.dfnpanelData['5442ea33'] = {"dfnID": "5442ea33", "url": "https://url.spec.whatwg.org/#concept-url-serializer", "dfnText": "url serializer", "refSections": [{"refs": [{"id": "ref-for-concept-url-serializer"}], "title": "8.3. \n    Determine request\u2019s Referrer\n  "}], "external": true};
+window.dfnpanelData['218c9455'] = {"dfnID": "218c9455", "url": "https://url.spec.whatwg.org/#concept-url-username", "dfnText": "username", "refSections": [{"refs": [{"id": "ref-for-concept-url-username"}], "title": "8.4. \n    Strip url for use as a referrer\n  "}], "external": true};
+window.dfnpanelData['same-origin-referrer-request'] = {"dfnID": "same-origin-referrer-request", "url": "#same-origin-referrer-request", "dfnText": "same-origin-referrer request", "refSections": [{"refs": [{"id": "ref-for-same-origin-referrer-request"}], "title": "2. Key Concepts and Terminology"}, {"refs": [{"id": "ref-for-same-origin-referrer-request\u2460"}], "title": "3.3. \"same-origin\""}, {"refs": [{"id": "ref-for-same-origin-referrer-request\u2461"}], "title": "3.4. \"origin\""}, {"refs": [{"id": "ref-for-same-origin-referrer-request\u2462"}], "title": "3.6. \"origin-when-cross-origin\""}, {"refs": [{"id": "ref-for-same-origin-referrer-request\u2463"}], "title": "3.7. \"strict-origin-when-cross-origin\""}, {"refs": [{"id": "ref-for-same-origin-referrer-request\u2464"}], "title": "3.8. \"unsafe-url\""}, {"refs": [{"id": "ref-for-same-origin-referrer-request\u2465"}], "title": "8.3. \n    Determine request\u2019s Referrer\n  "}], "external": false};
+window.dfnpanelData['cross-origin-referrer-request'] = {"dfnID": "cross-origin-referrer-request", "url": "#cross-origin-referrer-request", "dfnText": "cross-origin-referrer request", "refSections": [{"refs": [{"id": "ref-for-cross-origin-referrer-request"}, {"id": "ref-for-cross-origin-referrer-request\u2460"}], "title": "3.3. \"same-origin\""}, {"refs": [{"id": "ref-for-cross-origin-referrer-request\u2461"}], "title": "3.4. \"origin\""}, {"refs": [{"id": "ref-for-cross-origin-referrer-request\u2462"}, {"id": "ref-for-cross-origin-referrer-request\u2463"}], "title": "3.6. \"origin-when-cross-origin\""}, {"refs": [{"id": "ref-for-cross-origin-referrer-request\u2464"}], "title": "3.7. \"strict-origin-when-cross-origin\""}, {"refs": [{"id": "ref-for-cross-origin-referrer-request\u2465"}], "title": "3.8. \"unsafe-url\""}], "external": false};
+window.dfnpanelData['referrer-policy'] = {"dfnID": "referrer-policy", "url": "#referrer-policy", "dfnText": "referrer policy", "refSections": [{"refs": [{"id": "ref-for-referrer-policy"}, {"id": "ref-for-referrer-policy\u2460"}, {"id": "ref-for-referrer-policy\u2461"}, {"id": "ref-for-referrer-policy\u2462"}], "title": "2. Key Concepts and Terminology"}, {"refs": [{"id": "ref-for-referrer-policy\u2463"}], "title": "3. Referrer Policies"}, {"refs": [{"id": "ref-for-referrer-policy\u2464"}, {"id": "ref-for-referrer-policy\u2465"}], "title": "3.9. The empty string"}, {"refs": [{"id": "ref-for-referrer-policy\u2466"}], "title": "4.2. Delivery via meta"}, {"refs": [{"id": "ref-for-referrer-policy\u2467"}], "title": "4.4. Referrer Policy Inheritance"}, {"refs": [{"id": "ref-for-referrer-policy\u2468"}], "title": "6. Integration with HTML"}, {"refs": [{"id": "ref-for-referrer-policy\u2460\u24ea"}, {"id": "ref-for-referrer-policy\u2460\u2460"}], "title": "8.1. \n    Parse a referrer policy from a Referrer-Policy header\n  "}, {"refs": [{"id": "ref-for-referrer-policy\u2460\u2461"}], "title": "9.1. User Controls"}, {"refs": [{"id": "ref-for-referrer-policy\u2460\u2462"}], "title": "10.1. Information Leakage"}], "external": false};
+window.dfnpanelData['default-referrer-policy'] = {"dfnID": "default-referrer-policy", "url": "#default-referrer-policy", "dfnText": "default referrer policy", "refSections": [{"refs": [{"id": "ref-for-default-referrer-policy"}], "title": "3.7. \"strict-origin-when-cross-origin\""}, {"refs": [{"id": "ref-for-default-referrer-policy\u2460"}], "title": "3.9. The empty string"}], "external": false};
+window.dfnpanelData['referrer-policy-no-referrer'] = {"dfnID": "referrer-policy-no-referrer", "url": "#referrer-policy-no-referrer", "dfnText": "3.1. \"no-referrer\"", "refSections": [{"refs": [{"id": "ref-for-referrer-policy-no-referrer"}, {"id": "ref-for-referrer-policy-no-referrer"}, {"id": "ref-for-referrer-policy-no-referrer\u2460"}], "title": "3.1. \"no-referrer\""}, {"refs": [{"id": "ref-for-referrer-policy-no-referrer\u2461"}], "title": "8.3. \n    Determine request\u2019s Referrer\n  "}, {"refs": [{"id": "ref-for-referrer-policy-no-referrer\u2462"}], "title": "10.1. Information Leakage"}, {"refs": [{"id": "ref-for-referrer-policy-no-referrer\u2463"}], "title": "10.2. Downgrade to less strict policies"}], "external": false};
+window.dfnpanelData['referrer-policy-no-referrer-when-downgrade'] = {"dfnID": "referrer-policy-no-referrer-when-downgrade", "url": "#referrer-policy-no-referrer-when-downgrade", "dfnText": "3.2. \"no-referrer-when-downgrade\"", "refSections": [{"refs": [{"id": "ref-for-referrer-policy-no-referrer-when-downgrade"}, {"id": "ref-for-referrer-policy-no-referrer-when-downgrade"}, {"id": "ref-for-referrer-policy-no-referrer-when-downgrade\u2460"}], "title": "3.2. \"no-referrer-when-downgrade\""}, {"refs": [{"id": "ref-for-referrer-policy-no-referrer-when-downgrade\u2461"}], "title": "8.3. \n    Determine request\u2019s Referrer\n  "}, {"refs": [{"id": "ref-for-referrer-policy-no-referrer-when-downgrade\u2462"}], "title": "10.2. Downgrade to less strict policies"}], "external": false};
+window.dfnpanelData['referrer-policy-same-origin'] = {"dfnID": "referrer-policy-same-origin", "url": "#referrer-policy-same-origin", "dfnText": "3.3. \"same-origin\"", "refSections": [{"refs": [{"id": "ref-for-referrer-policy-same-origin"}, {"id": "ref-for-referrer-policy-same-origin"}, {"id": "ref-for-referrer-policy-same-origin\u2460"}, {"id": "ref-for-referrer-policy-same-origin\u2461"}], "title": "3.3. \"same-origin\""}, {"refs": [{"id": "ref-for-referrer-policy-same-origin\u2462"}], "title": "8.3. \n    Determine request\u2019s Referrer\n  "}, {"refs": [{"id": "ref-for-referrer-policy-same-origin\u2463"}], "title": "10.1. Information Leakage"}], "external": false};
+window.dfnpanelData['referrer-policy-origin'] = {"dfnID": "referrer-policy-origin", "url": "#referrer-policy-origin", "dfnText": "3.4. \"origin\"", "refSections": [{"refs": [{"id": "ref-for-referrer-policy-origin"}, {"id": "ref-for-referrer-policy-origin"}, {"id": "ref-for-referrer-policy-origin\u2460"}, {"id": "ref-for-referrer-policy-origin\u2461"}, {"id": "ref-for-referrer-policy-origin\u2462"}], "title": "3.4. \"origin\""}, {"refs": [{"id": "ref-for-referrer-policy-origin\u2463"}], "title": "8.3. \n    Determine request\u2019s Referrer\n  "}, {"refs": [{"id": "ref-for-referrer-policy-origin\u2464"}], "title": "10.1. Information Leakage"}, {"refs": [{"id": "ref-for-referrer-policy-origin\u2465"}], "title": "10.2. Downgrade to less strict policies"}, {"refs": [{"id": "ref-for-referrer-policy-origin\u2466"}, {"id": "ref-for-referrer-policy-origin\u2467"}], "title": "11.1. Unknown Policy Values"}], "external": false};
+window.dfnpanelData['referrer-policy-strict-origin'] = {"dfnID": "referrer-policy-strict-origin", "url": "#referrer-policy-strict-origin", "dfnText": "3.5. \"strict-origin\"", "refSections": [{"refs": [{"id": "ref-for-referrer-policy-strict-origin"}], "title": "3.4. \"origin\""}, {"refs": [{"id": "ref-for-referrer-policy-strict-origin"}, {"id": "ref-for-referrer-policy-strict-origin\u2460"}, {"id": "ref-for-referrer-policy-strict-origin\u2461"}, {"id": "ref-for-referrer-policy-strict-origin\u2462"}, {"id": "ref-for-referrer-policy-strict-origin\u2463"}], "title": "3.5. \"strict-origin\""}, {"refs": [{"id": "ref-for-referrer-policy-strict-origin\u2464"}], "title": "8.3. \n    Determine request\u2019s Referrer\n  "}, {"refs": [{"id": "ref-for-referrer-policy-strict-origin\u2465"}], "title": "10.1. Information Leakage"}], "external": false};
+window.dfnpanelData['referrer-policy-origin-when-cross-origin'] = {"dfnID": "referrer-policy-origin-when-cross-origin", "url": "#referrer-policy-origin-when-cross-origin", "dfnText": "3.6. \"origin-when-cross-origin\"", "refSections": [{"refs": [{"id": "ref-for-referrer-policy-origin-when-cross-origin"}, {"id": "ref-for-referrer-policy-origin-when-cross-origin"}, {"id": "ref-for-referrer-policy-origin-when-cross-origin\u2460"}, {"id": "ref-for-referrer-policy-origin-when-cross-origin\u2461"}, {"id": "ref-for-referrer-policy-origin-when-cross-origin\u2462"}, {"id": "ref-for-referrer-policy-origin-when-cross-origin\u2463"}, {"id": "ref-for-referrer-policy-origin-when-cross-origin\u2464"}], "title": "3.6. \"origin-when-cross-origin\""}, {"refs": [{"id": "ref-for-referrer-policy-origin-when-cross-origin\u2465"}], "title": "8.3. \n    Determine request\u2019s Referrer\n  "}, {"refs": [{"id": "ref-for-referrer-policy-origin-when-cross-origin\u2466"}], "title": "10.1. Information Leakage"}], "external": false};
+window.dfnpanelData['referrer-policy-strict-origin-when-cross-origin'] = {"dfnID": "referrer-policy-strict-origin-when-cross-origin", "url": "#referrer-policy-strict-origin-when-cross-origin", "dfnText": "3.7. \"strict-origin-when-cross-origin\"", "refSections": [{"refs": [{"id": "ref-for-referrer-policy-strict-origin-when-cross-origin"}], "title": "3. Referrer Policies"}, {"refs": [{"id": "ref-for-referrer-policy-strict-origin-when-cross-origin\u2460"}], "title": "3.6. \"origin-when-cross-origin\""}, {"refs": [{"id": "ref-for-referrer-policy-strict-origin-when-cross-origin"}, {"id": "ref-for-referrer-policy-strict-origin-when-cross-origin\u2461"}, {"id": "ref-for-referrer-policy-strict-origin-when-cross-origin\u2462"}, {"id": "ref-for-referrer-policy-strict-origin-when-cross-origin\u2463"}], "title": "3.7. \"strict-origin-when-cross-origin\""}, {"refs": [{"id": "ref-for-referrer-policy-strict-origin-when-cross-origin\u2464"}], "title": "3.9. The empty string"}, {"refs": [{"id": "ref-for-referrer-policy-strict-origin-when-cross-origin\u2465"}], "title": "8.3. \n    Determine request\u2019s Referrer\n  "}], "external": false};
+window.dfnpanelData['referrer-policy-unsafe-url'] = {"dfnID": "referrer-policy-unsafe-url", "url": "#referrer-policy-unsafe-url", "dfnText": "3.8. \"unsafe-url\"", "refSections": [{"refs": [{"id": "ref-for-referrer-policy-unsafe-url"}, {"id": "ref-for-referrer-policy-unsafe-url"}, {"id": "ref-for-referrer-policy-unsafe-url\u2460"}], "title": "3.8. \"unsafe-url\""}, {"refs": [{"id": "ref-for-referrer-policy-unsafe-url\u2461"}], "title": "8.3. \n    Determine request\u2019s Referrer\n  "}, {"refs": [{"id": "ref-for-referrer-policy-unsafe-url\u2462"}], "title": "10.1. Information Leakage"}, {"refs": [{"id": "ref-for-referrer-policy-unsafe-url\u2463"}], "title": "10.2. Downgrade to less strict policies"}, {"refs": [{"id": "ref-for-referrer-policy-unsafe-url\u2464"}, {"id": "ref-for-referrer-policy-unsafe-url\u2465"}, {"id": "ref-for-referrer-policy-unsafe-url\u2466"}, {"id": "ref-for-referrer-policy-unsafe-url\u2467"}], "title": "11.1. Unknown Policy Values"}], "external": false};
+window.dfnpanelData['referrer-policy-empty-string'] = {"dfnID": "referrer-policy-empty-string", "url": "#referrer-policy-empty-string", "dfnText": "3.9. The empty string", "refSections": [{"refs": [{"id": "ref-for-referrer-policy-empty-string"}], "title": "3.9. The empty string"}], "external": false};
+window.dfnpanelData['referrer-policy-header-dfn'] = {"dfnID": "referrer-policy-header-dfn", "url": "#referrer-policy-header-dfn", "dfnText": "Referrer-Policy", "refSections": [{"refs": [{"id": "ref-for-referrer-policy-header-dfn"}], "title": "8.1. \n    Parse a referrer policy from a Referrer-Policy header\n  "}], "external": false};
+window.dfnpanelData['grammardef-policy-token'] = {"dfnID": "grammardef-policy-token", "url": "#grammardef-policy-token", "dfnText": "policy-token", "refSections": [{"refs": [{"id": "ref-for-grammardef-policy-token"}], "title": "4.1. Delivery via Referrer-Policy header"}], "external": false};
+window.dfnpanelData['grammardef-extension-token'] = {"dfnID": "grammardef-extension-token", "url": "#grammardef-extension-token", "dfnText": "extension-token", "refSections": [{"refs": [{"id": "ref-for-grammardef-extension-token"}, {"id": "ref-for-grammardef-extension-token\u2460"}], "title": "4.1. Delivery via Referrer-Policy header"}], "external": false};
+window.dfnpanelData['cssstylesheet-referrer-policy'] = {"dfnID": "cssstylesheet-referrer-policy", "url": "#cssstylesheet-referrer-policy", "dfnText": "referrer policy", "refSections": [{"refs": [{"id": "ref-for-cssstylesheet-referrer-policy"}], "title": "7. Integration with CSS"}], "external": false};
+window.dfnpanelData['set-requests-referrer-policy-on-redirect'] = {"dfnID": "set-requests-referrer-policy-on-redirect", "url": "#set-requests-referrer-policy-on-redirect", "dfnText": "8.2. \n    Set request\u2019s referrer policy on redirect\n  ", "refSections": [{"refs": [{"id": "ref-for-set-requests-referrer-policy-on-redirect"}], "title": "5. Integration with Fetch"}, {"refs": [{"id": "ref-for-set-requests-referrer-policy-on-redirect"}], "title": "8.2. \n    Set request\u2019s referrer policy on redirect\n  "}], "external": false};
+window.dfnpanelData['determine-requests-referrer'] = {"dfnID": "determine-requests-referrer", "url": "#determine-requests-referrer", "dfnText": "8.3. \n    Determine request\u2019s Referrer\n  ", "refSections": [{"refs": [{"id": "ref-for-determine-requests-referrer"}], "title": "3.9. The empty string"}, {"refs": [{"id": "ref-for-determine-requests-referrer"}], "title": "5. Integration with Fetch"}, {"refs": [{"id": "ref-for-determine-requests-referrer"}], "title": "8.3. \n    Determine request\u2019s Referrer\n  "}], "external": false};
+window.dfnpanelData['referrerurl'] = {"dfnID": "referrerurl", "url": "#referrerurl", "dfnText": "referrerURL", "refSections": [{"refs": [{"id": "ref-for-referrerurl"}], "title": "2. Key Concepts and Terminology"}, {"refs": [{"id": "ref-for-referrerurl\u2460"}, {"id": "ref-for-referrerurl\u2461"}, {"id": "ref-for-referrerurl\u2462"}, {"id": "ref-for-referrerurl\u2463"}], "title": "3.2. \"no-referrer-when-downgrade\""}, {"refs": [{"id": "ref-for-referrerurl\u2464"}, {"id": "ref-for-referrerurl\u2465"}], "title": "3.3. \"same-origin\""}, {"refs": [{"id": "ref-for-referrerurl\u2466"}], "title": "3.4. \"origin\""}, {"refs": [{"id": "ref-for-referrerurl\u2467"}, {"id": "ref-for-referrerurl\u2468"}, {"id": "ref-for-referrerurl\u2460\u24ea"}, {"id": "ref-for-referrerurl\u2460\u2460"}], "title": "3.5. \"strict-origin\""}, {"refs": [{"id": "ref-for-referrerurl\u2460\u2461"}, {"id": "ref-for-referrerurl\u2460\u2462"}], "title": "3.6. \"origin-when-cross-origin\""}, {"refs": [{"id": "ref-for-referrerurl\u2460\u2463"}, {"id": "ref-for-referrerurl\u2460\u2464"}, {"id": "ref-for-referrerurl\u2460\u2465"}, {"id": "ref-for-referrerurl\u2460\u2466"}, {"id": "ref-for-referrerurl\u2460\u2467"}], "title": "3.7. \"strict-origin-when-cross-origin\""}, {"refs": [{"id": "ref-for-referrerurl\u2460\u2468"}], "title": "3.8. \"unsafe-url\""}, {"refs": [{"id": "ref-for-referrerurl\u2461\u24ea"}, {"id": "ref-for-referrerurl\u2461\u2460"}, {"id": "ref-for-referrerurl\u2461\u2461"}, {"id": "ref-for-referrerurl\u2461\u2462"}, {"id": "ref-for-referrerurl\u2461\u2463"}, {"id": "ref-for-referrerurl\u2461\u2464"}, {"id": "ref-for-referrerurl\u2461\u2465"}, {"id": "ref-for-referrerurl\u2461\u2466"}, {"id": "ref-for-referrerurl\u2461\u2467"}, {"id": "ref-for-referrerurl\u2461\u2468"}, {"id": "ref-for-referrerurl\u2462\u24ea"}, {"id": "ref-for-referrerurl\u2462\u2460"}, {"id": "ref-for-referrerurl\u2462\u2461"}], "title": "8.3. \n    Determine request\u2019s Referrer\n  "}], "external": false};
+window.dfnpanelData['origin-only-flag'] = {"dfnID": "origin-only-flag", "url": "#origin-only-flag", "dfnText": "origin-only flag", "refSections": [{"refs": [{"id": "ref-for-origin-only-flag"}], "title": "8.3. \n    Determine request\u2019s Referrer\n  "}, {"refs": [{"id": "ref-for-origin-only-flag\u2460"}], "title": "8.4. \n    Strip url for use as a referrer\n  "}], "external": false};
+</script>
+<script>/* Boilerplate: script-dom-helper */
+function query(sel) { return document.querySelector(sel); }
+
+function queryAll(sel) { return [...document.querySelectorAll(sel)]; }
+
+function iter(obj) {
+	if(!obj) return [];
+	var it = obj[Symbol.iterator];
+	if(it) return it;
+	return Object.entries(obj);
+}
+
+function mk(tagname, attrs, ...children) {
+	const el = document.createElement(tagname);
+	for(const [k,v] of iter(attrs)) {
+		if(k.slice(0,3) == "_on") {
+			const eventName = k.slice(3);
+			el.addEventListener(eventName, v);
+		} else if(k[0] == "_") {
+			// property, not attribute
+			el[k.slice(1)] = v;
+		} else {
+			if(v === false || v == null) {
+        continue;
+      } else if(v === true) {
+        el.setAttribute(k, "");
+        continue;
+      } else {
+  			el.setAttribute(k, v);
+      }
+		}
+	}
+	append(el, children);
+	return el;
+}
+
+/* Create shortcuts for every known HTML element */
+[
+  "a",
+  "abbr",
+  "acronym",
+  "address",
+  "applet",
+  "area",
+  "article",
+  "aside",
+  "audio",
+  "b",
+  "base",
+  "basefont",
+  "bdo",
+  "big",
+  "blockquote",
+  "body",
+  "br",
+  "button",
+  "canvas",
+  "caption",
+  "center",
+  "cite",
+  "code",
+  "col",
+  "colgroup",
+  "datalist",
+  "dd",
+  "del",
+  "details",
+  "dfn",
+  "dialog",
+  "div",
+  "dl",
+  "dt",
+  "em",
+  "embed",
+  "fieldset",
+  "figcaption",
+  "figure",
+  "font",
+  "footer",
+  "form",
+  "frame",
+  "frameset",
+  "head",
+  "header",
+  "h1",
+  "h2",
+  "h3",
+  "h4",
+  "h5",
+  "h6",
+  "hr",
+  "html",
+  "i",
+  "iframe",
+  "img",
+  "input",
+  "ins",
+  "kbd",
+  "label",
+  "legend",
+  "li",
+  "link",
+  "main",
+  "map",
+  "mark",
+  "meta",
+  "meter",
+  "nav",
+  "nobr",
+  "noscript",
+  "object",
+  "ol",
+  "optgroup",
+  "option",
+  "output",
+  "p",
+  "param",
+  "pre",
+  "progress",
+  "q",
+  "s",
+  "samp",
+  "script",
+  "section",
+  "select",
+  "small",
+  "source",
+  "span",
+  "strike",
+  "strong",
+  "style",
+  "sub",
+  "summary",
+  "sup",
+  "table",
+  "tbody",
+  "td",
+  "template",
+  "textarea",
+  "tfoot",
+  "th",
+  "thead",
+  "time",
+  "title",
+  "tr",
+  "u",
+  "ul",
+  "var",
+  "video",
+  "wbr",
+  "xmp",
+].forEach(tagname=>{
+	mk[tagname] = (...args) => mk(tagname, ...args);
+});
+
+function* nodesFromChildList(children) {
+	for(const child of children.flat(Infinity)) {
+		if(child instanceof Node) {
+			yield child;
+		} else {
+			yield new Text(child);
+		}
+	}
+}
+function append(el, ...children) {
+	for(const child of nodesFromChildList(children)) {
+		if(el instanceof Node) el.appendChild(child);
+		else el.push(child);
+	}
+	return el;
+}
+
+function insertAfter(el, ...children) {
+	for(const child of nodesFromChildList(children)) {
+		el.parentNode.insertBefore(child, el.nextSibling);
+	}
+	return el;
+}
+
+function clearContents(el) {
+	el.innerHTML = "";
+	return el;
+}
+
+function parseHTML(markup) {
+	if(markup.toLowerCase().trim().indexOf('<!doctype') === 0) {
+		const doc = document.implementation.createHTMLDocument("");
+		doc.documentElement.innerHTML = markup;
+		return doc;
+	} else {
+		const el = mk.template({});
+		el.innerHTML = markup;
+		return el.content;
+	}
+}
+</script>
+<script>/* Boilerplate: script-position-annos */
+"use strict";
+{
+
+function repositionAnnoPanels(){
+    const panels = [...document.querySelectorAll("[data-anno-for]")];
+    const main = document.querySelector("main");
+    let mainRect;
+    if(main) mainRect = main.getBoundingClientRect();
+    for(const panel of panels) {
+        const dfn = document.getElementById(panel.getAttribute("data-anno-for"));
+        if(!dfn) {
+            console.log("Can't find the annotation panel target:", panel);
+            continue;
+        }
+        const rect = dfn.getBoundingClientRect();
+        const top = window.scrollY + rect.top
+        panel.style.top = top + "px";
+        panel.top = top;
+        panel.height = rect.height;
+        panel.classList.remove("unpositioned");
+        const panelRect = panel.getBoundingClientRect()
+        if(main) {
+            panel.classList.toggle("overlapping-main", panelRect.left < mainRect.right)
+        }
+    }
+    let vSoFar = 0;
+    for(const panel of panels.sort(cmpTops)) {
+        if(panel.top < vSoFar) {
+            panel.top = vSoFar;
+            panel.style.top = vSoFar + "px";
+        }
+        vSoFar = panel.top + panel.height + 15;
+    }
+}
+
+function cmpTops(a,b) {
+    return a.top - b.top;
+}
+
+window.addEventListener("load", repositionAnnoPanels);
+window.addEventListener("resize", repositionAnnoPanels);
+}
+</script>
