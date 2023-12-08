@@ -867,7 +867,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1>Referrer Policy</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2023-12-02">2 December 2023</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2023-12-08">8 December 2023</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -1220,7 +1220,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   resource.</p>
     <p>The syntax for the name and value of the header are described by the following
   ABNF grammar. ABNF is defined in <a data-link-type="biblio" href="#biblio-rfc5234" title="Augmented BNF for Syntax Specifications: ABNF">[RFC5234]</a>, and the <code>#rule</code> ABNF
-  extension used below is defined in <a href="https://www.rfc-editor.org/rfc/rfc9110#section-5.6.1">Section 5.6.1</a> of <a data-link-type="biblio" href="#biblio-rfc9110" title="HTTP Semantics">[RFC9110]</a>.</p>
+  extension used below is defined in <a href="https://httpwg.org/specs/rfc9110.html#abnf.extension">Section 5.6.1</a> of <a data-link-type="biblio" href="#biblio-rfc9110" title="HTTP Semantics">[RFC9110]</a>.</p>
 <pre>"Referrer-Policy:" 1#(<a data-link-type="grammar" href="#grammardef-policy-token" id="ref-for-grammardef-policy-token">policy-token</a> / <a data-link-type="grammar" href="#grammardef-extension-token" id="ref-for-grammardef-extension-token">extension-token</a>)
 </pre>
 <pre><dfn class="dfn-paneled" data-dfn-type="grammar" data-export id="grammardef-policy-token">policy-token</dfn> = "no-referrer" / "no-referrer-when-downgrade" / "strict-origin" / "strict-origin-when-cross-origin" / "same-origin" / "origin" / "origin-when-cross-origin" / "unsafe-url"
@@ -1268,12 +1268,12 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
    <section class="informative">
     <h2 class="heading settled" data-level="5" id="integration-with-fetch"><span class="secno">5. </span><span class="content">Integration with Fetch</span><a class="self-link" href="#integration-with-fetch"></a></h2>
     <p><em>This section is not normative.</em></p>
-    <p>The Fetch specification calls out to <a href="#set-requests-referrer-policy-on-redirect" id="ref-for-set-requests-referrer-policy-on-redirect">§ 8.2 Set request’s referrer policy on redirect</a> before <a href="https://fetch.spec.whatwg.org/#http-redirect-fetch">Step
-  13 of the HTTP-redirect fetch</a>, so that a request’s referrer policy
-  can be updated before following a redirect.</p>
-    <p>The Fetch specification calls out to <a href="#determine-requests-referrer" id="ref-for-determine-requests-referrer①">§ 8.3 Determine request’s Referrer</a> as <a href="https://fetch.spec.whatwg.org/#main-fetch">Step 8 of the
-  Main fetch algorithm</a>, and uses the result to set the <var>request</var>’s <code>referrer</code> property. Fetch is responsible for serializing the
-  URL provided, and setting the `<code>Referer</code>` header on <var>request</var>.</p>
+    <p>The Fetch specification calls out to <a href="#set-requests-referrer-policy-on-redirect" id="ref-for-set-requests-referrer-policy-on-redirect">§ 8.2 Set request’s referrer policy on redirect</a> before <a href="https://fetch.spec.whatwg.org/#http-redirect-fetch">Step 13 of the HTTP-redirect fetch</a>, so
+  that a request’s referrer policy can be updated before following a redirect.</p>
+    <p>The Fetch specification calls out to <a href="#determine-requests-referrer" id="ref-for-determine-requests-referrer①">§ 8.3 Determine request’s Referrer</a> as <a href="https://fetch.spec.whatwg.org/#main-fetch">Step 8 of the Main fetch algorithm</a>, and uses the
+  result to set the <var>request</var>’s <code>referrer</code> property. Fetch
+  is responsible for serializing the URL provided, and setting the
+  `<code>Referer</code>` header on <var>request</var>.</p>
    </section>
    <section class="informative">
     <h2 class="heading settled" data-level="6" id="integration-with-html"><span class="secno">6. </span><span class="content">Integration with HTML</span><a class="self-link" href="#integration-with-html"></a></h2>
