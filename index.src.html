@@ -570,8 +570,8 @@ spec: html; type: interface; text:Window
 
   The syntax for the name and value of the header are described by the following
   ABNF grammar. ABNF is defined in [[!RFC5234]], and the <code>#rule</code> ABNF
-  extension used below is defined in <a
-  href="https://www.rfc-editor.org/rfc/rfc9110#section-5.6.1">Section 5.6.1</a> of [[!RFC9110]].
+  extension used below is defined in [[RFC9110#abnf.extension|Section 5.6.1]] of
+  [[!RFC9110]].
 
   <pre dfn-type="grammar" link-type="grammar">
     "Referrer-Policy:" 1#(<a>policy-token</a> / <a>extension-token</a>)
@@ -653,16 +653,14 @@ spec: html; type: interface; text:Window
 
   The Fetch specification calls out to
   [[#set-requests-referrer-policy-on-redirect]]
-  before <a href="https://fetch.spec.whatwg.org/#http-redirect-fetch">Step
-  13 of the HTTP-redirect fetch</a>, so that a request's referrer policy
-  can be updated before following a redirect.
+  before [[fetch#http-redirect-fetch|Step 13 of the HTTP-redirect fetch]], so
+  that a request's referrer policy can be updated before following a redirect.
 
   The Fetch specification calls out to [[#determine-requests-referrer]]
-  as <a href="https://fetch.spec.whatwg.org/#main-fetch">Step 8 of the
-  Main fetch algorithm</a>, and uses the result to set the <var>request</var>'s
-  <code>referrer</code> property. Fetch is responsible for serializing the
-  URL provided, and setting the `<code>Referer</code>` header on
-  <var>request</var>.
+  as [[fetch#main-fetch|Step 8 of the Main fetch algorithm]], and uses the
+  result to set the <var>request</var>'s <code>referrer</code> property. Fetch
+  is responsible for serializing the URL provided, and setting the
+  `<code>Referer</code>` header on <var>request</var>.
 </section>
 
 <section class="informative">
