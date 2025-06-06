@@ -803,6 +803,8 @@ spec: html; type: interface; text:Window
         <dt>"<code>client</code>"</dt>
         <dd>
           <ol>
+            <li>If |environment| is null, then return <code>no referrer</code>.</li>
+
             <li>
               If |environment|'s <a for="environment settings object">global
               object</a> is a {{Window}} object, then
