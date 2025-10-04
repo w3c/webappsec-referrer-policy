@@ -109,10 +109,11 @@ spec: RFC2616; urlPrefix: https://tools.ietf.org/html/rfc7231
 </pre>
 
 <pre class="link-defaults">
-spec: html; type: element; text: link;
-spec: html; type: element; text: a;
-spec: html; type: element; text:script
-spec: html; type: interface; text:Window
+spec: html; type: element; text: link
+spec: html; type: element; text: a
+spec: html; type: element; text: script
+spec: html; type: element; text: meta
+spec: html; type: interface; text: Window
 </pre>
 
 <!--
@@ -803,6 +804,8 @@ spec: html; type: interface; text:Window
         <dt>"<code>client</code>"</dt>
         <dd>
           <ol>
+            <li>If |environment| is null, then return <code>no referrer</code>.</li>
+
             <li>
               If |environment|'s <a for="environment settings object">global
               object</a> is a {{Window}} object, then
