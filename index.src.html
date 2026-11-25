@@ -993,6 +993,69 @@ spec: html; type: interface; text: Window
     </li>
   </ol>
 
+  <h3 id="restrict-referrer-policy" dfn export>
+    Restrict a referrer policy
+  </h3>
+
+  A <a for="/">referrer policy</a> |a| is <dfn>at least as strict as</dfn> a
+  <a for="/">referrer policy</a> |b|, where neither |a| nor |b| is the empty string, if for every
+  <a for=/>request</a>, the result of [[#determine-requests-referrer]] with the request's
+  <a for=request>referrer policy</a> set to |a| reveals no more than the result with it set to
+  |b|. For this comparison, <code>no referrer</code> reveals less than
+  <var ignore>referrerOrigin</var>, which reveals less than <a>referrerURL</a>.
+
+  Note: Referrer policies are not totally ordered by this relation. The following diagram
+  illustrates it (a policy is at least as strict as every policy reachable upward from it):
+
+  <pre>
+                          unsafe-url (most permissive)
+                               /  |
+                              /   |
+     no-referrer-when-downgrade   |
+                             |    |
+                             |   origin-when-cross-origin
+                             |   / \
+                             |  /   \
+  strict-origin-when-cross-origin   origin
+                             |  \   /
+                             |   \ /
+                             |   strict-origin
+                             |    |
+                    same-origin   |
+                              \   |
+                               \  |
+                         no-referrer (most strict)
+  </pre>
+
+  Given two <a for="/">referrer policies</a> |policy| and |restriction|, neither of which is the
+  empty string, the following steps return the most permissive <a for="/">referrer policy</a>
+  that never reveals more referrer information than either |policy| or |restriction|:
+
+  <ol>
+    <li>If |policy| is <a>at least as strict as</a> |restriction|, return |policy|.</li>
+    <li>If |restriction| is <a>at least as strict as</a> |policy|, return |restriction|.</li>
+    <li>
+      Return the policy given below for the unordered pair of |policy| and |restriction|:
+      <ul>
+        <li>"<code>no-referrer-when-downgrade</code>" and "<code>origin-when-cross-origin</code>":
+            "<code>strict-origin-when-cross-origin</code>"</li>
+        <li>"<code>no-referrer-when-downgrade</code>" and "<code>origin</code>":
+            "<code>strict-origin</code>"</li>
+        <li>"<code>strict-origin-when-cross-origin</code>" and "<code>origin</code>":
+            "<code>strict-origin</code>"</li>
+        <li>"<code>same-origin</code>" and "<code>origin</code>": "<code>no-referrer</code>"</li>
+        <li>"<code>same-origin</code>" and "<code>strict-origin</code>":
+            "<code>no-referrer</code>"</li>
+      </ul>
+
+      Note: These are exactly the pairs where neither policy is <a>at least as strict as</a> the
+      other. For each pair, one policy reveals less on some requests and the other on others (e.g.
+      "<code>no-referrer-when-downgrade</code>" sends nothing on a downgrade, while
+      "<code>origin-when-cross-origin</code>" sends only the origin on other cross-origin
+      requests), and the result applies both restrictions.
+    </li>
+  </ol>
+
 </section>
 
 <section>
@@ -1038,6 +1101,9 @@ spec: html; type: interface; text: Window
 
   On the other hand, allowing for setting less strict policies enables authors
   to define safe fallbacks as described in [[#unknown-policy-values]].
+
+  Features that must not loosen a request's referrer policy can use
+  [[#restrict-referrer-policy]], which also handles policies that are not comparable.
 </section>
 
 <section>
