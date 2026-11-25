@@ -998,11 +998,56 @@ spec: html; type: interface; text: Window
   </h3>
 
   A <a for="/">referrer policy</a> |a| is <dfn>at least as strict as</dfn> a
-  <a for="/">referrer policy</a> |b|, where neither |a| nor |b| is the empty string, if for every
-  <a for=/>request</a>, the result of [[#determine-requests-referrer]] with the request's
+  <a for="/">referrer policy</a> |b|, where neither |a| nor |b| is the empty string, if |b| is
+  listed for |a| in the following table:
+
+  <table>
+    <thead>
+      <tr><th>|a|<th>Referrer policies that |a| is <a>at least as strict as</a>
+    </thead>
+    <tbody>
+      <tr>
+        <td>"<code>unsafe-url</code>"
+        <td>"<code>unsafe-url</code>"
+      <tr>
+        <td>"<code>no-referrer-when-downgrade</code>"
+        <td>"<code>no-referrer-when-downgrade</code>", "<code>unsafe-url</code>"
+      <tr>
+        <td>"<code>origin-when-cross-origin</code>"
+        <td>"<code>origin-when-cross-origin</code>", "<code>unsafe-url</code>"
+      <tr>
+        <td>"<code>strict-origin-when-cross-origin</code>"
+        <td>"<code>strict-origin-when-cross-origin</code>",
+            "<code>no-referrer-when-downgrade</code>", "<code>origin-when-cross-origin</code>",
+            "<code>unsafe-url</code>"
+      <tr>
+        <td>"<code>origin</code>"
+        <td>"<code>origin</code>", "<code>origin-when-cross-origin</code>",
+            "<code>unsafe-url</code>"
+      <tr>
+        <td>"<code>same-origin</code>"
+        <td>"<code>same-origin</code>", "<code>strict-origin-when-cross-origin</code>",
+            "<code>no-referrer-when-downgrade</code>", "<code>origin-when-cross-origin</code>",
+            "<code>unsafe-url</code>"
+      <tr>
+        <td>"<code>strict-origin</code>"
+        <td>"<code>strict-origin</code>", "<code>strict-origin-when-cross-origin</code>",
+            "<code>origin</code>", "<code>no-referrer-when-downgrade</code>",
+            "<code>origin-when-cross-origin</code>", "<code>unsafe-url</code>"
+      <tr>
+        <td>"<code>no-referrer</code>"
+        <td>"<code>no-referrer</code>", "<code>same-origin</code>", "<code>strict-origin</code>",
+            "<code>strict-origin-when-cross-origin</code>", "<code>origin</code>",
+            "<code>no-referrer-when-downgrade</code>", "<code>origin-when-cross-origin</code>",
+            "<code>unsafe-url</code>"
+    </tbody>
+  </table>
+
+  Note: |a| is <a>at least as strict as</a> |b| exactly when, for every <a for=/>request</a>, the
+  result of [[#determine-requests-referrer]] with the request's
   <a for=request>referrer policy</a> set to |a| reveals no more than the result with it set to
-  |b|. For this comparison, <code>no referrer</code> reveals less than
-  <var ignore>referrerOrigin</var>, which reveals less than <a>referrerURL</a>.
+  |b|, where <code>no referrer</code> reveals less than <var ignore>referrerOrigin</var>, which
+  reveals less than <a>referrerURL</a>.
 
   Note: Referrer policies are not totally ordered by this relation. The following diagram
   illustrates it (a policy is at least as strict as every policy reachable upward from it):
@@ -1035,24 +1080,44 @@ spec: html; type: interface; text: Window
     <li>If |policy| is <a>at least as strict as</a> |restriction|, return |policy|.</li>
     <li>If |restriction| is <a>at least as strict as</a> |policy|, return |restriction|.</li>
     <li>
-      Return the policy given below for the unordered pair of |policy| and |restriction|:
-      <ul>
-        <li>"<code>no-referrer-when-downgrade</code>" and "<code>origin-when-cross-origin</code>":
-            "<code>strict-origin-when-cross-origin</code>"</li>
-        <li>"<code>no-referrer-when-downgrade</code>" and "<code>origin</code>":
-            "<code>strict-origin</code>"</li>
-        <li>"<code>strict-origin-when-cross-origin</code>" and "<code>origin</code>":
-            "<code>strict-origin</code>"</li>
-        <li>"<code>same-origin</code>" and "<code>origin</code>": "<code>no-referrer</code>"</li>
-        <li>"<code>same-origin</code>" and "<code>strict-origin</code>":
-            "<code>no-referrer</code>"</li>
-      </ul>
+      Return the referrer policy in the third column of the row of the following table whose first
+      and second columns are |policy| and |restriction|, in either order:
 
-      Note: These are exactly the pairs where neither policy is <a>at least as strict as</a> the
-      other. For each pair, one policy reveals less on some requests and the other on others (e.g.
+      <table>
+        <thead>
+          <tr><th>One of |policy| and |restriction|<th>The other<th>Result
+        </thead>
+        <tbody>
+          <tr>
+            <td>"<code>no-referrer-when-downgrade</code>"
+            <td>"<code>origin-when-cross-origin</code>"
+            <td>"<code>strict-origin-when-cross-origin</code>"
+          <tr>
+            <td>"<code>no-referrer-when-downgrade</code>"
+            <td>"<code>origin</code>"
+            <td>"<code>strict-origin</code>"
+          <tr>
+            <td>"<code>strict-origin-when-cross-origin</code>"
+            <td>"<code>origin</code>"
+            <td>"<code>strict-origin</code>"
+          <tr>
+            <td>"<code>same-origin</code>"
+            <td>"<code>origin</code>"
+            <td>"<code>no-referrer</code>"
+          <tr>
+            <td>"<code>same-origin</code>"
+            <td>"<code>strict-origin</code>"
+            <td>"<code>no-referrer</code>"
+        </tbody>
+      </table>
+
+      Note: These five rows are exactly the pairs of referrer policies where neither is
+      <a>at least as strict as</a> the other, so this step always finds a row. For each pair, one
+      policy reveals less on some requests and the other on others (e.g.
       "<code>no-referrer-when-downgrade</code>" sends nothing on a downgrade, while
       "<code>origin-when-cross-origin</code>" sends only the origin on other cross-origin
-      requests), and the result applies both restrictions.
+      requests), and the result is the most permissive policy that is
+      <a>at least as strict as</a> both.
     </li>
   </ol>
 
