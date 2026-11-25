@@ -993,6 +993,45 @@ spec: html; type: interface; text: Window
     </li>
   </ol>
 
+  <h3 id="restrict-referrer-policy" dfn export>
+    Restrict a referrer policy
+  </h3>
+
+  Given two <a for="/">referrer policies</a> |policy| and |restriction|, neither of which is the
+  empty string, the following steps return the most permissive <a for="/">referrer policy</a>
+  that never reveals more referrer information than either |policy| or |restriction|:
+
+  <ol>
+    <li>
+      For each of |policy| and |restriction|, look up its row in the table below. Each column
+      gives what [[#determine-requests-referrer]] returns for that kind of request: "none" for
+      <code>no referrer</code>, "origin" for <var ignore>referrerOrigin</var>, and "full" for
+      <a>referrerURL</a>, ordered "none" &lt; "origin" &lt; "full".
+
+      <table>
+        <tr><th>Policy<th><a>Same-origin-referrer request</a><th>Other request, not a downgrade<th>Downgrade
+        <tr><td>"<code>unsafe-url</code>"<td>full<td>full<td>full
+        <tr><td>"<code>no-referrer-when-downgrade</code>"<td>full<td>full<td>none
+        <tr><td>"<code>origin-when-cross-origin</code>"<td>full<td>origin<td>origin
+        <tr><td>"<code>strict-origin-when-cross-origin</code>"<td>full<td>origin<td>none
+        <tr><td>"<code>origin</code>"<td>origin<td>origin<td>origin
+        <tr><td>"<code>same-origin</code>"<td>full<td>none<td>none
+        <tr><td>"<code>strict-origin</code>"<td>origin<td>origin<td>none
+        <tr><td>"<code>no-referrer</code>"<td>none<td>none<td>none
+      </table>
+
+      A downgrade is a request whose referrer is a <a>potentially trustworthy URL</a> and whose
+      <a for=request>current URL</a> is not.
+    </li>
+    <li>Let |row| be the column-wise minimum of the two rows.</li>
+    <li>If a row of the table equals |row|, return that row's policy.</li>
+    <li>Return "<code>no-referrer</code>".</li>
+  </ol>
+
+  Note: The last step is reached only for "<code>same-origin</code>" and either
+  "<code>origin</code>" or "<code>strict-origin</code>", whose column-wise minimum (origin, none,
+  none) is not a referrer policy.
+
 </section>
 
 <section>
@@ -1038,6 +1077,9 @@ spec: html; type: interface; text: Window
 
   On the other hand, allowing for setting less strict policies enables authors
   to define safe fallbacks as described in [[#unknown-policy-values]].
+
+  Features that must not loosen a request's referrer policy can use
+  [[#restrict-referrer-policy]], which also handles policies that are not comparable.
 </section>
 
 <section>
